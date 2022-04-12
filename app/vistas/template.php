@@ -184,11 +184,11 @@
             <h1><?php echo $titulo ?></h1>
         </div>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-            <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation" >
+                <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">Menu</a>
@@ -210,27 +210,56 @@
                         </li>
 
                         <!-- QUIERO QUE LAS INSTALACIONES SOLO LAS VEAN LOS ADMIN -->
-                        <?php if (Session::existe()): ?>
-                        <div id="userInfo">
-                            <div id="foto_usuario"
-                                style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                        <?php if (Session::existe()) { ?>
+                        <?php
+                            $conn = ConexionBD::conectar();
+                            $usuDAO = new UsuarioDAO($conn);
+                            $usuario = $usuDAO->find(Session::obtener()->getId());
+                        ?>
+                        <?php if ($usuario->getRol() == 'admin') { ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Administradores
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="gestionReservas.php">Gestion Reservas</a></li>
+                                <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" hidden>
+                                </li>
+                                <li><a class="dropdown-item" href="#" hidden>Something else here</a></li>
+                            </ul>
+                        </li>
+                        <?php } ?>
+                        <?php } ?>
+                    </ul>
+
+                    <!-- BLOQUE INFO USUARIOS -->
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <section class="">
+                            <?php if (Session::existe()): ?>
+                            <div id="userInfo">
+                                <div id="foto_usuario"
+                                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                                </div>
+                                <form id="formulario_actualizar_photo" action="subir_photo" method="post"
+                                    enctype="multipart/form-data">
+                                    <input type="file" name="photo" id="input_photo">
+                                    <input type="submit">
+                                </form>
+                                <div id="userInfo"><?= Session::obtener()->getNombre() ?> <br><a href="logout">cerrar
+                                        sesión</a></div>
                             </div>
-                            <form id="formulario_actualizar_photo" action="subir_photo" method="post"
-                                enctype="multipart/form-data">
-                                <input type="file" name="photo" id="input_photo">
-                                <input type="submit">
+                            <?php else: ?>
+                            <form id="login" action="login" method="post">
+                                <input type="text" placeholder="email" name="email">
+                                <input type="password" placeholder="password" name="password"><br>
+                                <input type="submit" value="login" class="boton_formulario">
+                                <input type="button" onclick="location.href = '<?= RUTA?>registrar'" value="registrar"
+                                    class="boton_formulario">
                             </form>
-                            <div id="userInfo"><?= Session::obtener()->getNombre() ?> <br><a href="logout">cerrar
-                                    sesión</a></div>
-                        </div>
-                        <?php else: ?>
-                        <form id="login" action="login" method="post">
-                            <input type="text" placeholder="email" name="email">
-                            <input type="password" placeholder="password" name="password"><br>
-                            <input type="submit" value="login" class="boton_formulario">
-                            <input type="button" onclick="location.href = '<?= RUTA?>registrar'" value="registrar"
-                                class="boton_formulario">
-                        </form>
+                        </section>
                         <?php endif; ?>
                     </ul>
                 </div>

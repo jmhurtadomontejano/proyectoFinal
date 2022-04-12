@@ -68,31 +68,33 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" hidden>
                 <button class="btn btn-outline-success" type="submit" hidden>Search</button>
             </form>
-               <?php if (Session::existe()): ?>
-    <?php
+            <?php if (Session::existe()): ?>
+            <?php
             $conn = ConexionBD::conectar();
             $usuDAO = new UsuarioDAO($conn);
             $usuario = $usuDAO->find(Session::obtener());
             ?>
-    <div id="usuario">
-        <img width="120" height="120" id="foto_usuario" style="background-image: url(imagenes/fotosUsuarios/<?= $usuario->getFoto() ?>); background-size:cover; background-position:center"></img>
-        <!--<form id="formulario_actualizar_foto" action="subir_foto.php" method="post" enctype="multipart/form-data">
+            <div id="usuario">
+                <img width="120" height="120" id="foto_usuario"
+                    style="background-image: url(imagenes/fotosUsuarios/<?= $usuario->getFoto() ?>); background-size:cover; background-position:center"></img>
+                <!--<form id="formulario_actualizar_foto" action="subir_foto.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="foto" id="input_foto">
                 <input type="submit">-->
-        </form>
-        <div id="datos_usuario"><?= $usuario->getNombre() ?> <br>
-            <?= $usuario->getEmail() ?> <br>
-            <a href="logout.php">cerrar sesión</a>
-        </div>
-    </div>
-    <?php else: ?>
-    <form id="login" action="login.php" method="post">
-        <input type="text" placeholder="email" name="email">
-        <input type="password" placeholder="password" name="password"><br>
-        <input type="submit" value="login" class="boton_formulario">
-        <input type="button" onclick="location.href = 'registrar.php'" value="registrar" class="boton_formulario">
-    </form>
-    <?php endif; ?>
+                </form>
+                <div id="datos_usuario"><?= $usuario->getNombre() ?> <br>
+                    <?= $usuario->getEmail() ?> <br>
+                    <a href="logout.php">cerrar sesión</a>
+                </div>
+            </div>
+            <?php else: ?>
+            <form id="login" action="login.php" method="post">
+                <input type="text" placeholder="email" name="email">
+                <input type="password" placeholder="password" name="password"><br>
+                <input type="submit" value="login" class="boton_formulario">
+                <input type="button" onclick="location.href = 'registrar.php'" value="registrar"
+                    class="boton_formulario">
+            </form>
+            <?php endif; ?>
         </div>
     </div>
 </nav>

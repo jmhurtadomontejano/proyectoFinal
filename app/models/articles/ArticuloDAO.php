@@ -112,7 +112,7 @@ class ArticuloDAO {
     }
 
     /**
-     * Devuelve todos los articulos de la BD
+     * Devuelve todos los usuarios de la BD
      * @param type $orden Tipo de orden (ASC o DESC)
      * @param type $campo Campo de la BD por el que se van a ordenar
      * @return array Array de objetos de la clase Usuario
@@ -122,6 +122,26 @@ class ArticuloDAO {
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
+        $array_obj_articulos = array();
+        while ($articulo = $result->fetch_object('Articulo')) {
+            $array_obj_articulos[] = $articulo;
+        }
+        return $array_obj_articulos;
+    }
+    
+    public function findByUser($id_usuario) {
+        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos WHERE id_usuario=? ORDER BY id DESC";
+        if(!$stmt = $this->conn->prepare($sql)){
+            die("Error en la consulta $sql:" . $this->conn->error);
+        }
+        
+        $stmt instanceof mysqli_stmt;
+        
+        $stmt->bind_param('i', $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        
         $array_obj_articulos = array();
         while ($articulo = $result->fetch_object('Articulo')) {
             $array_obj_articulos[] = $articulo;

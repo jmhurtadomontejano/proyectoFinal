@@ -156,7 +156,7 @@
         cursor: pointer;
     }
 
-    #foto_usuario {
+    #photo_usuario {
         height: 80px;
         width: 80px;
         background-size: cover;
@@ -216,7 +216,7 @@
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->find(Session::obtener()->getId());
                         ?>
-                        <?php if ($usuario->getRol() == 'admin') { ?>
+                        <?php if ($usuario->getRol() == 'admin' || 'superAdmin') { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -224,6 +224,24 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="gestionReservas.php">Gestion Reservas</a></li>
+                                <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" hidden>
+                                </li>
+                                <li><a class="dropdown-item" href="#" hidden>Something else here</a></li>
+                            </ul>
+                        </li>
+                        <?php } ?>
+
+                         <!-- SUPERADMIN MENU -->
+                        <?php if ($usuario->getRol() == 'superAdmin') { ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                SuperAdministradores
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="<?= RUTA?>views/users/insertar_articulo">Gestion Usuarios</a></li>
                                 <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
                                 <li>
                                     <hr class="dropdown-divider" hidden>
@@ -240,7 +258,7 @@
                         <section class="">
                             <?php if (Session::existe()): ?>
                             <div id="userInfo">
-                                <div id="foto_usuario"
+                                <div id="photo_usuario"
                                     style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                                 </div>
                                 <form id="formulario_actualizar_photo" action="subir_photo" method="post"
@@ -283,7 +301,7 @@ $('#photo_usuario').click(function() {
     $('#input_photo').click();
 });
 
-$('#input_photo').change(function() {
+$('#input_foto').change(function() {
     $('#formulario_actualizar_photo').submit();
 })
 </script>

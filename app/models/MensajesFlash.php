@@ -7,7 +7,7 @@
  */
 class MensajesFlash {
 
-    static public function anadir_mensaje($mensaje) {
+    static public function add_message($mensaje) {
         $_SESSION['mensajes_flash'][] = $mensaje;
     }
 

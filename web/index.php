@@ -7,31 +7,31 @@
 session_start();
 
 //Requires
-require '../app/modelos/ConexionBD.php';
-require '../app/modelos/Articulo.php';
-require '../app/modelos/ArticuloDAO.php';
-require '../app/modelos/Foto.php';
-require '../app/modelos/FotoDAO.php';
-require '../app/modelos/MensajesFlash.php';
-require '../app/modelos/Session.php';
-require '../app/modelos/Usuario.php';
-require '../app/modelos/UsuarioDAO.php';
-require '../app/controladores/ControladorArticulo.php';
-require '../app/controladores/ControladorUsuario.php';
+require '../app/models/ConexionBD.php';
+require '../app/models/articles/Articulo.php';
+require '../app/models/articles/ArticuloDAO.php';
+require '../app/models/Foto.php';
+require '../app/models/FotoDAO.php';
+require '../app/models/MensajesFlash.php';
+require '../app/models/Session.php';
+require '../app/models/Usuario.php';
+require '../app/models/UsuarioDAO.php';
+require '../app/controllers/ArticlesController.php';
+require '../app/controllers/UsersController.php';
 require '../app/config.php';
 
 
 //Enrutamiento
 $mapa = array(
-    'inicio' => array('controlador' => 'ControladorArticulo', 'metodo' => 'listar', 'publica' => true),
-    'borrar_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'borrar', 'publica' => false),
-    'insertar_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'insertar', 'publica' => false),
-    'ver_articulo' => array('controlador' => 'ControladorArticulo', 'metodo' => 'ver', 'publica' => true),
-    'registrar' => array('controlador' => 'ControladorUsuario', 'metodo' => 'registrar', 'publica' => true),
-    'subir_foto' => array('controlador' => 'ControladorUsuario', 'metodo' => 'subir_foto', 'publica' => false),
-    'login' => array('controlador' => 'ControladorUsuario', 'metodo' => 'login', 'publica' => true),
-    'logout' => array('controlador' => 'ControladorUsuario', 'metodo' => 'logout', 'publica' => false),
-    'mis_articulos' => array('controlador' => 'ControladorArticulo', 'metodo' => 'mis_articulos', 'publica' => false),
+    'inicio' => array('controlador' => 'ArticlesController', 'metodo' => 'listar', 'publica' => true),
+    'borrar_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'borrar', 'publica' => false),
+    'insertar_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'insertar', 'publica' => false),
+    'ver_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'ver', 'publica' => true),
+    'registrar' => array('controlador' => 'UsersController', 'metodo' => 'registrar', 'publica' => true),
+    'subir_foto' => array('controlador' => 'UsersController', 'metodo' => 'subir_foto', 'publica' => false),
+    'login' => array('controlador' => 'UsersController', 'metodo' => 'login', 'publica' => true),
+    'logout' => array('controlador' => 'UsersController', 'metodo' => 'logout', 'publica' => false),
+    'mis_articulos' => array('controlador' => 'ArticlesController', 'metodo' => 'mis_articulos', 'publica' => false),
 );
 
 //Parseo de la ruta

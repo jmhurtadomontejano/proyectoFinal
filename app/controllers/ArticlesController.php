@@ -1,6 +1,6 @@
 <?php
 
-class ControladorArticulo {
+class ArticlesController {
 
     public function listar() {
         $conn = ConexionBD::conectar();
@@ -11,7 +11,7 @@ class ControladorArticulo {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../app/vistas/inicio.php';
+        require '../app/views/index/index.php';
     }
 
     function borrar() {
@@ -126,7 +126,7 @@ class ControladorArticulo {
             die();
         }
 
-        require '../app/vistas/insertar_articulo.php';
+        require '../app/views/articles/insert_article.php';
     }
 
     public function ver() {
@@ -148,7 +148,7 @@ class ControladorArticulo {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../app/vistas/mis_articulos.php';
+        require '../app/views/articles/own_articles.php';
     }
 
 }

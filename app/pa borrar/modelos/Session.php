@@ -6,7 +6,7 @@
  *
  * @author DAW2
  */
-class Sesion {
+class Session {
     static public function iniciar($usuario){
         $_SESSION['usuario_sesion']= serialize($usuario);
     }
@@ -20,7 +20,7 @@ class Sesion {
     }
     
     /**
-     * Devuelve el id del usuario conectado o false si no ha iniciado sesión
+     * Devuelve el objeto usuario conectado o false si no ha iniciado sesión
      * @return boolean
      */
     static public function obtener(){
@@ -29,4 +29,6 @@ class Sesion {
         else
             return false;
     }
+
+    
 }

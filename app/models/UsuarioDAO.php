@@ -21,10 +21,10 @@ class UsuarioDAO {
         $nombre = $usuario->getNombre();
         $email = $usuario->getEmail();
         $password = $usuario->getPassword();
-        $foto = $usuario->getFoto();
+        $photo = $usuario->getPhoto();
         $cookie_id = sha1(time() + rand());
-        $sql = "INSERT INTO usuarios (nombre, email, password, foto, cookie_id) VALUES "
-                . "('$nombre','$email','$password','$foto', '$cookie_id')";
+        $sql = "INSERT INTO usuarios (nombre, email, password, photo, cookie_id) VALUES "
+                . "('$nombre','$email','$password','$photo', '$cookie_id')";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -41,10 +41,10 @@ class UsuarioDAO {
         $nombre = $usuario->getNombre();
         $email = $usuario->getEmail();
         $password = $usuario->getPassword();
-        $foto = $usuario->getFoto();
+        $photo = $usuario->getPhoto();
         $cookie_id = $usuario->getCookie_id();
         $sql = "UPDATE usuarios SET"
-                . " nombre='$nombre', email='$email',password='$password', foto='$foto', cookie_id='$cookie_id' "
+                . " nombre='$nombre', email='$email',password='$password', photo='$photo', cookie_id='$cookie_id' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
@@ -95,7 +95,7 @@ class UsuarioDAO {
           $usuario->setEmail($fila['email']);
           $usuario->setPassword($fila['password']);
           $usuario->setId($fila['id']);
-          $usuario->setFoto($fila['foto']);
+          $usuario->setPhoto($fila['photo']);
           $usuario->setNombre($fila['nombre']);
 
           return $usuario;

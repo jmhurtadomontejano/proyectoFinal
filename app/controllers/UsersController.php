@@ -11,7 +11,7 @@
  *
  * @author DAW2
  */
-class ControladorUsuario {
+class UsersController {
 
     public function registrar() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -88,7 +88,7 @@ class ControladorUsuario {
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;
 
-        require '../app/vistas/registrar.php';
+        require '../app/views/users/userRegistrer.php';
     }
 
     public function subir_photo() {
@@ -149,6 +149,12 @@ class ControladorUsuario {
 
         header("Location: " . RUTA);
         die();
+    }
+
+    public function allUsers() {
+        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+        $usuarios = $usuDAO->findAll();
+        require '../app/views/users/users.php';
     }
 
     public function logout() {

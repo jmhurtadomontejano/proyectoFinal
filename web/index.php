@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Controlador Frontal
+ * controller Frontal
  */
 
 session_start();
@@ -23,16 +23,19 @@ require '../app/config.php';
 
 //Enrutamiento
 $mapa = array(
-    'inicio' => array('controlador' => 'ArticlesController', 'metodo' => 'listar', 'publica' => true),
-    'borrar_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'borrar', 'publica' => false),
-    'insertar_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'insertar', 'publica' => false),
-    'ver_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'ver', 'publica' => true),
-    'registrar' => array('controlador' => 'UsersController', 'metodo' => 'registrar', 'publica' => true),
-    'subir_photo' => array('controlador' => 'UsersController', 'metodo' => 'subir_photo', 'publica' => false),
-    'login' => array('controlador' => 'UsersController', 'metodo' => 'login', 'publica' => true),
-    'logout' => array('controlador' => 'UsersController', 'metodo' => 'logout', 'publica' => false),
-    'mis_articulos' => array('controlador' => 'ArticlesController', 'metodo' => 'mis_articulos', 'publica' => false),
-    'usersList' => array('controlador' => 'UsersController', 'metodo' => 'userList', 'publica' => true),
+    //articlesController
+    'inicio' => array('controller' => 'ArticlesController', 'method' => 'listar', 'publica' => true),
+    'borrar_articulo' => array('controller' => 'ArticlesController', 'method' => 'borrar', 'publica' => false),
+    'insertar_articulo' => array('controller' => 'ArticlesController', 'method' => 'insertar', 'publica' => false),
+    'ver_articulo' => array('controller' => 'ArticlesController', 'method' => 'ver', 'publica' => true),
+    'mis_articulos' => array('controller' => 'ArticlesController', 'method' => 'mis_articulos', 'publica' => false),
+
+    //userController
+    'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),
+    'subir_photo' => array('controller' => 'UsersController', 'method' => 'subir_photo', 'publica' => false),
+    'login' => array('controller' => 'UsersController', 'method' => 'login', 'publica' => true),
+    'logout' => array('controller' => 'UsersController', 'method' => 'logout', 'publica' => false),
+    'usersList' => array('controller' => 'UsersController', 'method' => 'usersList', 'publica' => true),
 );
 
 //Parseo de la ruta
@@ -68,9 +71,9 @@ if ($mapa[$accion]['publica'] == false) { //Debe tener la sesión iniciada
 }
 
 
-//Ejecución del controlador
-$controlador = $mapa[$accion]['controlador'];
-$metodo = $mapa[$accion]['metodo'];
+//Ejecución del controller
+$controller = $mapa[$accion]['controller'];
+$method = $mapa[$accion]['method'];
 
-$controlador = new $controlador();
-$controlador->$metodo();
+$controller = new $controller();
+$controller->$method();

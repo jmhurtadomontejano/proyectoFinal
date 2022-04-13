@@ -37,9 +37,10 @@ class UsersController {
                 MensajesFlash::add_message("El email no es correcto.");
                 $error = true;
             }
+            console.log($_POST['email']);
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 //Check the email is not registrer yet  
-               if( usuDAO::findByEmail($_POST['email'])){
+               if(usuDAO::findByEmail($_POST['email'])){
                 MensajesFlash::add_message("El email "+ ($_POST['email']) +" ya se encuentra registrado.");
                 $error = true;
                 }
@@ -163,7 +164,7 @@ class UsersController {
         die();
     }
 
-    public function userList() {
+    public function usersList() {
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
         $usersList = $usuDAO->findAll();

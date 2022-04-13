@@ -4,7 +4,7 @@
 /**
  * Clase para manejo de sesiones de usuario en nuestra página (inicio de sesión, cierre de sesión, si existe la sesión, etc.)
  *
- * @author DAW2
+ * @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
 class Session {
     static public function iniciar($usuario){

@@ -3,7 +3,7 @@
 /**
  * Description of MensajesFlash
  *
- * @author DAW2
+ * @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
 class MensajesFlash {
 

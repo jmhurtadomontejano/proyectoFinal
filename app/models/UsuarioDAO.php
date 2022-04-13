@@ -21,11 +21,13 @@ class UsuarioDAO {
         $nombre = $usuario->getNombre();
         $surname = $usuario->getSurname();
         $email = $usuario->getEmail();
+        $phone =  $usuario->getPhone();
+        $postalCode = $usuario->getPostalCode();
         $password = $usuario->getPassword();
         $photo = $usuario->getPhoto();
         $cookie_id = sha1(time() + rand());
-        $sql = "INSERT INTO usuarios (nombre, email, password, photo, cookie_id) VALUES "
-                . "('$nombre','$email','$password','$photo', '$cookie_id')";
+        $sql = "INSERT INTO usuarios (nombre, surname, email, phone, postalCode, password, photo, cookie_id) VALUES "
+                . "('$nombre','$surname','$email','$phone','$postalCode','$password','$photo', '$cookie_id')";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }

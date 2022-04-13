@@ -10,6 +10,8 @@ class Usuario {
     private $nombre;
     private $surname;
     private $email;
+    private $phone;
+    private $postalCode;
     private $password;
     private $photo;
     private $rol;
@@ -43,6 +45,14 @@ class Usuario {
         return $this->email;
     }
 
+    function getPhone() {
+        return $this->phone;
+    }
+
+    function getPostalCode() {
+        return $this->phone;
+    }
+
     function getPassword() {
         return $this->password;
     }
@@ -73,6 +83,14 @@ class Usuario {
 
     function setEmail($email): void {
         $this->email = $email;
+    }
+
+    function setPhone($phone): void {
+        $this->phone = $phone;
+    }
+    
+    function setPostalCode($postalCode): void {
+        $this->postalCode = $postalCode;
     }
 
     function setPassword($password): void {

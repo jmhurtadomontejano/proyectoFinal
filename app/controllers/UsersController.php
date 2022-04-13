@@ -37,6 +37,13 @@ class UsersController {
                 MensajesFlash::add_message("El email no es correcto.");
                 $error = true;
             }
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                //Check the email is not registrer yet  
+               if( usuDAO::findByEmail($_POST['email'])){
+                MensajesFlash::add_message("El email "+ ($_POST['email']) +" ya se encuentra registrado.");
+                $error = true;
+                }
+            }
             if (empty($_POST['password'])) {
                 MensajesFlash::add_message("El password es obligatorio.");
                 $error = true;
@@ -70,10 +77,14 @@ class UsersController {
                 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                 $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $postal_code = filter_var($_POST['postal_code'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
                 $usuario->setSurname($surname);
+                $usuario->setPhone($phone);
+                $usuario->setPostalCode($postalCode);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
 

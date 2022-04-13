@@ -27,6 +27,14 @@
                         <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono" class="form-control" max=999999999>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Código Postal</label>
+                        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control"
                             placeholder="Introduce aqui tu password">

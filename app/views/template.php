@@ -216,7 +216,7 @@
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->find(Session::obtener()->getId());
                         ?>
-                        <?php if ($usuario->getRol() == 'admin' || 'superAdmin') { ?>
+                        <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -266,9 +266,11 @@
                                     <input type="file" name="photo" id="input_photo">
                                     <input type="submit">
                                 </form>
-                                <div id="userInfo"><?= Session::obtener()->getNombre() ?> <?= Session::obtener()->getSurname() ?>
-                                 <br>
-                                 <a href="logout">cerrar sesión</a></div>
+                                <div id="userInfo"><?= Session::obtener()->getNombre() ?>
+                                    <?= Session::obtener()->getSurname() ?>
+                                    <br>
+                                    <a href="logout">cerrar sesión</a>
+                                </div>
                             </div>
                             <?php else: ?>
                             <form id="login" action="login" method="post">

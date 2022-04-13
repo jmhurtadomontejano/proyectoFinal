@@ -73,6 +73,7 @@ class UsersController {
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
+                $usuario->setSurname($surname);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
 
@@ -151,11 +152,14 @@ class UsersController {
         die();
     }
 
-    public function allUsers() {
+    public function userList() {
+        $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-        $usuarios = $usuDAO->findAll();
-        require '../app/views/users/users.php';
+        $usersList = $usuDAO->findAll();
+
+        require '../app/views/users/usersList.php';
     }
+
 
     public function logout() {
         Session::cerrar();

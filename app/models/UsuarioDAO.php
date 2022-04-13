@@ -19,6 +19,7 @@ class UsuarioDAO {
             return false;
         }
         $nombre = $usuario->getNombre();
+        $surname = $usuario->getSurname();
         $email = $usuario->getEmail();
         $password = $usuario->getPassword();
         $photo = $usuario->getPhoto();

@@ -8,10 +8,10 @@ session_start();
 
 //Requires
 require '../app/models/ConexionBD.php';
-require '../app/models/articles/Articulo.php';
-require '../app/models/articles/ArticuloDAO.php';
-require '../app/models/Foto.php';
-require '../app/models/FotoDAO.php';
+require '../app/models/articles/Article.php';
+require '../app/models/articles/ArticleDAO.php';
+require '../app/models/photo/Photo.php';
+require '../app/models/photo/PhotoDAO.php';
 require '../app/models/MensajesFlash.php';
 require '../app/models/Session.php';
 require '../app/models/Usuario.php';
@@ -28,10 +28,11 @@ $mapa = array(
     'insertar_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'insertar', 'publica' => false),
     'ver_articulo' => array('controlador' => 'ArticlesController', 'metodo' => 'ver', 'publica' => true),
     'registrar' => array('controlador' => 'UsersController', 'metodo' => 'registrar', 'publica' => true),
-    'subir_foto' => array('controlador' => 'UsersController', 'metodo' => 'subir_foto', 'publica' => false),
+    'subir_photo' => array('controlador' => 'UsersController', 'metodo' => 'subir_photo', 'publica' => false),
     'login' => array('controlador' => 'UsersController', 'metodo' => 'login', 'publica' => true),
     'logout' => array('controlador' => 'UsersController', 'metodo' => 'logout', 'publica' => false),
     'mis_articulos' => array('controlador' => 'ArticlesController', 'metodo' => 'mis_articulos', 'publica' => false),
+    'usersList' => array('controlador' => 'UsersController', 'metodo' => 'userList', 'publica' => true),
 );
 
 //Parseo de la ruta

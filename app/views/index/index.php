@@ -6,16 +6,16 @@ ob_start();
 <?php foreach ($articulos as $a): ?>
 <div class="articulo_listado">
     <div class="titulo_articulo"><a href="<?= RUTA?>ver_articulo/<?= $a->getId() ?>"><?= $a->getTitulo() ?></a></div>
-    <?php if(count($a->getFotos())>=1): ?>
-    <div class="fotos_articulo"
-        style="background-image:url('<?= RUTA?>web/imagenes_articulos/<?= $a->getFotos()[0]->getNombre_archivo() ?>');
+    <?php if(count($a->getPhotos())>=1): ?>
+    <div class="photos_articulo"
+        style="background-image:url('<?= RUTA?>web/images/articles/<?= $a->getPhotos()[0]->getNombre_archivo() ?>');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
                 height:100px;">
     </div>
     <?php else: ?>
-    <div class="fotos_articulo" style="background-image:url('<?= RUTA?>web/imagenes/articulo_generico.jpg')"></div>
+    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/imagenes/articulo_generico.jpg')"></div>
     <?php endif; ?>
     <div class="descripcion_articulo"><?= substr($a->getDescripcion(), 0, 20) . "..." ?></div>
     <div class="precio_articulo"
@@ -31,7 +31,7 @@ ob_start();
     <?= $a->getUsuario()->getNombre(); ?>
     <?php if (Session::existe() && $a->getUsuario()->getId() == (Session::obtener())->getId()): ?>
     <div class="borrar_articulo"><a href="borrar_articulo/<?= $a->getId() ?>/<?=$token ?>"><img
-                src="<?= RUTA?>web/iconos/trash.svg" class="papelera"></a></div>
+                src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></div>
     <?php endif; ?>
 
 </div>

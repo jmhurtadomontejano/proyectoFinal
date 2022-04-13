@@ -2,14 +2,14 @@
 
 session_start(); //Permite utilizar variables de sesión
 
-require 'modelos/ConexionBD.php';
-require 'modelos/Articulo.php';
-require 'modelos/Foto.php';
-require 'modelos/Usuario.php';
-require 'modelos/UsuarioDAO.php';
-require 'modelos/MensajesFlash.php';
-require 'modelos/Sesion.php';
-require 'modelos/ArticuloDAO.php';
+require 'models/ConexionBD.php';
+require 'models/Articulo.php';
+require 'models/Foto.php';
+require 'models/Usuario.php';
+require 'models/UsuarioDAO.php';
+require 'models/MensajesFlash.php';
+require 'models/Session.php';
+require 'models/articles/ArticuloDAO.php';
 
 
 if (($_FILES['foto']['type'] != 'image/png' &&
@@ -27,7 +27,7 @@ while (file_exists("imagenes/$nombre_foto.$extension_foto")) {
     $nombre_foto = md5(time() + rand(0, 999999));
 }
 //movemos la foto a la carpeta que queramos guardarla y con el nombre original
-move_uploaded_file($_FILES['foto']['tmp_name'], "imagenes/$nombre_foto.$extension_foto");
+move_uploaded_file($_FILES['foto']['tmp_name'], "images/$nombre_foto.$extension_foto");
 //Actualizamos en la BD
 $conn = ConexionBD::conectar();
 $usuarioDAO = new UsuarioDAO($conn);

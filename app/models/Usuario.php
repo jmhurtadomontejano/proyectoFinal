@@ -8,6 +8,7 @@
 class Usuario {
     private $id;
     private $nombre;
+    private $surname;
     private $email;
     private $password;
     private $photo;
@@ -32,6 +33,10 @@ class Usuario {
 
     function getNombre() {
         return $this->nombre;
+    }
+
+    function getSurname() {
+        return $this->surname;
     }
 
     function getEmail() {
@@ -60,6 +65,10 @@ class Usuario {
 
     function setNombre($nombre): void {
         $this->nombre = $nombre;
+    }
+
+    function setSurname($surname): void {
+        $this->surname = $surname;
     }
 
     function setEmail($email): void {

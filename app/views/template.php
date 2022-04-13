@@ -46,7 +46,7 @@
 
     }
 
-    .fotos_articulo {
+    .photos_articulo {
         height: 100px;
         background-size: contain;
         background-position: center;
@@ -209,7 +209,7 @@
                             <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
                         </li>
 
-                        <!-- QUIERO QUE LAS INSTALACIONES SOLO LAS VEAN LOS ADMIN -->
+                        <!-- ADMIN MENU -->
                         <?php if (Session::existe()) { ?>
                         <?php
                             $conn = ConexionBD::conectar();
@@ -223,7 +223,7 @@
                                 Administradores
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="gestionReservas.php">Gestion Reservas</a></li>
+                                <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                                 <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
                                 <li>
                                     <hr class="dropdown-divider" hidden>
@@ -233,7 +233,7 @@
                         </li>
                         <?php } ?>
 
-                         <!-- SUPERADMIN MENU -->
+                        <!-- SUPERADMIN MENU -->
                         <?php if ($usuario->getRol() == 'superAdmin') { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -241,7 +241,7 @@
                                 SuperAdministradores
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="<?= RUTA?>views/users/insertar_articulo">Gestion Usuarios</a></li>
+                                <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                                 <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
                                 <li>
                                     <hr class="dropdown-divider" hidden>
@@ -266,8 +266,9 @@
                                     <input type="file" name="photo" id="input_photo">
                                     <input type="submit">
                                 </form>
-                                <div id="userInfo"><?= Session::obtener()->getNombre() ?> <br><a href="logout">cerrar
-                                        sesión</a></div>
+                                <div id="userInfo"><?= Session::obtener()->getNombre() ?> <?= Session::obtener()->getSurname() ?>
+                                 <br>
+                                 <a href="logout">cerrar sesión</a></div>
                             </div>
                             <?php else: ?>
                             <form id="login" action="login" method="post">
@@ -301,7 +302,7 @@ $('#photo_usuario').click(function() {
     $('#input_photo').click();
 });
 
-$('#input_foto').change(function() {
+$('#input_photo').change(function() {
     $('#formulario_actualizar_photo').submit();
 })
 </script>

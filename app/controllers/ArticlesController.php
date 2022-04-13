@@ -67,20 +67,20 @@ class ArticlesController {
 
             $articuloDAO->insert($articulo);
 
-            for ($i = 0; $i < count($_FILES['foto']['name']); $i++) {
+            for ($i = 0; $i < count($_FILES['photo']['name']); $i++) {
                 $error = false;
 
                 /*                 * ****************************************** */
-                /*                 * ************ VALIDAMOS LA FOTO *********** */
+                /*                 * ************ VALIDAMOS LA photo *********** */
                 /*                 * ****************************************** */
 
-                if ($_FILES['foto']['type'][$i] != 'image/png' &&
-                        $_FILES['foto']['type'][$i] != 'image/gif' &&
-                        $_FILES['foto']['type'][$i] != 'image/jpeg') {
+                if ($_FILES['photo']['type'][$i] != 'image/png' &&
+                        $_FILES['photo']['type'][$i] != 'image/gif' &&
+                        $_FILES['photo']['type'][$i] != 'image/jpeg') {
                     MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                     $error = true;
                 }
-                if ($_FILES['foto']['size'][$i] > 1000000) {
+                if ($_FILES['photo']['size'][$i] > 1000000) {
                     MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
                     $error = true;
                 }
@@ -91,17 +91,17 @@ class ArticlesController {
                     /*                     * ****************************************** */
                     /*                     * ********** COPIAR LA FOTO A DISCO ******** */
                     /*                     * ****************************************** */
-                    $nombre_foto = md5(time() + rand(0, 999999));
-                    $extension_foto = substr($_FILES['foto']['name'][$i], strrpos($_FILES['foto']['name'][$i], '.') + 1);
-                    //Limpiamos la extensión de la foto
-                    $extension_foto = filter_var($extension_foto, FILTER_SANITIZE_SPECIAL_CHARS);
-                    //Comprobamos que no exista ya una foto con el mismo nombre, si existe calculamos uno nuevo
-                    while (file_exists("imagenes_articulos/$nombre_foto.$extension_foto")) {
-                        $nombre_foto = md5(time() + rand(0, 999999));
+                    $nombre_photo = md5(time() + rand(0, 999999));
+                    $extension_photo = substr($_FILES['photo']['name'][$i], strrpos($_FILES['photo']['name'][$i], '.') + 1);
+                    //Limpiamos la extensión de la photo
+                    $extension_photo = filter_var($extension_photo, FILTER_SANITIZE_SPECIAL_CHARS);
+                    //Comprobamos que no exista ya una photo con el mismo nombre, si existe calculamos uno nuevo
+                    while (file_exists("images/articles/$nombre_photo.$extension_photo")) {
+                        $nombre_photo = md5(time() + rand(0, 999999));
                     }
-                    //movemos la foto a la carpeta que queramos guardarla y con el nuevo nombre
-                    if (!move_uploaded_file($_FILES['foto']['tmp_name'][$i], "imagenes_articulos/$nombre_foto.$extension_foto")) {
-                        MensajesFlash::add_message("No se ha podido copiar la foto");
+                    //movemos la photo a la carpeta que queramos guardarla y con el nuevo nombre
+                    if (!move_uploaded_file($_FILES['photo']['tmp_name'][$i], "images/articles/$nombre_photo.$extension_photo")) {
+                        MensajesFlash::add_message("No se ha podido copiar la photo");
                         header("Location: inicio");
                         die();
                     }
@@ -110,13 +110,13 @@ class ArticlesController {
                     /*                     * ******* GUARDAMOS LA FOTO EN LA BBDD ***** */
                     /*                     * ****************************************** */
                     $id_articulo = $articulo->getId();
-                    $nombre_archivo = "$nombre_foto.$extension_foto";
-                    $fotoDAO = new FotoDAO($conn);
-                    $foto = new Foto();
-                    $foto->setId_articulo($id_articulo);
-                    $foto->setNombre_archivo($nombre_archivo);
-                    if (!$fotoDAO->insert($foto)) {
-                        die("Error al insertar la foto en la BD");
+                    $nombre_archivo = "$nombre_photo.$extension_photo";
+                    $photoDAO = new PhotoDAO($conn);
+                    $photo = new Photo();
+                    $photo->setId_articulo($id_articulo);
+                    $photo->setNombre_archivo($nombre_archivo);
+                    if (!$photoDAO->insert($photo)) {
+                        die("Error al insertar la photo en la BD");
                     }
                 }//if(!$error)
             } //for

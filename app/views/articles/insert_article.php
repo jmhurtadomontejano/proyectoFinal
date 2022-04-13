@@ -14,7 +14,7 @@
             <input type="text" name="titulo" placeholder="Titulo..."><br>
             <textarea name="descripcion" id="descripcion" placeholder="Descripción..."></textarea>
             <input type="number" name="precio" placeholder="Precio..."><br>
-            <input type="file" name="foto[]" multiple="multiple" ><br><br>
+            <input type="file" name="photo[]" multiple="multiple" ><br><br>
             <input type="submit" value="Poner a la venta">
         </form>
 

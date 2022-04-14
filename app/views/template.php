@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,10 +13,17 @@
     </script>
 
 
+    <!-- FONTAWESOME -->
     <script src="https://use.fontawesome.com/2a534a9a61.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <!-- <stylesheet href="../css/style.css"></stylesheet>
+        <style type="text/css" href="../css/style.css">
+
+        <stylesheet src="../css/style.css"></stylesheet>
+        <style type="text/css" src="../css/style.css">
+    -->
     <style type="text/css">
     header {
         overflow: auto;
@@ -214,7 +220,7 @@
                         <?php
                             $conn = ConexionBD::conectar();
                             $usuDAO = new UsuarioDAO($conn);
-                            $usuario = $usuDAO->find(Session::obtener()->getId());
+                            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
                         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                         <li class="nav-item dropdown">

@@ -85,11 +85,13 @@ class UsuarioDAO {
      * @param type $id id del usuario
      * @return \Usuario Usuario de la BD o null si no existe
      */
-    public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
+    public function findUserById($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL : " . $this->conn->error);
         }
+     
+     
         return $result->fetch_object('Usuario');
         /* También se podría sustituir el fetch_object por lo siguiente:
          * 
@@ -105,6 +107,28 @@ class UsuarioDAO {
           } else {
           return null;
           } */
+    }
+
+    public function findUserByIdJson($id) {
+        $sql = "SELECT * FROM usuarios WHERE id=$id";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL : " . $this->conn->error);
+        }
+        if ($fila = $result->fetch_assoc()) {
+            $usuario = new Usuario();
+            $usuario->setEmail($fila['email']);
+            $usuario->setPassword($fila['password']);
+            $usuario->setId($fila['id']);
+            $usuario->setPhoto($fila['photo']);
+            $usuario->setNombre($fila['nombre']);
+            $usuario->setSurname($fila['surname']);
+            $usuario->setPhone($fila['phone']);
+            $usuario->setPostalCode($fila['postalCode']);
+            console.log($usuario);
+            return $usuario;
+        } else {
+            return null;
+        }
     }
 
     /**

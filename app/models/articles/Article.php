@@ -57,7 +57,7 @@ class Articulo {
     function getUsuario() {
         if (!isset($this->usuario)) {
             $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
-            $this->usuario = $usuarioDAO->find($this->getId_usuario());
+            $this->usuario = $usuarioDAO->findUserById($this->getId_usuario());
         }
         return $this->usuario;
     }

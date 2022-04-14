@@ -32,7 +32,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código Postal</label>
-                        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999>
+                <!--        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999> -->
+                <input type="select" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>

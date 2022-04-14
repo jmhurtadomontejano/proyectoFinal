@@ -159,7 +159,6 @@ class UsersController {
         $usuDAO->update($usuario);
         //Creamos la cookie en el navegador del cliente con el mismo código generado
         setcookie('uid', $usuario->getCookie_id(), time() + 60 * 60 * 24 * 7);
-
         header("Location: " . RUTA);
         die();
     }
@@ -170,6 +169,22 @@ class UsersController {
         $usersList = $usuDAO->findAll();
 
         require '../app/views/users/usersList.php';
+    }
+
+    public function findByUserId($userId) {
+        $conn = ConexionBD::conectar();
+        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+        $user = $usuDAO->find($userId);
+        echo $user;
+        console.log($user);
+    }
+
+    public function findUserByIdJson($userId) {
+        $conn = ConexionBD::conectar();
+        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+        $user = $usuDAO->find($userId);
+        echo json_encode($user);
+        return $user;
     }
 
 

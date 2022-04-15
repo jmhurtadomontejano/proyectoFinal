@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -195,6 +196,12 @@
                 <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               
+                    <div class="margin-left-xs">
+                        <p class="font-heading"> Ayuntamiento de <br> Argamasilla de Alba </p>
+                        <p class="font-primary-light-italic display@md"> El lugar de La Mancha </p>
+                    </div>
+            
                 <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">Menu</a>

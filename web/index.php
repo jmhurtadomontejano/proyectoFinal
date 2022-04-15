@@ -14,8 +14,8 @@ require '../app/models/photo/Photo.php';
 require '../app/models/photo/PhotoDAO.php';
 require '../app/models/MensajesFlash.php';
 require '../app/models/Session.php';
-require '../app/models/Usuario.php';
-require '../app/models/UsuarioDAO.php';
+require '../app/models/users/Usuario.php';
+require '../app/models/users/UsuarioDAO.php';
 require '../app/controllers/ArticlesController.php';
 require '../app/controllers/UsersController.php';
 require '../app/config.php';
@@ -36,6 +36,8 @@ $mapa = array(
     'login' => array('controller' => 'UsersController', 'method' => 'login', 'publica' => true),
     'logout' => array('controller' => 'UsersController', 'method' => 'logout', 'publica' => false),
     'usersList' => array('controller' => 'UsersController', 'method' => 'usersList', 'publica' => true),
+    'findByUserId' => array('controller' => 'UsersController', 'method' => 'findByUserId', 'publica' => true),
+    'findUserByIdJson' => array('controller' => 'UsersController', 'method' => 'findUserByIdJson', 'publica' => true),
 );
 
 //Parseo de la ruta

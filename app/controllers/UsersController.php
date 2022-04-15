@@ -29,15 +29,18 @@ class UsersController {
                 MensajesFlash::add_message("El nombre es obligatorio.");
                 $error = true;
             }
+            
             if (empty($_POST['email'])) {
                 MensajesFlash::add_message("El email es obligatorio.");
                 $error = true;
             }
+
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 MensajesFlash::add_message("El email no es correcto.");
                 $error = true;
             }
-            console.log($_POST['email']);
+
+            echo($_POST['email']);
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 //Check the email is not registrer yet  
                if(usuDAO::findByEmail($_POST['email'])){
@@ -45,10 +48,12 @@ class UsersController {
                 $error = true;
                 }
             }
+
             if (empty($_POST['password'])) {
                 MensajesFlash::add_message("El password es obligatorio.");
                 $error = true;
             }
+
             //Validación photo
             if ($_FILES['photo']['type'] != 'image/png' &&
                     $_FILES['photo']['type'] != 'image/gif' &&
@@ -56,6 +61,7 @@ class UsersController {
                 MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                 $error = true;
             }
+
             if ($_FILES['photo']['size'] > 1000000) {
                 MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
                 $error = true;

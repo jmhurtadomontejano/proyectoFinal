@@ -29,7 +29,7 @@ class UsersController {
                 MensajesFlash::add_message("El nombre es obligatorio.");
                 $error = true;
             }
-            
+
             if (empty($_POST['email'])) {
                 MensajesFlash::add_message("El email es obligatorio.");
                 $error = true;
@@ -40,14 +40,15 @@ class UsersController {
                 $error = true;
             }
 
-            echo($_POST['email']);
-            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+ 
                 //Check the email is not registrer yet  
-               if(usuDAO::findByEmail($_POST['email'])){
-                MensajesFlash::add_message("El email "+ ($_POST['email']) +" ya se encuentra registrado.");
-                $error = true;
+                $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+                $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
+                if ($usuarioEmail != null) {
+                    MensajesFlash::add_message("El email ya está registrado.");
+                    $error = true;
                 }
-            }
+            
 
             if (empty($_POST['password'])) {
                 MensajesFlash::add_message("El password es obligatorio.");

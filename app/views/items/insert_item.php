@@ -9,26 +9,26 @@ $(function() {
     $("#descripcion").jqte();
 });
 </script>
-<form class="row g-3" action="" method="post" enctype="multipart/form-data">
+<form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-6">
         <label for="inputName" class="form-label">Titulo</label>
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
     </div>
 
-    <div class="col-11">
+    <div class="col-12">
         <label for="inputDescription" class="form-label">Descripcion</label>
         <textarea type="textarea" class="form-control" name="inputDescription" id="description" placeholder="Descripción..."></textarea>
     </div>
-    <div class="col-11">
+    <div class="col-12">
         <label for="inputLocation" class="form-label">Localización</label>
         <input type="text" class="form-control" name="inputLocation" placeholder="Ubicación">
     </div>
-    <div class="col-11">
+    <div class="col-12">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
 
     </div>
-    <div class="col-11">
+    <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
         <input type="file" class="form-control"  name="inputPhotoItem[]" id="photoItem" multiple="multiple">
     </div>

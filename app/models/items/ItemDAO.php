@@ -130,7 +130,7 @@ class ItemDAO {
         return $array_obj_items;
     }
     
-    public function findByUser($id_user) {
+    public function findItemsByUser($id_user) {
         $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items WHERE id_user=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);

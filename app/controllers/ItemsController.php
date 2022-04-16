@@ -2,7 +2,7 @@
 
 class ItemsController {
 
-    public function listar() {
+    public function toList() {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);
         $items = $itemDAO->findAll('DESC', 'fecha');
@@ -11,7 +11,7 @@ class ItemsController {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../app/views/index/index.php';
+        require '../app/views/items/list_items.php';
     }
 
     function borrar() {
@@ -38,7 +38,7 @@ class ItemsController {
         header("Location: " . RUTA);
     }
 
-    function insertar() {
+    function insert() {
         if (Session::existe() == false) {
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes añadir items si no inicias sesión");

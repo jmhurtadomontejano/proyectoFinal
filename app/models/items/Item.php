@@ -54,13 +54,12 @@ class Item {
     function getId_user() {
         return $this->id_user;
     }
-
-    function getuser() {
-        if (!isset($this->user)) {
-            $userDAO = new userDAO(ConexionBD::conectar());
-            $this->user = $usuarioDAO->findUserById($this->getId_user());
+    function getUser() {
+        if (!isset($this->usuario)) {
+            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+            $this->usuario = $usuarioDAO->findUserById($this->getId_user());
         }
-        return $this->user;
+        return $this->usuario;
     }
 
     function getState() {

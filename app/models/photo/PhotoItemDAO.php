@@ -70,7 +70,7 @@ class photoItemDAO {
      * @param type $campo Campo de la BD por el que se van a ordenar
      * @return array Array de objetos de la clase Usuario
      */
-    public function findByIdArticulo($id_item) {
+    public function findByIdItem($id_item) {
         $sql = "SELECT * FROM photositems WHERE id_item=$id_item";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);

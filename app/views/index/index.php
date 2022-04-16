@@ -15,7 +15,7 @@ ob_start();
                 height:100px;">
     </div>
     <?php else: ?>
-    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/imagenes/articulo_generico.jpg')"></div>
+    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/articulo_generico.jpg')"></div>
     <?php endif; ?>
     <div class="descripcion_articulo"><?= substr($a->getDescripcion(), 0, 20) . "..." ?></div>
     <div class="precio_articulo"

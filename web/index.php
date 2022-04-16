@@ -36,11 +36,11 @@ $mapa = array(
     'mis_articulos' => array('controller' => 'ArticlesController', 'method' => 'mis_articulos', 'publica' => false),
 
      //ItemsController
-     'inicioItem' => array('controller' => 'ItemsController', 'method' => 'listar', 'publica' => true),
-     'borrar_item' => array('controller' => 'ItemsController', 'method' => 'borrar', 'publica' => false),
-     'insertar_item' => array('controller' => 'ItemsController', 'method' => 'insertar', 'publica' => false),
-     'ver_item' => array('controller' => 'ItemsController', 'method' => 'ver', 'publica' => true),
-     'mis_items' => array('controller' => 'ItemsController', 'method' => 'mis_items', 'publica' => false),
+     'list_items' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),
+     'delete_item' => array('controller' => 'ItemsController', 'method' => 'delete', 'publica' => false),
+     'insert_item' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),
+     'ver_item' => array('controller' => 'ItemsController', 'method' => 'find', 'publica' => true),
+     'mis_items' => array('controller' => 'ItemsController', 'method' => 'findItemsByUser', 'publica' => false),
 
     //userController
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),
@@ -50,6 +50,7 @@ $mapa = array(
     'usersList' => array('controller' => 'UsersController', 'method' => 'usersList', 'publica' => true),
     'findByUserId' => array('controller' => 'UsersController', 'method' => 'findByUserId', 'publica' => true),
     'findUserByIdJson' => array('controller' => 'UsersController', 'method' => 'findUserByIdJson', 'publica' => true),
+    'update_user' => array('controller' => 'UsersController', 'method' => 'update', 'publica' => false),
 );
 
 //Parseo de la ruta

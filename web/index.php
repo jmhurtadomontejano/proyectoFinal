@@ -10,13 +10,18 @@ session_start();
 require '../app/models/ConexionBD.php';
 require '../app/models/articles/Article.php';
 require '../app/models/articles/ArticleDAO.php';
+require '../app/models/items/Item.php';
+require '../app/models/items/ItemDAO.php';
 require '../app/models/photo/Photo.php';
 require '../app/models/photo/PhotoDAO.php';
+require '../app/models/photo/PhotoItem.php';
+require '../app/models/photo/PhotoItemDAO.php';
 require '../app/models/MensajesFlash.php';
 require '../app/models/Session.php';
 require '../app/models/users/Usuario.php';
 require '../app/models/users/UsuarioDAO.php';
 require '../app/controllers/ArticlesController.php';
+require '../app/controllers/ItemsController.php';
 require '../app/controllers/UsersController.php';
 require '../app/config.php';
 
@@ -29,6 +34,13 @@ $mapa = array(
     'insertar_articulo' => array('controller' => 'ArticlesController', 'method' => 'insertar', 'publica' => false),
     'ver_articulo' => array('controller' => 'ArticlesController', 'method' => 'ver', 'publica' => true),
     'mis_articulos' => array('controller' => 'ArticlesController', 'method' => 'mis_articulos', 'publica' => false),
+
+     //ItemsController
+     'inicioItem' => array('controller' => 'ItemsController', 'method' => 'listar', 'publica' => true),
+     'borrar_item' => array('controller' => 'ItemsController', 'method' => 'borrar', 'publica' => false),
+     'insertar_item' => array('controller' => 'ItemsController', 'method' => 'insertar', 'publica' => false),
+     'ver_item' => array('controller' => 'ItemsController', 'method' => 'ver', 'publica' => true),
+     'mis_items' => array('controller' => 'ItemsController', 'method' => 'mis_items', 'publica' => false),
 
     //userController
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),

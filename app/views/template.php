@@ -221,6 +221,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= RUTA?>insertar_item">Insertar item</a>
+                        </li>
 
                         <!-- ADMIN MENU -->
                         <?php if (Session::existe()) { ?>

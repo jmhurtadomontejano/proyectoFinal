@@ -56,30 +56,36 @@ class ItemsController {
             $item = new Item();
 
             //Filtramos datos de entrada
-            $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $titulo = filter_var($_POST['titulo'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $name = filter_var($_POST['inputName'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_var($_POST['inputDescription'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $location = filter_var($_POST['inputLocation'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_departament = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
+            $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
 
+            $item->setName($name);
             $item->setDescription($description);
-            $item->setPrecio($precio);
-            $item->setTitulo($titulo);
-            $item->setId_usuario(Session::obtener()->getId());
+            $item->setLocation($location);
+            $item->setId_departament($id_departament);
+            $item->setState($state);
+   
+            $item->setId_user(Session::obtener()->getId());
 
             $itemDAO->insert($item);
 
-            for ($i = 0; $i < count($_FILES['photo']['name']); $i++) {
+            for ($i = 0; $i < count($_FILES['inputPhotoItem']['name']); $i++) {
                 $error = false;
 
                 /*                 * ****************************************** */
                 /*                 * ************ VALIDAMOS LA photo *********** */
                 /*                 * ****************************************** */
 
-                if ($_FILES['photo']['type'][$i] != 'image/png' &&
+                if ($_FILES['inputPhotoItem']['type'][$i] != 'image/png' &&
                         $_FILES['photo']['type'][$i] != 'image/gif' &&
                         $_FILES['photo']['type'][$i] != 'image/jpeg') {
                     MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                     $error = true;
                 }
-                if ($_FILES['photo']['size'][$i] > 1000000) {
+                if ($_FILES['inputPhotoItem']['size'][$i] > 1000000) {
                     MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
                     $error = true;
                 }
@@ -91,15 +97,15 @@ class ItemsController {
                     /*                     * ********** COPIAR LA FOTO A DISCO ******** */
                     /*                     * ****************************************** */
                     $nombre_photo = md5(time() + rand(0, 999999));
-                    $extension_photo = substr($_FILES['photo']['name'][$i], strrpos($_FILES['photo']['name'][$i], '.') + 1);
+                    $extension_photo = substr($_FILES['inputPhotoItem']['name'][$i], strrpos($_FILES['inputPhotoItem']['name'][$i], '.') + 1);
                     //Limpiamos la extensión de la photo
                     $extension_photo = filter_var($extension_photo, FILTER_SANITIZE_SPECIAL_CHARS);
                     //Comprobamos que no exista ya una photo con el mismo nombre, si existe calculamos uno nuevo
-                    while (file_exists("images/articles/$nombre_photo.$extension_photo")) {
+                    while (file_exists("images/items/$nombre_photo.$extension_photo")) {
                         $nombre_photo = md5(time() + rand(0, 999999));
                     }
                     //movemos la photo a la carpeta que queramos guardarla y con el nuevo nombre
-                    if (!move_uploaded_file($_FILES['photo']['tmp_name'][$i], "images/articles/$nombre_photo.$extension_photo")) {
+                    if (!move_uploaded_file($_FILES['inputPhotoItem']['tmp_name'][$i], "images/items/$nombre_photo.$extension_photo")) {
                         MensajesFlash::add_message("No se ha podido copiar la photo");
                         header("Location: inicio");
                         die();
@@ -111,16 +117,16 @@ class ItemsController {
                     $id_item = $item->getId();
                     $nombre_archivo = "$nombre_photo.$extension_photo";
                     $photoDAO = new PhotoItemDAO($conn);
-                    $photo = new Photo();
+                    $photo = new PhotoItem();
                     $photo->setId_item($id_item);
                     $photo->setFile_name($nombre_archivo);
                     if (!$photoDAO->insert($photo)) {
-                        die("Error al insertar la photo en la BD");
+                        die("Error al insertar la photo del Item en la BD");
                     }
                 }//if(!$error)
             } //for
 
-            MensajesFlash::add_message("Se ha insertado el artículo");
+            MensajesFlash::add_message("Se ha insertado el Item correctamente");
             header("Location: " . RUTA);
             die();
         }
@@ -138,10 +144,10 @@ class ItemsController {
         require '../app/vistas/view_item.php';
     }
 
-    public function mis_Articles() {
+    public function mis_items() {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);
-        $mis_Articles = $itemDAO->findByUser(Session::obtener()->getId());
+        $mis_items = $itemDAO->findByUser(Session::obtener()->getId());
 
         //Generamos Token para seguridad del borrado
         $_SESSION['token'] = md5(time() + rand(0, 999));

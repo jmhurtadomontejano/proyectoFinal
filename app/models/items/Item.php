@@ -35,6 +35,10 @@ class Item {
         return $this->Item;
     }
 
+    function getName() {
+        return $this->name;
+    }
+
     function getDescription() {
         return $this->description;
     }
@@ -77,6 +81,10 @@ class Item {
 
     function setItem($item): void {
         $this->Item = $item;
+    }
+
+    function setName($name): void {
+        $this->name = $name;
     }
 
     function setDescription($description): void {

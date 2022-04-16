@@ -17,10 +17,10 @@ class photoItemDAO {
         if (!$photoItem instanceof photoItem) {
             return false;
         }
-        $file_name = $photoItem->getNombre_archivo();
+        $file_name = $photoItem->getFile_name();
         $id_item = $photoItem->getid_item();
         
-        $sql = "INSERT INTO photositems (nombre_archivo, id_item) VALUES "
+        $sql = "INSERT INTO photositems (file_name, id_item) VALUES "
                 . "('$file_name', $id_item)";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);

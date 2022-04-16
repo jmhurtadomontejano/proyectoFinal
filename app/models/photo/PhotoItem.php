@@ -16,11 +16,11 @@ class PhotoItem {
         return $this->id;
     }
 
-    function getfile_name() {
+    function getFile_name() {
         return $this->file_name;
     }
 
-    function getid_item() {
+    function getId_item() {
         return $this->id_item;
     }
 
@@ -32,11 +32,11 @@ class PhotoItem {
         $this->id = $id;
     }
 
-    function setfile_name($file_name): void {
+    function setFile_name($file_name): void {
         $this->file_name = $file_name;
     }
 
-    function setid_item($id_item): void {
+    function setId_item($id_item): void {
         $this->id_item = $id_item;
     }
 

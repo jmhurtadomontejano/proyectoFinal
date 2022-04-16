@@ -12,47 +12,48 @@ class ItemDAO {
         $this->conn = $conn;
     }
 
-    public function insert($articulo) {
+    public function insert($item) {
         //Comprobamos que el parámetro sea de la clase Usuario
-        if (!$articulo instanceof Articulo) {
+        if (!$item instanceof item) {
             return false;
         }
-        $titulo = $articulo->getTitulo();
-        $descripcion = $articulo->getDescripcion();
-        $precio = $articulo->getPrecio();
-        $id_usuario = $articulo->getId_usuario();
-        $sql = "INSERT INTO articulos (titulo, descripcion, precio, id_usuario) VALUES "
-                . "(?,?,?,?)";
+        $name = $item->getname();
+        $description = $item->getDescription();
+        $location = $item->getLocation();
+        $id_department = $item->getId_departament();
+        $id_user = $item->getId_user();
+        $sql = "INSERT INTO items (name, description, location, id_department, id_user) VALUES "
+                . "(?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('ssdi',$titulo, $descripcion, $precio, $id_usuario);
+        $stmt->bind_param('sssdi',$name, $description, $location, $id_department, $id_user);
         $stmt->execute();
         $result = $stmt->get_result();
         
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
-        $articulo->setId($this->conn->insert_id);
+        $item->setId($this->conn->insert_id);
         return true;
     }
 
-    public function update($articulo) {
+    public function update($item) {
         //Comprobamos que el parámetro es de la clase Usuario
-        if (!$usuario instanceof Articulo) {
+        if (!$usuario instanceof item) {
             return false;
         }
-        $titulo = $articulo->getTitulo();
-        $descripcion = $articulo->getDescripcion();
-        $precio = $articulo->getPrecio();
-        $id = $articulo->getId();
-        $sql = "UPDATE articulos SET"
-                . " titulo=?, descripcion=?,precio=? "
+        $name = $item->getname();
+        $description = $item->getDescription();
+        $location = $item->getlocation();
+        $id = $item->getId();
+        $sql = "UPDATE items SET"
+                . " name=?, description=?,location=? "
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("ssdi",$titulo, $descripcion, $precio, $id);
+        $stmt->bind_param("ssdi",$name, $description, $location, $id);
         $stmt->execute();
         $result = $stmt->get_result();
                 
@@ -68,12 +69,12 @@ class ItemDAO {
      * @param type $usuario Objeto de la clase usuario
      * @return bool Devuelve true si se ha borrado un usuario y false en caso contrario
      */
-    public function delete($articulo) {
+    public function delete($item) {
         //Comprobamos que el parámetro no es nulo y es de la clase Usuario
-        if ($articulo == null || get_class($articulo) != 'Articulo') {
+        if ($item == null || get_class($item) != 'item') {
             return false;
         }
-        $sql = "DELETE FROM articulos WHERE id = " . $articulo->getId();
+        $sql = "DELETE FROM items WHERE id = " . $item->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -85,16 +86,16 @@ class ItemDAO {
     }
 
     /**
-     * Devuelve el articulo de la BD 
+     * Devuelve el item de la BD 
      * @param  $id id del usuario
-     * @return \ Articulo de la BD o null si no existe
+     * @return \ item de la BD o null si no existe
      */
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
-        $sql = "SELECT * FROM articulos WHERE id=$id";
+        $sql = "SELECT * FROM items WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
-        return $result->fetch_object('Articulo');
+        return $result->fetch_object('item');
         /* También se podría sustituir el fetch_object por lo siguiente:
          * 
          * if ($fila = $result->fetch_assoc()) {
@@ -118,35 +119,35 @@ class ItemDAO {
      * @return array Array de objetos de la clase Usuario
      */
     public function findAll($orden = 'ASC', $campo = 'id') {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos ORDER BY $campo $orden";
+        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
-        $array_obj_articulos = array();
-        while ($articulo = $result->fetch_object('Articulo')) {
-            $array_obj_articulos[] = $articulo;
+        $array_obj_items = array();
+        while ($item = $result->fetch_object('item')) {
+            $array_obj_items[] = $item;
         }
-        return $array_obj_articulos;
+        return $array_obj_items;
     }
     
-    public function findByUser($id_usuario) {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos WHERE id_usuario=? ORDER BY id DESC";
+    public function findByUser($id_user) {
+        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items WHERE id_user=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
         
-        $stmt->bind_param('i', $id_usuario);
+        $stmt->bind_param('i', $id_user);
         $stmt->execute();
         $result = $stmt->get_result();
         
         
-        $array_obj_articulos = array();
-        while ($articulo = $result->fetch_object('Articulo')) {
-            $array_obj_articulos[] = $articulo;
+        $array_obj_items = array();
+        while ($item = $result->fetch_object('item')) {
+            $array_obj_items[] = $item;
         }
-        return $array_obj_articulos;
+        return $array_obj_items;
     }
 
 }

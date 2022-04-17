@@ -112,6 +112,15 @@ class ItemDAO {
           } */
     }
 
+    public function findByIdItem($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
+        $sql = "SELECT * FROM items WHERE id=$id";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        return $result->fetch_object('item');
+     
+    }
+
     /**
      * Devuelve todos los usuarios de la BD
      * @param type $orden Tipo de orden (ASC o DESC)

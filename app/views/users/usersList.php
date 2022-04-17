@@ -3,7 +3,8 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
-<table class="table" id="table">
+<div class="table-responsive" id="mydatatable-container">
+<table class="records_list table table-striped table-bordered table-hover" id="mydatatable"">
     <thead>
         <tr>
             <th scope="col">Nombre</th>
@@ -14,6 +15,17 @@ ob_start();
             <th scope="col">Options</th>
         </tr>
     </thead>
+    <tfoot >
+            <tr>
+                <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
+
+            </tr>
+        </tfoot>
     <tbody>
         <?php foreach ($usersList as $u): ?>
         <tr>
@@ -43,8 +55,10 @@ ob_start();
 
         <?php endforeach; ?>
         <!-- include modal windows to edit or delete user -->
-
+<div>
+    
 </table>
+
 
 <?php
  $contenido = ob_get_clean();
@@ -98,3 +112,35 @@ ob_start();
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#mydatatable tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Filtrar.." />' );
+    } );
+
+    var table = $('#mydatatable').DataTable({
+        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+        "responsive": false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "order": [[ 0, "desc" ]],
+        "initComplete": function () {
+            this.api().columns().every( function () {
+                var that = this;
+
+                $( 'input', this.footer() ).on( 'keyup change', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                        }
+                });
+            })
+        }
+    });
+});
+</script>

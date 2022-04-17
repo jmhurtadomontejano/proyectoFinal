@@ -34,12 +34,17 @@ ob_start();
                 <th id="userInfo"><?= $i->getId_departament() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
-                    <img id="photo_usuario"
-                        style="background-image: url(<?= RUTA?>web/images/items/<?= $i->getPhotosItem() ?>)"
-                        class="img-thumbnail" alt="" width="100" height="100">
+                    <?php if(count($i->getPhotosItem())>=1): ?>
+                    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/items/<?= $i->getPhotosItem()[0]->getFile_name() ?>');
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        height:100px;">
+                    </div>
                     <?php else: ?>
-                    <img style="background-image: url(<?= RUTA?>web/images/items/item_generico.png)"
-                        class="img-thumbnail" alt="" width="100" height="100">
+                    <div class="photos_articulo"
+                        style="background-image:url('<?= RUTA?>web/images/items/item_generico.jpg')"></div>
+                    <?php endif; ?>
                     <?php endif; ?>
                 </th>
                 <th>

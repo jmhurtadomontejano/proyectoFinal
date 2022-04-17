@@ -76,7 +76,7 @@ class photoItemDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         $array_obj_photos = array();
-        while ($photoItem = $result->fetch_object('photo')) {
+        while ($photoItem = $result->fetch_object('PhotoItem')) {
             $array_obj_photos[] = $photoItem;
         }
         return $array_obj_photos;

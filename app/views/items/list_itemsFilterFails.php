@@ -3,6 +3,7 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
+
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
@@ -21,8 +22,7 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
-                <th>Filter..</th>
-                <th>Filter..</th>
+
             </tr>
         </tfoot>
         <tbody>
@@ -34,6 +34,7 @@ ob_start();
                 <th id="userInfo"><?= $i->getId_departament() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
+
                     <img id="photo_usuario"
                         style="background-image: url(<?= RUTA?>web/images/items/<?= $i->getPhotosItem() ?>)"
                         class="img-thumbnail" alt="" width="100" height="100">
@@ -44,17 +45,20 @@ ob_start();
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"
                         onclick="findByUserId($i->getUserId())">Editar</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
                         data-target="#deleteUserModal">Eliminar</button>
+
                 </th>
             </tr>
+
             <?php endforeach; ?>
             <!-- include modal windows to edit or delete user -->
         </tbody>
     </table>
 </div>
+
 
 <?php
  $contenido = ob_get_clean();
@@ -97,11 +101,11 @@ $(document).ready(function() {
 </script>
 
 <!-- Modal to edit Item -->
-<div class="modal fade" id="editItemModal" tabindex="1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+<div class="modal fade" id="editUserModal" tabindex="1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editItemModalLabel">Editar Item</h5>
+                <h5 class="modal-title" id="editUserModalLabel">Editar Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -141,3 +145,4 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+

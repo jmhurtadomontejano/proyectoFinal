@@ -23,7 +23,6 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
-
             </tr>
         </tfoot>
         <tbody>
@@ -35,7 +34,6 @@ ob_start();
                 <th id="userInfo"><?= $u->getRol() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
-
                     <img id="photo_usuario"
                         style="background-image: url(<?= RUTA?>web/images/users/<?= $u->getPhoto() ?>)"
                         class="img-thumbnail" alt="" width="100" height="100">
@@ -53,11 +51,11 @@ ob_start();
 
                 </th>
             </tr>
-
             <?php endforeach; ?>
             <!-- include modal windows to edit or delete user -->
+        </tbody>
     </table>
-    <div>
+<div>
 
 <?php
  $contenido = ob_get_clean();

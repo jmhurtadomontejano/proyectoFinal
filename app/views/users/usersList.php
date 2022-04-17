@@ -4,7 +4,7 @@ ob_start();
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
 <div class="table-responsive" id="mydatatable-container">
-<table class="records_list table table-striped table-bordered table-hover" id="mydatatable"">
+<table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
     <thead>
         <tr>
             <th scope="col">Nombre</th>
@@ -15,15 +15,12 @@ ob_start();
             <th scope="col">Options</th>
         </tr>
     </thead>
-    <tfoot >
+    <tfoot style="display: table-header-group !important">
             <tr>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
-                <th>Filter..</th>
-                <th>Filter..</th>
-
             </tr>
         </tfoot>
     <tbody>
@@ -54,11 +51,9 @@ ob_start();
         </tr>
 
         <?php endforeach; ?>
-        <!-- include modal windows to edit or delete user -->
-<div>
-    
+    </tbody>
 </table>
-
+<div>
 
 <?php
  $contenido = ob_get_clean();

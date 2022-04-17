@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
     <!-- Google Apis -->
@@ -20,189 +20,193 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-
     <!-- Datatables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
- 
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/zf/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
 
- 
+<!-- WITH THIS SCRIPTS I DONT HAVE THE PROBLEM "EL DISEÑO SE FORZÓ ANTES DE QUE LA PAGINA SE CARGARA COMPLETAMENTE    
+<link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css" />
 
-<!-- FONTAWESOME -->
-<script src="https://use.fontawesome.com/2a534a9a61.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js">
+    </script>
+-->
+    <!-- FONTAWESOME -->
+    <script src="https://use.fontawesome.com/2a534a9a61.js"></script>
 
-<!-- <stylesheet href="../css/style.css"></stylesheet>
+    <!-- <stylesheet href="../css/style.css"></stylesheet>
         <style type="text/css" href="../css/style.css">
 
         <stylesheet src="../css/style.css"></stylesheet>
         <style type="text/css" src="../css/style.css">
     -->
-<style type="text/css">
-header {
-    overflow: auto;
-}
+    <style type="text/css">
+    header {
+        overflow: auto;
+    }
 
-#usuario,
-#login {
-    width: 300px;
-    float: right;
-    position: relative;
-}
+    #usuario,
+    #login {
+        width: 300px;
+        float: right;
+        position: relative;
+    }
 
-#login input {
-    margin-top: 3px;
-}
+    #login input {
+        margin-top: 3px;
+    }
 
 
-.boton_formulario {
-    border: 1px solid black;
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 3px;
-    background-color: #eee;
-    text-decoration: none;
-    color: black;
+    .boton_formulario {
+        border: 1px solid black;
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 3px;
+        background-color: #eee;
+        text-decoration: none;
+        color: black;
 
-}
+    }
 
-.photos_articulo {
-    height: 100px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    .photos_articulo {
+        height: 100px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-.articulo_listado {
-    float: left;
-    min-height: 200px;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-    position: relative;
-    width: 150px;
-}
+    .articulo_listado {
+        float: left;
+        min-height: 200px;
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+        position: relative;
+        width: 150px;
+    }
 
-.articulo_ver {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-    position: relative;
+    .articulo_ver {
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+        position: relative;
 
-}
+    }
 
-.papelera {
-    height: 20px;
-    opacity: 0.5;
-}
+    .papelera {
+        height: 20px;
+        opacity: 0.5;
+    }
 
-.papelera:hover {
-    opacity: 1;
-}
+    .papelera:hover {
+        opacity: 1;
+    }
 
-.borrar_articulo {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    width: 20px;
-    height: 20px;
-}
+    .borrar_articulo {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+    }
 
-main {
-    overflow: auto;
-}
+    main {
+        overflow: auto;
+    }
 
-.precio_articulo {
+    .precio_articulo {
 
-    font-weight: bold;
-    color: #f00;
-    width: 100px;
-    padding: 3px;
-    text-align: center;
-    margin: auto;
-    font-family: verdana;
-}
+        font-weight: bold;
+        color: #f00;
+        width: 100px;
+        padding: 3px;
+        text-align: center;
+        margin: auto;
+        font-family: verdana;
+    }
 
-.contactar {
-    font-size: 1em;
-    font-weight: bold;
-    color: #00f;
-    border: 1px solid black;
-    width: 120px;
-    padding: 3px;
-    border-radius: 50px;
-    text-align: center;
-    margin: 5px auto;
-    font-family: verdana;
-}
+    .contactar {
+        font-size: 1em;
+        font-weight: bold;
+        color: #00f;
+        border: 1px solid black;
+        width: 120px;
+        padding: 3px;
+        border-radius: 50px;
+        text-align: center;
+        margin: 5px auto;
+        font-family: verdana;
+    }
 
-.contactar:hover {
-    background-color: #aaa;
-    cursor: pointer;
-    transition: 0.5s all;
-    width: 130px;
-}
+    .contactar:hover {
+        background-color: #aaa;
+        cursor: pointer;
+        transition: 0.5s all;
+        width: 130px;
+    }
 
-menu {
-    overflow: auto;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    margin: 0px 5px;
-    padding: 0px;
-}
+    menu {
+        overflow: auto;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        margin: 0px 5px;
+        padding: 0px;
+    }
 
-ul#menu_usuario {
-    margin: 0px;
-    padding: 0px;
-}
+    ul#menu_usuario {
+        margin: 0px;
+        padding: 0px;
+    }
 
-ul#menu_usuario li {
-    margin: 0px;
-    padding: 5px;
-    list-style-type: none;
-    float: left;
-    border: 1px solid white;
-    cursor: pointer;
-    background-color: #eee;
-}
+    ul#menu_usuario li {
+        margin: 0px;
+        padding: 5px;
+        list-style-type: none;
+        float: left;
+        border: 1px solid white;
+        cursor: pointer;
+        background-color: #eee;
+    }
 
-ul#menu_usuario li:hover {
-    background-color: #aaa;
-}
+    ul#menu_usuario li:hover {
+        background-color: #aaa;
+    }
 
-ul#menu_usuario li a {
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-}
+    ul#menu_usuario li a {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
 
-#photo_usuario {
-    height: 80px;
-    width: 80px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 40px;
-    box-shadow: 0px 0px 5px 0px #aaa;
-    margin: 5px;
-}
+    #photo_usuario {
+        height: 80px;
+        width: 80px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 40px;
+        box-shadow: 0px 0px 5px 0px #aaa;
+        margin: 5px;
+    }
 
-#datos_usuario {
-    position: absolute;
-    top: 40px;
-    left: 100px;
-}
+    #datos_usuario {
+        position: absolute;
+        top: 40px;
+        left: 100px;
+    }
 
-#formulario_actualizar_photo {
-    display: none;
-}
+    #formulario_actualizar_photo {
+        display: none;
+    }
 
-#mydatatable tfoot input {
-    width: 100% !important;
-}
+    #mydatatable tfoot input {
+        width: 100% !important;
+    }
 
-#mydatatable tfoot {
-    display: table-header-group !important;
-}
-</style>
+
+    </style>
 </head>
 
 <body class="container-fluid p-1">

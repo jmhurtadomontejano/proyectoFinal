@@ -96,6 +96,8 @@ $(document).ready(function() {
 });
 </script>
 
+
+
 <!-- Modal to edit Item -->
 <div class="modal fade" id="editItemModal" tabindex="1" aria-labelledby="editItemModalLabel" aria-hidden="true">
     <div class="modal-dialog">

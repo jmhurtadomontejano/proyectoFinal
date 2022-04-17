@@ -41,17 +41,28 @@ class UsersController {
             }
 
  
-                //Check the email is not registrer yet  
-                $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
-                $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
-                if ($usuarioEmail != null) {
-                    MensajesFlash::add_message("El email ya está registrado.");
-                    $error = true;
-                }
+          //Check the email is not registrer yet  
+           $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+          $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
+
+          if ($usuarioEmail != null) {
+              MensajesFlash::add_message("El email ya está registrado.");
+              $error = true;
+          }
             
 
             if (empty($_POST['password'])) {
                 MensajesFlash::add_message("El password es obligatorio.");
+                $error = true;
+            }
+
+            if (empty($_POST['password2'])) {
+                MensajesFlash::add_message("No es escrito la comprobación de la contraseña");
+                $error = true;
+            }
+
+            if ($_POST['password'] != $_POST['password2']) {
+                MensajesFlash::add_message("Las contraseñas no coinciden");
                 $error = true;
             }
 
@@ -65,6 +76,12 @@ class UsersController {
 
             if ($_FILES['photo']['size'] > 1000000) {
                 MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
+                $error = true;
+            }
+
+            if(!($_POST['datesConsent'])){
+                MensajesFlash::add_message("Es obligatorio marcar la casilla de las condiciones de uso para poder registrarse.");
+                $tipoMensaje = "alert alert-error";
                 $error = true;
             }
 

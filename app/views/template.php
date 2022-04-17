@@ -231,11 +231,18 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= RUTA?>">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Articulos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li> <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= RUTA?>insert_item">Insertar item</a>
@@ -260,10 +267,6 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                                 <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" hidden>
-                                </li>
-                                <li><a class="dropdown-item" href="#" hidden>Something else here</a></li>
                             </ul>
                         </li>
                         <?php } ?>
@@ -325,6 +328,8 @@
         <div id="titulo">
             <h3><?php echo $titulo2 ?></h3>
         </div>
+
+
 
 
         <div class="MensajesFlash"><?php mensajesFlash::imprimir_mensajes() ?></div>

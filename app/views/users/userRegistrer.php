@@ -1,11 +1,11 @@
 <?php ob_start() ?>
-<?php MensajesFlash::imprimir_mensajes() ?>
+
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
     <div class="col-sm-8 col-11">
 
-        <form action="" method="post" enctype="multipart/form-data" 
+        <form action="" method="post" enctype="multipart/form-data"
             style="justify-content: center; align-items: center">
-            <fieldset class=" border border-primary" style="border-radius: 35px; background-color:#CCCCCC" >
+            <fieldset class=" border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
                 <div style="paddin:20px; margin:20px">
                     <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
 
@@ -28,12 +28,14 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Teléfono</label>
-                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono" class="form-control" max=999999999>
+                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono"
+                            class="form-control" max=999999999>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código Postal</label>
-                <!--        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999> -->
-                <input type="select" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999>
+                        <!--        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999> -->
+                        <input type="select" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal"
+                            class="form-control" max=99999>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
@@ -43,10 +45,24 @@
                             Mayusculas y minusculas</div>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Vuelve a escribir la Password para comprobación</label>
+                        <input type="password" name="password2" id="password2" class="form-control"
+                            placeholder="Introduce aqui tu password">
+                        <div id="passwordHelp" class="form-text">Escribe la misma contraseña que en la casilla anterior
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Foto del Usuario</label>
                         <input type="file" name="photo" class="form-control" accept="image/*"
                             aria-describedby="photoHelp">
                         <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
+                            checked>
+                        <label class="form-check-label" for="flexCheckChecked">Doy mi Consentimiento según Ley de
+                            Protección de Datos
+                        </label>
                     </div>
                     <div style="justify-content:center; align-items:center">
                         <button type="submit" value="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
@@ -56,11 +72,41 @@
     </div>
 </div>
 
-
-
 <?php
 $contenido = ob_get_clean();
 $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
 $titulo2 = "Registrar Usuario Nuevo";
 require '../app/views/template.php';
 ?>
+<script>
+window.onload = function() {
+    var myInput = document.getElementById('password2');
+    myInput.onpaste = function(e) {
+        e.preventDefault();
+        alert("no se puede pegar en esta casilla");
+    }
+
+    myInput.oncopy = function(e) {
+        e.preventDefault();
+        alert("no se puede copiar de esta casilla");
+    }
+}
+</script>
+
+<!-- script to control when the user change the cell email, check the email is correct or not -->
+<script>
+$(document).ready(function() {
+    $("#email").change(function() {
+        var email = $("#email").val();
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (regex.test(email)) {
+            $("#emailHelp").html("");
+        } else {
+            $("#emailHelp").html("El email no es correcto");
+        }
+    });
+});
+
+
+
+    </script>

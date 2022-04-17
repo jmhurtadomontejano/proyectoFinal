@@ -74,14 +74,14 @@ class ItemsController {
 
             for ($i = 0; $i < count($_FILES['inputPhotoItem']['name']); $i++) {
                 $error = false;
-
+                echo($_FILES['inputPhotoItem']['name'][$i]);
                 /*                 * ****************************************** */
                 /*                 * ************ VALIDAMOS LA photo *********** */
                 /*                 * ****************************************** */
 
                 if ($_FILES['inputPhotoItem']['type'][$i] != 'image/png' &&
-                        $_FILES['photo']['type'][$i] != 'image/gif' &&
-                        $_FILES['photo']['type'][$i] != 'image/jpeg') {
+                        $_FILES['inputPhotoItem']['type'][$i] != 'image/gif' &&
+                        $_FILES['inputPhotoItem']['type'][$i] != 'image/jpeg') {
                     MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                     $error = true;
                 }

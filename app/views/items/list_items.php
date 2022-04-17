@@ -3,7 +3,7 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 <!-- create button to call function download_csv_file(evt) -->
-<button type="button" class="btn btn-primary" onclick="download_csv_file">Descargar CSV</button>
+<button type="button" class="btn btn-primary" onclick="download_csv_file()">Descargar CSV</button>
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
@@ -103,6 +103,43 @@ $(document).ready(function() {
         }
     });
 });
+
+var buttonCommon = {
+        exportOptions: {
+            format: {
+                body: function ( data, row, column, node ) {
+                    // Strip $ from salary column to make it numeric
+                    return column === 5 ?
+                        data.replace( /[$,]/g, '' ) :
+                        data;
+                }
+            }
+        }
+    };
+ 
+    $('#example').DataTable( {
+        ajax: '../../../../examples/ajax/data/objects.txt',
+        columns: [
+            { data: 'name' },
+            { data: 'position' },
+            { data: 'office' },
+            { data: 'extn' },
+            { data: 'start_date' },
+            { data: 'salary' }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            $.extend( true, {}, buttonCommon, {
+                extend: 'copyHtml5'
+            } ),
+            $.extend( true, {}, buttonCommon, {
+                extend: 'excelHtml5'
+            } ),
+            $.extend( true, {}, buttonCommon, {
+                extend: 'pdfHtml5'
+            } )
+        ]
+    } );
 </script>
 
 

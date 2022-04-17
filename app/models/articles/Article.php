@@ -3,7 +3,7 @@
 /**
  * Description of Articulo
  *
- * @author DAW2
+ *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
 class Articulo {
 

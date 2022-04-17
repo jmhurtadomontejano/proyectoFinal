@@ -3,7 +3,7 @@
 /**
  * Description of ArticuloDAO
  *
- * @author DAW2
+ *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
 class ArticuloDAO {
     private $conn;

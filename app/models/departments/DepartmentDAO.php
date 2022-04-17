@@ -5,28 +5,28 @@
  *
  *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
-class photoItemDAO {
+class photoDAO {
     private $conn;
 
     public function __construct($conn) {
         $this->conn = $conn;
     }
 
-    public function insert($photoItem) {
+    public function insert($department) {
         //Comprobamos que el parámetro sea de la clase Usuario
-        if (!$photoItem instanceof photoItem) {
+        if (!$department instanceof photo) {
             return false;
         }
-        $file_name = $photoItem->getFile_name();
-        $id_item = $photoItem->getid_item();
+        $nombre_archivo = $department->getName();
+        $id_articulo = $department->getId_articulo();
         
-        $sql = "INSERT INTO photositems (file_name, id_item) VALUES "
-                . "('$file_name', $id_item)";
+        $sql = "INSERT INTO photos (nombre_archivo, id_articulo) VALUES "
+                . "('$nombre_archivo', $id_articulo)";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
-        $photoItem->setId($this->conn->insert_id);
+        $department->setId($this->conn->insert_id);
         return true;
     }
 
@@ -35,12 +35,12 @@ class photoItemDAO {
      * @param type $usuario Objeto de la clase usuario
      * @return bool Devuelve true si se ha borrado un usuario y false en caso contrario
      */
-    public function delete($photoItem) {
+    public function delete($department) {
         //Comprobamos que el parámetro no es nulo y es de la clase Usuario
-        if ($photoItem == null || get_class($photoItem) != 'photo') {
+        if ($department == null || get_class($department) != 'photo') {
             return false;
         }
-        $sql = "DELETE FROM photositems WHERE id = " . $photoItem->getId();
+        $sql = "DELETE FROM photos WHERE id = " . $department->getIdDepartament();
         if (!$this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -57,7 +57,7 @@ class photoItemDAO {
      * @return \ Articulo de la BD o null si no existe
      */
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
-        $sql = "SELECT * FROM photositems WHERE id=$id";
+        $sql = "SELECT * FROM fotos WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -70,14 +70,14 @@ class photoItemDAO {
      * @param type $campo Campo de la BD por el que se van a ordenar
      * @return array Array de objetos de la clase Usuario
      */
-    public function findByIdItem($id_item) {
-        $sql = "SELECT * FROM photositems WHERE id_item=$id_item";
+    public function findByIdArticulo($id_articulo) {
+        $sql = "SELECT * FROM photos WHERE id_articulo=$id_articulo";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
         $array_obj_photos = array();
-        while ($photoItem = $result->fetch_object('PhotoItem')) {
-            $array_obj_photos[] = $photoItem;
+        while ($department = $result->fetch_object('photo')) {
+            $array_obj_photos[] = $department;
         }
         return $array_obj_photos;
     }

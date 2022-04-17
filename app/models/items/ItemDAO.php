@@ -158,5 +158,7 @@ class ItemDAO {
         }
         return $array_obj_items;
     }
-
+    
+    /*public function download_csv_file($items) to export all items to CSV*/
+  
 }

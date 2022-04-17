@@ -2,7 +2,8 @@
 ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
-
+<!-- create button to call function download_csv_file(evt) -->
+<button type="button" class="btn btn-primary" onclick="download_csv_file">Descargar CSV</button>
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
@@ -65,6 +66,9 @@ ob_start();
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Items";
+
+                        
+    
  require '../app/views/template.php';
  ?>
 
@@ -148,3 +152,4 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+

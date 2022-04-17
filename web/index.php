@@ -41,6 +41,7 @@ $mapa = array(
      'insert_item' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),
      'ver_item' => array('controller' => 'ItemsController', 'method' => 'find', 'publica' => true),
      'mis_items' => array('controller' => 'ItemsController', 'method' => 'findItemsByUser', 'publica' => false),
+    'download_csv_file' => array('controller' => 'ItemsController', 'method' => 'download_csv_file', 'publica' => false),
 
     //userController
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),

@@ -156,4 +156,25 @@ class ItemsController {
         require '../app/views/items/own_items.php';
     }
 
+    public function download_csv_files() {
+        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items ORDER BY id DESC";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_items = array();
+        while ($item = $result->fetch_object('item')) {
+            $array_obj_items[] = $item;
+        }
+        /*$array_obj_items[] to csv */
+        $filename = "items.csv";
+        $fp = fopen('php://output', 'w');
+        header('Content-type: application/csv');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        foreach ($array_obj_items as $item) {
+            fputcsv($fp, $item);
+        }
+        fclose($fp);
+        
+    }
+
 }

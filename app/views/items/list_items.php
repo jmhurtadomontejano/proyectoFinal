@@ -59,78 +59,6 @@ ob_start();
     </table>
 </div>
 
-<script type="text/javascript">
-$('#myTable').DataTable( {
-    buttons: [
-        {
-            extend: 'excelHtml5',
-            text: 'Save as Excel',
-            customize: function( xlsx ) {
-                var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                var lastCol = sheet.getElementsByTagName('col').length - 1;
-                var colRange = createCellPos( lastCol ) + '1';
-                //Has to be done this way to avoid creation of unwanted namespace atributes.
-                var afSerializer = new XMLSerializer();
-                var xmlString = afSerializer.serializeToString(sheet);
-                var parser = new DOMParser();
-                var xmlDoc = parser.parseFromString(xmlString,'text/xml');
-                var xlsxFilter = xmlDoc.createElementNS('http://schemas.openxmlformats.org/spreadsheetml/2006/main','autoFilter');
-                var filterAttr = xmlDoc.createAttribute('ref');
-                filterAttr.value = 'A1:' + colRange;
-                xlsxFilter.setAttributeNode(filterAttr);
-                sheet.getElementsByTagName('worksheet')[0].appendChild(xlsxFilter);
-            }
-        }
-    ]
-} );
- 
-function createCellPos( n ){
-    var ordA = 'A'.charCodeAt(0);
-    var ordZ = 'Z'.charCodeAt(0);
-    var len = ordZ - ordA + 1;
-    var s = "";
- 
-    while( n >= 0 ) {
-        s = String.fromCharCode(n % len + ordA) + s;
-        n = Math.floor(n / len) - 1;
-    }
- 
-    return s;
-}
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#mydatatable tfoot th').each(function() {
-        var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Filtrar.." />');
-    });
-
-    var table = $('#mydatatable').DataTable({
-        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
-        "responsive": false,
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-        },
-        "order": [
-            [0, "desc"]
-        ],
-        "initComplete": function() {
-            this.api().columns().every(function() {
-                var that = this;
-
-                $('input', this.footer()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            })
-        }
-    });
-});
-</script>
 
 <?php
  $contenido = ob_get_clean();
@@ -185,4 +113,35 @@ $(document).ready(function() {
     </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#mydatatable tfoot th').each(function() {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Filtrar.." />');
+    });
 
+    var table = $('#mydatatable').DataTable({
+        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+        "responsive": false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "order": [
+            [0, "desc"]
+        ],
+        "initComplete": function() {
+            this.api().columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            })
+        }
+    });
+});
+</script>

@@ -60,7 +60,7 @@ ob_start();
 <?php
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
- $titulo2 = "Detalle de Articulos";
+ $titulo2 = "Detalle de Usuarios";
  require '../app/views/template.php';
  ?>
 

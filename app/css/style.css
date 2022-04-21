@@ -154,3 +154,11 @@ ul#menu_usuario li a {
 #formulario_actualizar_photo {
     display: none;
 }
+
+#mydatatable tfoot input {
+    width: 100% !important;
+}
+
+#mydatatable_wrapper button {
+    margin: 2px 10px 2px 4px;
+}

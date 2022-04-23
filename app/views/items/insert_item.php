@@ -26,8 +26,10 @@ $(function() {
     <div class="col-12">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
-
     </div>
+    <div class="col-12">
+        <label for="inputService" class="form-label">Servicio</label>
+        <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
         <input type="file" class="form-control"  name="inputPhotoItem[]" id="photoItem" multiple="multiple">

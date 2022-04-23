@@ -13,18 +13,19 @@ class Item {
     private $location;
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $id_departament;
+    private $id_service;
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $user;
     private $state;
     //Propiedad para acceder a las photosItem del item
     private $photoItemsItem;
 
-    function getFecha() {
-        return $this->fecha;
+    function getDate() {
+        return $this->date;
     }
 
-    function setFecha($fecha): void {
-        $this->fecha = $fecha;
+    function setDate($date): void {
+        $this->date = $date;
     }
 
     function getId() {
@@ -49,6 +50,10 @@ class Item {
 
     function getId_departament() {
         return $this->id_departament;
+    }
+
+    function getId_service() {
+        return $this->id_service;
     }
 
     function getId_user() {
@@ -96,6 +101,10 @@ class Item {
 
     function setId_departament($id_departament): void {
         $this->id_departament = $id_departament;
+    }
+
+    function setId_service($id_service): void {
+        $this->id_service = $id_service;
     }
 
     function setId_user($id_user): void {

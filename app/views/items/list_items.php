@@ -12,12 +12,14 @@ ob_start();
                 <th scope="col">Descripcion</th>
                 <th scope="col">Locaclización</th>
                 <th scope="col">Departamento</th>
+                <th scope="col">Servicio</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Options</th>
             </tr>
         </thead>
         <tfoot style="display: table-header-group !important">
             <tr>
+                <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
@@ -33,6 +35,7 @@ ob_start();
                 <th id="userInfo"><?= $i->getDescription() ?></th>
                 <th id="userInfo"><?= $i->getLocation() ?></th>
                 <th id="userInfo"><?= $i->getId_departament() ?></th>
+                <th id="userInfo"><?= $i->getId_service() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <?php if(count($i->getPhotosItem())>=1): ?>
@@ -51,7 +54,7 @@ ob_start();
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
-                        onclick="findByUserId($i->getUserId())">Editar</button>
+                        onclick="findByUserId($i->getUserId())">Editar <?= $i->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
                         data-target="#deleteUserModal">Eliminar</button>
                 </th>

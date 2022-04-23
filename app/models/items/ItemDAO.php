@@ -21,14 +21,15 @@ class ItemDAO {
         $description = $item->getDescription();
         $location = $item->getLocation();
         $id_department = $item->getId_departament();
+        $id_service = $item->getId_service();
         $id_user = $item->getId_user();
-        $sql = "INSERT INTO items (name, description, location, id_department, id_user) VALUES "
-                . "(?,?,?,?,?)";
+        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_user) VALUES "
+                . "(?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('sssdi',$name, $description, $location, $id_department, $id_user);
+        $stmt->bind_param('sssdii',$name, $description, $location, $id_department, $id_service, $id_user);
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -45,15 +46,17 @@ class ItemDAO {
         $name = $item->getname();
         $description = $item->getDescription();
         $location = $item->getlocation();
+        $id_department = $item->getId_departament();
+        $id_service = $item->getId_service();
         $id = $item->getId();
         $sql = "UPDATE items SET"
-                . " name=?, description=?,location=? "
+                . " name=?, description=?,location=?, id_department=?, id_service=?"
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("ssdi",$name, $description, $location, $id);
+        $stmt->bind_param("ssdi",$name, $description, $location, $id_department, $id_service, $id);
         $stmt->execute();
         $result = $stmt->get_result();
                 
@@ -128,7 +131,7 @@ class ItemDAO {
      * @return array Array de objetos de la clase Usuario
      */
     public function findAll($orden = 'ASC', $campo = 'id') {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items ORDER BY $campo $orden";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -140,7 +143,7 @@ class ItemDAO {
     }
     
     public function findItemsByUser($id_user) {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items WHERE id_user=? ORDER BY id DESC";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_user=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);
         }

@@ -5,7 +5,7 @@ class ItemsController {
     public function toList() {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);
-        $items = $itemDAO->findAll('DESC', 'fecha');
+        $items = $itemDAO->findAll('DESC', 'date');
 
         //Generamos Token para seguridad del borrado
         $_SESSION['token'] = md5(time() + rand(0, 999));
@@ -60,12 +60,14 @@ class ItemsController {
             $description = filter_var($_POST['inputDescription'], FILTER_SANITIZE_SPECIAL_CHARS);
             $location = filter_var($_POST['inputLocation'], FILTER_SANITIZE_SPECIAL_CHARS);
             $id_departament = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
+            $id_service = filter_var($_POST['inputService'], FILTER_SANITIZE_NUMBER_INT);
             $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $item->setName($name);
             $item->setDescription($description);
             $item->setLocation($location);
             $item->setId_departament($id_departament);
+            $item->setId_service($id_service);
             $item->setState($state);
    
             $item->setId_user(Session::obtener()->getId());
@@ -157,7 +159,7 @@ class ItemsController {
     }
 
     public function download_csv_files() {
-        $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM items ORDER BY id DESC";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ORDER BY id DESC";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }

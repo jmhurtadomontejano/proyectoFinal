@@ -45,7 +45,7 @@ ob_start();
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-bs-toggle="modal" data-bs-target="#editUserModal"
-                        >Editar </button>
+                        >Editar <?= $u->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
                         data-target="#deleteUserModal">Eliminar</button>
 

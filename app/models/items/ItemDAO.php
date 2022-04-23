@@ -20,7 +20,7 @@ class ItemDAO {
         $name = $item->getname();
         $description = $item->getDescription();
         $location = $item->getLocation();
-        $id_department = $item->getId_departament();
+        $id_department = $item->getId_department();
         $id_service = $item->getId_service();
         $id_user = $item->getId_user();
         $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_user) VALUES "
@@ -46,7 +46,7 @@ class ItemDAO {
         $name = $item->getname();
         $description = $item->getDescription();
         $location = $item->getlocation();
-        $id_department = $item->getId_departament();
+        $id_department = $item->getId_department();
         $id_service = $item->getId_service();
         $id = $item->getId();
         $sql = "UPDATE items SET"

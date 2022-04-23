@@ -34,7 +34,7 @@ ob_start();
                 <th id="userInfo"><?= $i->getName() ?></th>
                 <th id="userInfo"><?= $i->getDescription() ?></th>
                 <th id="userInfo"><?= $i->getLocation() ?></th>
-                <th id="userInfo"><?= $i->getId_departament() ?></th>
+                <th id="userInfo"><?= $i->getId_department() ?></th>
                 <th id="userInfo"><?= $i->getId_service() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
@@ -56,7 +56,7 @@ ob_start();
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
                         onclick="findByUserId($i->getUserId())">Editar <?= $i->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteUserModal">Eliminar</button>
+                        data-target="#deleteUserModal">Eliminar <?= $i->getId() ?></button>
                 </th>
             </tr>
             <?php endforeach; ?>

@@ -12,7 +12,7 @@ class Item {
     private $description;
     private $location;
     //Propiedad para acceder a los datos del user al que pertenece el item
-    private $id_departament;
+    private $id_department;
     private $id_service;
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $user;
@@ -48,8 +48,8 @@ class Item {
         return $this->location;
     }
 
-    function getId_departament() {
-        return $this->id_departament;
+    function getId_department() {
+        return $this->id_department;
     }
 
     function getId_service() {
@@ -99,8 +99,8 @@ class Item {
         $this->location = $location;
     }
 
-    function setId_departament($id_departament): void {
-        $this->id_departament = $id_departament;
+    function setId_department($id_department): void {
+        $this->id_department = $id_department;
     }
 
     function setId_service($id_service): void {

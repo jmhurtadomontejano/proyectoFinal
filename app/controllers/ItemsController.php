@@ -59,14 +59,14 @@ class ItemsController {
             $name = filter_var($_POST['inputName'], FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_var($_POST['inputDescription'], FILTER_SANITIZE_SPECIAL_CHARS);
             $location = filter_var($_POST['inputLocation'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $id_departament = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
+            $id_department = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
             $id_service = filter_var($_POST['inputService'], FILTER_SANITIZE_NUMBER_INT);
             $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $item->setName($name);
             $item->setDescription($description);
             $item->setLocation($location);
-            $item->setId_departament($id_departament);
+            $item->setId_department($id_department);
             $item->setId_service($id_service);
             $item->setState($state);
    

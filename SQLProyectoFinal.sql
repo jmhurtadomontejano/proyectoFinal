@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2022 at 09:16 PM
+-- Generation Time: Apr 23, 2022 at 09:33 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -107,9 +107,10 @@ CREATE TABLE `items` (
   `description` text COLLATE utf8_spanish_ci NOT NULL,
   `location` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   `id_department` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `state` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL DEFAULT current_timestamp(),
   `registrationDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -117,25 +118,28 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_user`, `state`, `fecha`, `registrationDate`) VALUES
-(79, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 72, '', '2022-04-16 18:54:08', '2022-04-16 20:54:08'),
-(80, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 72, '', '2022-04-16 18:57:59', '2022-04-16 20:57:59'),
-(81, 'Juanmi', 'descripcion Juanmi', 'Mi Casa', 0, 72, '', '2022-04-16 18:59:46', '2022-04-16 20:59:46'),
-(82, 'asasasa', 'asasasas', 'asasass', 0, 72, '', '2022-04-16 19:01:42', '2022-04-16 21:01:42'),
-(83, 'asasasa', 'asasasas', 'asasass', 0, 72, '', '2022-04-16 19:06:30', '2022-04-16 21:06:30'),
-(84, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 72, '', '2022-04-16 19:06:54', '2022-04-16 21:06:54'),
-(85, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 72, '', '2022-04-16 19:09:25', '2022-04-16 21:09:25'),
-(86, 'x&#60;x&#60;zx', '&#60;zx&#60;zx&#60;', '&#60;zx&#60;zx', 0, 53, '', '2022-04-16 20:39:24', '2022-04-16 22:39:24'),
-(87, 'Alberto', 'Descripcion Alberto', 'alberto loc', 0, 53, '', '2022-04-17 14:41:59', '2022-04-17 16:41:59'),
-(88, 'al2', 'desc al2', 'al2 loc', 2, 53, '', '2022-04-17 14:43:26', '2022-04-17 16:43:26'),
-(89, 'zxczxc', 'zxczxc', 'zxczxc', 0, 53, '', '2022-04-17 17:24:21', '2022-04-17 19:24:21'),
-(90, 'fdsfsdf', 'sdfsdf', 'sdfsdf', 0, 53, '', '2022-04-17 17:25:26', '2022-04-17 19:25:26'),
-(91, 'czxczxc', 'zxczxczxc', 'zxczxczxc', 0, 53, '', '2022-04-17 17:26:33', '2022-04-17 19:26:33'),
-(92, 'dsfsdfsdfsdf', 'sdfsdf', 'sdfsdf', 0, 53, '', '2022-04-17 17:29:44', '2022-04-17 19:29:44'),
-(93, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 53, '', '2022-04-17 17:30:06', '2022-04-17 19:30:06'),
-(94, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 53, '', '2022-04-17 17:31:31', '2022-04-17 19:31:31'),
-(95, 'safasd', 'asdasd', 'asdasd', 0, 53, '', '2022-04-17 17:34:09', '2022-04-17 19:34:09'),
-(96, '1', '1', '1', 1, 53, '', '2022-04-17 18:53:06', '2022-04-17 20:53:06');
+INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_user`, `state`, `date`, `registrationDate`) VALUES
+(79, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:54:08'),
+(80, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:57:59'),
+(81, 'Juanmi', 'descripcion Juanmi', 'Mi Casa', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:59:46'),
+(82, 'asasasa', 'asasasas', 'asasass', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:01:42'),
+(83, 'asasasa', 'asasasas', 'asasass', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:06:30'),
+(84, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:06:54'),
+(85, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:09:25'),
+(86, 'x&#60;x&#60;zx', '&#60;zx&#60;zx&#60;', '&#60;zx&#60;zx', 0, 0, 53, '', '2022-04-16', '2022-04-16 22:39:24'),
+(87, 'Alberto', 'Descripcion Alberto', 'alberto loc', 0, 0, 53, '', '2022-04-17', '2022-04-17 16:41:59'),
+(88, 'al2', 'desc al2', 'al2 loc', 2, 0, 53, '', '2022-04-17', '2022-04-17 16:43:26'),
+(89, 'zxczxc', 'zxczxc', 'zxczxc', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:24:21'),
+(90, 'fdsfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:25:26'),
+(91, 'czxczxc', 'zxczxczxc', 'zxczxczxc', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:26:33'),
+(92, 'dsfsdfsdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:29:44'),
+(93, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:30:06'),
+(94, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:31:31'),
+(95, 'safasd', 'asdasd', 'asdasd', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:34:09'),
+(96, '1', '1', '1', 1, 0, 53, '', '2022-04-17', '2022-04-17 20:53:06'),
+(97, 'asdasd', 'asdasd', 'asdsda', 2, 0, 65, '', '2022-04-23', '2022-04-23 15:09:50'),
+(98, 'fghfghh', 'fghgfhfgh', 'fghfggh', 2, 23, 65, '', '2022-04-23', '2022-04-23 20:18:12'),
+(99, 'sdfsdfs', 'sdfsdfdf', 'sdfsdfsdf', 2, 23, 65, '', '2022-04-23', '2022-04-23 21:32:09');
 
 -- --------------------------------------------------------
 
@@ -180,7 +184,10 @@ CREATE TABLE `photositems` (
 INSERT INTO `photositems` (`id`, `file_name`, `id_item`) VALUES
 (1, '07b0413b0f3acc47f02c9afa31827cab.png', 85),
 (2, 'c4b7ab2f2e38a94a9ef4ddd0630f7004.jpg', 95),
-(3, '7ec835ef246f33ca107390dd8394a13f.jpg', 96);
+(3, '7ec835ef246f33ca107390dd8394a13f.jpg', 96),
+(4, '64152b9b100893edfe8ab9d545c26d58.jpg', 97),
+(5, 'c7a51ca34fffd22b11158231e40be5f8.jpg', 98),
+(6, '603a17a6b5bcee5be6e63142540cc1d4.jpg', 99);
 
 -- --------------------------------------------------------
 
@@ -505,7 +512,7 @@ ALTER TABLE `incidents`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `photos`
@@ -517,7 +524,7 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `photositems`
 --
 ALTER TABLE `photositems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `usuarios`

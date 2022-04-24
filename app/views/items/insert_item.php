@@ -10,6 +10,31 @@ $(function() {
 });
 </script>
 <form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
+    <div class="col-md-3">
+        <label for="inputUser" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="inputUser"  readonly>
+    </div>
+    <div class="col-md-3">
+        <label for="inputState" class="form-label">Estado</label>
+        <select id="inputState" name="inputState" class="form-select">
+            <option selected>Registrada</option>
+            <option>Iniciada</option>
+            <option>En Proceso</option>
+            <option>Finalizada</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label for="inputDate" class="form-label">Fecha</label>
+        <input type="text" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
+    </div>
+    <div class="col-md-2">
+        <label for="inputHour" class="form-label">Hora</label>
+        <input type="text" class="form-control" name="inputHour" value="<?php echo date("H:i");?>">
+    </div>
+    <div class="col-md-2">
+        <label for="inputDuration" class="form-label">Duracion</label>
+        <input type="text" class="form-control" name="inputDuration">
+    </div>
     <div class="col-md-6">
         <label for="inputName" class="form-label">Titulo</label>
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
@@ -17,7 +42,8 @@ $(function() {
 
     <div class="col-md-6">
         <label for="inputDescription" class="form-label">Descripcion</label>
-        <textarea type="textarea" class="form-control" name="inputDescription" id="description" placeholder="Descripción..."></textarea>
+        <textarea type="textarea" class="form-control" name="inputDescription" id="description"
+            placeholder="Descripción..."></textarea>
     </div>
     <div class="col-12" hidden>
         <label for="inputLocation" class="form-label">Localización</label>
@@ -41,25 +67,9 @@ $(function() {
     </div>
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
-        <input type="file" class="form-control"  name="inputPhotoItem[]" id="photoItem" multiple="multiple">
+        <input type="file" class="form-control" name="inputPhotoItem[]" id="photoItem" multiple="multiple">
     </div>
-    <div class="col-md-5">
-        <label for="inputUser" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="inputUser" readonly>
-    </div>
-    <div class="col-md-4">
-        <label for="inputState" class="form-label">Estado</label>
-        <select id="inputState" name="inputState" class="form-select">
-            <option selected>Registrada</option>
-            <option>Iniciada</option>
-            <option>En Proceso</option>
-            <option>Finalizada</option>
-        </select>
-    </div>
-    <div class="col-md-2">
-        <label for="inputDate" class="form-label">Fecha</label>
-        <input type="text" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
-    </div>
+
 
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Agregar Item</button>

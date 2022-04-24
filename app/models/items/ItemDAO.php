@@ -27,13 +27,15 @@ class ItemDAO {
         $id_user = $item->getId_user();
         $state = $item->getState();
         $date = $item->getDate();
-        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date) VALUES "
-                . "(?,?,?,?,?,?,?,?,?,?)";
+        $hour = $item->getHour();
+        $duration = $item->getDuration();
+        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration) VALUES "
+                . "(?,?,?,?,?,?,?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('sssdiiiiss',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date);
+        $stmt->bind_param('sssdiiiissss',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration);
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -56,14 +58,17 @@ class ItemDAO {
         $id_clientUser = $item->getId_clientUser();
         $id = $item->getId();
         $state = $item->getState();
+        $date = $item->getDate();
+        $hour = $item->getHour();
+        $duration = $item->getDuration();
         $sql = "UPDATE items SET"
-                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?"
+                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?, date=?, hour=?, duration=?"
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("sssdiiiis",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $id, $state);
+        $stmt->bind_param("sssdiiiissss",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $id, $state, $date, $hour, $duration);
         $stmt->execute();
         $result = $stmt->get_result();
                 

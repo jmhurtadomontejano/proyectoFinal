@@ -19,6 +19,8 @@ class Item {
     private $user;
     private $state;
     private $date;
+    private $hour;
+    private $duration;
     //Propiedad para acceder a las photosItem del item
     private $photoItemsItem;
 
@@ -77,6 +79,14 @@ class Item {
         return $this->date;
     }
 
+    function getHour() {
+        return $this->hour;
+    }
+
+    function getDuration() {
+        return $this->duration;
+    }
+
     function getPhotosItem() {
         if (!isset($this->photosItem)) {
             $photoItemDAO = new PhotoItemDAO(ConexionBD::conectar());
@@ -131,6 +141,14 @@ class Item {
 
     function setDate($date): void {
         $this->date = $date;
+    }
+
+    function setHour($hour): void {
+        $this->hour = $hour;
+    }
+
+    function setDuration($duration): void {
+        $this->duration = $duration;
     }
 
     function setPhotosItem($photoItem): void {

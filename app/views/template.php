@@ -70,8 +70,8 @@
                                 Articulos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a>
-                                <li>
+                                <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a></li>
+                                <li><a class="nav-link" href="<?= RUTA?>listar_articulos">Listar Todos Los Articulos</a></li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li> <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>

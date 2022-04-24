@@ -32,7 +32,7 @@ require '../app/config.php';
 //Enrutamiento
 $mapa = array(
     //articlesController
-    'inicio' => array('controller' => 'ArticlesController', 'method' => 'listar', 'publica' => true),
+    'listar_articulos' => array('controller' => 'ArticlesController', 'method' => 'listar', 'publica' => true),
     'borrar_articulo' => array('controller' => 'ArticlesController', 'method' => 'borrar', 'publica' => false),
     'insertar_articulo' => array('controller' => 'ArticlesController', 'method' => 'insertar', 'publica' => false),
     'ver_articulo' => array('controller' => 'ArticlesController', 'method' => 'ver', 'publica' => true),
@@ -51,6 +51,7 @@ $mapa = array(
     'download_csv_file' => array('controller' => 'ItemsController', 'method' => 'download_csv_file', 'publica' => false),
 
     //userController
+    'inicio' => array('controller' => 'UsersController', 'method' => 'index', 'publica' => true),
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),
     'subir_photo' => array('controller' => 'UsersController', 'method' => 'subir_photo', 'publica' => false),
     'login' => array('controller' => 'UsersController', 'method' => 'login', 'publica' => true),

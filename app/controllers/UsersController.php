@@ -176,6 +176,7 @@ class UsersController {
             die();
         }
         //Usuario y password correctos, redirijo al listado de anuncios
+        MensajesFlash::add_message("LOGIN CORRECTO");
         Session::iniciar($usuario);
 
         //Generamos un código aleatorio sha1 y lo guardamos en la BD
@@ -217,6 +218,10 @@ class UsersController {
         //Borramos la cookie diciendole al navegador que está caducada
         setcookie('uid', '', time() - 5);
         header("Location: " . RUTA);
+    }
+
+    public function index() {
+        require '../app/views/users/index.php';
     }
 
 }

@@ -13,12 +13,14 @@ ob_start();
                 <th scope="col">Locaclización</th>
                 <th scope="col">Departamento</th>
                 <th scope="col">Servicio</th>
+                <th scope="col">Atendido por:</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Options</th>
             </tr>
         </thead>
         <tfoot style="display: table-header-group !important">
             <tr>
+                <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
@@ -36,6 +38,7 @@ ob_start();
                 <th id="userInfo"><?= $i->getLocation() ?></th>
                 <th id="userInfo"><?= $i->getId_department() ?></th>
                 <th id="userInfo"><?= $i->getId_service() ?></th>
+                <th id="userInfo"><?= $i->getId_attendUser() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <?php if(count($i->getPhotosItem())>=1): ?>

@@ -47,7 +47,7 @@ ob_start();
                     <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-bs-toggle="modal" data-bs-target="#editUserModal"
                         >Editar <?= $u->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteUserModal">Eliminar</button>
+                        data-target="#deleteUserModal">Eliminar  <?= $u->getId() ?></button>
 
                 </th>
             </tr>

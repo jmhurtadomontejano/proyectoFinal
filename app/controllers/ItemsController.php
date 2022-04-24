@@ -61,6 +61,7 @@ class ItemsController {
             $location = filter_var($_POST['inputLocation'], FILTER_SANITIZE_SPECIAL_CHARS);
             $id_department = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
             $id_service = filter_var($_POST['inputService'], FILTER_SANITIZE_NUMBER_INT);
+            $id_attendUser = filter_var($_POST['inputAttendUser'], FILTER_SANITIZE_NUMBER_INT);
             $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $item->setName($name);
@@ -68,6 +69,7 @@ class ItemsController {
             $item->setLocation($location);
             $item->setId_department($id_department);
             $item->setId_service($id_service);
+            $item->setId_attendUser($id_attendUser);
             $item->setState($state);
    
             $item->setId_user(Session::obtener()->getId());

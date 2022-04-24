@@ -11,9 +11,9 @@ class Item {
     private $name;
     private $description;
     private $location;
-    //Propiedad para acceder a los datos del user al que pertenece el item
     private $id_department;
     private $id_service;
+    private $id_attendUser;
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $user;
     private $state;
@@ -54,6 +54,10 @@ class Item {
 
     function getId_service() {
         return $this->id_service;
+    }
+
+    function getId_attendUser() {
+        return $this->id_attendUser;
     }
 
     function getId_user() {
@@ -105,6 +109,10 @@ class Item {
 
     function setId_service($id_service): void {
         $this->id_service = $id_service;
+    }
+
+    function setId_attendUser($id_attendUser): void {
+        $this->id_attendUser = $id_attendUser;
     }
 
     function setId_user($id_user): void {

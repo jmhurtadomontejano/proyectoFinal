@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Description of ArticuloDAO
+ * Description of DepartmentDAO
  *
  *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
-class photoDAO {
+class DepartmentDAO {
     private $conn;
 
     public function __construct($conn) {
@@ -14,19 +14,21 @@ class photoDAO {
 
     public function insert($department) {
         //Comprobamos que el parámetro sea de la clase Usuario
-        if (!$department instanceof photo) {
+        if (!$department instanceof department) {
             return false;
         }
-        $nombre_archivo = $department->getName();
-        $id_articulo = $department->getId_articulo();
-        
-        $sql = "INSERT INTO photos (nombre_archivo, id_articulo) VALUES "
-                . "('$nombre_archivo', $id_articulo)";
-        if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+        $departmentName = $department->getName();
+        $departmentDescription = $department->getDescription();
+        //SQL to insert department on the database
+        $sql = "INSERT INTO departments (name, description) VALUES (?,?)";
+        if(!$stmt = $this->conn->prepare($sql)){
+            die("Error al preparar la consulta: " . $this->conn->error);
         }
+        $stmt->bind_param('ss',$departmentName, $departmentDescription);
+        $stmt->execute();
+        $result = $stmt->get_result();
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
-        $department->setId($this->conn->insert_id);
+        $department->setIdDepartament($this->conn->insert_id);
         return true;
     }
 

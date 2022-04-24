@@ -48,10 +48,10 @@ class ItemsController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             /*             * ***************************************** */
-            /*             * *** GUARDAMOS EL ARTÍCULO EN LA BBDD **** */
+            /*             * *** GUARDAMOS EL ITEM EN LA BBDD **** */
             /*             * ***************************************** */
             $conn = ConexionBD::conectar();
-            //Insertamos el artículo en la BBDD
+            //Insertamos el item en la BBDD
             $itemDAO = new ItemDAO($conn);
             $item = new Item();
 

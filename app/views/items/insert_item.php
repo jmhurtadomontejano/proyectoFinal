@@ -33,7 +33,7 @@ $(function() {
     </div>
     <div class="col-12">
         <label for="inputAttendUser" class="form-label">Atendido por:</label>
-        <input type="text" class="form-control" name="inputAttendUser" >
+        <input type="text" class="form-control" name="inputAttendUser" value="<?php Session::obtener()->getId() ?>">
     </div>
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>

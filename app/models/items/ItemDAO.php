@@ -26,13 +26,14 @@ class ItemDAO {
         $id_clientUser = $item->getId_clientUser();
         $id_user = $item->getId_user();
         $state = $item->getState();
-        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state) VALUES "
-                . "(?,?,?,?,?,?,?,?,?)";
+        $date = $item->getDate();
+        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date) VALUES "
+                . "(?,?,?,?,?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('sssdiiiis',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state);
+        $stmt->bind_param('sssdiiiiss',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date);
         $stmt->execute();
         $result = $stmt->get_result();
         

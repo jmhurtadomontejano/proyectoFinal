@@ -15,19 +15,19 @@ $(function() {
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
     </div>
 
-    <div class="col-12">
+    <div class="col-md-6">
         <label for="inputDescription" class="form-label">Descripcion</label>
         <textarea type="textarea" class="form-control" name="inputDescription" id="description" placeholder="Descripción..."></textarea>
     </div>
-    <div class="col-12">
+    <div class="col-12" hidden>
         <label for="inputLocation" class="form-label">Localización</label>
         <input type="text" class="form-control" name="inputLocation" placeholder="Ubicación">
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>
@@ -57,8 +57,8 @@ $(function() {
         </select>
     </div>
     <div class="col-md-2">
-        <label for="inputZip" class="form-label">Fecha</label>
-        <input type="text" class="form-control" id="inputZip">
+        <label for="inputDate" class="form-label">Fecha</label>
+        <input type="text" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
     </div>
 
     <div class="col-12">

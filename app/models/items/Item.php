@@ -18,16 +18,9 @@ class Item {
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $user;
     private $state;
+    private $date;
     //Propiedad para acceder a las photosItem del item
     private $photoItemsItem;
-
-    function getDate() {
-        return $this->date;
-    }
-
-    function setDate($date): void {
-        $this->date = $date;
-    }
 
     function getId() {
         return $this->id;
@@ -80,6 +73,10 @@ class Item {
         return $this->state;
     }
 
+    function getDate() {
+        return $this->date;
+    }
+
     function getPhotosItem() {
         if (!isset($this->photosItem)) {
             $photoItemDAO = new PhotoItemDAO(ConexionBD::conectar());
@@ -130,6 +127,10 @@ class Item {
 
     function setState($state): void{
         $this->state = $state;
+    }
+
+    function setDate($date): void {
+        $this->date = $date;
     }
 
     function setPhotosItem($photoItem): void {

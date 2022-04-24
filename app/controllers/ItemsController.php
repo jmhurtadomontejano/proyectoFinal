@@ -63,6 +63,7 @@ class ItemsController {
             $id_attendUser = filter_var($_POST['inputAttendUser'], FILTER_SANITIZE_NUMBER_INT);
             $id_clientUser = filter_var($_POST['inputClientUser'], FILTER_SANITIZE_NUMBER_INT);
             $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $date = filter_var($_POST['inputDate'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $item->setName($name);
             $item->setDescription($description);
@@ -72,6 +73,7 @@ class ItemsController {
             $item->setId_attendUser($id_attendUser);
             $item->setId_clientUser($id_clientUser);
             $item->setState($state);
+            $item->setDate($date);
    
             $item->setId_user(Session::obtener()->getId());
 

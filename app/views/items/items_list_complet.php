@@ -9,10 +9,12 @@ ob_start();
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
+                <th scope="col">Localización</th>
                 <th scope="col">Departamento</th>
                 <th scope="col">Servicio</th>
                 <th scope="col">Atendido por:</th>
                 <th scope="col">Cliente</th>
+                <th scope="col">Foto</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Hora</th>
@@ -31,6 +33,8 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
             </tr>
         </tfoot>
         <tbody>
@@ -38,10 +42,26 @@ ob_start();
             <tr>
                 <th id="userInfo"><?= $i->getName() ?></th>
                 <th id="userInfo"><?= $i->getDescription() ?></th>
+                <th id="userInfo"><?= $i->getLocation() ?></th>
                 <th id="userInfo"><?= $i->getId_department() ?></th>
                 <th id="userInfo"><?= $i->getId_service() ?></th>
                 <th id="userInfo"><?= $i->getId_attendUser() ?></th>
                 <th id="userInfo"><?= $i->getId_clientUser() ?></th>
+                <th> <?php if ($i->getPhotosItem() != null): ?>
+                    <!-- we check the photo exists in the gallery -->
+                    <?php if(count($i->getPhotosItem())>=1): ?>
+                    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/items/<?= $i->getPhotosItem()[0]->getFile_name() ?>');
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        height:100px;">
+                    </div>
+                    <?php else: ?>
+                    <div class="photos_articulo"
+                        style="background-image:url('<?= RUTA?>web/images/items/item_generico.jpg')"></div>
+                    <?php endif; ?>
+                    <?php endif; ?>
+                </th>
                 <th id="userInfo"><?= $i->getState() ?></th>
                 <th id="dateInfo"><?= $i->getDate() ?></th>
                 <th id="hourInfo"><?= $i->getHour() ?></th>

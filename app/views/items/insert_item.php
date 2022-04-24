@@ -10,11 +10,11 @@ $(function() {
 });
 </script>
 <form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
-    <div class="col-md-3">
+    <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario</label>
         <input type="text" class="form-control" id="inputUser"  readonly>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-6">
         <label for="inputState" class="form-label">Estado</label>
         <select id="inputState" name="inputState" class="form-select">
             <option selected>Registrada</option>
@@ -23,15 +23,15 @@ $(function() {
             <option>Finalizada</option>
         </select>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-3">
         <label for="inputDate" class="form-label">Fecha</label>
         <input type="text" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-3">
         <label for="inputHour" class="form-label">Hora</label>
         <input type="text" class="form-control" name="inputHour" value="<?php echo date("H:i");?>">
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-3">
         <label for="inputDuration" class="form-label">Duracion</label>
         <input type="text" class="form-control" name="inputDuration">
     </div>
@@ -49,11 +49,11 @@ $(function() {
         <label for="inputLocation" class="form-label">Localización</label>
         <input type="text" class="form-control" name="inputLocation" placeholder="Ubicación">
     </div>
-    <div class="col-md-6">
+    <div class="col-6">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
     </div>
-    <div class="col-md-6">
+    <div class="col-6">
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>

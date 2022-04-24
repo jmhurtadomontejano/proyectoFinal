@@ -11,7 +11,7 @@ class ItemsController {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../app/views/items/list_items.php';
+        require '../app/views/items/items_list.php';
     }
 
     function borrar() {
@@ -61,6 +61,7 @@ class ItemsController {
             $id_department = filter_var($_POST['inputDepartment'], FILTER_SANITIZE_NUMBER_INT);
             $id_service = filter_var($_POST['inputService'], FILTER_SANITIZE_NUMBER_INT);
             $id_attendUser = filter_var($_POST['inputAttendUser'], FILTER_SANITIZE_NUMBER_INT);
+            $id_clientUser = filter_var($_POST['inputClientUser'], FILTER_SANITIZE_NUMBER_INT);
             $state = filter_var($_POST['inputState'], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $item->setName($name);
@@ -69,6 +70,7 @@ class ItemsController {
             $item->setId_department($id_department);
             $item->setId_service($id_service);
             $item->setId_attendUser($id_attendUser);
+            $item->setId_clientUser($id_clientUser);
             $item->setState($state);
    
             $item->setId_user(Session::obtener()->getId());
@@ -157,6 +159,32 @@ class ItemsController {
         $token = $_SESSION['token'];
 
         require '../app/views/items/own_items.php';
+    }
+
+    public function update_item() {
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        $item = $itemDAO->find($_GET['id']);
+
+        $departmentDAO = new DepartmentDAO($conn);
+        $departments = $departmentDAO->findAll();
+
+        $serviceDAO = new ServiceDAO($conn);
+        $services = $serviceDAO->findAll();
+
+        $attendUserDAO = new AttendUserDAO($conn);
+        $attendUsers = $attendUserDAO->findAll();
+
+        $clientUserDAO = new ClientUserDAO($conn);
+        $clientUsers = $clientUserDAO->findAll();
+
+        $photoDAO = new PhotoItemDAO($conn);
+        $photos = $photoDAO->findAll($_GET['id']);
+
+        $token = md5(time() + rand(0, 999));
+        $_SESSION['token'] = $token;
+
+        require '../app/views/items/update_item.php';
     }
 
     public function download_csv_files() {

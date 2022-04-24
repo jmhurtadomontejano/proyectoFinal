@@ -25,18 +25,19 @@ $(function() {
     </div>
     <div class="col-12">
         <label for="inputDepartment" class="form-label">Departamento</label>
-        <select class="form-control" name="inputDepartment" id="inputDepartment">
-            <?php foreach ($departments as $department): ?>
-                <option value="<?= $department->id ?>"><?= $department->name ?></option>
-            <?php endforeach ?>
+        <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
     </div>
     <div class="col-12">
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>
-    <div class="col-12">
+    <div class="col-6">
         <label for="inputAttendUser" class="form-label">Atendido por:</label>
-        <input type="text" class="form-control" name="inputAttendUser" value="<?php Session::obtener()->getId() ?>">
+        <input type="number" class="form-control" name="inputAttendUser" value="<?php Session::obtener()->getId() ?>">
+    </div>
+    <div class="col-6">
+        <label for="inputClientUser" class="form-label">Cliente:</label>
+        <input type="number" class="form-control" name="inputClientUser" placeholder="Selecciona el cliente">
     </div>
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>

@@ -43,11 +43,12 @@ $mapa = array(
     'departments_list' => array('controller' => 'DepartmentsController', 'method' => 'departments_list', 'publica' => true),
 
      //ItemsController
-     'list_items' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),
+     'items_list' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),
      'delete_item' => array('controller' => 'ItemsController', 'method' => 'delete', 'publica' => false),
      'insert_item' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),
      'ver_item' => array('controller' => 'ItemsController', 'method' => 'find', 'publica' => true),
      'mis_items' => array('controller' => 'ItemsController', 'method' => 'findItemsByUser', 'publica' => false),
+     'update_item' => array('controller' => 'ItemsController', 'method' => 'update_item', 'publica' => false),
     'download_csv_file' => array('controller' => 'ItemsController', 'method' => 'download_csv_file', 'publica' => false),
 
     //userController
@@ -60,6 +61,7 @@ $mapa = array(
     'findByUserId' => array('controller' => 'UsersController', 'method' => 'findByUserId', 'publica' => true),
     'findUserByIdJson' => array('controller' => 'UsersController', 'method' => 'findUserByIdJson', 'publica' => true),
     'update_user' => array('controller' => 'UsersController', 'method' => 'update', 'publica' => false),
+    'delete_user' => array('controller' => 'UsersController', 'method' => 'delete', 'publica' => false),
 );
 
 //Parseo de la ruta

@@ -20,6 +20,11 @@
                         <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
+                    <div class="mb-3" style="justify-content: center; align-items: center">
+                        <label class="form-label">DNI</label>
+                        <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
+                            aria-describedby="dniHelp">
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Email/Direccion de correo electrónico</label>
                         <input type="email" name="email" placeholder="Introduce aqui tu em@il" class="form-control"
@@ -57,6 +62,26 @@
                             aria-describedby="photoHelp">
                         <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
                     </div>
+                    <?php if (Session::existe()) { ?>
+                        <?php
+                            $conn = ConexionBD::conectar();
+                            $usuDAO = new UsuarioDAO($conn);
+                            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+                        ?>
+                        <?php if ($usuario->getRol() == 'admin') { ?>
+                            <div class="mb-3">
+                                <label class="form-label">Rol</label>
+                                <select name="rol" class="form-control">
+                                    <option value="user">Usuario</option>
+                                    <?php if ($usuario->getRol() =='superAdmin') { ?>
+                                    <option value="admin">Administrador</option>
+                                    <option value="superAdmin">Super Administrador</option>
+                                </select>
+                            </div>
+                        </li>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
                             checked>

@@ -10,6 +10,7 @@ ob_start();
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Email</th>
+                <th scope="col">DNI</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Options</th>
@@ -17,6 +18,7 @@ ob_start();
         </thead>
         <tfoot style="display: table-header-group !important">
             <tr>
+                <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
@@ -31,6 +33,7 @@ ob_start();
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
                 <th id="userInfo"><?= $u->getEmail() ?></th>
+                <th id="userInfo"><?= $u->getDni() ?></th>
                 <th id="userInfo"><?= $u->getRol() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
@@ -48,7 +51,7 @@ ob_start();
                         >Editar <?= $u->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
                         data-target="#deleteUserModal">Eliminar  <?= $u->getId() ?></button>
-
+                        <button type="button" class="btn btn-danger"><a href="<?= RUTA?>borrar_articulo/<?= $u->getId() ?>/<?=$token ?>"><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></button>
                 </th>
             </tr>
             <?php endforeach; ?>

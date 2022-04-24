@@ -79,12 +79,12 @@ class UsersController {
                 $error = true;
             }
 
-            if(!($_POST['datesConsent'])){
+     /*       if(!($_POST['datesConsent'])){
                 MensajesFlash::add_message("Es obligatorio marcar la casilla de las condiciones de uso para poder registrarse.");
                 $tipoMensaje = "alert alert-error";
                 $error = true;
             }
-
+*/
             if (!$error) {
                 //Copiar photo
                 //Generamos un nombre para la photo
@@ -102,12 +102,14 @@ class UsersController {
                 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                 $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $postal_code = filter_var($_POST['postal_code'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
                 $usuario->setSurname($surname);
+                $usuario->setDni($dni);
                 $usuario->setPhone($phone);
                 $usuario->setPostalCode($postalCode);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
@@ -217,6 +219,13 @@ class UsersController {
         Session::cerrar();
         //Borramos la cookie diciendole al navegador que está caducada
         setcookie('uid', '', time() - 5);
+        header("Location: " . RUTA);
+    }
+
+    public function deleteUser(){
+        $conn = ConexionBD::conectar();
+        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+        $usuDAO->delete($_POST['id']);
         header("Location: " . RUTA);
     }
 

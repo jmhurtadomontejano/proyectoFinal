@@ -81,7 +81,7 @@
                             <a class="nav-link" href="<?= RUTA?>insert_item">Insertar item</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA?>list_items">Listar item</a>
+                            <a class="nav-link" href="<?= RUTA?>items_list">Listar item</a>
                         </li>
 
                         <!-- ADMIN MENU -->

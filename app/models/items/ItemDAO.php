@@ -23,15 +23,16 @@ class ItemDAO {
         $id_department = $item->getId_department();
         $id_service = $item->getId_service();
         $id_attendUser = $item->getId_attendUser();
+        $id_clientUser = $item->getId_clientUser();
         $id_user = $item->getId_user();
         $state = $item->getState();
-        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_user, state) VALUES "
-                . "(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state) VALUES "
+                . "(?,?,?,?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('sssdiiis',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_user, $state);
+        $stmt->bind_param('sssdiiiis',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state);
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -51,16 +52,17 @@ class ItemDAO {
         $id_department = $item->getId_department();
         $id_service = $item->getId_service();
         $id_attendUser = $item->getId_attendUser();
+        $id_clientUser = $item->getId_clientUser();
         $id = $item->getId();
         $state = $item->getState();
         $sql = "UPDATE items SET"
-                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, state=?"
+                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?"
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("sssdiii",$name, $description, $location, $id_department, $id_service, id_attendUser, $id);
+        $stmt->bind_param("sssdiiiis",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $id, $state);
         $stmt->execute();
         $result = $stmt->get_result();
                 

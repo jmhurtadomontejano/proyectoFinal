@@ -9,6 +9,7 @@ class Usuario {
     private $id;
     private $nombre;
     private $surname;
+    private $dni;
     private $email;
     private $phone;
     private $postalCode;
@@ -39,6 +40,10 @@ class Usuario {
 
     function getSurname() {
         return $this->surname;
+    }
+
+    function getDni() {
+        return $this->dni;
     }
 
     function getEmail() {
@@ -79,6 +84,10 @@ class Usuario {
 
     function setSurname($surname): void {
         $this->surname = $surname;
+    }
+
+    function setDni($dni): void {
+        $this->dni = $dni;
     }
 
     function setEmail($email): void {

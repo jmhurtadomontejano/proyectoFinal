@@ -13,6 +13,7 @@ ob_start();
                 <th scope="col">Departamento</th>
                 <th scope="col">Servicio</th>
                 <th scope="col">Atendido por:</th>
+                <th scope="col">Cliente</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Fecha</th>
@@ -21,6 +22,7 @@ ob_start();
         </thead>
         <tfoot style="display: table-header-group !important">
             <tr>
+                <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
@@ -42,6 +44,7 @@ ob_start();
                 <th id="userInfo"><?= $i->getId_department() ?></th>
                 <th id="userInfo"><?= $i->getId_service() ?></th>
                 <th id="userInfo"><?= $i->getId_attendUser() ?></th>
+                <th id="userInfo"><?= $i->getId_clientUser() ?></th>
                 <th> <?php if ($i->getPhotosItem() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <?php if(count($i->getPhotosItem())>=1): ?>
@@ -164,35 +167,45 @@ var buttonCommon = {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?= RUTA?>update_user/<?= $i->getId() ?>" method="POST" enctype="multipart/form-data">
+                <form id="editItemForm" method="POST" action="<?= RUTA ?>items/editItem" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="<?= $i->getNombre() ?>">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre"
+                            value="<?= $i->getName() ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="apellidos">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidos" name="apellidos"
-                            value="<?= $i->getSurname() ?>">
+                        <label for="description">Descripción</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            placeholder="Descripción" value="<?= $i->getDescription() ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?= $i->getEmail() ?>">
+                        <label for="location">Ubicación</label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Ubicación"
+                            value="<?= $i->getLocation() ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="rol">Rol</label>
-                        <select class="form-control" id="rol" name="rol">
-
-                            <option value="admin">Administrador</option>
-                            <option value="user">Usuario</option>
+                        <label for="id_department">Departamento</label>
+                        <select class="form-control" id="id_department" name="id_department" required>
+                            <option value="">Seleccione un departamento</option>
+                            <?php foreach ($departments as $d): ?>
+                            <option value="<?= $d->getId() ?>" <?= $i->getId_department() == $d->getId() ? 'selected' : '' ?>>
+                                <?= $d->getName() ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="photo">Foto</label>
-                        <input type="file" class="form-control" id="photo" name="photo">
+                        <label for="id_service">Servicio</label>
+                        <select class="form-control" id="id_service" name="id_service" required>
+                            <option value="">Seleccione un servicio</option>
+                            <?php foreach ($services as $s): ?>
+                            <option value="<?= $s->getId() ?>" <?= $i->getId_service() == $s->getId() ? 'selected' : '' ?>>
+                                <?= $s->getName() ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                </form>
-            </div>
+                </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Editar Usuario</button>

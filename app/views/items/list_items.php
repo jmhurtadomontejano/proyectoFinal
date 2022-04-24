@@ -15,6 +15,7 @@ ob_start();
                 <th scope="col">Servicio</th>
                 <th scope="col">Atendido por:</th>
                 <th scope="col">Foto</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Options</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
+                <th>Filter..</th>ç
                 <th>Filter..</th>
             </tr>
         </tfoot>
@@ -54,6 +56,7 @@ ob_start();
                     <?php endif; ?>
                     <?php endif; ?>
                 </th>
+                <th id="userInfo"><?= $i->getState() ?></th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"

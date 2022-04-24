@@ -24,13 +24,14 @@ class ItemDAO {
         $id_service = $item->getId_service();
         $id_attendUser = $item->getId_attendUser();
         $id_user = $item->getId_user();
-        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_user) VALUES "
-                . "(?,?,?,?,?,?,?)";
+        $state = $item->getState();
+        $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_user, state) VALUES "
+                . "(?,?,?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         
-        $stmt->bind_param('sssdiii',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_user);
+        $stmt->bind_param('sssdiiis',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_user, $state);
         $stmt->execute();
         $result = $stmt->get_result();
         
@@ -51,8 +52,9 @@ class ItemDAO {
         $id_service = $item->getId_service();
         $id_attendUser = $item->getId_attendUser();
         $id = $item->getId();
+        $state = $item->getState();
         $sql = "UPDATE items SET"
-                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?"
+                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, state=?"
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {

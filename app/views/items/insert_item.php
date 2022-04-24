@@ -25,7 +25,10 @@ $(function() {
     </div>
     <div class="col-12">
         <label for="inputDepartment" class="form-label">Departamento</label>
-        <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
+        <select class="form-control" name="inputDepartment" id="inputDepartment">
+            <?php foreach ($departments as $department): ?>
+                <option value="<?= $department->id ?>"><?= $department->name ?></option>
+            <?php endforeach ?>
     </div>
     <div class="col-12">
         <label for="inputService" class="form-label">Servicio</label>

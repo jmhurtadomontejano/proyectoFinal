@@ -27,8 +27,7 @@ class DepartmentDAO {
         $stmt->bind_param('ss',$departmentName, $departmentDescription);
         $stmt->execute();
         $result = $stmt->get_result();
-        //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
-        $department->setIdDepartament($this->conn->insert_id);
+
         return true;
     }
 

@@ -44,7 +44,10 @@ ob_start();
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Departamentos";
- require '../app/views/template.php';
+ ?>
+ <button type="button" class="btn btn-primary" data-bs> <a class="dropdown-item" href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
+ 
+ <?php require '../app/views/template.php';
  ?>
 
 <script type="text/javascript">
@@ -115,6 +118,7 @@ var buttonCommon = {
             } )
         ]
     } );
+    
 </script>
 
 

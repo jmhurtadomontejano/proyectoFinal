@@ -25,7 +25,7 @@ class ItemsController {
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $itemDAO = new ItemDAO(ConexionBD::conectar());
         $item = $itemDAO->find($id);
-        //Comprobamos el el usuario es propietario del artículo
+        //Comprobamos el el usuario es propietario del item
         if ($item->getId_usuario() == Session::obtener()->getId()) {
             if ($itemDAO->delete($item)) {
                 MensajesFlash::add_message("Item borrado");
@@ -51,7 +51,6 @@ class ItemsController {
             /*             * *** GUARDAMOS EL ITEM EN LA BBDD **** */
             /*             * ***************************************** */
             $conn = ConexionBD::conectar();
-            //Insertamos el item en la BBDD
             $itemDAO = new ItemDAO($conn);
             $item = new Item();
 
@@ -141,7 +140,7 @@ class ItemsController {
     public function ver() {
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $conn = ConexionBD::conectar();
-        //Insertamos el artículo en la BBDD
+        //Insertamos el item en la BBDD
         $itemDAO = new ItemDAO($conn);
         $item = $itemDAO->find($id);
 

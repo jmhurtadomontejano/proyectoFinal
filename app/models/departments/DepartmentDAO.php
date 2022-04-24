@@ -39,10 +39,10 @@ class DepartmentDAO {
      */
     public function delete($department) {
         //Comprobamos que el parámetro no es nulo y es de la clase Usuario
-        if ($department == null || get_class($department) != 'photo') {
+        if ($department == null || get_class($department) != 'department') {
             return false;
         }
-        $sql = "DELETE FROM photos WHERE id = " . $department->getIdDepartament();
+        $sql = "DELETE FROM departments WHERE idDepartment = " . $department->getIdDepartament();
         if (!$this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -59,11 +59,11 @@ class DepartmentDAO {
      * @return \ Articulo de la BD o null si no existe
      */
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
-        $sql = "SELECT * FROM fotos WHERE id=$id";
+        $sql = "SELECT * FROM departments WHERE idDepartment=$id";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
-        return $result->fetch_object('photo');   //Para poder hacer esto 
+        return $result->fetch_object('department');   //Para poder hacer esto 
     }
 
     /**
@@ -72,16 +72,28 @@ class DepartmentDAO {
      * @param type $campo Campo de la BD por el que se van a ordenar
      * @return array Array de objetos de la clase Usuario
      */
-    public function findByIdArticulo($id_articulo) {
-        $sql = "SELECT * FROM photos WHERE id_articulo=$id_articulo";
+    public function findByIdDepartment($id_department) {
+        $sql = "SELECT * FROM departments WHERE idDepartment=$id_department";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
-        $array_obj_photos = array();
-        while ($department = $result->fetch_object('photo')) {
-            $array_obj_photos[] = $department;
+        $array_obj_departments = array();
+        while ($department = $result->fetch_object('department')) {
+            $array_obj_departments[] = $department;
         }
-        return $array_obj_photos;
+        return $array_obj_departments;
+    }
+
+    public function findAll() {
+        $sql = "SELECT * FROM departments order by idDepartment ASC";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_departments = array();
+        while ($department = $result->fetch_object('department')) {
+            $array_obj_departments[] = $department;
+        }
+        return $array_obj_departments;
     }
 
 }

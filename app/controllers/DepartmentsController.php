@@ -31,6 +31,17 @@ class DepartmentsController {
             die();
     }
     require '../app/views/departments/insert_department.php';
+    }
 
-}
+    function departments_list(){
+        if (Session::existe() == false) {
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes añadir items si no inicias sesión");
+            die();
+        }
+        $conn = ConexionBD::conectar();
+        $departmentDAO = new DepartmentDAO($conn);
+        $departments = $departmentDAO->findAll();
+        require '../app/views/departments/departments_list.php';
+    }
 }

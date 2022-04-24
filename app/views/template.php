@@ -113,6 +113,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
+                                <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
                                 <li><a class="dropdown-item" href="<?=RUTA?>insert_department">Insertar Departamentos</a></li>
                                 <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
                                 <li>

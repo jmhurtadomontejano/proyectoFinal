@@ -5,15 +5,15 @@
  *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
  */
 class Department {
-    private $idDepartament;
+    private $idDepartment;
     private $name;
     private $description;
     
-    //Va a almacenar los datos del artículo relacionado con esta photo
+    //Va a almacenar los datos del artículo relacionado con este Departamento
     private $articulo;
     
-    function getIdDepartament() {
-        return $this->idDepartament;
+    function getIdDepartment() {
+        return $this->idDepartment;
     }
 
     function getName() {
@@ -25,8 +25,8 @@ class Department {
     }
 
 
-    function setIdDepartament($id): void {
-        $this->id = $idDepartament;
+    function setIdDepartment($id): void {
+        $this->id = $idDepartment;
     }
 
     function setName($name): void {

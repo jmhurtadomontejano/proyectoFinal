@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 09:33 PM
+-- Generation Time: Apr 25, 2022 at 05:12 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -51,7 +51,6 @@ INSERT INTO `articulos` (`id`, `titulo`, `descripcion`, `precio`, `fecha`, `id_u
 (71, 'dfsdfdf', 'sdfsdfsdf', '11.00', '2022-04-13 09:23:33', 66, 0, '2022-04-15 12:38:29'),
 (72, 'gfdfgdf', 'dfgdfgdfgdfg', '987654.00', '2022-04-13 09:33:44', 66, 0, '2022-04-15 12:38:29'),
 (74, 'fgsdfsdf', 'sdfsdfsdf', '999999.99', '2022-04-15 10:18:25', 53, 0, '2022-04-15 12:38:29'),
-(77, 'Lapiz', 'Descripcion Lapiz&#60;br&#62;', '1.00', '2022-04-15 10:20:10', 53, 0, '2022-04-15 12:38:29'),
 (78, '955559º', 'svsvssv', '9999.00', '2022-04-15 10:36:00', 53, 0, '2022-04-15 12:38:29'),
 (79, 'sadasd', 'asdasd', '32.00', '2022-04-16 18:13:55', 72, 0, '2022-04-16 20:13:55');
 
@@ -79,6 +78,17 @@ CREATE TABLE `departments` (
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `description` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`idDepartment`, `name`, `description`) VALUES
+(1, 'Servicios Sociales', 'Servicios Sociales'),
+(2, 'Centro Dia Mayores', 'Centro Dia Mayores'),
+(3, 'Unidad de Empleo', 'Unidad de Empleo'),
+(4, 'Centro de la Mujer', 'Centro de la Mujer'),
+(5, 'Deportes', 'Deportes');
 
 -- --------------------------------------------------------
 
@@ -108,9 +118,13 @@ CREATE TABLE `items` (
   `location` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   `id_department` int(11) NOT NULL,
   `id_service` int(11) NOT NULL,
+  `id_attendUser` int(11) NOT NULL,
+  `id_clientUser` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `state` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL,
+  `hour` time NOT NULL,
+  `duration` time NOT NULL,
   `registrationDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -118,28 +132,48 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_user`, `state`, `date`, `registrationDate`) VALUES
-(79, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:54:08'),
-(80, 'sdfdsf', 'sdfsdf', 'sdfsdf', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:57:59'),
-(81, 'Juanmi', 'descripcion Juanmi', 'Mi Casa', 0, 0, 72, '', '2022-04-16', '2022-04-16 20:59:46'),
-(82, 'asasasa', 'asasasas', 'asasass', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:01:42'),
-(83, 'asasasa', 'asasasas', 'asasass', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:06:30'),
-(84, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:06:54'),
-(85, 'asdasdad', 'asdasdds', 'asdasdasd', 0, 0, 72, '', '2022-04-16', '2022-04-16 21:09:25'),
-(86, 'x&#60;x&#60;zx', '&#60;zx&#60;zx&#60;', '&#60;zx&#60;zx', 0, 0, 53, '', '2022-04-16', '2022-04-16 22:39:24'),
-(87, 'Alberto', 'Descripcion Alberto', 'alberto loc', 0, 0, 53, '', '2022-04-17', '2022-04-17 16:41:59'),
-(88, 'al2', 'desc al2', 'al2 loc', 2, 0, 53, '', '2022-04-17', '2022-04-17 16:43:26'),
-(89, 'zxczxc', 'zxczxc', 'zxczxc', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:24:21'),
-(90, 'fdsfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:25:26'),
-(91, 'czxczxc', 'zxczxczxc', 'zxczxczxc', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:26:33'),
-(92, 'dsfsdfsdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:29:44'),
-(93, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:30:06'),
-(94, 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:31:31'),
-(95, 'safasd', 'asdasd', 'asdasd', 0, 0, 53, '', '2022-04-17', '2022-04-17 19:34:09'),
-(96, '1', '1', '1', 1, 0, 53, '', '2022-04-17', '2022-04-17 20:53:06'),
-(97, 'asdasd', 'asdasd', 'asdsda', 2, 0, 65, '', '2022-04-23', '2022-04-23 15:09:50'),
-(98, 'fghfghh', 'fghgfhfgh', 'fghfggh', 2, 23, 65, '', '2022-04-23', '2022-04-23 20:18:12'),
-(99, 'sdfsdfs', 'sdfsdfdf', 'sdfsdfsdf', 2, 23, 65, '', '2022-04-23', '2022-04-23 21:32:09');
+INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_attendUser`, `id_clientUser`, `id_user`, `state`, `date`, `hour`, `duration`, `registrationDate`) VALUES
+(101, 'Item de Prueba 1', 'Detalle Item 1', 'Calle Argensola, 23', 1, 13, 72, 0, 65, '', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 12:30:55'),
+(102, 'Item2', 'Descripcion Item 2', 'Calle Manolo, 25', 2, 24, 72, 0, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 12:35:04'),
+(103, 'Item 4', 'Item 4', 'Calle Prueba 4', 0, 23, 2, 0, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 13:02:08'),
+(104, 'Prueba 19', 'descripcion Prueba 19', 'safasdasd', 2, 23, 72, 72, 53, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 19:23:03'),
+(105, 'Prueba11', 'Prueba11 descripcion', 'Localizacion Prueba', 2, 23, 72, 53, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 21:07:36'),
+(110, 'ewrwerwe', 'werwer', 'werwer', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 21:43:32'),
+(111, 'Prueba12', 'Prueba con hora incluida', '', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '21:50:00', '00:00:00', '2022-04-24 21:50:54'),
+(112, 'sdasdad', 'asdasdd', '', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '21:57:00', '00:00:30', '2022-04-24 21:57:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `fecha` date NOT NULL,
+  `sexo` char(1) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `foto` varchar(30) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  `rol` tinyint(1) NOT NULL,
+  `usuario` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id_usuario`, `nombre`, `apellido`, `fecha`, `sexo`, `password`, `foto`, `estado`, `rol`, `usuario`) VALUES
+(1, 'JUAN', 'PEREZ', '2017-11-01', '0', 'aaaaa1', 'user1_128x128.jpg', 1, 0, 'juan'),
+(2, 'MARIAN', 'RODRIGUEZ', '2017-11-03', '1', 'aaaaa1', 'user7_128x128.jpg', 1, 0, 'marian'),
+(3, 'ANA MARIA', 'GOMEZ', '2017-11-08', '1', 'aaaaa1', 'user7_128x128.jpg', 0, 0, 'ana'),
+(4, 'LAURA', 'LOPEZ', '2017-11-16', '0', 'aaaaa1', 'user4_128x128.jpg', 1, 0, 'laura'),
+(5, 'ANA MARIA', 'PEREZ', '2017-11-13', '0', 'aaaaa1', 'user5_128x128.jpg', 1, 0, 'maria'),
+(6, 'PEDRO', 'LEON', '2017-11-25', '0', 'aaaaa1', 'user8_128x128.jpg', 1, 0, 'pedro'),
+(53, 'CARMEN', 'LANDER', '2017-11-27', '1', 'aaaaa1', 'user7_128x128.jpg', 1, 1, 'carmen'),
+(54, 'PABLO', 'MIGUEL', '2017-11-06', '0', 'pabloperez123', 'usuario.png', 1, 0, 'pablo');
 
 -- --------------------------------------------------------
 
@@ -161,7 +195,6 @@ INSERT INTO `photos` (`id`, `nombre_archivo`, `id_articulo`) VALUES
 (39, '53dd40477dac20c036810688dde6d2c6.jpg', 71),
 (40, '0e8814455aef98ea1d2834f8615c7ee8.jpg', 72),
 (42, '0a60c7489dd32bdb0a81a4c9fade16a8.jpg', 74),
-(45, '2ad9f9253b8642a85d6d03ae13fa2312.jpg', 77),
 (46, '76c35561a3b0cfe39b0327158c0b335a.jpg', 78),
 (47, '37aa8918caf0fa9a6e6b97540305d99f.jpg', 79);
 
@@ -182,12 +215,14 @@ CREATE TABLE `photositems` (
 --
 
 INSERT INTO `photositems` (`id`, `file_name`, `id_item`) VALUES
-(1, '07b0413b0f3acc47f02c9afa31827cab.png', 85),
-(2, 'c4b7ab2f2e38a94a9ef4ddd0630f7004.jpg', 95),
-(3, '7ec835ef246f33ca107390dd8394a13f.jpg', 96),
-(4, '64152b9b100893edfe8ab9d545c26d58.jpg', 97),
-(5, 'c7a51ca34fffd22b11158231e40be5f8.jpg', 98),
-(6, '603a17a6b5bcee5be6e63142540cc1d4.jpg', 99);
+(8, '1313434ad9267509283cb66e575e56a9.jpg', 101),
+(9, 'b1d06af35720f31a3728cbbbbfce1990.png', 102),
+(10, 'a51f629df973559221ec3d803b9976e5.jpg', 103),
+(11, '8862c789ea5018f373171b0c8a4647a5.jpg', 104),
+(12, 'ac72a255b60e402e6b943490fec7918c.jpg', 105),
+(17, 'c90822311ef03e61bc2fba05110ff992.jpg', 110),
+(18, 'a3292fd27896b32dc262940db3d23ce3.jpg', 111),
+(19, '7238c07e7bd056c3dc88744138dfd3f7.png', 112);
 
 -- --------------------------------------------------------
 
@@ -388,6 +423,7 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `surname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `phone` int(9) NOT NULL,
@@ -403,18 +439,19 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `password`, `email`, `phone`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `registrationDate`) VALUES
-(53, 'Juan Miguel', 'Hurtado', '$2y$10$Pz2YWskXtmpc0666ukJ7NuJarJo2vTQFnI9VYVtIwxdinhUJoz0ye', 'jmhurtadomontejano@gmail.com', 0, 0, '4f2298003026e86df625710890ad9988.jpg', 'admin', 0, 'f7000ed40075b1788be30cf55b865dee8fca5dd1', '2022-04-10 14:47:26'),
-(64, 'a', '', '$2y$10$hNYxdEPVoSU47WfCEt1fjOvWRQaSe2/rkkfSUHDAJZ49X9.zzW416', 'a@a.com', 0, 0, '6ca3d0e5a57cc69d2d34321c310fe87a.jpg', '', 0, '80474a27db001165e553e45991ff93c7f332832b', '2022-04-10 23:11:36'),
-(65, 'Trini', '', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 't@gmail.com', 0, 0, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, 'e2ad2087e10ebf593ccafc97692ffa315c076d1f', '2022-04-12 15:57:28'),
-(66, 'sdasd', '', '$2y$10$iW7dkuN4UXDVT1bGRM.2mOtuyyXbWxK4H1cPVoxzD8Nd4PifYM1t.', 'b@b.com', 0, 0, '1f89c8447abb71bb60286362a8ffb660.jpg', '', 0, 'e690feeca92cddc887a6ff093106945e1d5b16a1', '2022-04-13 08:53:05'),
-(72, 'Jaime', 'Coronado', '$2y$10$SuAMSsmmPtYvvgEN791wR.TGQVZZccJCBrdhG0jk.c9KgGVHee7iu', 'j@j.com', 654321987, 654321987, '6584f6413224645ea0a14c53f5936dda.jpg', '', 0, 'a3638e61f17e59cc399425c0686c7117dc661be5', '2022-04-13 11:19:49'),
-(73, 'Marta', 'Coronado', '$2y$10$o0MH6650tD8czddIoL7IIObeYfUD.uL3casLIXrP9uPK2CqUaPhA2', 'j@j.com', 123456789, 123456789, '7b7ce6f3aad4fb90c532c4d5143f1387.jpeg', '', 0, '37e9e7343af3098a911897ad2ed3a35ad781895b', '2022-04-13 11:27:02'),
-(74, 'Joana', 'asasas', '$2y$10$EZbVPSnnb25I/cLsEx7.0.qG7CBw92Q5tNzxBpYnro5M1Qc4.lHCO', 'j@j.com', 123456789, 123456789, 'a38d78a7b70df4252ad14380b64af956.jpeg', '', 0, '12f2b14157e0b95ff806c03ee38ed82447c8a594', '2022-04-13 11:29:02'),
-(75, 'dfsdf', 'sdfsdf', '$2y$10$EIT9gL8TBYwXp3sHvBkNl.R/ndQ1sIGpcvKOz6hj5/JQUO1e804yW', 'j@j.com', 123456789, 123456789, '3924e1265b9646eff9c04a7337b88bc4.jpg', '', 0, 'cde3d181f6bb8a457ecf33d5c89f0fd24a60eb22', '2022-04-13 11:32:38'),
-(76, 'Jose Mari', 'Hurtado', '$2y$10$J7SXecse0JfYmOOPBev9LusHgnsS30tNIUtOAGCDZHZiTe.g/29aW', 'j@j.com', 123456768, 123456768, 'bc44550a974cd45951ba68e1ac9fea40.jpg', '', 0, 'ebf43f1d45af8e31cacb2e1665f9510e09a55e4c', '2022-04-15 09:41:43'),
-(77, 'Luisa', 'Hurtado', '$2y$10$3mvceuJSexDbwKAS80kQM.sl56oE2fy5y5WrrIeEU3privk6/ZJJS', 'j@j.com', 123456789, 123456789, 'fd88bbf56d6026011ef5652cad774d1c.jpg', '', 0, '96da8d738507bece1121ad0bef0c47de1ef017e9', '2022-04-15 09:42:39'),
-(78, '11', '11', '$2y$10$cl9UTvn67/8UyFVjZIeI4.cqyBgsZrxJy/n3O7f4Ly8YQosl3WCKm', '11@gmail.com', 123456789, 123456789, 'c67c1fa5417dffd6f0fa30235608f642.jpg', '', 0, 'e9938bd65374787b7dde27dc944a354a6d075acf', '2022-04-17 10:05:15');
+INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `password`, `email`, `phone`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `registrationDate`) VALUES
+(53, 'Juan Miguel', 'Hurtado', '', '$2y$10$Pz2YWskXtmpc0666ukJ7NuJarJo2vTQFnI9VYVtIwxdinhUJoz0ye', 'jmhurtadomontejano@gmail.com', 0, 0, '4f2298003026e86df625710890ad9988.jpg', 'admin', 0, '542ead0254111cfdaf4b0facab1df3facb2aed9e', '2022-04-10 14:47:26'),
+(64, 'a', '', '', '$2y$10$hNYxdEPVoSU47WfCEt1fjOvWRQaSe2/rkkfSUHDAJZ49X9.zzW416', 'a@a.com', 0, 0, '6ca3d0e5a57cc69d2d34321c310fe87a.jpg', '', 0, '80474a27db001165e553e45991ff93c7f332832b', '2022-04-10 23:11:36'),
+(65, 'Trini', '', '', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 't@gmail.com', 0, 0, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, 'de10d2e20e382bb2d61e49ecbd154489a79181a7', '2022-04-12 15:57:28'),
+(66, 'sdasd', '', '', '$2y$10$iW7dkuN4UXDVT1bGRM.2mOtuyyXbWxK4H1cPVoxzD8Nd4PifYM1t.', 'b@b.com', 0, 0, '1f89c8447abb71bb60286362a8ffb660.jpg', '', 0, 'e690feeca92cddc887a6ff093106945e1d5b16a1', '2022-04-13 08:53:05'),
+(72, 'Jaime', 'Coronado', '', '$2y$10$SuAMSsmmPtYvvgEN791wR.TGQVZZccJCBrdhG0jk.c9KgGVHee7iu', 'j@j.com', 654321987, 654321987, '6584f6413224645ea0a14c53f5936dda.jpg', '', 0, 'a3638e61f17e59cc399425c0686c7117dc661be5', '2022-04-13 11:19:49'),
+(73, 'Marta', 'Coronado', '', '$2y$10$o0MH6650tD8czddIoL7IIObeYfUD.uL3casLIXrP9uPK2CqUaPhA2', 'j@j.com', 123456789, 123456789, '7b7ce6f3aad4fb90c532c4d5143f1387.jpeg', '', 0, '37e9e7343af3098a911897ad2ed3a35ad781895b', '2022-04-13 11:27:02'),
+(74, 'Joana', 'asasas', '', '$2y$10$EZbVPSnnb25I/cLsEx7.0.qG7CBw92Q5tNzxBpYnro5M1Qc4.lHCO', 'j@j.com', 123456789, 123456789, 'a38d78a7b70df4252ad14380b64af956.jpeg', '', 0, '12f2b14157e0b95ff806c03ee38ed82447c8a594', '2022-04-13 11:29:02'),
+(75, 'dfsdf', 'sdfsdf', '', '$2y$10$EIT9gL8TBYwXp3sHvBkNl.R/ndQ1sIGpcvKOz6hj5/JQUO1e804yW', 'j@j.com', 123456789, 123456789, '3924e1265b9646eff9c04a7337b88bc4.jpg', '', 0, 'cde3d181f6bb8a457ecf33d5c89f0fd24a60eb22', '2022-04-13 11:32:38'),
+(76, 'Jose Mari', 'Hurtado', '', '$2y$10$J7SXecse0JfYmOOPBev9LusHgnsS30tNIUtOAGCDZHZiTe.g/29aW', 'j@j.com', 123456768, 123456768, 'bc44550a974cd45951ba68e1ac9fea40.jpg', '', 0, 'ebf43f1d45af8e31cacb2e1665f9510e09a55e4c', '2022-04-15 09:41:43'),
+(77, 'Luisa', 'Hurtado', '', '$2y$10$3mvceuJSexDbwKAS80kQM.sl56oE2fy5y5WrrIeEU3privk6/ZJJS', 'j@j.com', 123456789, 123456789, 'fd88bbf56d6026011ef5652cad774d1c.jpg', '', 0, '96da8d738507bece1121ad0bef0c47de1ef017e9', '2022-04-15 09:42:39'),
+(78, '11', '11', '', '$2y$10$cl9UTvn67/8UyFVjZIeI4.cqyBgsZrxJy/n3O7f4Ly8YQosl3WCKm', '11@gmail.com', 123456789, 123456789, 'c67c1fa5417dffd6f0fa30235608f642.jpg', '', 0, 'e9938bd65374787b7dde27dc944a354a6d075acf', '2022-04-17 10:05:15'),
+(79, 'Manolo', 'García', '06268332M', '$2y$10$PnkxdzODlhFqE3F4CwbUL.mOrPfg.xqxhZZ26utvSz4IWokBL.Nsm', 'manolo@gmail.com', 123456789, 123456789, '4d2451fec62943c52f4a72a8d7216aa6.jpg', '', 0, 'dba44b7d29138dab0f72ac98458bf158bf458714', '2022-04-24 17:38:40');
 
 --
 -- Indexes for dumped tables
@@ -453,6 +490,12 @@ ALTER TABLE `incidents`
 ALTER TABLE `items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_item_user` (`id_user`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- Indexes for table `photos`
@@ -500,7 +543,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `idDepartment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDepartment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `incidents`
@@ -512,7 +555,13 @@ ALTER TABLE `incidents`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `photos`
@@ -524,13 +573,13 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `photositems`
 --
 ALTER TABLE `photositems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Constraints for dumped tables

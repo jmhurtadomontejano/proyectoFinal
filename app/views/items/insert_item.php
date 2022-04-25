@@ -51,7 +51,14 @@ $(function() {
     </div>
     <div class="col-6">
         <label for="inputDepartment" class="form-label">Departamento</label>
-        <input type="text" class="form-control" name="inputDepartment" placeholder="Departamento">
+        <select class="form-control" id="inputDepartment" name="inputDepartment" required>
+                            <option value="">Seleccione un departamento</option>
+                            <?php foreach ($departments as $d): ?>
+                            <option value="<?= $d->getId() ?>"
+                                <?= $d->getId_department() == $d->getId() ?>>
+                                <?= $d->getName() ?></option>
+                            <?php endforeach; ?>
+                        </select>
     </div>
     <div class="col-6">
         <label for="inputService" class="form-label">Servicio</label>

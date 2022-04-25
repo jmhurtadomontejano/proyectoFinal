@@ -1,6 +1,8 @@
 <?php
 
-/**
+//echo $_POST['id'];
+
+/*
  * Description of ItemDAO
  *
  *  @author Juan Miguel Hurtado Montejano -> jmhurtadomontejano@gmail.com
@@ -11,6 +13,7 @@ class ItemDAO {
     public function __construct($conn) {
         $this->conn = $conn;
     }
+
 
     public function insert($item) {
         //Comprobamos que el parámetro sea de la clase Usuario
@@ -127,6 +130,7 @@ class ItemDAO {
           } */
     }
 
+    
     public function findByIdItem($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM items WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
@@ -135,6 +139,8 @@ class ItemDAO {
         return $result->fetch_object('item');
      
     }
+
+    
 
     /**
      * Devuelve todos los usuarios de la BD

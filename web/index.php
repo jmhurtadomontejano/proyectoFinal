@@ -49,7 +49,9 @@ $mapa = array(
      'ver_item' => array('controller' => 'ItemsController', 'method' => 'find', 'publica' => true),
      'mis_items' => array('controller' => 'ItemsController', 'method' => 'findItemsByUser', 'publica' => false),
      'update_item' => array('controller' => 'ItemsController', 'method' => 'update_item', 'publica' => false),
+     'findByIdItem' => array('controller' => 'ItemsController', 'method' => 'findByIdItem', 'publica' => true),
     'download_csv_file' => array('controller' => 'ItemsController', 'method' => 'download_csv_file', 'publica' => false),
+    'pb' => array('controller' => 'ItemsController', 'method' => 'pb', 'publica' => false),
 
     //userController
     'inicio' => array('controller' => 'UsersController', 'method' => 'index', 'publica' => true),

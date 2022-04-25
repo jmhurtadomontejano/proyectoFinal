@@ -1,6 +1,7 @@
 <?php
 
 class ItemsController {
+    
 
     public function toList() {
         $conn = ConexionBD::conectar();
@@ -13,6 +14,15 @@ class ItemsController {
 
         require '../app/views/items/items_list.php';
     }
+
+     function pb() {
+        
+        
+        $id = $_POST['id'];
+        echo "asd".$id;
+        
+    }
+    
 
     function borrar() {
         //Comprobamos que el token recibido es igual al que tenemos en la variable de sesión para evitar ataques CSRF
@@ -191,6 +201,15 @@ class ItemsController {
         $_SESSION['token'] = $token;
 
         require '../app/views/items/update_item.php';
+    }
+
+    public function findByIdItem($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
+        $sql = "SELECT * FROM items WHERE id=$id";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        return $result->fetch_object('item');
+     
     }
 
     public function download_csv_files() {

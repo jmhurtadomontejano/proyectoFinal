@@ -36,21 +36,21 @@ ob_start();
         <tbody>
             <?php foreach ($items as $i): ?>
             <tr>
-                <th id="userInfo"><?= $i->getName() ?></th>
-                <th id="userInfo"><?= $i->getDescription() ?></th>
-                <th id="userInfo"><?= $i->getId_department() ?></th>
-                <th id="userInfo"><?= $i->getId_service() ?></th>
-                <th id="userInfo"><?= $i->getId_attendUser() ?></th>
-                <th id="userInfo"><?= $i->getId_clientUser() ?></th>
-                <th id="userInfo"><?= $i->getState() ?></th>
-                <th id="dateInfo"><?= $i->getDate() ?></th>
-                <th id="hourInfo"><?= $i->getHour() ?></th>
+            <td id="userInfo"><?= $i->getName() ?></td>
+                <td id="userInfo"><?= $i->getDescription() ?></td>
+                <td id="userInfo"><?= $i->getId_department() ?></td>
+                <td id="userInfo"><?= $i->getId_service() ?></td>
+                <td id="userInfo"><?= $i->getId_attendUser() ?></td>
+                <td id="userInfo"><?= $i->getId_clientUser() ?></td>
+                <td id="userInfo"><?= $i->getState() ?></td>
+                <td id="dateInfo"><?= $i->getDate() ?></td>
+                <td id="hourInfo"><?= $i->getHour() ?></td>
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
-                        onclick="findByUserId($i->getUserId())">Editar <?= $i->getId() ?></button>
+                    <button type="button" class="btn btn-primary" 
+                    data-id="<?= $i->getId()?>" id="boton_editar">Editar <?= $i->getId() ?></button>
                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteUserModal">Eliminar <?= $i->getId() ?></button>
+                        data-target="#deleteUserModal" data-id="<?= $i->getId()?>">Eliminar <?= $i->getId() ?></button>
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -101,42 +101,7 @@ $(document).ready(function() {
     });
 });
 
-var buttonCommon = {
-        exportOptions: {
-            format: {
-                body: function ( data, row, column, node ) {
-                    // Strip $ from salary column to make it numeric
-                    return column === 5 ?
-                        data.replace( /[$,]/g, '' ) :
-                        data;
-                }
-            }
-        }
-    };
- 
-    $('#example').DataTable( {
-        ajax: '../../../../examples/ajax/data/objects.txt',
-        columns: [
-            { data: 'name' },
-            { data: 'position' },
-            { data: 'office' },
-            { data: 'extn' },
-            { data: 'start_date' },
-            { data: 'salary' }
-        ],
-        dom: 'Bfrtip',
-        buttons: [
-            $.extend( true, {}, buttonCommon, {
-                extend: 'copyHtml5'
-            } ),
-            $.extend( true, {}, buttonCommon, {
-                extend: 'excelHtml5'
-            } ),
-            $.extend( true, {}, buttonCommon, {
-                extend: 'pdfHtml5'
-            } )
-        ]
-    } );
+
 </script>
 
 
@@ -151,6 +116,11 @@ var buttonCommon = {
             </div>
             <div class="modal-body">
                 <form id="editItemForm" method="POST" action="<?= RUTA ?>items/editItem" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Nombre"
+                            value="<?= $i->getID() ?>" required>
+                    </div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre"
@@ -171,7 +141,8 @@ var buttonCommon = {
                         <select class="form-control" id="id_department" name="id_department" required>
                             <option value="">Seleccione un departamento</option>
                             <?php foreach ($departments as $d): ?>
-                            <option value="<?= $d->getId() ?>" <?= $i->getId_department() == $d->getId() ? 'selected' : '' ?>>
+                            <option value="<?= $d->getId() ?>"
+                                <?= $d->getId_department() == $d->getId() ?>>
                                 <?= $d->getName() ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -181,18 +152,42 @@ var buttonCommon = {
                         <select class="form-control" id="id_service" name="id_service" required>
                             <option value="">Seleccione un servicio</option>
                             <?php foreach ($services as $s): ?>
-                            <option value="<?= $s->getId() ?>" <?= $i->getId_service() == $s->getId() ? 'selected' : '' ?>>
+                            <option value="<?= $s->getId() ?>"
+                                <?= $i->getId_service() == $s->getId() ? 'selected' : '' ?>>
                                 <?= $s->getName() ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                </div>
+            </div>
 
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Editar Usuario</button>
+                <button type="button" class="btn btn-primary">Editar Item</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+<script type="text/javascript">
+    $(document).on('click','#boton_editar',function(){
+        
+        let id = $(this).attr('data-id');
+
+      //  console.log(id);
+
+        $.ajax({
+            url: 'pb',
+            type: 'POST',
+            data: {id},
+        
+            success: function(e) {
+                console.log(e);
+            }
+        });
+    });
+  
+</script>   

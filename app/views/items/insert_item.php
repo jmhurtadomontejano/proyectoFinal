@@ -12,7 +12,7 @@ $(function() {
 <form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="inputUser"  readonly>
+        <input type="text" class="form-control" id="inputUser" readonly>
     </div>
     <div class="col-md-3 col-6">
         <label for="inputState" class="form-label">Estado</label>
@@ -52,13 +52,13 @@ $(function() {
     <div class="col-6">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <select class="form-control" id="inputDepartment" name="inputDepartment" required>
-                            <option value="">Seleccione un departamento</option>
-                            <?php foreach ($departments as $d): ?>
-                            <option value="<?= $d->getId() ?>"
-                                <?= $d->getId_department() == $d->getId() ?>>
-                                <?= $d->getName() ?></option>
-                            <?php endforeach; ?>
-                        </select>
+            <option value="">Seleccione....</option>
+
+            <?php foreach ($departments as $department): ?>
+            <option value="<?php echo $department->idDepartment  ?>"><?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+            <?php endforeach; ?>
+
+        </select>
     </div>
     <div class="col-6">
         <label for="inputService" class="form-label">Servicio</label>

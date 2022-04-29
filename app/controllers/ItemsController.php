@@ -16,11 +16,43 @@ class ItemsController {
     }
 
      function pb() {
-        
-        
+        $conn = ConexionBD::conectar();
+        //$itemDAO = new ItemDAO($conn);
         $id = $_POST['id'];
-        echo "asd".$id;
-        
+
+        $array_busqueda = array();
+
+       /*Se realizara la consulta de todos los datos
+            Es importante que se nombren todos los datos en la consulta
+       */
+        $busqueda = mysqli_prepare($conn,"SELECT id, name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration, registrationDate FROM items WHERE id = $id");
+            mysqli_stmt_execute($busqueda);
+            mysqli_stmt_store_result($busqueda);
+            mysqli_stmt_bind_result($busqueda, $id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration, $registrationDate);  
+
+
+            /*Usando la erramienta de while recorreremos todos los datos que nos trajo la consulta */
+        while ($row = mysqli_stmt_fetch($busqueda)) {
+               $array_busqueda[] = array(
+                  'id' => $id,
+                  'name'=> $name,
+                  'description'=> $description,
+                  'location'=> $location,
+                  'id_department'=> $id_department,
+                  'id_service'=> $id_service,
+                  'id_attendUser'=> $id_attendUser,
+                  'setId_clientUser'=> $id_clientUser,
+                  'id_user'=> $id_user,
+                  'state'=> $state,
+                  'date'=> $date,
+                  'hour'=> $hour,
+                  'duration'=> $duration,
+               );
+
+               }
+        /*El array lo convertiremos en formato JSON para que este sea leido por javascrip*/
+    $vari = json_encode($array_busqueda);
+        echo $vari;
     }
     
 
@@ -152,6 +184,12 @@ class ItemsController {
             die();
         }
 
+        //Call Conexion and ItemDao
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        //Save in a variable the array with all departments
+        $departments = $itemDAO->listar_departamentos();
+
         require '../app/views/items/insert_item.php';
     }
 
@@ -203,14 +241,6 @@ class ItemsController {
         require '../app/views/items/update_item.php';
     }
 
-    public function findByIdItem($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
-        $sql = "SELECT * FROM items WHERE id=$id";
-        if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
-        }
-        return $result->fetch_object('item');
-     
-    }
 
     public function download_csv_files() {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ORDER BY id DESC";
@@ -232,5 +262,7 @@ class ItemsController {
         fclose($fp);
         
     }
+
+    
 
 }

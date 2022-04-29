@@ -180,6 +180,17 @@ class ItemDAO {
         return $array_obj_items;
     }
     
-    /*public function download_csv_file($items) to export all items to CSV*/
-  
+
+    public function listar_departamentos() { //: 
+        $sql = "SELECT *  FROM departments";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_departament = array();
+        while ($department = $result->fetch_object()) {
+            $array_obj_departament[] = $department;
+        }
+       // $var1 = json_encode($array_obj_departament);
+        return $array_obj_departament;
+    }
 }

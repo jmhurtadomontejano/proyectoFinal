@@ -208,9 +208,8 @@ class UsersController {
 
     public function findUserByIdJson($userId) {
         $conn = ConexionBD::conectar();
-        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-        $user = $usuDAO->find($userId);
-        echo json_encode($user);
+        $usuDAO = new UsuarioDAO($conn);
+        $user = $usuDAO->findUserByIdV2($userId);
         return $user;
     }
 
@@ -223,14 +222,29 @@ class UsersController {
     }
 
     public function deleteUser(){
-        $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-        $usuDAO->delete($_POST['id']);
-        header("Location: " . RUTA);
+        $user = new Usuario();
+        $user->setId($_POST['id']);
+        $usuDAO->delete($user);
     }
 
     public function index() {
         require '../app/views/users/index.php';
+    }
+
+    public function detailUser() {
+        $userId = $_POST['employee_id'];
+        $user = $this->findUserByIdJson($userId);
+        echo json_encode($user);
+    }
+
+    public function editUser(){
+        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+
+        $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['email'], $_POST['rol'] );
+
+        $usuDAO->update($user);
+
     }
 
 }

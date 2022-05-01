@@ -53,9 +53,9 @@ $(function() {
         <label for="inputDepartment" class="form-label">Departamento</label>
         <select class="form-control" id="inputDepartment" name="inputDepartment" required>
             <option value="">Seleccione....</option>
-
             <?php foreach ($departments as $department): ?>
-            <option value="<?php echo $department->idDepartment  ?>"><?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+            <option value="<?php echo $department->idDepartment  ?>">
+                <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
             <?php endforeach; ?>
 
         </select>
@@ -66,11 +66,18 @@ $(function() {
     </div>
     <div class="col-6">
         <label for="inputAttendUser" class="form-label">Atendido por:</label>
-        <input type="number" class="form-control" name="inputAttendUser" value="<?php Session::obtener()->getId() ?>">
+        <input class="form-control" name="inputAttendUser" value="<?php echo Session::obtener()->getId() ?>" placeholder="<?php echo Session::obtener()->getNombre() ?>" readonly>
+        
     </div>
     <div class="col-6">
         <label for="inputClientUser" class="form-label">Cliente:</label>
-        <input type="number" class="form-control" name="inputClientUser" placeholder="Selecciona el cliente">
+        <select class="form-control" name="inputClientUser" id="inputClientUser">
+            <option value="">Seleccione....</option>
+            <?php foreach ($clients as $client): ?>
+            <option value="<?php echo $client->id  ?>">
+                <?php echo $client->dni, " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>

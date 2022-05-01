@@ -166,4 +166,16 @@ class UsuarioDAO {
         return $result->fetch_object('Usuario');
     }
 
+    public function list_users(){
+        $sql = "SELECT * FROM usuarios";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL : " . $this->conn->error);
+        }
+        $array_obj_usuarios = array();
+        while ($usuario = $result->fetch_object('Usuario')) {
+            $array_obj_usuarios[] = $usuario;
+        }
+        return $clients;
+    }
+
 }

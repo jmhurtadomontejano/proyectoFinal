@@ -63,7 +63,9 @@ $mapa = array(
     'findByUserId' => array('controller' => 'UsersController', 'method' => 'findByUserId', 'publica' => true),
     'findUserByIdJson' => array('controller' => 'UsersController', 'method' => 'findUserByIdJson', 'publica' => true),
     'update_user' => array('controller' => 'UsersController', 'method' => 'update', 'publica' => false),
-    'delete_user' => array('controller' => 'UsersController', 'method' => 'delete', 'publica' => false),
+    'delete_user' => array('controller' => 'UsersController', 'method' => 'deleteUser', 'publica' => false),
+    'detail_user' => array('controller' => 'UsersController', 'method' => 'detailUser', 'publica' => true),
+    'edit_user' => array('controller' => 'UsersController', 'method' => 'editUser', 'publica' => true),
 );
 
 //Parseo de la ruta

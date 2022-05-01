@@ -193,4 +193,16 @@ class ItemDAO {
        // $var1 = json_encode($array_obj_departament);
         return $array_obj_departament;
     }
+
+    public function list_users() { //: 
+        $sql = "SELECT *  FROM usuarios";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_users = array();
+        while ($user = $result->fetch_object()) {
+            $array_obj_users[] = $user;
+        }
+        return $array_obj_users;
+    }
 }

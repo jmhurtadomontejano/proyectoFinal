@@ -189,6 +189,7 @@ class ItemsController {
         $itemDAO = new ItemDAO($conn);
         //Save in a variable the array with all departments
         $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
 
         require '../app/views/items/insert_item.php';
     }

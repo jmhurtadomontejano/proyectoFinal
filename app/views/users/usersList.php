@@ -47,11 +47,8 @@ ob_start();
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-bs-toggle="modal" data-bs-target="#editUserModal"
-                        >Editar <?= $u->getId() ?></button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteUserModal">Eliminar  <?= $u->getId() ?></button>
-                        <button type="button" class="btn btn-danger"><a href="<?= RUTA?>borrar_articulo/<?= $u->getId() ?>/<?=$token ?>"><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></button>
+                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?> data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
+                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)" id="deleteUser" >Eliminar<?= $u->getId() ?></button>
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -76,27 +73,25 @@ ob_start();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= RUTA?>editar_usuario/<?= $u->getId() ?>" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="<?=RUTA."/edit_user"?>" id="edit-form">
+                            <input type="text" class="form-control" id="id" name="id" hidden>
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                    value="<?= $u->getNombre() ?>">
+                                <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
                             <div class="form-group">
                                 <label for="apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos"
-                                    value="<?= $u->getSurname() ?>">
+                                <input type="text" class="form-control" id="apellidos" name="apellidos">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="<?= $u->getEmail() ?>">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="rol">Rol</label>
                                 <select class="form-control" id="rol" name="rol">
-
+                                    <option value=""></option>
+                                    <option value="superAdmin">Super Administrador</option>
                                     <option value="admin">Administrador</option>
                                     <option value="user">Usuario</option>
                                 </select>
@@ -108,8 +103,8 @@ ob_start();
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Editar Usuario</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Editar Usuario</button>
                     </div>
                 </div>
             </div>
@@ -148,3 +143,4 @@ ob_start();
             });
         });
         </script>
+        <script src="app/scripts/users.js"></script>

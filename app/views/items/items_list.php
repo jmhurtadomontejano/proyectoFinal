@@ -191,7 +191,7 @@ $(document).ready(function() {
                     $("#name").val(valor.name);
                     $("#description").val(valor.description);
                     $("#location").val(valor.location);
-                    $("#id_department").val(valor.id_department);
+                    $("#id_department").val(valor.id_department->name);
                 });
 
             }

@@ -9,10 +9,21 @@ $(function() {
     $("#descripcion").jqte();
 });
 </script>
+
+<?php if (Session::existe()) { ?>
+<?php
+                $conn = ConexionBD::conectar();
+                $usuDAO = new UsuarioDAO($conn);
+                $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            ?>
+<?php } ?>
+
 <form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
-        <label for="inputUser" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="inputUser" readonly>
+        <label for="inputUser" class="form-label">Usuario Registro</label>
+        <input class="form-control" name="inputUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
     </div>
     <div class="col-md-3 col-6">
         <label for="inputState" class="form-label">Estado</label>
@@ -63,29 +74,30 @@ $(function() {
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>
-    <?php if (Session::existe()) { ?>
-            <?php
-                $conn = ConexionBD::conectar();
-                $usuDAO = new UsuarioDAO($conn);
-                $usuario = $usuDAO->findUserById(Session::obtener()->getId());
-            ?>
-                <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                <div class="col-6">
-                    <label for="inputAttendUser" class="form-label">Atendido por:</label>
-                    <input class="form-control" name="inputAttendUser"
-                        value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                        readonly>
-                </div>
-        <?php } ?>
+    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+    <div class="col-6">
+        <label for="inputAttendUser" class="form-label">Atendido por:</label>
+        <input class="form-control" name="inputAttendUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
+    </div>
+
     <?php } ?>
     <div class="col-6">
         <label for="inputClientUser" class="form-label">Cliente:</label>
-        <select class="form-control" name="inputClientUser" id="inputClientUser">
+            <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                <select class="form-control" name="inputClientUser" id="inputClientUser">
             <option value="">Seleccione....</option>
             <?php foreach ($clients as $client): ?>
             <option value="<?php echo $client->id  ?>">
                 <?php echo $client->dni, " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
             <?php endforeach; ?>
+            <?php } ?>
+            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+            <input class="form-control" name="inputUser"
+                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                readonly>
+            <?php } ?>
         </select>
     </div>
     <div class="col-12">

@@ -44,11 +44,12 @@ class UsuarioDAO {
         }
         $nombre = $usuario->getNombre();
         $email = $usuario->getEmail();
-        $password = $usuario->getPassword();
-        $photo = $usuario->getPhoto();
-        $cookie_id = $usuario->getCookie_id();
+        $rol = $usuario->getRol();
+        $surname = $usuario->getSurname();
+
+
         $sql = "UPDATE usuarios SET"
-                . " nombre='$nombre', email='$email',password='$password', photo='$photo', cookie_id='$cookie_id' "
+                . " nombre='$nombre', email='$email', surname='$surname', rol='$rol' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
@@ -91,11 +92,11 @@ class UsuarioDAO {
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL : " . $this->conn->error);
         }
-     
-     
+
+
         return $result->fetch_object('Usuario');
         /* También se podría sustituir el fetch_object por lo siguiente:
-         * 
+         *
          * if ($fila = $result->fetch_assoc()) {
           $usuario = new Usuario();
           $usuario->setEmail($fila['email']);
@@ -108,6 +109,18 @@ class UsuarioDAO {
           } else {
           return null;
           } */
+    }
+
+    public function findUserByIdV2($id) {
+        $sql = "SELECT * FROM usuarios WHERE id=$id";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL : " . $this->conn->error);
+        }
+        $row = $result->fetch_assoc();
+
+        $result->free_result();
+
+        return $row;
     }
 
     public function findUserByIdJson($id) {
@@ -165,17 +178,17 @@ class UsuarioDAO {
         }
         return $result->fetch_object('Usuario');
     }
-
-public function list_postalCodes(){
-    $sql = "SELECT * from postalcodes";
-    if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL : " . $this->conn->error);
-        }
-        $array_obj_postalCodes = array();
-        while ($postalCode = $result->fetch_object()) {
-            $array_obj_postalCodes[] = $postalCode;
-        }
-        return $array_obj_postalCodes;
-}
+    
+    public function list_postalCodes(){
+        $sql = "SELECT * from postalcodes";
+        if (!$result = $this->conn->query($sql)) {
+                die("Error en la SQL : " . $this->conn->error);
+            }
+            $array_obj_postalCodes = array();
+            while ($postalCode = $result->fetch_object()) {
+                $array_obj_postalCodes[] = $postalCode;
+            }
+            return $array_obj_postalCodes;
+    }
 
 }

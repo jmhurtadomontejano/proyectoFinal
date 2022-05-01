@@ -1,6 +1,4 @@
-<?php
-ob_start();
-?>
+<?php ob_start() ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">

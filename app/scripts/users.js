@@ -67,7 +67,6 @@ function deleteUser(id)
         });
 }
 
-
 $(document).ready(function() {
     get();
     update();

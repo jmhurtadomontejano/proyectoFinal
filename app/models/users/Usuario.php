@@ -17,7 +17,21 @@ class Usuario {
     private $photo;
     private $rol;
     private $cookie_id;
-       
+
+    public function __construct()
+    {
+    }
+
+    public static function initValues($id, $nombre, $surname, $email, $rol) {
+        $obj = new Usuario();
+        $obj->id = $id;
+        $obj->nombre = $nombre;
+        $obj->surname = $surname;
+        $obj->email = $email;
+        $obj->rol = $rol;
+        return $obj;
+    }
+
     //Array que va a contener los artículos de este usuario
     private $articulos;
     

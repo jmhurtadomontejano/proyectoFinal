@@ -3,8 +3,8 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
-    <div class="col-sm-12">
-<div class="table-responsive" id="mydatatable-container">
+<div class="col-sm-12">
+    <div class="table-responsive" id="mydatatable-container">
         <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
             <thead>
                 <tr>
@@ -37,7 +37,7 @@ ob_start();
             <tbody>
                 <?php foreach ($items as $i): ?>
                 <tr>
-                <td id="userInfo"><?= $i->getName() ?></td>
+                    <td id="userInfo"><?= $i->getName() ?></td>
                     <td id="userInfo"><?= $i->getDescription() ?></td>
                     <td id="userInfo"><?= $i->getId_department() ?></td>
                     <td id="userInfo"><?= $i->getId_service() ?></td>
@@ -48,10 +48,11 @@ ob_start();
                     <td id="hourInfo"><?= $i->getHour() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editItemModal"
-                        data-id="<?= $i->getId()?>" id="boton_editar">Editar <?= $i->getId() ?></button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#deleteUserModal" data-id="<?= $i->getId()?>">Eliminar <?= $i->getId() ?></button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Editar
+                            <?= $i->getId() ?></button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUserModal"
+                            data-id="<?= $i->getId()?>">Eliminar <?= $i->getId() ?></button>
                     </th>
                 </tr>
                 <?php endforeach; ?>
@@ -59,16 +60,12 @@ ob_start();
             </tbody>
         </table>
     </div>
-
 </div>
 
 <?php
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Items";
-
-                        
-    
  require '../app/views/template.php';
  ?>
 
@@ -103,11 +100,7 @@ $(document).ready(function() {
         }
     });
 });
-
-
 </script>
-
-
 
 <!-- Modal to edit Item -->
 <div class="modal fade" id="editItemModal" tabindex="1" aria-labelledby="editItemModalLabel" aria-hidden="true">
@@ -121,13 +114,12 @@ $(document).ready(function() {
                 <form id="editItemForm" method="POST" action="<?= RUTA ?>items/editItem" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" placeholder="Id"
-                            value="" required>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
                     </div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre"
-                            value="" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value=""
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="description">Descripción</label>
@@ -141,8 +133,8 @@ $(document).ready(function() {
                     </div>
                     <div class="form-group">
                         <label for="id_department">Departamento</label>
-                <input type="text" class="form-control" id="id_department" name="id_department" placeholder="Departamento"
-                            value="" required>
+                        <input type="text" class="form-control" id="id_department" name="id_department"
+                            placeholder="Departamento" value="" required>
                         </select>
                     </div>
                     <div class="form-group">
@@ -167,35 +159,33 @@ $(document).ready(function() {
     </div>
 </div>
 
-
-
-
 <script type="text/javascript">
-    $(document).on('click','#boton_editar',function(){
-        
-        let id = $(this).attr('data-id');
+$(document).on('click', '#boton_editar', function() {
 
-        //Enviamos la informacion por ajax 
-        $.ajax({
-            url: 'pb',
-            type: 'POST',
-            data: {id},
-            //Recuperamos la información 
-            success: function(e) {
-                //console.log(e);
-                let traer = JSON.parse(e);
-                
-                //Imprimimos la información en la ventana modal 
-                traer.forEach((valor)=>{
-                    $("#id").val(valor.id);
-                    $("#name").val(valor.name);
-                    $("#description").val(valor.description);
-                    $("#location").val(valor.location);
-                    $("#id_department").val(valor.id_department->name);
-                });
+    let id = $(this).attr('data-id');
 
-            }
-        });
+    //Enviamos la informacion por ajax 
+    $.ajax({
+        url: 'pb',
+        type: 'POST',
+        data: {
+            id
+        },
+        //Recuperamos la información 
+        success: function(e) {
+            //console.log(e);
+            let traer = JSON.parse(e);
+
+            //Imprimimos la información en la ventana modal 
+            traer.forEach((valor) => {
+                $("#id").val(valor.id);
+                $("#name").val(valor.name);
+                $("#description").val(valor.description);
+                $("#location").val(valor.location);
+                $("#id_department").val(valor.id_department);
+            });
+
+        }
     });
-  
-</script>   
+});
+</script>

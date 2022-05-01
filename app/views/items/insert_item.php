@@ -57,18 +57,27 @@ $(function() {
             <option value="<?php echo $department->idDepartment  ?>">
                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
             <?php endforeach; ?>
-
         </select>
     </div>
     <div class="col-6">
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>
-    <div class="col-6">
-        <label for="inputAttendUser" class="form-label">Atendido por:</label>
-        <input class="form-control" name="inputAttendUser" value="<?php echo Session::obtener()->getId() ?>" placeholder="<?php echo Session::obtener()->getNombre() ?>" readonly>
-        
-    </div>
+    <?php if (Session::existe()) { ?>
+            <?php
+                $conn = ConexionBD::conectar();
+                $usuDAO = new UsuarioDAO($conn);
+                $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            ?>
+                <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                <div class="col-6">
+                    <label for="inputAttendUser" class="form-label">Atendido por:</label>
+                    <input class="form-control" name="inputAttendUser"
+                        value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                        readonly>
+                </div>
+        <?php } ?>
+    <?php } ?>
     <div class="col-6">
         <label for="inputClientUser" class="form-label">Cliente:</label>
         <select class="form-control" name="inputClientUser" id="inputClientUser">

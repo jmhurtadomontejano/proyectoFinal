@@ -166,16 +166,16 @@ class UsuarioDAO {
         return $result->fetch_object('Usuario');
     }
 
-    public function list_users(){
-        $sql = "SELECT * FROM usuarios";
-        if (!$result = $this->conn->query($sql)) {
+public function list_postalCodes(){
+    $sql = "SELECT * from postalcodes";
+    if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL : " . $this->conn->error);
         }
-        $array_obj_usuarios = array();
-        while ($usuario = $result->fetch_object('Usuario')) {
-            $array_obj_usuarios[] = $usuario;
+        $array_obj_postalCodes = array();
+        while ($postalCode = $result->fetch_object()) {
+            $array_obj_postalCodes[] = $postalCode;
         }
-        return $clients;
-    }
+        return $array_obj_postalCodes;
+}
 
 }

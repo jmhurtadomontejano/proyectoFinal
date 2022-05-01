@@ -1,5 +1,6 @@
 <?php ob_start() ?>
 
+
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
     <div class="col-sm-8 col-11">
 
@@ -38,9 +39,13 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código Postal</label>
-                        <!--        <input type="number" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal" class="form-control" max=99999> -->
-                        <input type="select" name="postalCode" placeholder="Introduce los 5 dígitos de tu Código Postal"
-                            class="form-control" max=99999>
+                        <select class="form-control" id="postalCode" name="postalCode" required>
+                            <option value="">Seleccione Código Postal</option>
+                            <?php foreach ($list_postalCodes as $postalCode): ?>
+                            <option value="<?php echo $postalCode->code  ?>">
+                                <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
@@ -63,25 +68,25 @@
                         <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
                     </div>
                     <?php if (Session::existe()) { ?>
-                        <?php
+                    <?php
                             $conn = ConexionBD::conectar();
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
-                        <?php if ($usuario->getRol() == 'admin') { ?>
-                            <div class="mb-3">
-                                <label class="form-label">Rol</label>
-                                <select name="rol" class="form-control">
-                                    <option value="user">Usuario</option>
-                                    <?php if ($usuario->getRol() =='superAdmin') { ?>
-                                    <option value="admin">Administrador</option>
-                                    <option value="superAdmin">Super Administrador</option>
-                                </select>
-                            </div>
-                        </li>
-                        <?php } ?>
+                    <?php if ($usuario->getRol() == 'admin') { ?>
+                    <div class="mb-3">
+                        <label class="form-label">Rol</label>
+                        <select name="rol" class="form-control">
+                            <option value="user">Usuario</option>
+                            <?php if ($usuario->getRol() =='superAdmin') { ?>
+                            <option value="admin">Administrador</option>
+                            <option value="superAdmin">Super Administrador</option>
+                        </select>
+                    </div>
+                    </li>
                     <?php } ?>
-                <?php } ?>
+                    <?php } ?>
+                    <?php } ?>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
                             checked>
@@ -131,7 +136,4 @@ $(document).ready(function() {
         }
     });
 });
-
-
-
-    </script>
+</script>

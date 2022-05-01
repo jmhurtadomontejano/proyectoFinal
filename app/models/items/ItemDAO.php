@@ -205,4 +205,16 @@ class ItemDAO {
         }
         return $array_obj_users;
     }
+
+    public function list_postal_codes() { //: 
+        $sql = "SELECT *  FROM postal_codes";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_postal_codes = array();
+        while ($postal_code = $result->fetch_object()) {
+            $array_obj_postal_codes[] = $postal_code;
+        }
+        return $array_obj_postal_codes;
+    }
 }

@@ -123,6 +123,13 @@ class UsersController {
             }
         }
 
+                //Call Conexion and ItemDao
+                $conn = ConexionBD::conectar();
+                $usuarioDAO = new UsuarioDAO($conn);
+        //call to posatlCodes
+        $list_postalCodes = $usuarioDAO->list_postalCodes();
+
+
         //Calculamos un token
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;

@@ -15,7 +15,7 @@
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
-                <th>Filter..</th>
+                <th hidden>Filter..</th>
             </tr>
         </tfoot>
         <tbody>
@@ -28,8 +28,6 @@
                        <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->                                                      
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDepartmentModal"
                         >Editar </button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteDepartmentModal">Eliminar</button>
                 </th>
             </tr>
             <?php endforeach; ?>

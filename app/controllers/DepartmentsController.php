@@ -21,13 +21,18 @@ class DepartmentsController {
             $name = filter_var($_POST['inputName'], FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_var($_POST['inputDescription'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $department->setName($name);
-            $department->setDescription($description);
-
-            $departmentDAO->insert($department);
-
-            MensajesFlash::add_message("Departamento añadido correctamente");
-            header("Location: " . RUTA);
+            //if name and description is not empty
+            if ($name!= "" && $description!= "") {
+                $department->setName($name);
+                $department->setDescription($description);
+                $department->setId_user(Session::obtener()->getId());
+                $departmentDAO->insert($department);
+                MensajesFlash::add_message("Departamento añadido");
+            } else {
+                MensajesFlash::add_message("No puedes añadir un departamento sin nombre ni descripción");
+            }
+        
+            header("Location: " . RUTA/departments_list);
             die();
     }
     require '../app/views/departments/insert_department.php';
@@ -43,5 +48,13 @@ class DepartmentsController {
         $departmentDAO = new DepartmentDAO($conn);
         $departments = $departmentDAO->findAll();
         require '../app/views/departments/departments_list.php';
+    }
+
+    public function editDepartment(){
+        $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
+
+        $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description']);
+
+        $departmentDAO->update($department);
     }
 }

@@ -31,6 +31,25 @@ class DepartmentDAO {
         return true;
     }
 
+    public function update($department) {
+        //Comprobamos que el parámetro es de la clase Departamento
+        if (!$department instanceof department) {
+            return false;
+        }
+        $departmentName = $department->getName();
+        $departmentDescription = $department->getDescription();
+        $departmentId = $department->getId();
+        //SQL to update department on the database
+        $sql = "UPDATE departments SET name =?, description =? WHERE id =". $department->getIdDepartment();
+        if(!$stmt = $this->conn->prepare($sql)){
+            die("Error al preparar la consulta: " . $this->conn->error);
+        }
+        $stmt->bind_param('ssi',$departmentName, $departmentDescription, $departmentId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return true;
+    }
+
     /**
      * Borra un registro de la tabla Usuarios
      * @param type $usuario Objeto de la clase usuario
@@ -41,7 +60,7 @@ class DepartmentDAO {
         if ($department == null || get_class($department) != 'department') {
             return false;
         }
-        $sql = "DELETE FROM departments WHERE idDepartment = " . $department->getIdDepartament();
+        $sql = "DELETE FROM departments WHERE idDepartment = " . $department->getIdDepartment();
         if (!$this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }

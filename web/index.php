@@ -41,6 +41,7 @@ $mapa = array(
     //departmentsController
     'insert_department' => array('controller' => 'DepartmentsController', 'method' => 'insert', 'publica' => false),
     'departments_list' => array('controller' => 'DepartmentsController', 'method' => 'departments_list', 'publica' => true),
+    'edit_department' => array('controller' => 'DepartmentsController', 'method' => 'editDepartment', 'publica' => false),
 
      //ItemsController
      'items_list' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),

@@ -17,7 +17,8 @@ $(function() {
 
     <div class="col-12">
         <label for="inputDescription" class="form-label">Descripcion</label>
-        <textarea type="textarea" class="form-control" name="inputDescription" id="description" placeholder="Descripción..."></textarea>
+        <textarea type="textarea" class="form-control" name="inputDescription" id="description"
+            placeholder="Descripción..."></textarea>
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Agregar Departamento</button>

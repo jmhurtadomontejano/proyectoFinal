@@ -204,10 +204,10 @@ class ItemsController {
         require '../app/vistas/view_item.php';
     }
 
-    public function mis_items() {
+    public function ownItems() {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);
-        $mis_items = $itemDAO->findByUser(Session::obtener()->getId());
+        $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());
 
         //Generamos Token para seguridad del borrado
         $_SESSION['token'] = md5(time() + rand(0, 999));

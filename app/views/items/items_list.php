@@ -41,7 +41,7 @@ ob_start();
                     <td id="userInfo"><?= $i->getDescription() ?></td>
                     <td id="userInfo"><?= $i->getId_department() ?></td>
                     <td id="userInfo"><?= $i->getId_service() ?></td>
-                    <td id="userInfo"><?= $i->getId_attendUser() ?></td>
+                    <td id="userInfo"><?= $i->getUser()->getNombre()," ", $i->getUser()->getSurname(); ?></td>
                     <td id="userInfo"><?= $i->getId_clientUser() ?></td>
                     <td id="userInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>

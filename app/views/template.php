@@ -21,11 +21,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
     <!-- Datatables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
- 
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js">
+    </script>
 
 
     <!-- FONTAWESOME -->
@@ -70,59 +73,58 @@
                                 Articulos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a></li>
-                                <li><a class="nav-link" href="<?= RUTA?>listar_articulos">Listar Todos Los Articulos</a></li>
-                                    <hr class="dropdown-divider">
+                                <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a>
                                 </li>
-                                <li> <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
-                            </ul>
+                                <li><a class="nav-link" href="<?= RUTA?>listar_articulos">Listar Todos Los Articulos</a>
+                                </li>
+                                <hr class="dropdown-divider">
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA?>insert_item">Insertar item</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA?>items_list">Listar item</a>
-                        </li>
+                        <li> <a class="nav-link" href="<?= RUTA?>mis_articulos">Mis artículos</a>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= RUTA?>insert_item">Insertar item</a>
+                    </li>
 
-                        <!-- ADMIN MENU -->
-                        <?php if (Session::existe()) { ?>
-                        <?php
+
+                    <!-- ADMIN MENU -->
+                    <?php if (Session::existe()) { ?>
+                    <?php
                             $conn = ConexionBD::conectar();
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
-                        <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Administradores
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
-                                <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
-                            </ul>
-                        </li>
-                        <?php } ?>
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Administradores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>own_items">Mis Items</a></li>
+                        </ul>
+                    </li>
+                    <?php } ?>
 
-                        <!-- SUPERADMIN MENU -->
-                        <?php if ($usuario->getRol() == 'superAdmin') { ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                SuperAdministradores
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
-                                <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
-                                <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" hidden>
-                                </li>
-                                <li><a class="dropdown-item" href="#" hidden>Something else here</a></li>
-                            </ul>
-                        </li>
-                        <?php } ?>
-                        <?php } ?>
+                    <!-- SUPERADMIN MENU -->
+                    <?php if ($usuario->getRol() == 'superAdmin') { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            SuperAdministradores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items</a></li>
+                    </li>
+                    <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
+
+                    </ul>
+                    </li>
+                    <?php } ?>
+                    <?php } ?>
                     </ul>
 
                     <!-- BLOQUE INFO USUARIOS -->

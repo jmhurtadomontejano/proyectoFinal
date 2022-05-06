@@ -1,60 +1,62 @@
 <?php ob_start() ?>
+<link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
 
 
-<div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
-    <div class="col-sm-8 col-11">
+<div class="d-flex align-items-center justify-content-center bg-br-primary ">
+    <div class="row col-sm-8 col-11">
 
-        <form action="" method="post" enctype="multipart/form-data"
-            style="justify-content: center; align-items: center">
-            <fieldset class=" border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
-                <div style="paddin:20px; margin:20px">
+        <form class="form-floating" action="" method="post" enctype="multipart/form-data">
+            <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
+                <div class="row" style="paddin:10px; margin:10px" >
                     <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
-
                     <input type="hidden" name="token" value="<?= $token ?>">
-                    <div class="mb-3" style="justify-content: center; align-items: center">
+                    <div class="col-6 m-10">
                         <label class="form-label">Nombre</label>
                         <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                             aria-describedby="nameHelp">
                     </div>
-                    <div class="mb-3" style="justify-content: center; align-items: center">
+                    <div class="col-6" style="paddin:20px;  border:1px solid grey">
                         <label class="form-label">Apellidos</label>
                         <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
-                    <div class="mb-3" style="justify-content: center; align-items: center">
-                        <label class="form-label">DNI</label>
+                    <div class="col-6" style="justify-content: center; align-items: center">
+                        <label class="form-label">DNI o NIE completo</label>
                         <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                             aria-describedby="dniHelp">
                     </div>
-                    <div class="mb-3">
+                    <div class="col-6">
+                        <label class="form-label">Teléfono</label>
+                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono"
+                            class="form-control" max=999999999>
+                    </div>
+                    <div class="col-6">
                         <label class="form-label">Email/Direccion de correo electrónico</label>
                         <input type="email" name="email" placeholder="Introduce aqui tu em@il" class="form-control"
                             aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Teléfono</label>
-                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono"
-                            class="form-control" max=999999999>
-                    </div>
-                    <div class="mb-3">
+
+                    <div class="col-6">
                         <label class="form-label">Código Postal</label>
-                        <select class="form-control"  required>
+                        <select class="form-control" id="postalCode" name="postalCode" required>
                             <option value="">Seleccione Código Postal</option>
                             <?php foreach ($list_postalCodes as $postalCode): ?>
-                            <option id="postalCode" name="postalCode" value="<?php echo $postalCode->code  ?>">
+                            <option  value="<?php echo $postalCode->code  ?>">
                                 <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-6">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control"
                             placeholder="Introduce aqui tu password">
                         <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                             Mayusculas y minusculas</div>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-6">
                         <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                         <input type="password" name="password2" id="password2" class="form-control"
                             placeholder="Introduce aqui tu password">

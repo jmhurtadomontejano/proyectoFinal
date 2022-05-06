@@ -18,7 +18,7 @@ $(function() {
             ?>
 <?php } ?>
 
-<form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
+<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario Registro</label>
         <input class="form-control" name="inputUser"

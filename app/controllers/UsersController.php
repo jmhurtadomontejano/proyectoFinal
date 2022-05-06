@@ -66,6 +66,11 @@ class UsersController {
                 $error = true;
             }
 
+            //if photo is null or empty, set default photo
+            if (empty($_FILES['photo']['name'])) {
+                $usuario->setPhoto("default.jpg");
+                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente");
+            } else {
             //Validación photo
             if ($_FILES['photo']['type'] != 'image/png' &&
                     $_FILES['photo']['type'] != 'image/gif' &&
@@ -73,6 +78,7 @@ class UsersController {
                 MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                 $error = true;
             }
+        }
 
             if ($_FILES['photo']['size'] > 1000000) {
                 MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
@@ -104,7 +110,7 @@ class UsersController {
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
-                $postal_code = filter_var($_POST['postal_code'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $postalCode = filter_var($_POST['postalCode'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
@@ -198,14 +204,11 @@ class UsersController {
     }
 
     public function usersList() {
-        if (Session::existe() == false) {
-            header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
-            die();
-        }else{
+        if (Session::existe() == true) {
             $conn = ConexionBD::conectar();
             $usuDAO = new UsuarioDAO($conn);
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
                     $conn = ConexionBD::conectar();
                     $usuDAO = new UsuarioDAO(ConexionBD::conectar());
@@ -214,8 +217,13 @@ class UsersController {
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
         }
-    }
     }
 
     public function findByUserId($userId) {

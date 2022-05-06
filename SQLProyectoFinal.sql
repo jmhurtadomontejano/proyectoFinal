@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 11:57 AM
+-- Generation Time: May 06, 2022 at 01:30 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -372,11 +372,14 @@ CREATE TABLE `usuarios` (
   `password` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `phone` int(9) NOT NULL,
+  `address` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `postalCode` int(5) NOT NULL,
   `photo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `rol` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `department` int(11) NOT NULL,
   `cookie_id` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `restart_password` tinyint(1) NOT NULL,
+  `restart_code` int(11) NOT NULL,
   `registrationDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -384,9 +387,13 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `password`, `email`, `phone`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `registrationDate`) VALUES
-(65, 'Trini', 'Hurtado', '88664422B', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 't@gmail.com', 123456788, 13700, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, '42269521a080b0698f7ad0a816724529f5cfc79f', '2022-04-12 15:57:28'),
-(81, 'Nacho', 'Hurtado', '12345678A', '$2y$10$IRASYDwyWNa1VjHKH1vZh.3g.fR8dQQn/K1JMT/HN4pHqJ.eRNgoS', 'nacho@gmail.com', 687654321, 13710, 'd9704af1a4dbb5173a694a21b448994c.png', 'admin', 0, 'b81582e3e5e1298bde0936f60ac45a05625b1a21', '2022-05-06 07:58:01');
+INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `password`, `email`, `phone`, `address`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `restart_password`, `restart_code`, `registrationDate`) VALUES
+(65, 'Juanmi', 'Hurtado Montejano', '06268333M', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 'jmhurtadomontejano@gmail.com', 649564806, '', 13700, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, '42269521a080b0698f7ad0a816724529f5cfc79f', 0, 0, '2022-04-12 15:57:28'),
+(85, 'Marta', 'Hurtado Coronado', '12312312B', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta@gmail.com', 654325325, '', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'admin', 0, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, '2022-05-06 10:03:00'),
+(86, 'Alicia', 'Montejano', '741741741A', '$2y$10$BTYlDEXdn8Zuhp6gBjlWbOy4z6PWtljHwzmHk1Q8tEVa6OSSTf39e', 'alicia@gmail.com', 685685685, '', 13700, '7b201a8a662542d8efdda9313ee9756d.png', 'admin', 0, 'aa5765b27746f246b5fa2335a6eef45b8caa52ec', 0, 0, '2022-05-06 10:25:14'),
+(87, 'Jaime', 'Hurtado', '74125125D', '$2y$10$Jvqhys1XuQPQ6pmVEwtW6OJv1sDk78hDJkiWSkk8YkZoQFBqlLRci', 'jaime@gmail.com', 632632632, '', 0, '872be5ab6648302e50f701190428d20b.png', '', 0, 'efd4b6695db128bc21117e8a8045d58257a58009', 0, 0, '2022-05-06 11:08:23'),
+(88, 'Cintia', 'Moreno Hurtado', '74521523D', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', '', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, '2022-05-06 11:19:20'),
+(91, 'Marco3', 'Polo4', '74747474E', '$2y$10$Qy0DJ5Gb9LkVevUHEcd.AeLiOKwjZe11EscG37N8P3SbViT6SQc1G', 'marco@gmail.com', 696969696, '', 13700, 'bb318f67d680105d31ca7b4341bc3546.', '', 0, '9d78063cbfd8763351bb91922ffce301026f7c7c', 0, 0, '2022-05-06 11:29:09');
 
 --
 -- Indexes for dumped tables
@@ -507,7 +514,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- Constraints for dumped tables

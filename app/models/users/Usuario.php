@@ -13,9 +13,12 @@ class Usuario {
     private $email;
     private $phone;
     private $postalCode;
+    private $address;
     private $password;
     private $photo;
     private $rol;
+    private $restart_password;
+    private $restart_code;
     private $cookie_id;
 
     public function __construct()
@@ -75,6 +78,10 @@ class Usuario {
         return $this->postalCode;
     }
 
+    function getAddress() {
+        return $this->address;
+    }
+
     function getPassword() {
         return $this->password;
     }
@@ -85,6 +92,14 @@ class Usuario {
 
     function getRol() {
         return $this->rol;
+    }
+
+    function getRestart_password() {
+        return $this->restart_password;
+    }
+
+    function getRestart_code() {
+        return $this->restart_code;
     }
 
     function getArticulos() {
@@ -119,6 +134,10 @@ class Usuario {
         $this->postalCode = $postalCode;
     }
 
+    function setAddress($address): void {
+        $this->address = $address;
+    }
+
     function setPassword($password): void {
         $this->password = $password;
     }
@@ -133,6 +152,14 @@ class Usuario {
 
     function setRol($rol): void {
         $this->rol = $rol;
+    }
+
+    function setRestart_password($restart_password): void {
+        $this->restart_password = $restart_password;
+    }
+
+    function setRestart_code($restart_code): void {
+        $this->restart_code = $restart_code;
     }
 
 }

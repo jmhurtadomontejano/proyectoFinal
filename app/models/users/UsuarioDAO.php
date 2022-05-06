@@ -24,11 +24,15 @@ class UsuarioDAO {
         $email = $usuario->getEmail();
         $phone =  $usuario->getPhone();
         $postalCode = $usuario->getPostalCode();
+        $address = $usuario->getAddress();
         $password = $usuario->getPassword();
         $photo = $usuario->getPhoto();
+        $rol = $usuario->getRol();
+        $restart_password = $usuario->getRestart_password();
+        $restart_code = $usuario->getRestart_code();
         $cookie_id = sha1(time() + rand());
-        $sql = "INSERT INTO usuarios (nombre, surname, dni, email, phone, postalCode, password, photo, cookie_id) VALUES "
-                . "('$nombre','$surname','$dni','$email','$phone','$postalCode','$password','$photo', '$cookie_id')";
+        $sql = "INSERT INTO usuarios (nombre, surname, dni, email, phone, postalCode, address, password, photo, cookie_id) VALUES "
+                . "('$nombre','$surname','$dni','$email','$phone','$postalCode','$address','$password','$photo', '$cookie_id')";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -48,11 +52,13 @@ class UsuarioDAO {
         $email = $usuario->getEmail();
         $phone =  $usuario->getPhone();
         $postalCode = $usuario->getPostalCode();
+        $address = $usuario->getAddress();
         $rol = $usuario->getRol();
-        
+        $restart_password = $usuario->getRestart_password();
+        $restart_code = $usuario->getRestart_code();
 
         $sql = "UPDATE usuarios SET"
-                . " nombre='$nombre', surname='$surname', dni='$dni', email='$email', phone='$phone', postalCode='$postalCode', rol='$rol' "
+                . " nombre='$nombre', surname='$surname', dni='$dni', email='$email', phone='$phone', postalCode='$postalCode', address='$address', rol='$rol', restart_password='$restart_password', restart_code='$restart_code' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);

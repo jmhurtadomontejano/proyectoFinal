@@ -18,7 +18,10 @@ function get()
                 $("#edit-form [name=\"email\"]").val(user.email);
                 $("#edit-form [name=\"phone\"]").val(user.phone);
                 $("#edit-form [name=\"postalCode\"]").val(user.postalCode);
+                $("#edit-form [name=\"address\"]").val(user.address);
                 $("#edit-form [name=\"rol\"]").val(user.rol);
+                $("#edit-form [name=\"restart_password\"]").val(user.restart_password);
+                $("#edit-form [name=\"restar_code\"]").val(user.restart_code);
             }
         });
     });

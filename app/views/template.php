@@ -33,6 +33,10 @@
 
     <!-- FONTAWESOME -->
     <script src="https://use.fontawesome.com/2a534a9a61.js"></script>
+    <script src="https://your-site-or-cdn.com/fontawesome/v5.15.4/js/all.js" data-mutate-approach="sync"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
+
+
 
     <link rel="stylesheet" href="<?= RUTA?>app/css/style.css">
 </head>

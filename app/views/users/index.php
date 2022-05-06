@@ -33,31 +33,42 @@
 </div>
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary">
-    <section class="">
-
+    <section class="align-items-center justify-content-center bg-br-primary">
         <!-- ADMIN MENU -->
         <?php if (Session::existe()) { ?>
-        <button type="button" class="btn btn-primary"><a class="nav-link" style="color:white"
-                href="<?= RUTA?>insert_item">Insertar item</a></button>
+        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px"><a class="nav-link"
+                style="color:white" href="<?= RUTA?>insert_item">Insertar item</a>
+            <!-- image of item-->
+            <i class="fa fa-list-alt fa-10x" aria-hidden="true" style="size:20px"></i>
+
+        </button>
         <?php
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO($conn);
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
         ?>
         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-        <button type="button" class="btn btn-primary"><a class="nav-link" style="color:white"
-                href="<?= RUTA?>own_items">Mis Items</a></button>
+        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px"><a class="nav-link"
+                style="color:white" href="<?= RUTA?>own_items">Mis Items</a>
+            <i class="fa-solid fa-list-check fa-10x"></i>
+        </button>
         </li>
         <?php } ?>
 
         <!-- SUPERADMIN MENU -->
         <?php if ($usuario->getRol() == 'superAdmin') { ?>
-        <button type="button" class="btn btn-primary"><a class="nav-link" style="color:white"
-                href="<?= RUTA?>usersList">Gestion Usuarios</a></button>
-        <button type="button" class="btn btn-primary"><a class="nav-link" style="color:white"
-                href="<?= RUTA?>departments_list">Lista Departamentos</a></button>
-        <button type="button" class="btn btn-primary"><a class="nav-link" style="color:white"
-                href="<?= RUTA?>items_list">Listar todos los items</a></button>
+        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px"><a class="nav-link"
+                style="color:white" href="<?= RUTA?>usersList">Gestion Usuarios</a>
+            <i class="fa-solid fa-users fa-10x"></i>
+        </button>
+        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px"><a class="nav-link"
+                style="color:white" href="<?= RUTA?>departments_list">Lista Departamentos</a>
+            <i class="fa-solid fa-building-user fa-10x"></i>
+        </button>
+        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px"><a class="nav-link"
+                style="color:white" href="<?= RUTA?>items_list">Listar todos los items</a>
+            <i class="fa-solid fa-sitemap fa-10x"></i>
+        </button>
         <?php } ?>
         <?php } ?>
     </section>

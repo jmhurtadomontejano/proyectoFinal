@@ -43,13 +43,16 @@ class UsuarioDAO {
             return false;
         }
         $nombre = $usuario->getNombre();
-        $email = $usuario->getEmail();
-        $rol = $usuario->getRol();
         $surname = $usuario->getSurname();
-
+        $dni = $usuario->getDni();
+        $email = $usuario->getEmail();
+        $phone =  $usuario->getPhone();
+        $postalCode = $usuario->getPostalCode();
+        $rol = $usuario->getRol();
+        
 
         $sql = "UPDATE usuarios SET"
-                . " nombre='$nombre', email='$email', surname='$surname', rol='$rol' "
+                . " nombre='$nombre', surname='$surname', dni='$dni', email='$email', phone='$phone', postalCode='$postalCode', rol='$rol' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);

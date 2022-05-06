@@ -137,3 +137,33 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<!-- script to control when the user change the cell phone, check the phone is correct or not -->
+<script>
+$(document).ready(function() {
+    $("#phone").change(function() {
+        var phone = $("#phone").val();
+        var regex = /^[0-9]{9}$/;
+        if (regex.test(phone)) {
+            $("#phoneHelp").html("");
+        } else {
+            $("#phoneHelp").html("El telefono no es correcto");
+        }
+    });
+});
+</script>
+
+<!-- script to control when the user change the cell dni or nie, check the dni or nie is correct or not -->
+<script>
+$(document).ready(function() {
+    $("#dni").change(function() {
+        var dni = $("#dni").val();
+        var regex = /^[0-9]{8}[A-Z]$/;
+        if (regex.test(dni)) {
+            $("#dniHelp").html("");
+        } else {
+            $("#dniHelp").html("El DNI no es correcto");
+        }
+    });
+}   );
+</script>

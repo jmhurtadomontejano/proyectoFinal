@@ -14,7 +14,10 @@ function get()
                 $("#edit-form [name=\"id\"]").val(user.id);
                 $("#edit-form [name=\"nombre\"]").val(user.nombre);
                 $("#edit-form [name=\"apellidos\"]").val(user.surname);
+                $("#edit-form [name=\"dni\"]").val(user.dni);
                 $("#edit-form [name=\"email\"]").val(user.email);
+                $("#edit-form [name=\"phone\"]").val(user.phone);
+                $("#edit-form [name=\"postalCode\"]").val(user.postalCode);
                 $("#edit-form [name=\"rol\"]").val(user.rol);
             }
         });

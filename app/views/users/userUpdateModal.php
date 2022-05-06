@@ -20,9 +20,19 @@
                                     value="<?= $u->getSurname() ?>">
                             </div>
                             <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="dni" class="form-control" id="dni" name="dni"
+                                value="<?= $u->getDni() ?>">
+                            </div>
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     value="<?= $u->getEmail() ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefono</label>
+                                <input type="phone" class="form-control" id="phone" name="phone"
+                                value="<?= $u->getPhone() ?>">
                             </div>
                             <div class="form-group">
                                 <label for="rol">Rol</label>

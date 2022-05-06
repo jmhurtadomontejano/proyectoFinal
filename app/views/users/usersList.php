@@ -90,8 +90,20 @@ ob_start();
                                 <input type="text" class="form-control" id="apellidos" name="apellidos">
                             </div>
                             <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="dni" class="form-control" id="dni" name="dni">
+                            </div>
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefono</label>
+                                <input type="phone" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Codigo Postal</label>
+                                <input type="postalCode" class="form-control" id="postalCode" name="postalCode">
                             </div>
                             <div class="form-group">
                                 <label for="rol">Rol</label>

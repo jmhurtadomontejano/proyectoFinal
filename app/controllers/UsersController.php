@@ -40,10 +40,6 @@ class UsersController {
                 $error = true;
             }
 
-            if (empty($_POST['postalCode'])) {
-                MensajesFlash::add_message("El código postal es obligatorio.");
-            }
-
  
           //Check the email is not registrer yet  
            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
@@ -258,7 +254,7 @@ class UsersController {
     public function editUser(){
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
 
-        $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['email'], $_POST['rol'] );
+        $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
 
         $usuDAO->update($user);
 

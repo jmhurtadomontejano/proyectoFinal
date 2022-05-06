@@ -203,11 +203,18 @@ class UsersController {
             MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
             die();
         }else{
-        $conn = ConexionBD::conectar();
-        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-        $usersList = $usuDAO->findAll();
-
-        require '../app/views/users/usersList.php';
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+                    $conn = ConexionBD::conectar();
+                    $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+                    $usersList = $usuDAO->findAll();
+                    require '../app/views/users/usersList.php';
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+        }
     }
     }
 

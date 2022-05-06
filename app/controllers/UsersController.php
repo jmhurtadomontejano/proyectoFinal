@@ -40,6 +40,10 @@ class UsersController {
                 $error = true;
             }
 
+            if (empty($_POST['postalCode'])) {
+                MensajesFlash::add_message("El código postal es obligatorio.");
+            }
+
  
           //Check the email is not registrer yet  
            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
@@ -198,11 +202,17 @@ class UsersController {
     }
 
     public function usersList() {
+        if (Session::existe() == false) {
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
+        }else{
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
         $usersList = $usuDAO->findAll();
 
         require '../app/views/users/usersList.php';
+    }
     }
 
     public function findByUserId($userId) {

@@ -136,7 +136,7 @@ class ArticlesController {
         $articuloDAO = new ArticuloDAO($conn);
         $articulo = $articuloDAO->find($id);
 
-        require '../app/vistas/ver_articulo.php';
+        require '../app/views/articles/see_article.php';
     }
 
     public function mis_articulos() {

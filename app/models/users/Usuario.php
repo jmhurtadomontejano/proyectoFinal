@@ -22,13 +22,19 @@ class Usuario {
     {
     }
 
-    public static function initValues($id, $nombre, $surname, $email, $rol) {
+    public static function initValues($id, $nombre, $surname, $email, $rol, $dni, $phone, $postalCode, $password, $photo, $cookie_id) {
         $obj = new Usuario();
         $obj->id = $id;
         $obj->nombre = $nombre;
         $obj->surname = $surname;
         $obj->email = $email;
         $obj->rol = $rol;
+        $obj->dni = $dni;
+        $obj->phone = $phone;
+        $obj->postalCode = $postalCode;
+        $obj->password = $password;
+        $obj->photo = $photo;
+        $obj->cookie_id = $cookie_id;
         return $obj;
     }
 
@@ -69,7 +75,7 @@ class Usuario {
     }
 
     function getPostalCode() {
-        return $this->phone;
+        return $this->postalCode;
     }
 
     function getPassword() {

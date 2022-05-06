@@ -31,7 +31,7 @@ ob_start();
                     <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
-                    <th>Filter..</th>
+                    <th hidden>Filter..</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -48,11 +48,10 @@ ob_start();
                     <td id="hourInfo"><?= $i->getHour() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Editar
-                            <?= $i->getId() ?></button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUserModal"
-                            data-id="<?= $i->getId()?>">Eliminar <?= $i->getId() ?></button>
+                        <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
+                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Editar</button>
+                        <button type="button" class="btn btn-danger m-0 p-1" data-toggle="modal" data-target="#deleteUserModal"
+                            data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
                 </tr>
                 <?php endforeach; ?>

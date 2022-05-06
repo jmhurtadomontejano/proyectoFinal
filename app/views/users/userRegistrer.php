@@ -39,10 +39,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Código Postal</label>
-                        <select class="form-control" id="postalCode" name="postalCode" required>
+                        <select class="form-control"  required>
                             <option value="">Seleccione Código Postal</option>
                             <?php foreach ($list_postalCodes as $postalCode): ?>
-                            <option value="<?php echo $postalCode->code  ?>">
+                            <option id="postalCode" name="postalCode" value="<?php echo $postalCode->code  ?>">
                                 <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                             <?php endforeach; ?>
                         </select>

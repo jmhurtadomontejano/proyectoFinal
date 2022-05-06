@@ -10,6 +10,8 @@ ob_start();
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Email</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Código Postal</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Foto</th>
@@ -25,6 +27,8 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
             </tr>
         </tfoot>
         <tbody>
@@ -33,6 +37,8 @@ ob_start();
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
                 <th id="userInfo"><?= $u->getEmail() ?></th>
+                <th id="userInfo"><?= $u->getPhone() ?></th>
+                <th id="userInfo"><?= $u->getPostalCode() ?></th>
                 <th id="userInfo"><?= $u->getDni() ?></th>
                 <th id="userInfo"><?= $u->getRol() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
@@ -48,8 +54,7 @@ ob_start();
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?> data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
-                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)" id="deleteUser" >Eliminar<?= $u->getId() ?></button>
-                    <button type="button" class="btn btn-danger"><a href="<?= RUTA?>borrar_articulo/<?= $u->getId() ?>/<?=$token ?>"><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></button>
+                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)" id="deleteUser" >Eliminar<?= $u->getId() ?><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></button>
                 </th>
             </tr>
             <?php endforeach; ?>

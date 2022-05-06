@@ -194,14 +194,14 @@ class ItemsController {
         require '../app/views/items/insert_item.php';
     }
 
-    public function ver() {
+    public function find() {
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $conn = ConexionBD::conectar();
         //Insertamos el item en la BBDD
         $itemDAO = new ItemDAO($conn);
         $item = $itemDAO->find($id);
 
-        require '../app/vistas/view_item.php';
+        require '../app/views/items/view_item.php';
     }
 
     public function ownItems() {

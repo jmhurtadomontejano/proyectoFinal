@@ -53,7 +53,6 @@ $(function() {
             value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
             readonly>
     </div>
-
     <?php } ?>
     <div class="col-6">
         <label for="inputClientUser" class="form-label">Cliente:</label>

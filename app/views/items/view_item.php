@@ -18,7 +18,7 @@ $(function() {
             ?>
 <?php } ?>
 
-<form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
+<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario Registro</label>
         <input class="form-control" name="inputUser"
@@ -34,15 +34,15 @@ $(function() {
             <option>Finalizada</option>
         </select>
     </div>
-    <div class="col-md-2 col-3">
+    <div class="col-md-2 col-4">
         <label for="inputDate" class="form-label">Fecha</label>
         <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
     </div>
-    <div class="col-md-2 col-3">
+    <div class="col-md-2 col-4">
         <label for="inputHour" class="form-label">Hora</label>
         <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>">
     </div>
-    <div class="col-md-2 col-3">
+    <div class="col-md-2 col-4">
         <label for="inputDuration" class="form-label">Duracion</label>
         <input type="time" class="form-control" name="inputDuration">
     </div>

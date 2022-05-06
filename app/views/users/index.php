@@ -4,7 +4,7 @@
     <button type="button">
         <section class="">
             <?php if (Session::existe()): ?>
-            <div id="userInfo">
+            <div id="userInfo" hidden>
                 <div id="photo_usuario"
                     style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                 </div>
@@ -32,15 +32,15 @@
     </button>
 </div>
 
-<div class="d-flex align-items-center justify-content-center bg-br-primary">
-    <section class="align-items-center">
+<div class="d-flex justify-content-between">
+    <section class="justify-content-between">
 
         <!-- ADMIN MENU -->
         <?php if (Session::existe()) { ?>
         <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white" href="<?= RUTA?>insert_item">Insertar item
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar item
                 <!-- image of item-->
-                <i class="fa fa-list-alt fa-10x" aria-hidden="true" style="size:20px"></i>
+                <i class="fa fa-list-alt fa-5x" aria-hidden="true" style="size:20px"></i>
             </a>
         </button>
         <?php
@@ -49,28 +49,28 @@
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
         ?>
         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white" href="<?= RUTA?>own_items">Mis Items
-                <i class="fa-solid fa-list-check fa-10x"></i></a>
+        <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_items">Mis Items
+                <i class="fa-solid fa-list-check fa-5x"></i></a>
         </button>
         </li>
         <?php } ?>
 
         <!-- SUPERADMIN MENU -->
         <?php if ($usuario->getRol() == 'superAdmin') { ?>
-        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white" href="<?= RUTA?>usersList">Gestion Usuarios
-                <i class="fa-solid fa-users fa-10x"></i>
+        <button type="button" class="btn btn-success col-md-3 col-12" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
+                <i class="fa-solid fa-users fa-5x"></i>
             </a>
         </button>
-        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white" href="<?= RUTA?>departments_list">Lista Departamentos
-                <i class="fa-solid fa-building-user fa-10x"></i>
+        <button type="button" class="btn btn-warning col-md-3 col-12" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>departments_list">Departamentos
+                <i class="fa-solid fa-building-user fa-5x"></i>
             </a>
         </button>
-        <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white" href="<?= RUTA?>items_list">Listar todos los items
-                <i class="fa-solid fa-sitemap fa-10x"></i>
+        <button type="button" class="btn btn-danger col-md-3 col-12" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Listar todos los items
+                <i class="fa-solid fa-sitemap fa-5x"></i>
             </a>
         </button>
         <?php } ?>

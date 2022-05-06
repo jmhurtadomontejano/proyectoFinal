@@ -201,6 +201,8 @@ class ItemsController {
         //Insertamos el item en la BBDD
         $itemDAO = new ItemDAO($conn);
         $item = $itemDAO->find($id);
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
 
         require '../app/views/items/view_item.php';
     }

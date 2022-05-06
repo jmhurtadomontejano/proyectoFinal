@@ -39,7 +39,7 @@ ob_start();
             <tbody>
                 <?php foreach ($items as $i): ?>
                 <tr>
-                    <td id="nameInfo"><?= $i->getName() ?></td>
+                <td id="id"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= $i->getDescription() ?></td>
                     <td id="departmentInfo">
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>

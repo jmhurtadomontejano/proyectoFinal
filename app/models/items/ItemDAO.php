@@ -161,7 +161,7 @@ class ItemDAO {
     }
     
     public function findItemsByUser($id_user) {
-        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_user=? ORDER BY id DESC";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_attendUser=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);
         }
@@ -174,7 +174,7 @@ class ItemDAO {
         
         
         $array_obj_items = array();
-        while ($item = $result->fetch_object('item')) {
+        while ($item = $result->fetch_object('Item')) {
             $array_obj_items[] = $item;
         }
         return $array_obj_items;

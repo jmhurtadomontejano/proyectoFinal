@@ -56,9 +56,22 @@ class Item {
         return $this->id_attendUser;
     }
 
+    function getUser_attendUser(){
+            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+            $this->usuario = $usuarioDAO->findUserById($this->getId_attendUser());
+        return $this->usuario;
+    }
+
     function getId_clientUser() {
         return $this->id_clientUser;
     }
+
+    function getUser_clientUser(){
+            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+            $this->usuario = $usuarioDAO->findUserById($this->getId_clientUser());
+        return $this->usuario;
+    }
+    
 
     function getId_user() {
         return $this->id_user;

@@ -5,41 +5,41 @@
 
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ">
-    <div class="row col-sm-8 col-11">
+    <div class="row col-sm-10 col-12">
 
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
             <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
                 <div class="row" style="paddin:10px; margin:10px" >
                     <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
                     <input type="hidden" name="token" value="<?= $token ?>">
-                    <div class="col-6 m-10">
+                    <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
                         <label class="form-label">Nombre</label>
                         <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                             aria-describedby="nameHelp">
                     </div>
-                    <div class="col-6" style="paddin:20px;  border:1px solid grey">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Apellidos</label>
                         <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
-                    <div class="col-6" style="justify-content: center; align-items: center">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">DNI o NIE completo</label>
                         <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                             aria-describedby="dniHelp">
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Teléfono</label>
                         <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono"
                             class="form-control" max=999999999>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Email/Direccion de correo electrónico</label>
                         <input type="email" name="email" placeholder="Introduce aqui tu em@il" class="form-control"
                             aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Código Postal</label>
                         <select class="form-control" id="postalCode" name="postalCode" required>
                             <option value="">Seleccione Código Postal</option>
@@ -49,14 +49,14 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control"
                             placeholder="Introduce aqui tu password">
                         <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                             Mayusculas y minusculas</div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                         <input type="password" name="password2" id="password2" class="form-control"
                             placeholder="Introduce aqui tu password">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Foto del Usuario</label>
+                        <label class="form-label" >Foto del Usuario</label>
                         <input type="file" name="photo" class="form-control" accept="image/*"
                             aria-describedby="photoHelp">
                         <div id="photoHelp" class="form-text">Añade aqui tu foto</div>

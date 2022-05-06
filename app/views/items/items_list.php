@@ -12,8 +12,10 @@ ob_start();
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
-                    <th scope="col">Atendido por:</th>
-                    <th scope="col">Cliente</th>
+                    <th scope="col">Atendido por ID:</th>
+                    <th scope="col">Atendido por nombre:</th>
+                    <th scope="col">Cliente ID</th>
+                    <th scope="col">Cliente nombre</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
@@ -31,19 +33,23 @@ ob_start();
                     <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
+                    <th>Filter..</th>
+                    <th>Filter..</th>
                     <th hidden>Filter..</th>
                 </tr>
             </tfoot>
             <tbody>
                 <?php foreach ($items as $i): ?>
                 <tr>
-                    <td id="userInfo"><?= $i->getName() ?></td>
-                    <td id="userInfo"><?= $i->getDescription() ?></td>
-                    <td id="userInfo"><?= $i->getId_department() ?></td>
-                    <td id="userInfo"><?= $i->getId_service() ?></td>
-                    <td id="userInfo"><?= $i->getUser()->getNombre()," ", $i->getUser()->getSurname(); ?></td>
-                    <td id="userInfo"><?= $i->getId_clientUser() ?></td>
-                    <td id="userInfo"><?= $i->getState() ?></td>
+                    <td id="itemInfo"><?= $i->getName() ?></td>
+                    <td id="itemInfo"><?= $i->getDescription() ?></td>
+                    <td id="itemInfo"><?= $i->getId_department() ?></td>
+                    <td id="itemInfo"><?= $i->getId_service() ?></td>
+                    <td id="itemInfo"><?= $i->getId_attendUser() ?></td>
+                    <td id="itemInfo"><?= $i->getUser()->getNombre()," ", $i->getUser()->getSurname(); ?></td>
+                    <td id="itemInfo"><?= $i->getId_clientUser() ?></td>
+                    <td id="itemInfo"><?= $i->getUser_clientUser() ?></td>
+                    <td id="itemInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= $i->getHour() ?></td>
                     <th>

@@ -67,7 +67,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= RUTA?>">Inicio</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" hidden>
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Articulos

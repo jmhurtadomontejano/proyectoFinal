@@ -24,6 +24,24 @@ class Item {
     //Propiedad para acceder a las photosItem del item
     private $photoItemsItem;
 
+    public static function initValues($id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration) {  
+        $item = new Item();
+        $item->setId($id);
+        $item->setName($name);
+        $item->setDescription($description);
+        $item->setLocation($location);
+        $item->setId_department($id_department);
+        $item->setId_service($id_service);
+        $item->setId_attendUser($id_attendUser);
+        $item->setId_clientUser($id_clientUser);
+        $item->setState($state);
+        $item->setDate($date);
+        $item->setHour($hour);
+        $item->setDuration($duration);
+        return $item;
+    }
+
+
     function getId() {
         return $this->id;
     }
@@ -46,6 +64,12 @@ class Item {
 
     function getId_department() {
         return $this->id_department;
+    }
+
+    function getItemDepartment() {
+        $departmentDAO = new departmentDAO(ConexionBD::conectar());
+        $this->department = $departmentDAO->find($this->getId_department());
+        return $this->department;
     }
 
     function getId_service() {
@@ -71,7 +95,7 @@ class Item {
             $this->usuario = $usuarioDAO->findUserById($this->getId_clientUser());
         return $this->usuario;
     }
-    
+
 
     function getId_user() {
         return $this->id_user;

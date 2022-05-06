@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 01:30 PM
+-- Generation Time: May 06, 2022 at 10:06 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -106,17 +106,9 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_attendUser`, `id_clientUser`, `id_user`, `state`, `date`, `hour`, `duration`, `registrationDate`) VALUES
-(101, 'Item de Prueba 1', 'Detalle Item 1', 'Calle Argensola, 23', 1, 13, 72, 0, 65, '', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 12:30:55'),
-(102, 'Item2', 'Descripcion Item 2', 'Calle Manolo, 25', 2, 24, 72, 0, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 12:35:04'),
-(103, 'Item 4', 'Item 4', 'Calle Prueba 4', 0, 23, 2, 0, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 13:02:08'),
-(105, 'Prueba11', 'Prueba11 descripcion', 'Localizacion Prueba', 2, 23, 72, 53, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 21:07:36'),
-(110, 'ewrwerwe', 'werwer', 'werwer', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '00:00:00', '00:00:00', '2022-04-24 21:43:32'),
-(111, 'Prueba12', 'Prueba con hora incluida', '', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '21:50:00', '00:00:00', '2022-04-24 21:50:54'),
-(112, 'sdasdad', 'asdasdd', '', 2, 23, 72, 51, 65, 'Registrada', '2022-04-24', '21:57:00', '00:00:30', '2022-04-24 21:57:55'),
-(113, 'Prueba Juanmi', 'descr Prueba Juanmi', '', 5, 0, 0, 53, 65, 'Registrada', '2022-05-01', '10:47:00', '00:00:00', '2022-05-01 10:51:55'),
-(114, 'dfsdfsdf', 'sdfsdfsdf', '', 1, 0, 65, 53, 65, 'Registrada', '2022-05-01', '12:24:00', '00:00:00', '2022-05-01 12:24:19'),
-(115, 'AAAAAAAAAAAAAAAAAAA', 'DDDDDDDDDDDDDDDDDDDDDDD', '', 5, 5555555, 65, 53, 65, 'Registrada', '2022-05-01', '21:41:00', '00:00:00', '2022-05-01 21:41:41'),
-(116, 'Prueba Prueba', 'descripcion', '', 5, 0, 65, 53, 65, 'Registrada', '2022-05-02', '12:56:00', '00:00:00', '2022-05-02 12:56:51');
+(118, 'prueba', 'descripcion prueba', '', 6, 23, 65, 65, 65, 'Registrada', '2022-05-06', '18:55:00', '00:20:00', '2022-05-06 18:55:42'),
+(119, 'cintia prueba', 'descripcion cintia', '', 6, 24, 65, 88, 65, 'Registrada', '2022-05-06', '18:55:00', '00:30:00', '2022-05-06 18:56:12'),
+(120, 'prueba Alicia', 'descripcion prueba Alicia', '', 4, 41, 85, 86, 85, 'Registrada', '2022-05-06', '20:02:00', '00:15:00', '2022-05-06 20:02:38');
 
 -- --------------------------------------------------------
 
@@ -141,19 +133,6 @@ CREATE TABLE `photositems` (
   `file_name` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `id_item` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Dumping data for table `photositems`
---
-
-INSERT INTO `photositems` (`id`, `file_name`, `id_item`) VALUES
-(8, '1313434ad9267509283cb66e575e56a9.jpg', 101),
-(9, 'b1d06af35720f31a3728cbbbbfce1990.png', 102),
-(10, 'a51f629df973559221ec3d803b9976e5.jpg', 103),
-(12, 'ac72a255b60e402e6b943490fec7918c.jpg', 105),
-(17, 'c90822311ef03e61bc2fba05110ff992.jpg', 110),
-(18, 'a3292fd27896b32dc262940db3d23ce3.jpg', 111),
-(19, '7238c07e7bd056c3dc88744138dfd3f7.png', 112);
 
 -- --------------------------------------------------------
 
@@ -392,8 +371,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `password`, `email`, `
 (85, 'Marta', 'Hurtado Coronado', '12312312B', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta@gmail.com', 654325325, '', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'admin', 0, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, '2022-05-06 10:03:00'),
 (86, 'Alicia', 'Montejano', '741741741A', '$2y$10$BTYlDEXdn8Zuhp6gBjlWbOy4z6PWtljHwzmHk1Q8tEVa6OSSTf39e', 'alicia@gmail.com', 685685685, '', 13700, '7b201a8a662542d8efdda9313ee9756d.png', 'admin', 0, 'aa5765b27746f246b5fa2335a6eef45b8caa52ec', 0, 0, '2022-05-06 10:25:14'),
 (87, 'Jaime', 'Hurtado', '74125125D', '$2y$10$Jvqhys1XuQPQ6pmVEwtW6OJv1sDk78hDJkiWSkk8YkZoQFBqlLRci', 'jaime@gmail.com', 632632632, '', 0, '872be5ab6648302e50f701190428d20b.png', '', 0, 'efd4b6695db128bc21117e8a8045d58257a58009', 0, 0, '2022-05-06 11:08:23'),
-(88, 'Cintia', 'Moreno Hurtado', '74521523D', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', '', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, '2022-05-06 11:19:20'),
-(91, 'Marco3', 'Polo4', '74747474E', '$2y$10$Qy0DJ5Gb9LkVevUHEcd.AeLiOKwjZe11EscG37N8P3SbViT6SQc1G', 'marco@gmail.com', 696969696, '', 13700, 'bb318f67d680105d31ca7b4341bc3546.', '', 0, '9d78063cbfd8763351bb91922ffce301026f7c7c', 0, 0, '2022-05-06 11:29:09');
+(88, 'Cintia', 'Moreno Hurtado', '74521523D', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', '', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, '2022-05-06 11:19:20');
 
 --
 -- Indexes for dumped tables
@@ -490,7 +468,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `photos`

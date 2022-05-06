@@ -41,15 +41,15 @@ ob_start();
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
                 <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
-                    <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
+                    <td id="descriptionInfo"><?= $i->getDescription() ?></td>
                     <td id="departmentInfo"><?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?></td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
-                    <td id="attendUserInfo"><?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?></td>
+                    <td id="attendUserInfo"><?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", $i->getUser_attendUser()->getSurname(); ?></td>
                     <td id="clientUserInfo"><?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?></td>
                     <td id="stateInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
-                    <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
-                    <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
+                    <td id="hourInfo"><?= $i->getHour("H:i") ?></td>
+                    <td id="durationInfo"><?= $i->getDuration("H:i") ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"

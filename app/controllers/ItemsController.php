@@ -11,6 +11,7 @@ class ItemsController {
         //Generamos Token para seguridad del borrado
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
+        $departments = $itemDAO->listar_departamentos();
 
         require '../app/views/items/items_list.php';
     }
@@ -264,6 +265,13 @@ class ItemsController {
         
     }
 
+    public function editItem(){
+        $itemDAO = new ItemDAO(ConexionBD::conectar());
+
+        $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['inputQuantity'], $_POST['id_Department'], $_POST['id_service'], $_POST['inputAttendUser'], $_POST['inputClientUser']);
+
+        $itemDAO->update($item);
+    }
     
 
 }

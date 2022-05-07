@@ -105,8 +105,14 @@ ob_start();
                                 <input type="phone" class="form-control" id="phone" name="phone">
                             </div>
                             <div class="form-group">
-                                <label for="postalCode">Codigo Postal</label>
-                                <input type="postalCode" class="form-control" id="postalCode" name="postalCode">
+                                <label class="form-label">Código Postal</label>
+                                <select class="form-control" id="postalCode" name="postalCode" required>
+                                    <option value="">Seleccione Código Postal</option>
+                                    <?php foreach ($list_postalCodes as $postalCode): ?>
+                                    <option value="<?php echo $postalCode->code  ?>">
+                                        <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="rol">Rol</label>

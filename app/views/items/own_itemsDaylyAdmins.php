@@ -4,23 +4,28 @@ ob_start();
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
 <!-- input date format -->
-<div class="form-group">
-<label for="inputDate" class="form-label">Introduce Fecha para filtrar</label>
-<input type="date" class="col-3" name="inputDate" value="<?php echo date("Y-m-d");?>">
-</div>
 
-<!-- input department to filter -->
-<div class="form-group">
-<label for="inputDepartment" class="form-label">Introduce Departamento para filtrar</label>
-<select class="form-control" id="inputDepartment" name="inputDepartment" required>
-<option value="">Seleccione....</option>
-<?php foreach ($departments as $department): ?>
-<option value="<?php echo $department->idDepartment  ?>">
-<?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-<?php endforeach; ?>
-</select>
-</div>
+<div class="m-10" style="margin:10px; padding:10px; border:1px solid black; background-color:#999999">
+    <h4 class="w-100">Filtros por fecha y Departamento</h4>
+    <div class="d-flex col-11 m-10" style="margin:10px;">
+        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid black">
+            <label for="inputDate" class="form-label">Introduce Fecha para filtrar</label>
+            <input type="date" class="col-12" name="inputDate" value="<?php echo date("Y-m-d");?>">
+        </div>
 
+        <!-- input department to filter -->
+        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid black">
+            <label for="inputDepartment" class="form-label">Introduce Departamento para filtrar</label>
+            <select class="form-control" id="inputDepartment" name="inputDepartment" required>
+                <option value="">Seleccione....</option>
+                <?php foreach ($departments as $department): ?>
+                <option value="<?php echo $department->idDepartment  ?>">
+                    <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+</div>
 
 
 <div class="col-sm-12">

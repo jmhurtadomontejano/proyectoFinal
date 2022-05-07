@@ -213,6 +213,7 @@ class UsersController {
                     $conn = ConexionBD::conectar();
                     $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                     $usersList = $usuDAO->findAll();
+                    $list_postalCodes = $usuDAO->list_postalCodes();
                     require '../app/views/users/usersList.php';
             }else{
             header("Location: " . RUTA);

@@ -45,9 +45,13 @@ ob_start();
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
-                    <td id="attendUserInfo">
-                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", $i->getUser_attendUser()->getSurname(); ?>
-                    </td>
+                    <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
+                        <td id="attendUserInfo">No asignado</td>
+                    <?php else: ?>
+                        <td id="attendUserInfo">
+                            <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
+                        </td>
+                    <?php endif; ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>

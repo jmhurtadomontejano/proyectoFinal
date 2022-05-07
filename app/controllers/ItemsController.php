@@ -213,9 +213,8 @@ class ItemsController {
         $itemDAO = new ItemDAO($conn);
         $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());
 
-        //Generamos Token para seguridad del borrado
-        $_SESSION['token'] = md5(time() + rand(0, 999));
-        $token = $_SESSION['token'];
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
 
         require '../app/views/items/own_items.php';
     } else {
@@ -233,11 +232,11 @@ class ItemsController {
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
-                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());                
+                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());  
+                $departments = $itemDAO->listar_departamentos();
+                $clients = $itemDAO->list_users();              
                 require '../app/views/items/own_itemsDaylyAdmins.php';
-                      //Generamos Token para seguridad del borrado
-                        $_SESSION['token'] = md5(time() + rand(0, 999));
-                        $token = $_SESSION['token'];
+                    
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");

@@ -9,7 +9,7 @@ ob_start();
         <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
             <thead>
                 <tr>
-                <th scope="col">Nombre</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
@@ -40,17 +40,23 @@ ob_start();
             <tbody>
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
-                <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
+                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
-                    <td id="departmentInfo"><?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?></td>
+                    <td id="departmentInfo">
+                        <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
+                    </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
-                    <td id="attendUserInfo"><?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?></td>
-                    <td id="clientUserInfo"><?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?></td>
+                    <td id="attendUserInfo">
+                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
+                    </td>
+                    <td id="clientUserInfo">
+                        <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
+                    </td>
                     <td id="stateInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
                     <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
-                
+
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
@@ -59,7 +65,7 @@ ob_start();
                         <button type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
-                   
+
                 </tr>
                 <?php endforeach; ?>
                 <!-- include modal windows to edit or delete user -->
@@ -191,10 +197,23 @@ $(document).on('click', '#boton_editar', function() {
                         <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>
-                    <div class="form-group">
-                        <label for="id_clientUser">Cliente:</label>
-                        <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
-                    </div>
+                    <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni
+                        entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <select class="form-control" name="inputClientUser" id="inputClientUser">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo $client->id  ?>">
+                            <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php } ?>
+                        <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                        <input class="form-control" name="inputUser"
+                            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                            readonly>
+                        <?php } ?>
+                    </select>
                     <div class="form-group">
                         <label for="state">Estado</label>
                         <input type="text" class="form-control" id="state" name="state" required>

@@ -58,17 +58,17 @@ $(function() {
         <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
             <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                 <select class="form-control" name="inputClientUser" id="inputClientUser">
-            <option value="">Seleccione....</option>
-            <?php foreach ($clients as $client): ?>
-            <option value="<?php echo $client->id  ?>">
-                <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
-            <?php endforeach; ?>
-            <?php } ?>
-            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
-            <input class="form-control" name="inputUser"
-                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                readonly>
-            <?php } ?>
+                    <option value="">Seleccione....</option>
+                    <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo $client->id  ?>">
+                        <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
+                    <?php endforeach; ?>
+                    <?php } ?>
+                    <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                    <input class="form-control" name="inputUser"
+                        value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                        readonly>
+                <?php } ?>
         </select>
     </div>
     <div class="col-md-6 w-100">

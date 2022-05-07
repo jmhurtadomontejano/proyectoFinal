@@ -39,7 +39,7 @@ ob_start();
             <tbody>
                 <?php foreach ($items as $i): ?>
                 <tr>
-                <td id="id"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
+                    <td id="id"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= $i->getDescription() ?></td>
                     <td id="departmentInfo">
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
@@ -121,6 +121,31 @@ ob_start();
                         <label for="id_service">Servicio</label>
                         <input type="text" class="form-control" id="id_service" name="id_service" required>
                     </div>
+                    <div class="form-group">
+                        <label for="id_attendUser">Asistió</label>
+                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_clientUser">Cliente</label>
+                        <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">Estado</label>
+                        <input type="text" class="form-control" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hour">Hora</label>
+                        <input type="time" class="form-control" id="hour" name="hour" required>
+                        </div>
+                    <div class="form-group">
+                        <label for="duration">Duración</label>
+                        <input type="time" class="form-control" id="duration" name="duration" required>
+                        </div>
+                        
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

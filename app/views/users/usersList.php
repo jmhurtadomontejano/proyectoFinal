@@ -39,7 +39,7 @@ ob_start();
                 <th id="userInfo"><?= $u->getEmail() ?></th>
                 <th id="userInfo"><?= $u->getPhone() ?></th>
                 <th id="userInfo"><?= $u->getPostalCode() ?></th>
-                <th id="userInfo"><?= $u->getDni() ?></th>
+                <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
                 <th id="userInfo"><?= $u->getRol() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
@@ -53,17 +53,20 @@ ob_start();
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?> data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
-                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)" id="deleteUser" >Eliminar<?= $u->getId() ?><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></button>
+                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
+                        data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
+                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)"
+                        id="deleteUser">Eliminar<?= $u->getId() ?><img src="<?= RUTA?>web/images/icons/trash.svg"
+                            class="papelera"></button>
                 </th>
             </tr>
             <?php endforeach; ?>
             <!-- include modal windows to edit or delete user -->
         </tbody>
     </table>
-<div>
+    <div>
 
-<?php
+        <?php
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Usuarios";
@@ -121,7 +124,7 @@ ob_start();
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Editar Usuario</button>
                     </div>
                 </div>

@@ -33,7 +33,6 @@
 
     <!-- FONTAWESOME -->
     <script src="https://use.fontawesome.com/2a534a9a61.js"></script>
-    <script src="https://your-site-or-cdn.com/fontawesome/v5.15.4/js/all.js" data-mutate-approach="sync"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous"/>
 
 
@@ -49,14 +48,17 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
+                
                 <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs">
+                <a class="nav-link" style="colour:black" href="<?= RUTA?>">
                     <p class="font-heading"> Ayuntamiento de <br> Argamasilla de Alba </p>
                     <p class="font-primary-light-italic display@md"> El lugar de La Mancha </p>
                 </div>
+                </a>
 
                 <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

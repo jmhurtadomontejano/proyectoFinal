@@ -55,13 +55,13 @@ $(function() {
     </div>
     <?php } ?>
     <div class="col-6">
-        <label for="inputClientUser" class="form-label">Cliente:</label>
+        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra</label>
             <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                 <select class="form-control" name="inputClientUser" id="inputClientUser">
             <option value="">Seleccione....</option>
             <?php foreach ($clients as $client): ?>
             <option value="<?php echo $client->id  ?>">
-                <?php echo $client->dni, " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
+                <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
             <?php endforeach; ?>
             <?php } ?>
             <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>

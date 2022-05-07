@@ -68,7 +68,7 @@
         ?>
         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
         <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
-            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_items">Mis Items
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
                 <i class="fa-solid fa-list-check fa-5x"></i></a>
         </button>
         </li>

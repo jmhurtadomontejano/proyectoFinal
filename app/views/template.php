@@ -109,6 +109,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_items">Mis Items</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios</a></li>
                         </ul>
                     </li>
                     <?php } ?>

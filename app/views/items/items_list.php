@@ -65,7 +65,6 @@ ob_start();
                     </th>
                 </tr>
                 <?php endforeach; ?>
-                <!-- include modal windows to edit or delete user -->
             </tbody>
         </table>
     </div>
@@ -102,7 +101,7 @@ ob_start();
                         <input type="text" class="form-control" id="description" name="description"
                             placeholder="Descripción" value="" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="location">Ubicación</label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="Ubicación"
                             value="" required>
@@ -122,11 +121,11 @@ ob_start();
                         <input type="text" class="form-control" id="id_service" name="id_service" required>
                     </div>
                     <div class="form-group">
-                        <label for="id_attendUser">Asistió</label>
+                        <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>
                     <div class="form-group">
-                        <label for="id_clientUser">Cliente</label>
+                        <label for="id_clientUser">Cliente:</label>
                         <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
                     </div>
                     <div class="form-group">
@@ -140,12 +139,11 @@ ob_start();
                     <div class="form-group">
                         <label for="hour">Hora</label>
                         <input type="time" class="form-control" id="hour" name="hour" required>
-                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="duration">Duración</label>
                         <input type="time" class="form-control" id="duration" name="duration" required>
-                        </div>
-                        
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -159,10 +157,8 @@ ob_start();
 
 <script type="text/javascript">
 $(document).on('click', '#boton_editar', function() {
-
     let id = $(this).attr('data-id');
-
-    //Enviamos la informacion por ajax 
+    //Send information by ajax 
     $.ajax({
         url: 'pb',
         type: 'POST',
@@ -173,7 +169,6 @@ $(document).on('click', '#boton_editar', function() {
         success: function(e) {
             //console.log(e);
             let traer = JSON.parse(e);
-
             //Imprimimos la información en la ventana modal 
             traer.forEach((valor) => {
                 $("#id").val(valor.id);
@@ -182,8 +177,13 @@ $(document).on('click', '#boton_editar', function() {
                 $("#location").val(valor.location);
                 $("#id_department").val(valor.id_department);
                 $("#id_service").val(valor.id_service);
+                $("#id_attendUser").val(valor.id_attendUser);
+                $("#id_clientUser").val(valor.id_clientUser);
+                $("#state").val(valor.state);
+                $("#date").val(valor.date);
+                $("#hour").val(valor.hour);
+                $("#duration").val(valor.duration);
             });
-
         }
     });
 });

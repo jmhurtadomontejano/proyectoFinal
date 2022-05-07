@@ -219,6 +219,18 @@ class ItemsController {
         require '../app/views/items/own_items.php';
     }
 
+    public function ownItemsDaylyAdmins(){
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());
+
+        //Generamos Token para seguridad del borrado
+        $_SESSION['token'] = md5(time() + rand(0, 999));
+        $token = $_SESSION['token'];
+
+        require '../app/views/items/own_itemsDaylyAdmins.php';
+    }
+
     public function update_item() {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);

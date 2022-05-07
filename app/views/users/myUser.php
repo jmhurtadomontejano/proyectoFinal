@@ -97,7 +97,7 @@
                         </label>
                     </div>
                     <div style="justify-content:center; align-items:center">
-                        <button type="submit" value="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
+                        <button type="submit" value="registrar" class="btn btn-primary w-75">Cambiar mis datos de Usuario</button>
                     </div>
                 </div>
         </form>

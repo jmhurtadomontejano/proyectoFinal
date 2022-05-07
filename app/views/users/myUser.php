@@ -10,7 +10,7 @@
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
             <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
                 <div class="row" style="paddin:10px; margin:10px" >
-                    <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
+                    <h3 class="text-center">Mis Datos de Usuario</h3>
                     <input type="hidden" name="token" value="<?= $token ?>">
                     <section class="">
                             <?php if (Session::existe()): ?>

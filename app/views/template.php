@@ -140,7 +140,7 @@
 
                     <!-- BLOQUE INFO USUARIOS -->
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-                        <section class="">
+                        <section class="col-12">
                             <?php if (Session::existe()): ?>
                             <div id="userInfo">
                                 <div id="photo_usuario"

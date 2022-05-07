@@ -159,11 +159,11 @@ class UsersController {
             $nombre_photo = md5(time() + rand(0, 999999));
         }
         //movemos la photo a la carpeta que queramos guardarla y con el nombre original
-        move_uploaded_file($_FILES['photo']['tmp_name'], "imagenes/$nombre_photo.$extension_photo");
+        move_uploaded_file($_FILES['photo']['tmp_name'], "images/users/$nombre_photo.$extension_photo");
         //Actualizamos en la BD
         $conn = ConexionBD::conectar();
         $usuarioDAO = new UsuarioDAO($conn);
-        $usuario = $usuarioDAO->find(Session::obtener()->getId());
+        $usuario = $usuarioDAO->findUserById(Session::obtener()->getId());
         $usuario->setphoto("$nombre_photo.$extension_photo");
         $usuarioDAO->update($usuario);
 

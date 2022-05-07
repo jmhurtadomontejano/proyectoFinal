@@ -55,7 +55,7 @@ $(function() {
     </div>
     <?php } ?>
     <div class="col-6">
-        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra</label>
+        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
             <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                 <select class="form-control" name="inputClientUser" id="inputClientUser">
             <option value="">Seleccione....</option>

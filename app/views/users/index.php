@@ -1,7 +1,7 @@
 <?php ob_start() ?>
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
-    <button type="button">
+   
         <section class="">
             <?php if (Session::existe()): ?>
             <div id="userInfo" hidden>
@@ -29,14 +29,32 @@
             </form>
         </section>
         <?php endif; ?>
-    </button>
+  
 </div>
 
-<div class="d-flex justify-content-between">
-    <section class="justify-content-between">
+
+    <section class="d-flex justify-content-around flex-wrap">
 
         <!-- ADMIN MENU -->
         <?php if (Session::existe()) { ?>
+        <button type="button" class="btn btn-secondary col-md-3 col-12 d-flex align-items-center justify-content-center" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>my_user">Mis Datos
+            </a>
+            <div id="userInfo">
+                <div id="photo_usuario" class="align-items-center justify-content-center"
+                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                </div>
+                <form id="formulario_actualizar_photo" action="subir_photo" method="post" enctype="multipart/form-data">
+                    <input type="file" name="photo" id="input_photo">
+                    <input type="submit">
+                </form>
+                <div id="userInfo"><?= Session::obtener()->getNombre() ?>
+                    <?= Session::obtener()->getSurname() ?>
+                    <br>
+                    <a href="logout" style="color:black; width:bold">cerrar sesión</a>
+                </div>
+            </div>
+        </button>
         <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
             <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar item
                 <!-- image of item-->
@@ -76,7 +94,7 @@
         <?php } ?>
         <?php } ?>
     </section>
-</div>
+
 
 <?php
 $contenido = ob_get_clean();

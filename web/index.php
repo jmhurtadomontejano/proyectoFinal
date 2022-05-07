@@ -69,6 +69,7 @@ $mapa = array(
     'delete_user' => array('controller' => 'UsersController', 'method' => 'deleteUser', 'publica' => false),
     'detail_user' => array('controller' => 'UsersController', 'method' => 'detailUser', 'publica' => true),
     'edit_user' => array('controller' => 'UsersController', 'method' => 'editUser', 'publica' => true),
+    'my_user' => array('controller' => 'UsersController', 'method' => 'myUser', 'publica' => false),
 );
 
 //Parseo de la ruta

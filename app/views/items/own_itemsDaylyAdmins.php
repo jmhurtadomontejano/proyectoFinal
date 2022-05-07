@@ -3,6 +3,25 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
+<!-- input date format -->
+<div class="form-group">
+<label for="inputDate" class="form-label">Introduce Fecha para filtrar</label>
+<input type="date" class="col-3" name="inputDate" value="<?php echo date("Y-m-d");?>">
+</div>
+
+<!-- input department to filter -->
+<div class="form-group">
+<label for="inputDepartment" class="form-label">Introduce Departamento para filtrar</label>
+<select class="form-control" id="inputDepartment" name="inputDepartment" required>
+<option value="">Seleccione....</option>
+<?php foreach ($departments as $department): ?>
+<option value="<?php echo $department->idDepartment  ?>">
+<?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+
+
 
 <div class="col-sm-12">
     <div class="table-responsive" id="mydatatable-container">
@@ -23,7 +42,7 @@ ob_start();
                 </tr>
             </thead>
             <tfoot style="display: table-header-group !important">
-                <tr>
+                <tr hidden>
                     <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
@@ -78,6 +97,7 @@ ob_start();
  $contenido = ob_get_clean();
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Items";
+ 
  require '../app/views/template.php';
  ?>
 

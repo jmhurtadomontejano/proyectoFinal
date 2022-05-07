@@ -165,8 +165,8 @@
                                 <input type="button" onclick="location.href = '<?= RUTA?>registrar'" value="registrar"
                                     class="boton_formulario">
                             </form>
+                            <?php endif; ?>
                         </section>
-                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

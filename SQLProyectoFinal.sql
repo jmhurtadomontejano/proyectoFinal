@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2022 at 05:35 PM
+-- Generation Time: May 07, 2022 at 05:54 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -117,7 +117,9 @@ INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `
 (126, 'Paro Alicia', 'Paro Alicia descripcion', '', 3, 31, 65, 86, 65, 'Iniciada', '2022-05-07', '17:16:00', '00:00:00', '2022-05-07 17:16:42'),
 (127, 'Nueva Ayuda', 'Nueva ayuda necesito', '', 3, 31, 0, 87, 87, 'Registrada', '2022-05-07', '17:24:00', '00:00:00', '2022-05-07 17:25:05'),
 (128, 'Ayuda Empleo Arnau', 'Arnau descripcion', '', 3, 31, 0, 93, 93, 'Registrada', '2022-05-07', '17:28:00', '00:00:00', '2022-05-07 17:28:55'),
-(129, 'Alberto ayuda empleo', 'descripcion ayuda empleo Alberto', '', 3, 31, 65, 92, 65, 'Registrada', '2022-05-07', '17:30:00', '00:00:00', '2022-05-07 17:30:50');
+(129, 'Alberto ayuda empleo', 'descripcion ayuda empleo Alberto', '', 3, 31, 65, 92, 65, 'Registrada', '2022-05-07', '17:30:00', '00:00:00', '2022-05-07 17:30:50'),
+(130, 'Alicia ayuda a Arnau', 'Descripcion Alicia ayuda a Arnau', '', 3, 31, 86, 93, 86, 'Registrada', '2022-05-07', '17:46:00', '00:00:00', '2022-05-07 17:46:31'),
+(131, 'Ayuda Servicios Sociales Arnau', 'Descripcion Ayuda Servicios Sociales Arnau', '', 1, 12, 0, 93, 93, 'Registrada', '2022-05-07', '17:51:00', '00:00:00', '2022-05-07 17:51:28');
 
 -- --------------------------------------------------------
 
@@ -377,7 +379,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `password`, `email`, `phone`, `address`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `restart_password`, `restart_code`, `registrationDate`) VALUES
 (65, 'Juanmi', 'Hurtado Montejano', '06268333M', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 'jmhurtadomontejano@gmail.com', 649564806, '', 13700, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, '42269521a080b0698f7ad0a816724529f5cfc79f', 0, 0, '2022-04-12 15:57:28'),
-(85, 'Marta2', 'Hurtado Coronado', '12312312B', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta2@gmail.com', 654325326, '', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'user', 0, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, '2022-05-06 10:03:00'),
+(85, 'Marta', 'Hurtado Coronado', '12312312B', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta@gmail.com', 654325326, '', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'admin', 0, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, '2022-05-06 10:03:00'),
 (86, 'Alicia', 'Montejano', '741741741A', '$2y$10$BTYlDEXdn8Zuhp6gBjlWbOy4z6PWtljHwzmHk1Q8tEVa6OSSTf39e', 'alicia@gmail.com', 685685685, '', 13700, '7b201a8a662542d8efdda9313ee9756d.png', 'admin', 0, 'aa5765b27746f246b5fa2335a6eef45b8caa52ec', 0, 0, '2022-05-06 10:25:14'),
 (87, 'Jaime', 'Hurtado', '74125125D', '$2y$10$Jvqhys1XuQPQ6pmVEwtW6OJv1sDk78hDJkiWSkk8YkZoQFBqlLRci', 'jaime@gmail.com', 632632632, '', 13180, '872be5ab6648302e50f701190428d20b.png', '', 0, 'efd4b6695db128bc21117e8a8045d58257a58009', 0, 0, '2022-05-06 11:08:23'),
 (88, 'Cintia', 'Moreno Hurtado', '74521523D', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', '', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, '2022-05-06 11:19:20'),
@@ -479,7 +481,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `photos`

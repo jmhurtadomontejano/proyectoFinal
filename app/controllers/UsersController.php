@@ -199,8 +199,14 @@ class UsersController {
         $usuDAO->update($usuario);
         //Creamos la cookie en el navegador del cliente con el mismo código generado
         setcookie('uid', $usuario->getCookie_id(), time() + 60 * 60 * 24 * 7);
+        //if user admin or superadmin send to own_itemsDaylyAdmins
+        if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') {
+            header("Location: " . RUTA . "own_itemsDaylyAdmins");
+            die();
+        } else {
         header("Location: " . RUTA);
         die();
+        }
     }
 
     public function usersList() {

@@ -146,8 +146,8 @@ ob_start();
                         <?php } ?>
                     </select>
                     <div class="form-group">
-                        <label for="inputState" class="form-label">Estado</label>
-                        <select id="inputState" name="inputState" class="form-select">
+                    <label for="state" class="form-label">Estado</label>
+                        <select id="state" name="state" class="form-select">
                             <option selected>Registrada</option>
                             <option>Iniciada</option>
                             <option>En Proceso</option>

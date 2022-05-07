@@ -50,6 +50,7 @@ $mapa = array(
      'own_itemsDaylyAdmins' => array('controller' => 'ItemsController', 'method' => 'ownItemsDaylyAdmins', 'publica' => false),
      'delete_item' => array('controller' => 'ItemsController', 'method' => 'delete', 'publica' => false),
      'insert_item' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),
+     'insert_itemUsers' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),
      'ver_item' => array('controller' => 'ItemsController', 'method' => 'find', 'publica' => true),
      'mis_items' => array('controller' => 'ItemsController', 'method' => 'findItemsByUser', 'publica' => false),
      'update_item' => array('controller' => 'ItemsController', 'method' => 'update_item', 'publica' => false),

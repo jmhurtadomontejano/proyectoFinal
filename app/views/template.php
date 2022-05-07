@@ -90,7 +90,7 @@
                     </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= RUTA?>insert_item">Insertar item</a>
+                        <a class="nav-link" href="<?= RUTA?>insert_itemUsers">Insertar item</a>
                     </li>
 
 

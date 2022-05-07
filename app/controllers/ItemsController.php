@@ -192,9 +192,16 @@ class ItemsController {
         //Save in a variable the array with all departments
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
+        $usuDAO = new UsuarioDAO($conn);
+        $usuario = $usuDAO->findUserById(Session::obtener()->getId());
 
-        require '../app/views/items/insert_item.php';
+        //if user is admin or superadmin
+        if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+            require '../app/views/items/insert_item.php';
+        } else {
+            require '../app/views/items/insert_itemUsers.php';
     }
+}
 
     public function find() {
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);

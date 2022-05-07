@@ -18,6 +18,12 @@ $(function() {
             ?>
 <?php } ?>
 
+<!-- boton to print item info -->
+<div class="col-md-11" style="margin:10px; padding:10px; border:1px solid black">
+    <button type="button" class="btn btn-primary col-12" onclick="printDiv('printableArea')"><i class="fa-solid fa-file-arrow-down"></i>  Imprimir Justificante</button>
+</div>
+
+
 <form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario Registro</label>
@@ -105,15 +111,26 @@ $(function() {
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
         <input type="file" class="form-control" name="inputPhotoItem[]" id="photoItem" multiple="multiple">
     </div>
-
-
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">Agregar Item</button>
+        <button type="submit" class="btn btn-primary">Editar Item</button>
     </div>
 </form>
 <?php
 $contenido = ob_get_clean();
 $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
-$titulo2 = "Insertar Items";
+$titulo2 = "Modificar Items e Imprimir Justificantes";
 require '../app/views/template.php';
 ?>
+
+<!-- script to  onclick="printDiv('printableArea')" -->
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+

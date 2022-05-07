@@ -5,17 +5,19 @@ ob_start();
 
 <!-- input date format -->
 
-<div class="m-10" style="margin:10px; padding:10px; border:1px solid black; background-color:#999999">
+<div class="m-10" style="margin:10px; padding:10px; border:1px solid black; background-color:#e6d4ff">
     <h4 class="w-100">Filtros por fecha y Departamento</h4>
     <div class="d-flex col-11 m-10" style="margin:10px;">
-        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid black">
-            <label for="inputDate" class="form-label">Introduce Fecha para filtrar</label>
-            <input type="date" class="col-12" name="inputDate" value="<?php echo date("Y-m-d");?>">
+        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
+                <i class="fa-solid fa-calendar-days fa-2x col-2"></i>    
+                <label for="inputDate" class="form-label">Fecha para filtrar </label>
+                <input type="date" class="col-10 form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
         </div>
 
         <!-- input department to filter -->
-        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid black">
-            <label for="inputDepartment" class="form-label">Introduce Departamento para filtrar</label>
+        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
+        <i class="fa-solid fa-building-user fa-2x col-2"></i>
+            <label for="inputDepartment" class="form-label">Filtro por Depart.</label>
             <select class="form-control" id="inputDepartment" name="inputDepartment" required>
                 <option value="">Seleccione....</option>
                 <?php foreach ($departments as $department): ?>
@@ -268,3 +270,17 @@ $(document).on('click', '#boton_editar', function() {
         </div>
     </div>
 </div>
+
+<!-- script to control when name="inputDate" change -->
+<script>
+$(document).ready(function () {
+    $("#inputDate").change(function () {
+        var date = $("#inputDate").val();
+        var hour = $("#inputHour").val();
+        var duration = $("#inputDuration").val();
+        var dateHour = date + " " + hour;
+        var dateHourDuration = dateHour + " " + duration;
+        $("#inputDateHourDuration").val(dateHourDuration);
+    });
+});
+</script>

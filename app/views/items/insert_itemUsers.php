@@ -27,22 +27,22 @@ $(function() {
     </div>
     <div class="col-md-3 col-6">
         <label for="inputState" class="form-label">Estado</label>
-        <select id="inputState" name="inputState" class="form-select">
+        <select id="inputState" name="inputState" class="form-select" readonly>
             <option selected>Registrada</option>
             <option>Iniciada</option>
             <option>En Proceso</option>
             <option>Finalizada</option>
         </select>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-3 col-4">
         <label for="inputDate" class="form-label">Fecha</label>
-        <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
+        <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>" readonly>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-3 col-4">
         <label for="inputHour" class="form-label">Hora</label>
-        <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>">
+        <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>" readonly>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-2 col-4" hidden>
         <label for="inputDuration" class="form-label">Duracion</label>
         <input type="time" class="form-control" name="inputDuration">
     </div>
@@ -56,20 +56,15 @@ $(function() {
     <?php } ?>
     <div class="col-6">
         <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
-            <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                <select class="form-control" name="inputClientUser" id="inputClientUser">
-                    <option value="">Seleccione....</option>
-                    <?php foreach ($clients as $client): ?>
-                        <option value="<?php echo $client->id  ?>">
-                        <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
-                    <?php endforeach; ?>
-                    <?php } ?>
-                    <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
-                    <input class="form-control" name="inputUser"
+                    <input class="form-control" name="inputClientUser" id="inputClientUser"
                         value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
                         readonly>
-                <?php } ?>
-        </select>
+    </div>
+    <div class="col-6">
+        <label for="inputUser" class="form-label">Usuario Registro</label>
+        <input class="form-control" name="inputUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
     </div>
     <div class="col-md-6 w-100">
         <label for="inputName" class="form-label">Titulo</label>

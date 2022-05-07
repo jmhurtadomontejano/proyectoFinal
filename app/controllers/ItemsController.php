@@ -12,6 +12,7 @@ class ItemsController {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
         $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
 
         require '../app/views/items/items_list.php';
     }
@@ -42,7 +43,7 @@ class ItemsController {
                   'id_department'=> $id_department,
                   'id_service'=> $id_service,
                   'id_attendUser'=> $id_attendUser,
-                  'setId_clientUser'=> $id_clientUser,
+                  'id_clientUser'=> $id_clientUser,
                   'id_user'=> $id_user,
                   'state'=> $state,
                   'date'=> $date,

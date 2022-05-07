@@ -184,7 +184,7 @@ $(document).on('click', '#boton_editar', function() {
                         <select class="form-control" id="id_department" name="id_department" required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
-                            <option value="<?php echo $department->idDepartment  ?>">
+                            <option value="<?php echo $department->idDepartment ?>">
                                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -197,10 +197,10 @@ $(document).on('click', '#boton_editar', function() {
                         <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>
-                    <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni
+                    <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
                         entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
                     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                    <select class="form-control" name="inputClientUser" id="inputClientUser">
+                    <select class="form-control" name="id_clientUser" id="id_clientUser">
                         <option value="">Seleccione....</option>
                         <?php foreach ($clients as $client): ?>
                         <option value="<?php echo $client->id  ?>">
@@ -215,8 +215,13 @@ $(document).on('click', '#boton_editar', function() {
                         <?php } ?>
                     </select>
                     <div class="form-group">
-                        <label for="state">Estado</label>
-                        <input type="text" class="form-control" id="state" name="state" required>
+                        <label for="inputState" class="form-label">Estado</label>
+                        <select id="inputState" name="inputState" class="form-select">
+                            <option selected>Registrada</option>
+                            <option>Iniciada</option>
+                            <option>En Proceso</option>
+                            <option>Finalizada</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="date">Fecha</label>

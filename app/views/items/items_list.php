@@ -46,11 +46,11 @@ ob_start();
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
                     <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
-                        <td id="attendUserInfo">No asignado</td>
+                    <td id="attendUserInfo">No asignado</td>
                     <?php else: ?>
-                        <td id="attendUserInfo">
-                            <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
-                        </td>
+                    <td id="attendUserInfo">
+                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
+                    </td>
                     <?php endif; ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
@@ -115,7 +115,7 @@ ob_start();
                         <select class="form-control" id="id_department" name="id_department" required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
-                            <option value="<?php echo $department->idDepartment  ?>">
+                            <option value="<?php echo $department->idDepartment ?>">
                                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -128,13 +128,31 @@ ob_start();
                         <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>
+                    <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
+                        entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <select class="form-control" name="id_clientUser" id="id_clientUser">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo $client->id  ?>">
+                            <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php } ?>
+                        <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                        <input class="form-control" name="inputUser"
+                            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                            readonly>
+                        <?php } ?>
+                    </select>
                     <div class="form-group">
-                        <label for="id_clientUser">Cliente:</label>
-                        <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">Estado</label>
-                        <input type="text" class="form-control" id="state" name="state" required>
+                        <label for="inputState" class="form-label">Estado</label>
+                        <select id="inputState" name="inputState" class="form-select">
+                            <option selected>Registrada</option>
+                            <option>Iniciada</option>
+                            <option>En Proceso</option>
+                            <option>Finalizada</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="date">Fecha</label>

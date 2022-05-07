@@ -1,5 +1,8 @@
 <?php ob_start() ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
+<button type="button" class="btn btn-primary" style="margin:10px; color:white" data-bs> <a class="dropdown-item" href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
+ 
+
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
@@ -41,7 +44,6 @@
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Departamentos";
  ?>
- <button type="button" class="btn btn-primary" data-bs> <a class="dropdown-item" href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
  
  <?php require '../app/views/template.php';
  ?>

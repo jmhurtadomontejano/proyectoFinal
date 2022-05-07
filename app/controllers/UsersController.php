@@ -285,14 +285,11 @@ class UsersController {
     public function myUser(){
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO($conn);
-        $user = $usuDAO->findUserById(Session::obtener()->getId());
-
         //call to posatlCodes
-        $usuarioDAO = new UsuarioDAO($conn);
-        $list_postalCodes = $usuarioDAO->list_postalCodes();
+        $list_postalCodes = $usuDAO->list_postalCodes();
+        $user = $usuDAO->findUserById(Session::obtener()->getId());
             
         require '../app/views/users/myUser.php';
-
     }
 
 }

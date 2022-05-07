@@ -158,13 +158,19 @@
                                 </div>
                             </div>
                             <?php else: ?>
-                            <form id="login" action="login" method="post">
-                                <input type="text" placeholder="email" name="email">
-                                <input type="password" placeholder="password" name="password"><br>
-                                <input type="submit" value="login" class="boton_formulario">
-                                <input type="button" onclick="location.href = '<?= RUTA?>registrar'" value="registrar"
-                                    class="boton_formulario">
-                            </form>
+                            <button type="button"
+                                class="btn btn-secondary col-12 d-flex align-items-center justify-content-center">
+                                <form id="login" style="margin:3px" action="login" method="post">
+                                    <input type="text" placeholder="email" name="email" class="form-control">
+                                    <input type="password" placeholder="password" name="password" class="form-control">
+                                    <br>
+                                    <section class="d-flex justify-content-evenly flex-wrap">
+                                        <input type="submit" value="login" class="btn btn-primary" style="padding:10px">
+                                        <input type="button" value="registrar"
+                                            onclick="location.href = '<?= RUTA?>registrar'" class="btn btn-info">
+                                    </section>
+                                </form>
+                            </button>
                             <?php endif; ?>
                         </section>
                     </ul>

@@ -25,8 +25,6 @@
                                 </form>
                                 <div id="userInfo"><?= Session::obtener()->getNombre() ?>
                                     <?= Session::obtener()->getSurname() ?>
-                                    <br>
-                                    <a href="logout">cerrar sesión</a>
                                 </div>
                                 </form>
                             </div>

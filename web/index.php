@@ -46,6 +46,7 @@ $mapa = array(
      //ItemsController
      'items_list' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),
      'own_items' => array('controller' => 'ItemsController', 'method' => 'ownItems', 'publica' => false),
+     'own_itemsUsers' => array('controller' => 'ItemsController', 'method' => 'ownItemsUsers', 'publica' => false),
      'own_itemsDaylyAdmins' => array('controller' => 'ItemsController', 'method' => 'ownItemsDaylyAdmins', 'publica' => false),
      'delete_item' => array('controller' => 'ItemsController', 'method' => 'delete', 'publica' => false),
      'insert_item' => array('controller' => 'ItemsController', 'method' => 'insert', 'publica' => false),

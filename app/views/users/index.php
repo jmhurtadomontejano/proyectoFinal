@@ -72,7 +72,15 @@
                 <i class="fa-solid fa-list-check fa-5x"></i></a>
         </button>
         </li>
-        <?php } ?>
+        <?php } else{?>
+        <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
+            <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis Items
+                <i class="fa-solid fa-list-check fa-5x"></i></a>
+        </button>
+        </li>
+        <?php }?>
+
+        <!-- END ADMIN MENU -->
 
         <!-- SUPERADMIN MENU -->
         <?php if ($usuario->getRol() == 'superAdmin') { ?>

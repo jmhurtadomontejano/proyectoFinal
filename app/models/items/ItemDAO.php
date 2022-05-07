@@ -179,6 +179,26 @@ class ItemDAO {
         }
         return $array_obj_items;
     }
+
+    public function findItemsByClientUser($id_user) {
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_clientUser=? ORDER BY id DESC";
+        if(!$stmt = $this->conn->prepare($sql)){
+            die("Error en la consulta $sql:" . $this->conn->error);
+        }
+        
+        $stmt instanceof mysqli_stmt;
+        
+        $stmt->bind_param('i', $id_user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        
+        $array_obj_items = array();
+        while ($item = $result->fetch_object('Item')) {
+            $array_obj_items[] = $item;
+        }
+        return $array_obj_items;
+    }
     
 
     public function listar_departamentos() { //: 

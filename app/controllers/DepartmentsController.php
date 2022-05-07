@@ -25,7 +25,6 @@ class DepartmentsController {
             if ($name!= "" && $description!= "") {
                 $department->setName($name);
                 $department->setDescription($description);
-                $department->setId_user(Session::obtener()->getId());
                 $departmentDAO->insert($department);
                 MensajesFlash::add_message("Departamento añadido");
             } else {

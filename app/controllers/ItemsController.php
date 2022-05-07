@@ -208,6 +208,7 @@ class ItemsController {
     }
 
     public function ownItems() {
+        if (Session::existe() == true) {
         $conn = ConexionBD::conectar();
         $itemDAO = new ItemDAO($conn);
         $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());
@@ -217,18 +218,56 @@ class ItemsController {
         $token = $_SESSION['token'];
 
         require '../app/views/items/own_items.php';
+    } else {
+        header("Location: inicio");
+        MensajesFlash::add_message("Debe iniciar sesión para acceder a esta página");
+        die();
     }
+}
 
     public function ownItemsDaylyAdmins(){
-        $conn = ConexionBD::conectar();
-        $itemDAO = new ItemDAO($conn);
-        $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $itemDAO = new ItemDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());                
+                require '../app/views/items/own_itemsDaylyAdmins.php';
+                      //Generamos Token para seguridad del borrado
+                        $_SESSION['token'] = md5(time() + rand(0, 999));
+                        $token = $_SESSION['token'];
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
+        }
+    }
 
-        //Generamos Token para seguridad del borrado
-        $_SESSION['token'] = md5(time() + rand(0, 999));
-        $token = $_SESSION['token'];
+    public function ownItemsUsers(){
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $itemDAO = new ItemDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
 
-        require '../app/views/items/own_itemsDaylyAdmins.php';
+                $mis_items = $itemDAO->findItemsByClientUser(Session::obtener()->getId());                
+                require '../app/views/items/own_itemsUsers.php';
+                      //Generamos Token para seguridad del borrado
+                        $_SESSION['token'] = md5(time() + rand(0, 999));
+                        $token = $_SESSION['token'];
+      
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
+        }
     }
 
     public function update_item() {

@@ -13,7 +13,7 @@ ob_start();
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
-                    <th scope="col">Atendido por nombre:</th>
+                    <th scope="col">Atendido por:</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha</th>

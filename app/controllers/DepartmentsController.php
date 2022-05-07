@@ -32,19 +32,19 @@ class DepartmentsController {
                     } else {
                         MensajesFlash::add_message("No puedes añadir un departamento sin nombre ni descripción");
                     }
-                
-                    header("Location: " . RUTA);
+              /*header location RUTA department_list */
+                header('Location: ' . RUTA . '/departments_list');
                     die();
             }
             require '../app/views/departments/insert_department.php';
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
             die();
         }
     }
@@ -63,12 +63,12 @@ class DepartmentsController {
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
             die();
         }
     }

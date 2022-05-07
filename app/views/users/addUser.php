@@ -10,50 +10,31 @@
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
             <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
                 <div class="row" style="paddin:10px; margin:10px" >
-                    <h3 class="text-center">Mis Datos de Usuario</h3>
+                    <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
                     <input type="hidden" name="token" value="<?= $token ?>">
-                    <section class="">
-                            <?php if (Session::existe()): ?>
-                            <div id="userInfo">
-                                <div id="photo_usuario"
-                                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
-                                </div>
-                                <form id="formulario_actualizar_photo" action="subir_photo" method="post"
-                                    enctype="multipart/form-data">
-                                    <input type="file" name="photo" id="input_photo">
-                                    <input type="submit">
-                                </form>
-                                <div id="userInfo"><?= Session::obtener()->getNombre() ?>
-                                    <?= Session::obtener()->getSurname() ?>
-                                </div>
-                                </form>
-                            </div>
-                            <?php else: ?>
-                            <?php endif; ?>
-                        </section>
                     <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="name" value=<?= Session::obtener()->getNombre() ?> class="form-control"
+                        <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                             aria-describedby="nameHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Apellidos</label>
-                        <input type="text" name="surname" value=<?= Session::obtener()->getSurname() ?>
+                        <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">DNI o NIE completo</label>
-                        <input type="dni" name="dni" value=<?= Session::obtener()->getDni() ?> class="form-control"
+                        <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                             aria-describedby="dniHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Teléfono</label>
-                        <input type="number" name="phone" value=<?= Session::obtener()->getPhone() ?>
+                        <input type="number" name="phone" placeholder="Introduce aqui tu numero de telefono"
                             class="form-control" max=999999999>
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Email/Direccion de correo electrónico</label>
-                        <input type="email" name="email" value=<?= Session::obtener()->getEmail() ?> class="form-control"
+                        <input type="email" name="email" placeholder="Introduce aqui tu em@il" class="form-control"
                             aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                     </div>
@@ -61,20 +42,21 @@
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Código Postal</label>
                         <select class="form-control" id="postalCode" name="postalCode" required>
-                            <option value=<?= Session::obtener()->getPostalCode() ?>>Seleccione Código Postal</option>
+                            <option value="">Seleccione Código Postal</option>
                             <?php foreach ($list_postalCodes as $postalCode): ?>
                             <option  value="<?php echo $postalCode->code  ?>">
                                 <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px" hidden>
                         <label class="form-label">Password</label>
-                        <input class="form-control" type="password" name="password" value=<?= Session::obtener()->getPassword() ?> >
+                        <input type="password" name="password" class="form-control"
+                            placeholder="Introduce aqui tu password">
                         <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                             Mayusculas y minusculas</div>
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <div class="col-md-6 col-12" style="padding-bottom:20px" hidden>
                         <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                         <input type="password" name="password2" id="password2" class="form-control"
                             placeholder="Introduce aqui tu password">
@@ -115,7 +97,7 @@
                         </label>
                     </div>
                     <div style="justify-content:center; align-items:center">
-                        <button type="submit" value="registrar" class="btn btn-primary w-75">Cambiar mis datos de Usuario</button>
+                        <button type="submit" value="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
                     </div>
                 </div>
         </form>
@@ -125,7 +107,7 @@
 <?php
 $contenido = ob_get_clean();
 $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
-$titulo2 = "Mis Datos de usuario";
+$titulo2 = "Registrar Usuario Nuevo";
 require '../app/views/template.php';
 ?>
 <script>
@@ -186,15 +168,4 @@ $(document).ready(function() {
         }
     });
 }   );
-</script>
-
-<!-- scripts to change Userphoto-->
-<script type="text/javascript">
-$('#photo_usuario').click(function() {
-    $('#input_photo').click();
-});
-
-$('#input_photo').change(function() {
-    $('#formulario_actualizar_photo').submit();
-})
 </script>

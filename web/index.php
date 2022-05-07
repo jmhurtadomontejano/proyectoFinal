@@ -62,6 +62,7 @@ $mapa = array(
     //userController
     'inicio' => array('controller' => 'UsersController', 'method' => 'index', 'publica' => true),
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),
+    'add_user' => array('controller' => 'UsersController', 'method' => 'add_user', 'publica' => false),
     'subir_photo' => array('controller' => 'UsersController', 'method' => 'subir_photo', 'publica' => false),
     'login' => array('controller' => 'UsersController', 'method' => 'login', 'publica' => true),
     'logout' => array('controller' => 'UsersController', 'method' => 'logout', 'publica' => false),

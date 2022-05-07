@@ -143,6 +143,120 @@ class UsersController {
         require '../app/views/users/userRegistrer.php';
     }
 
+    public function add_user() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //Comprobamos el token
+            if ($_POST['token'] != $_SESSION['token']) {
+                header('Location: #');
+                MensajesFlash::add_message("Token incorrecto");
+                die();
+            }
+
+            $usuario = new Usuario();
+            $error = false;
+            if (empty($_POST['name'])) {
+                MensajesFlash::add_message("El nombre es obligatorio.");
+                $error = true;
+            }
+
+            if (empty($_POST['email'])) {
+                MensajesFlash::add_message("El email es obligatorio.");
+                $error = true;
+            }
+
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                MensajesFlash::add_message("El email no es correcto.");
+                $error = true;
+            }
+
+ 
+          //Check the email is not registrer yet  
+           $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
+          $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
+
+          if ($usuarioEmail != null) {
+              MensajesFlash::add_message("El email ya está registrado.");
+              $error = true;
+          }
+            
+
+            //if photo is null or empty, set default photo
+            if (empty($_FILES['photo']['name'])) {
+                $usuario->setPhoto("default.jpg");
+                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente");
+            } else {
+            //Validación photo
+            if ($_FILES['photo']['type'] != 'image/png' &&
+                    $_FILES['photo']['type'] != 'image/gif' &&
+                    $_FILES['photo']['type'] != 'image/jpeg') {
+                MensajesFlash::add_message("El archivo seleccionado no es una foto.");
+                $error = true;
+            }
+        }
+
+            if ($_FILES['photo']['size'] > 1000000) {
+                MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
+                $error = true;
+            }
+
+     /*       if(!($_POST['datesConsent'])){
+                MensajesFlash::add_message("Es obligatorio marcar la casilla de las condiciones de uso para poder registrarse.");
+                $tipoMensaje = "alert alert-error";
+                $error = true;
+            }
+*/
+            if (!$error) {
+                //Copiar photo
+                //Generamos un nombre para la photo
+                $nombre_photo = md5(time() + rand(0, 999999));
+                $extension_photo = substr($_FILES['photo']['name'], strrpos($_FILES['photo']['name'], '.') + 1);
+                $extension_photo = filter_var($extension_photo, FILTER_SANITIZE_SPECIAL_CHARS);
+                //Comprobamos que no exista ya una photo con el mismo nombre, si existe calculamos uno nuevo
+                while (file_exists("images/users/$nombre_photo.$extension_photo")) {
+                    $nombre_photo = md5(time() + rand(0, 999999));
+                }
+                //movemos la photo a la carpeta que queramos guardarla y con el nombre original
+                move_uploaded_file($_FILES['photo']['tmp_name'], "images/users/$nombre_photo.$extension_photo");
+
+                //Limpiamos los datos de entrada 
+                $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+                $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $postalCode = filter_var($_POST['postalCode'], FILTER_SANITIZE_SPECIAL_CHARS);
+                //Insertamos el usuario en la BBDD
+                $usuario->setEmail($email);
+                $usuario->setNombre($name);
+                $usuario->setSurname($surname);
+                $usuario->setDni($dni);
+                $usuario->setPhone($phone);
+                $usuario->setPostalCode($postalCode);
+                $usuario->setPhoto("$nombre_photo.$extension_photo");
+
+                $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+                $usuDAO->insert($usuario);
+                MensajesFlash::add_message("Usuario creado.");
+                header('Location: inicio');
+                die();
+            }
+        }
+
+                //Call Conexion and ItemDao
+                $conn = ConexionBD::conectar();
+                $usuarioDAO = new UsuarioDAO($conn);
+        //call to posatlCodes
+        $list_postalCodes = $usuarioDAO->list_postalCodes();
+
+
+        //Calculamos un token
+        $token = md5(time() + rand(0, 999));
+        $_SESSION['token'] = $token;
+
+        require '../app/views/users/addUser.php';
+    }
+
     public function subir_photo() {
         if (($_FILES['photo']['type'] != 'image/png' &&
                 $_FILES['photo']['type'] != 'image/gif' &&

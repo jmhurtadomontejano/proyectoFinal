@@ -1,10 +1,21 @@
 <?php ob_start() ?>
+<!-- scripts to change Userphoto-->
+<script type="text/javascript">
+$('#photo_usuario').click(function() {
+    $('#input_photo').click();
+});
+
+$('#input_photo').change(function() {
+    $('#formulario_actualizar_photo').submit();
+})
+</script>
+
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
-    <section class="">
+    <section class="" hidden>
         <?php if (Session::existe()): ?>
-        <div id="userInfo" hidden>
+        <div id="userInfo">
             <div id="photo_usuario"
                 style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
             </div>
@@ -65,7 +76,7 @@
     <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar item
             <!-- image of item-->
-            <i class="fa fa-list-alt fa-5x" aria-hidden="true" style="size:20px"></i>
+            <i class="fa-solid fa-list-alt" aria-hidden="true" style="size:20px"></i>
         </a>
     </button>
     <?php
@@ -76,13 +87,13 @@
     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
     <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
-            <i class="fa-solid fa-list-check fa-5x"></i></a>
+            <i class="fa-solid fa-list-check"></i></a>
     </button>
     </li>
     <?php } else{?>
     <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis Items
-            <i class="fa-solid fa-list-check fa-5x"></i></a>
+            <i class="fa-solid fa-list-check"></i></a>
     </button>
     </li>
     <?php }?>
@@ -93,17 +104,17 @@
     <?php if ($usuario->getRol() == 'superAdmin') { ?>
     <button type="button" class="btn btn-success col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
-            <i class="fa-solid fa-users fa-5x"></i>
+            <i class="fa-solid fa-users"></i>
         </a>
     </button>
     <button type="button" class="btn btn-warning col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>departments_list">Departamentos
-            <i class="fa-solid fa-building-user fa-5x"></i>
+            <i class="fa-solid fa-building-user"></i>
         </a>
     </button>
     <button type="button" class="btn btn-danger col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Listar todos los items
-            <i class="fa-solid fa-sitemap fa-5x"></i>
+            <i class="fa-solid fa-sitemap"></i>
         </a>
     </button>
     <?php } ?>
@@ -117,3 +128,4 @@ $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
 $titulo2 = "INICIO";
 require '../app/views/template.php';
 ?>
+

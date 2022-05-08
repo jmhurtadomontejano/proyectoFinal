@@ -162,3 +162,24 @@ ul#menu_usuario li a {
 #mydatatable_wrapper button {
     margin: 2px 10px 2px 4px;
 }
+
+.fa-solid {
+    font-size: 5em;
+}
+
+
+/* to little screen less than 768px */
+@media screen and (max-width: 768px) {
+    #usuario,
+    #login {
+        width: 100%;
+        float: none;
+        position: relative;
+    }
+
+
+
+.fa-solid  {
+    font-size: 2em;
+}
+}

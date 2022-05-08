@@ -5,119 +5,122 @@
 
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ">
-    <div class="row col-sm-10 col-12">
+    <div class="row col-12">
 
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
-            <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
-                <div class="row" style="paddin:10px; margin:10px" >
-                    <h3 class="text-center">Mis Datos de Usuario</h3>
-                    <input type="hidden" name="token" value="<?= $token ?>">
-                    <section class="">
-                            <?php if (Session::existe()): ?>
-                            <div id="userInfo">
-                                <div id="photo_usuario"
-                                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
-                                </div>
-                                <form id="formulario_actualizar_photo" action="subir_photo" method="post"
-                                    enctype="multipart/form-data">
-                                    <input type="file" name="photo" id="input_photo">
-                                    <input type="submit">
-                                </form>
-                                <div id="userInfo"><?= Session::obtener()->getNombre() ?>
-                                    <?= Session::obtener()->getSurname() ?>
-                                </div>
-                                </form>
-                            </div>
-                            <?php else: ?>
-                            <?php endif; ?>
-                        </section>
-                    <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" name="name" value=<?= Session::obtener()->getNombre() ?> class="form-control"
-                            aria-describedby="nameHelp">
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Apellidos</label>
-                        <input type="text" name="surname" value=<?= Session::obtener()->getSurname() ?>
-                            class="form-control" aria-describedby="surnameHelp">
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">DNI o NIE completo</label>
-                        <input type="dni" name="dni" value=<?= Session::obtener()->getDni() ?> class="form-control"
-                            aria-describedby="dniHelp">
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Teléfono</label>
-                        <input type="number" name="phone" value=<?= Session::obtener()->getPhone() ?>
-                            class="form-control" max=999999999>
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Email/Direccion de correo electrónico</label>
-                        <input type="email" name="email" value=<?= Session::obtener()->getEmail() ?> class="form-control"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
-                    </div>
 
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Código Postal</label>
-                        <select class="form-control" id="postalCode" name="postalCode" required>
-                            <option value=<?= Session::obtener()->getPostalCode() ?>>Seleccione Código Postal</option>
-                            <?php foreach ($list_postalCodes as $postalCode): ?>
-                            <option  value="<?php echo $postalCode->code  ?>">
-                                <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Password</label>
-                        <input class="form-control" type="password" name="password" value=<?= Session::obtener()->getPassword() ?> >
-                        <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
-                            Mayusculas y minusculas</div>
-                    </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
-                        <label class="form-label">Vuelve a escribir la Password para comprobación</label>
-                        <input type="password" name="password2" id="password2" class="form-control"
-                            placeholder="Introduce aqui tu password">
-                        <div id="passwordHelp" class="form-text">Escribe la misma contraseña que en la casilla anterior
+            <div class="row" style="paddin:10px; margin:10px">
+                <h3 class="text-center">Mis Datos de Usuario</h3>
+                <!-- USER PHOTO -->
+                <input type="hidden" name="token" value="<?= $token ?>">
+                <section class="col-12">
+                    <?php if (Session::existe()): ?>
+                    <div id="userInfo">
+                        <div id="photo_usuario"
+                            style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                        </div>
+                        <form id="formulario_actualizar_photo" action="subir_photo" method="post"
+                            enctype="multipart/form-data">
+                            <input type="file" name="photo" id="input_photo">
+                            <input type="submit">
+                        </form>
+                        <div id="userInfo"><?= Session::obtener()->getNombre() ?>
+                            <?= Session::obtener()->getSurname() ?>
+                            <br>
+                            <a href="logout">cerrar sesión</a>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" >Foto del Usuario</label>
-                        <input type="file" name="photo" class="form-control" accept="image/*"
-                            aria-describedby="photoHelp">
-                        <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
+                    <?php else: ?>
+                    <?php endif; ?>
+                </section>
+                <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="name" value=<?= Session::obtener()->getNombre() ?> class="form-control"
+                        aria-describedby="nameHelp">
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Apellidos</label>
+                    <input type="text" name="surname" value=<?= Session::obtener()->getSurname() ?> class="form-control"
+                        aria-describedby="surnameHelp">
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">DNI o NIE completo</label>
+                    <input type="dni" name="dni" value=<?= Session::obtener()->getDni() ?> class="form-control"
+                        aria-describedby="dniHelp">
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Teléfono</label>
+                    <input type="number" name="phone" value=<?= Session::obtener()->getPhone() ?> class="form-control"
+                        max=999999999>
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Email/Direccion de correo electrónico</label>
+                    <input type="email" name="email" value=<?= Session::obtener()->getEmail() ?> class="form-control"
+                        aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
+                </div>
+
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Código Postal</label>
+                    <select class="form-control" id="postalCode" name="postalCode" required>
+                        <option value=<?= Session::obtener()->getPostalCode() ?>>Seleccione Código Postal</option>
+                        <?php foreach ($list_postalCodes as $postalCode): ?>
+                        <option value="<?php echo $postalCode->code  ?>">
+                            <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password"
+                        value=<?= Session::obtener()->getPassword() ?>>
+                    <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
+                        Mayusculas y minusculas</div>
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Vuelve a escribir la Password para comprobación</label>
+                    <input type="password" name="password2" id="password2" class="form-control"
+                        placeholder="Introduce aqui tu password">
+                    <div id="passwordHelp" class="form-text">Escribe la misma contraseña que en la casilla anterior
                     </div>
-                    <?php if (Session::existe()) { ?>
-                    <?php
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Foto del Usuario</label>
+                    <input type="file" name="photo" class="form-control" accept="image/*" aria-describedby="photoHelp">
+                    <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
+                </div>
+                <?php if (Session::existe()) { ?>
+                <?php
                             $conn = ConexionBD::conectar();
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
-                    <?php if ($usuario->getRol() == 'admin') { ?>
-                    <div class="mb-3">
-                        <label class="form-label">Rol</label>
-                        <select name="rol" class="form-control">
-                            <option value="user">Usuario</option>
-                            <?php if ($usuario->getRol() =='superAdmin') { ?>
-                            <option value="admin">Administrador</option>
-                            <option value="superAdmin">Super Administrador</option>
-                        </select>
-                    </div>
-                    </li>
-                    <?php } ?>
-                    <?php } ?>
-                    <?php } ?>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
-                            checked>
-                        <label class="form-check-label" for="flexCheckChecked">Doy mi Consentimiento según Ley de
-                            Protección de Datos
-                        </label>
-                    </div>
-                    <div style="justify-content:center; align-items:center">
-                        <button type="submit" value="registrar" class="btn btn-primary w-75">Cambiar mis datos de Usuario</button>
-                    </div>
+                <?php if ($usuario->getRol() == 'admin') { ?>
+                <div class="mb-3">
+                    <label class="form-label">Rol</label>
+                    <select name="rol" class="form-control">
+                        <option value="user">Usuario</option>
+                        <?php if ($usuario->getRol() =='superAdmin') { ?>
+                        <option value="admin">Administrador</option>
+                        <option value="superAdmin">Super Administrador</option>
+                    </select>
                 </div>
+                </li>
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
+                        checked>
+                    <label class="form-check-label" for="flexCheckChecked">Doy mi Consentimiento según Ley de
+                        Protección de Datos
+                    </label>
+                </div>
+                <div style="justify-content:center; align-items:center">
+                    <button type="submit" value="registrar" class="btn btn-primary w-75">Cambiar mis datos de
+                        Usuario</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -185,7 +188,7 @@ $(document).ready(function() {
             $("#dniHelp").html("El DNI no es correcto");
         }
     });
-}   );
+});
 </script>
 
 <!-- scripts to change Userphoto-->

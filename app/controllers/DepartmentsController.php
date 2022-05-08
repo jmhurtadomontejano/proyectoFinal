@@ -81,8 +81,10 @@ class DepartmentsController {
     public function editDepartment(){
         $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
 
-        $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description']);
+        $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['phone'], $_POST['emailDepartment'], $_POST['iconDepartment']);
 
         $departmentDAO->update($department);
     }
+
+    
 }

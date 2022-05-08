@@ -54,11 +54,11 @@ $('#input_photo').change(function() {
 
     <!-- ADMIN MENU -->
     <?php if (Session::existe()) { ?>
-    <button type="button" class="btn btn-secondary col-md-3 col-12 d-flex align-items-center justify-content-center"
+    <button type="button" class="d-flex btn btn-secondary col-md-3 col-12 d-flex align-items-center justify-content-center"
         style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>my_user">Mis Datos
         </a>
-        <div id="userInfo">
+        <div id="userInfo" class="photo_user_index">
             <div id="photo_usuario" class="align-items-center justify-content-center"
                 style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
             </div>
@@ -113,7 +113,7 @@ $('#input_photo').change(function() {
         </a>
     </button>
     <button type="button" class="btn btn-danger col-md-3 col-12" style="margin:10px">
-        <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Listar todos los items
+        <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Todos los items
             <i class="fa-solid fa-sitemap"></i>
         </a>
     </button>

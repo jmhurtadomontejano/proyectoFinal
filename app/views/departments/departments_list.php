@@ -1,7 +1,8 @@
 <?php ob_start() ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
-<button type="button" class="btn btn-primary" style="margin:10px; color:white" data-bs> <a class="dropdown-item" href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
- 
+<button type="button" class="btn btn-primary" style="margin:10px; color:white" data-bs> <a class="dropdown-item"
+        href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
+
 
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
@@ -21,22 +22,27 @@
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
+                <th>Filter..</th>
                 <th hidden>Filter..</th>
             </tr>
         </tfoot>
         <tbody>
             <?php foreach ($departments as $d): ?>
             <tr>
-            <th id="departmentInfo"><?= $d->getIdDepartment() ?></th>
+                <th id="departmentInfo"><?= $d->getIdDepartment() ?></th>
                 <th id="departmentInfo"><?= $d->getName() ?></th>
                 <th id="departmentInfo"><?= $d->getDescription() ?></th>
                 <th id="departmentInfo"><?= $d->getPhone() ?></th>
                 <th id="departmentInfo"><?= $d->getEmailDepartment() ?></th>
                 <th id="departmentInfo"><?= $d->getIconDepartment() ?></th>
                 <th>
-                       <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->                                                      
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDepartmentModal"
-                        >Editar </button>
+                    <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->
+                    <button type="button" class="btn btn-primary" id="<?= $d->getIdDepartment() ?>"
+                        data-id=<?= $d->getIdDepartment() ?> data-bs-toggle="modal"
+                        data-bs-target="#editDepartmentModal">Editar <?= $d->getIdDepartment() ?></button>
+
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -50,8 +56,8 @@
  $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
  $titulo2 = "Detalle de Departamentos";
  ?>
- 
- <?php require '../app/views/template.php';
+
+<?php require '../app/views/template.php';
  ?>
 
 <script type="text/javascript">
@@ -87,72 +93,97 @@ $(document).ready(function() {
 });
 
 var buttonCommon = {
-        exportOptions: {
-            format: {
-                body: function ( data, row, column, node ) {
-                    // Strip $ from salary column to make it numeric
-                    return column === 5 ?
-                        data.replace( /[$,]/g, '' ) :
-                        data;
-                }
+    exportOptions: {
+        format: {
+            body: function(data, row, column, node) {
+                // Strip $ from salary column to make it numeric
+                return column === 5 ?
+                    data.replace(/[$,]/g, '') :
+                    data;
             }
         }
-    };
- 
-    $('#example').DataTable( {
-        ajax: '../../../../examples/ajax/data/objects.txt',
-        columns: [
-            { data: 'name' },
-            { data: 'position' },
-            { data: 'office' },
-            { data: 'extn' },
-            { data: 'start_date' },
-            { data: 'salary' }
-        ],
-        dom: 'Bfrtip',
-        buttons: [
-            $.extend( true, {}, buttonCommon, {
-                extend: 'copyHtml5'
-            } ),
-            $.extend( true, {}, buttonCommon, {
-                extend: 'excelHtml5'
-            } ),
-            $.extend( true, {}, buttonCommon, {
-                extend: 'pdfHtml5'
-            } )
-        ]
-    } );
-    
+    }
+};
+
+$('#example').DataTable({
+    ajax: '../../../../examples/ajax/data/objects.txt',
+    columns: [{
+            data: 'name'
+        },
+        {
+            data: 'position'
+        },
+        {
+            data: 'office'
+        },
+        {
+            data: 'extn'
+        },
+        {
+            data: 'start_date'
+        },
+        {
+            data: 'salary'
+        }
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        $.extend(true, {}, buttonCommon, {
+            extend: 'copyHtml5'
+        }),
+        $.extend(true, {}, buttonCommon, {
+            extend: 'excelHtml5'
+        }),
+        $.extend(true, {}, buttonCommon, {
+            extend: 'pdfHtml5'
+        })
+    ]
+});
 </script>
 
-
+<script src="app/scripts/departments.js"></script>
 
 <!-- Modal to edit Department -->
-<div class="modal fade" id="editDepartmentModal" tabindex="1" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editDepartmentModalLabel">Editar Departamento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= RUTA?>update_Department/<?= $d->getIdDepartment() ?>" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre"
-                            value="<?= $d->getNombre() ?>">
+<div class="modal fade" id="editDepartmentModal" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editDepartmentModalLabel">Editar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-group">
-                        <label for="apellidos">Descripcion</label>
-                        <input type="text" class="form-control" id="apellidos" name="apellidos"
-                            value="<?= $d->getSurname() ?>">
+                    <div class="modal-body">
+                        <form action="<?=RUTA."/edit_department"?>" id="edit-form">
+                            <input type="text" class="form-control" id="id" name="id" hidden>
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="apellidos">Apellidos</label>
+                                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                            </div>
+                            <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input type="dni" class="form-control" id="dni" name="dni">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefono</label>
+                                <input type="phone" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="photo">Foto</label>
+                                <input type="file" class="form-control" id="photo" name="photo">
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Editar Departamento</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Editar Departamento</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>

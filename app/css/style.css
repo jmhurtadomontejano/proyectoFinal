@@ -167,6 +167,10 @@ ul#menu_usuario li a {
     font-size: 5em;
 }
 
+.photo_user_index{
+
+}
+
 
 /* to little screen less than 768px */
 @media screen and (max-width: 768px) {
@@ -177,9 +181,11 @@ ul#menu_usuario li a {
         position: relative;
     }
 
-
-
 .fa-solid  {
     font-size: 1.5em;
+}
+
+.photo_user_index{
+display:flex;
 }
 }

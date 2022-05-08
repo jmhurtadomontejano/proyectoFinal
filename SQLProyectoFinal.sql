@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2022 at 06:12 PM
+-- Generation Time: May 08, 2022 at 11:44 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -62,21 +62,25 @@ CREATE TABLE `compras` (
 CREATE TABLE `departments` (
   `idDepartment` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `description` text COLLATE utf8_spanish_ci NOT NULL
+  `description` text COLLATE utf8_spanish_ci NOT NULL,
+  `phone` int(9) NOT NULL,
+  `emailDepartment` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `iconDepartment` varchar(250) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`idDepartment`, `name`, `description`) VALUES
-(1, 'Servicios Sociales', 'Servicios Sociales'),
-(2, 'Centro Dia Mayores', 'Centro Dia Mayores'),
-(3, 'Unidad de Empleo', 'Unidad de Empleo'),
-(4, 'Centro de la Mujer', 'Centro de la Mujer'),
-(5, 'Deportes', 'Deportes'),
-(6, 'PID', 'Punto de Inclusión Digital'),
-(7, 'Centro Escolar', 'Centro Escolar');
+INSERT INTO `departments` (`idDepartment`, `name`, `description`, `phone`, `emailDepartment`, `iconDepartment`) VALUES
+(1, 'Servicios Sociales', 'Servicios Sociales', 0, '', ''),
+(2, 'Centro Dia Mayores', 'Centro Dia Mayores', 0, '', ''),
+(3, 'Unidad de Empleo', 'Unidad de Empleo', 0, '', ''),
+(4, 'Centro de la Mujer', 'Centro de la Mujer', 0, '', ''),
+(5, 'Deportes', 'Deportes', 0, '', ''),
+(6, 'PID', 'Punto de Inclusión Digital', 0, '', ''),
+(7, 'Centro Escolar', 'Centro Escolar', 0, '', ''),
+(8, 'Pistas Deportivas', 'Pistas Deportivas', 1004, 'deporte@argamasilladealba.es', '<i class=\"fa-solid fa-sportsball\"></i>');
 
 -- --------------------------------------------------------
 
@@ -475,7 +479,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `idDepartment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idDepartment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `items`

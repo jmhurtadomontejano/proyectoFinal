@@ -19,12 +19,15 @@ class DepartmentDAO {
         }
         $departmentName = $department->getName();
         $departmentDescription = $department->getDescription();
+        $departmentPhone = $department->getPhone();
+        $departmentEmail = $department->getEmailDepartment();
+        $departmentIcon = $department->getIconDepartment();
         //SQL to insert department on the database
-        $sql = "INSERT INTO departments (name, description) VALUES (?,?)";
+        $sql = "INSERT INTO departments (name, description, phone, emailDepartment, iconDepartment) VALUES (?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
-        $stmt->bind_param('ss',$departmentName, $departmentDescription);
+        $stmt->bind_param('ssiss',$departmentName, $departmentDescription, $departmentPhone, $departmentEmail, $departmentIcon);
         $stmt->execute();
         $result = $stmt->get_result();
 

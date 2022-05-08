@@ -22,11 +22,16 @@ class DepartmentsController {
                     //Filtramos datos de entrada
                     $name = filter_var($_POST['inputName'], FILTER_SANITIZE_SPECIAL_CHARS);
                     $description = filter_var($_POST['inputDescription'], FILTER_SANITIZE_SPECIAL_CHARS);
-        
+                    $phone = filter_var($_POST['inputPhone'], FILTER_SANITIZE_SPECIAL_CHARS);
+                    $emailDepartment = filter_var($_POST['inputEmail'], FILTER_SANITIZE_SPECIAL_CHARS);
+                    $iconDepartment = filter_var($_POST['inputIcon']);
                     //if name and description is not empty
                     if ($name!= "" && $description!= "") {
                         $department->setName($name);
                         $department->setDescription($description);
+                        $department->setPhone($phone);
+                        $department->setEmailDepartment($emailDepartment);
+                        $department->setIconDepartment($iconDepartment);
                         $departmentDAO->insert($department);
                         MensajesFlash::add_message("Departamento añadido");
                     } else {

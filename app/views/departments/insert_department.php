@@ -9,17 +9,33 @@ $(function() {
     $("#descripcion").jqte();
 });
 </script>
-<form class="row g-3 col-md-11" action="" method="post" enctype="multipart/form-data">
+<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-6">
         <label for="inputName" class="form-label">Nombre</label>
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
     </div>
 
-    <div class="col-12">
+    <div class="col-md-6">
         <label for="inputDescription" class="form-label">Descripcion</label>
         <textarea type="textarea" class="form-control" name="inputDescription" id="description"
             placeholder="Descripción..."></textarea>
     </div>
+
+    <div class="col-md-6">
+        <label for="inputPhone" class="form-label">Telefono</label>
+        <input type="text" name="inputPhone" class="form-control" placeholder="Telefono">
+    </div>
+
+    <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" name="inputEmail" class="form-control" placeholder="Email">
+    </div>
+
+    <div class="col-md-6">
+        <label for="inputIcon" class="form-label">Icono departamento</label>
+        <input type="text" name="inputIcon" class="form-control" placeholder="icono EJ: <i class='fa-thin fa-alicorn'>">
+    </div>
+
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Agregar Departamento</button>
     </div>

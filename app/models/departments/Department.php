@@ -8,6 +8,9 @@ class Department {
     private $idDepartment;
     private $name;
     private $description;
+    private $phone;
+    private $emailDepartment;
+    private $iconDepartment; 
     
     //Va a almacenar los datos del artículo relacionado con este Departamento
     private $articulo;
@@ -24,6 +27,18 @@ class Department {
         return $this->description;
     }
 
+    function getPhone() {
+        return $this->phone;
+    }
+
+    function getEmailDepartment() {
+        return $this->emailDepartment;
+    }
+
+    function getIconDepartment() {
+        return $this->iconDepartment;
+    }
+
 
     function setIdDepartment($id): void {
         $this->id = $idDepartment;
@@ -37,5 +52,16 @@ class Department {
         $this->description = $description;
     }
 
+    function setPhone($phone): void {
+        $this->phone = $phone;
+    }
+
+    function setEmailDepartment($emailDepartment): void {
+        $this->emailDepartment = $emailDepartment;
+    }
+
+    function setIconDepartment($iconDepartment): void {
+        $this->iconDepartment = $iconDepartment;
+    }
     
 }

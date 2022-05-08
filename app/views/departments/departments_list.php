@@ -10,6 +10,9 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Email</th>
+                <th scope="col">Icono</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -27,6 +30,9 @@
             <th id="departmentInfo"><?= $d->getIdDepartment() ?></th>
                 <th id="departmentInfo"><?= $d->getName() ?></th>
                 <th id="departmentInfo"><?= $d->getDescription() ?></th>
+                <th id="departmentInfo"><?= $d->getPhone() ?></th>
+                <th id="departmentInfo"><?= $d->getEmailDepartment() ?></th>
+                <th id="departmentInfo"><?= $d->getIconDepartment() ?></th>
                 <th>
                        <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->                                                      
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDepartmentModal"

@@ -12,7 +12,7 @@ function getDepartment()
             },
             success: function (response) {
                 const department = JSON.parse(response)
-                $("#edit-form [name=\"id\"]").val(department.id);
+                $("#edit-form [name=\"id\"]").val(department.idDepartment);
                 $("#edit-form [name=\"name\"]").val(department.name);
                 $("#edit-form [name=\"description\"]").val(department.description);
                 $("#edit-form [name=\"phone\"]").val(department.phone);

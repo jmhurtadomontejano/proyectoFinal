@@ -12,8 +12,23 @@ class Department {
     private $emailDepartment;
     private $iconDepartment; 
     
-    //Va a almacenar los datos del artículo relacionado con este Departamento
-    private $articulo;
+    //Va a almacenar los datos de los usuarios relacionado con este Departamento
+    private $users;
+
+    public function __construct()
+    {
+    }
+
+    public static function initValues($idDepartment, $name, $description, $phone, $emailDepartment, $iconDepartment) {
+        $obj = new Department();
+        $obj->idDepartment = $idDepartment;
+        $obj->name = $name;
+        $obj->description = $description;
+        $obj->phone = $phone;
+        $obj->emailDepartment = $emailDepartment;
+        $obj->iconDepartment = $iconDepartment;
+        return $obj;
+    }
     
     function getIdDepartment() {
         return $this->idDepartment;

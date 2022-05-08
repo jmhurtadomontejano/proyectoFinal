@@ -165,9 +165,9 @@
                                     <input type="password" placeholder="password" name="password" class="form-control">
                                     <br>
                                     <section class="d-flex justify-content-evenly flex-wrap">
-                                        <input type="submit" value="login" class="btn btn-primary" style="padding:10px">
-                                        <input type="button" value="registrar"
-                                            onclick="location.href = '<?= RUTA?>registrar'" class="btn btn-info">
+                                        <input type="submit" value="login" class="btn btn-primary btn-sm" style="padding:3px">
+                                        <input type="button" value="registrar" class="btn btn-info btn-sm"
+                                            onclick="location.href = '<?= RUTA?>registrar'" >
                                     </section>
                                 </form>
                             </button>

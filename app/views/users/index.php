@@ -13,9 +13,9 @@ $('#input_photo').change(function() {
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
-    <section class="" hidden>
+
         <?php if (Session::existe()): ?>
-        <div id="userInfo">
+        <div id="userInfo" hidden>
             <div id="photo_usuario"
                 style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
             </div>
@@ -31,10 +31,10 @@ $('#input_photo').change(function() {
         </div>
 
         <?php else: ?>
-        <button type="button" class="btn btn-secondary col-12 align-items-center justify-content-center">
+        <button  class="btn btn-secondary col-md-6 col-12 align-items-center justify-content-center">
             <h1>Inicia Sesión</h1>
 
-            <form id="login" style="margin:20px" action="login" method="post">
+            <form id="login" action="login" method="post">
                 <input type="text" placeholder="email" name="email" class="form-control">
                 <input type="password" placeholder="password" name="password" class="form-control">
                 <br>
@@ -46,7 +46,7 @@ $('#input_photo').change(function() {
             </form>
         </button>
         <?php endif; ?>
-    </section>
+ 
 </div>
 
 
@@ -54,7 +54,7 @@ $('#input_photo').change(function() {
 
     <!-- ADMIN MENU -->
     <?php if (Session::existe()) { ?>
-    <button type="button" class="d-flex btn btn-secondary col-md-3 col-12 d-flex align-items-center justify-content-center"
+    <button type="button" class="d-flex btn btnIndex btn-secondary col-md-3 col-12 d-flex align-items-center justify-content-center"
         style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>my_user">Mis Datos
         </a>
@@ -73,7 +73,7 @@ $('#input_photo').change(function() {
             </div>
         </div>
     </button>
-    <button type="button" class="btn btn-primary col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-primary col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar item
             <!-- image of item-->
             <i class="fa-solid fa-list-alt" aria-hidden="true" style="size:20px"></i>
@@ -85,13 +85,13 @@ $('#input_photo').change(function() {
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
         ?>
     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-    <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-info col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
             <i class="fa-solid fa-list-check"></i></a>
     </button>
     </li>
     <?php } else{?>
-    <button type="button" class="btn btn-info col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-info col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis Items
             <i class="fa-solid fa-list-check"></i></a>
     </button>
@@ -102,17 +102,17 @@ $('#input_photo').change(function() {
 
     <!-- SUPERADMIN MENU -->
     <?php if ($usuario->getRol() == 'superAdmin') { ?>
-    <button type="button" class="btn btn-success col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-success col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
             <i class="fa-solid fa-users"></i>
         </a>
     </button>
-    <button type="button" class="btn btn-warning col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-warning col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>departments_list">Departamentos
             <i class="fa-solid fa-building-user"></i>
         </a>
     </button>
-    <button type="button" class="btn btn-danger col-md-3 col-12" style="margin:10px">
+    <button type="button" class="btn btnIndex btn-danger col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Todos los items
             <i class="fa-solid fa-sitemap"></i>
         </a>

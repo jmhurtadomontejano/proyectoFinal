@@ -55,7 +55,7 @@ ob_start();
                     <?php endif; ?>
                 </th>
                 <th>
-                    <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
+                    <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
                         data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
                     <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)"

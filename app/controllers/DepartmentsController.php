@@ -78,6 +78,19 @@ class DepartmentsController {
         }
     }
 
+    public function detailDepartment() {
+        $departmentId = $_POST['department_id'];
+        $department = $this->findDepartmentByIdJson($departmentId);
+        echo json_encode($department);
+    }
+
+    public function findDepartmentByIdJson(){
+        $conn = ConexionBD::conectar();
+        $departmentDAO = new DepartmentDAO($conn);
+        $department = $departmentDAO->find($_POST['department_id']);
+        return $department;
+    }
+
     public function editDepartment(){
         $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
 

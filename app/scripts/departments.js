@@ -1,11 +1,12 @@
-function get()
+function getDepartment()
 {
-    $(document).delegate("[data-bs-target='#editdepartmentModal']", "click", function() {
+    $(document).delegate("[data-bs-target='#editDepartmentModal']", "click", function() {
         const department_id = $(this).attr('data-id');
+        console.log(department_id);
         // Ajax config
         $.ajax({
             type: "POST", //we are using GET method to get data from server side
-            url: 'http://localhost/proyectoFinal/department_list', // get the route value
+            url: 'http://localhost/proyectoFinal/detail_department', // get the route value
             data: {department_id}, //set data
             beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
             },
@@ -66,6 +67,6 @@ function deleteDepartment(id)
 }
 
 $(document).ready(function() {
-    get();
+    getDepartment();
     update();
 });

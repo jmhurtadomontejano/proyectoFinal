@@ -126,9 +126,7 @@ class UsuarioDAO {
             die("Error en la SQL : " . $this->conn->error);
         }
         $row = $result->fetch_assoc();
-
         $result->free_result();
-
         return $row;
     }
 

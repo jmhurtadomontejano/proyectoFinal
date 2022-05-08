@@ -123,8 +123,8 @@ $(document).ready(function() {
                         <input type="emailDepartment" class="form-control" id="emailDepartment" name="emailDepartment">
                     </div>
                     <div class="form-group">
-                        <label for="icon">Foto</label>
-                        <input type="file" class="form-control" id="icon" name="icon">
+                        <label for="iconDepartment">Icono</label>
+                        <input type="text" class="form-control" id="iconDepartment" name="iconDepartment">
                     </div>
                 </form>
             </div>

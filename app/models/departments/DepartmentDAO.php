@@ -105,6 +105,16 @@ class DepartmentDAO {
         return $array_obj_departments;
     }
 
+    public function findDepartmentByIdJsonModal($id){
+        $sql = "SELECT * FROM departments WHERE idDepartment=$id";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $department = $result->fetch_assoc();
+        $result->free_result();
+        return $department;
+    }
+
     public function findAll() {
         $sql = "SELECT * FROM departments order by idDepartment ASC";
         if (!$result = $this->conn->query($sql)) {

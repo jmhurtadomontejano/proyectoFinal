@@ -87,7 +87,7 @@ class DepartmentsController {
     public function findDepartmentByIdJson(){
         $conn = ConexionBD::conectar();
         $departmentDAO = new DepartmentDAO($conn);
-        $department = $departmentDAO->find($_POST['department_id']);
+        $department = $departmentDAO->findDepartmentByIdJsonModal($_POST['department_id']);
         return $department;
     }
 

@@ -124,6 +124,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Usuarios SuperAdmin</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items</a></li>
                     </li>
@@ -188,13 +189,14 @@
         </main>
     </header>
 </body>
-<footer>
+
+<footer class="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <p class="text-center">
                     <small>
-                        <a href="<?= RUTA?>">Inicio</a> |
+               
                 </div>
             </div>
         </div>

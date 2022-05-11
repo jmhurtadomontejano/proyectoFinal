@@ -347,6 +347,30 @@ class UsersController {
         }
     }
 
+    public function usersListAdmins() {
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() =='superAdmin') {
+                    $conn = ConexionBD::conectar();
+                    $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+                    $usersList = $usuDAO->findAll();
+                    $list_postalCodes = $usuDAO->list_postalCodes();
+                    require '../app/views/users/usersListAdmins.php';
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no eres SUPERAdministrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
+        }
+    }
+
     public function findByUserId($userId) {
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());

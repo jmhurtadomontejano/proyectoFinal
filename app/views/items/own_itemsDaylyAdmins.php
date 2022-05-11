@@ -10,14 +10,14 @@ ob_start();
         <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
             <div class="d-flex col-11 m-10" style="margin:10px;">
                 <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-                        <i class="fa-solid fa-calendar-days fa-2x col-2"></i>
+                        <i class="fa-solid fa-calendar-days fa-2x col-4"></i>
                         <label for="inputDate" class="form-label">Fecha para filtrar </label>
                         <input type="date" class="col-10 form-control" id="inputDate" value="<?php echo $dateFilter?>" name="inputDate">
                 </div>
 
                 <!-- input department to filter -->
                 <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-building-user fa-2x col-2"></i>
+                <i class="fa-solid fa-building-user fa-2x col-4"></i>
                     <label for="inputDepartment" class="form-label">Filtro por Depart.</label>
                     <select class="form-control" id="inputDepartment" name="inputDepartment" >
                         <option value="">Seleccione....</option>

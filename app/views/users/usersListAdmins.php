@@ -40,7 +40,7 @@ ob_start();
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
                 <th id="userInfo"><?= $u->getEmail() ?></th>
-                <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
+                <th id="userInfo"><?= $u->getPhone() ?></th>
                 <th id="userInfo"><?= $u->getPostalCode() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
                 <th id="userInfo"><?= $u->getRol() ?></th>
@@ -58,6 +58,9 @@ ob_start();
                     <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
                         data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
+                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)"
+                        id="deleteUser">Eliminar<?= $u->getId() ?><img src="<?= RUTA?>web/images/icons/trash.svg"
+                            class="papelera"></button>
                 </th>
             </tr>
             <?php endforeach; ?>

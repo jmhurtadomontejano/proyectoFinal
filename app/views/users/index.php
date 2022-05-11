@@ -86,24 +86,31 @@ $('#input_photo').change(function() {
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
             <i class="fa-solid fa-list-check"></i></a>
     </button>
-    </li>
+    <?php if ($usuario->getRol() == 'admin') { ?>
+    <button type="button" class="btn btnIndex btn-success col-md-3 col-12" style="margin:10px">
+        <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
+            <i class="fa-solid fa-users"></i>
+        </a>
+    </button>
+    <?php } ?>
+        <?php if($usuario->getRol() =='superAdmin') { ?>
+            <button type="button" class="btn btnIndex btn-success col-md-3 col-12" style="margin:10px">
+        <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersListAdmins">Usuarios SUPER
+            <i class="fa-solid fa-users"></i>
+        </a>
+    </button>
+        <?php } ?>
     <?php } else{?>
     <button type="button" class="btn btnIndex btn-info col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis Items
             <i class="fa-solid fa-list-check"></i></a>
     </button>
-    </li>
     <?php }?>
 
     <!-- END ADMIN MENU -->
 
     <!-- SUPERADMIN MENU -->
     <?php if ($usuario->getRol() == 'superAdmin') { ?>
-    <button type="button" class="btn btnIndex btn-success col-md-3 col-12" style="margin:10px">
-        <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
-            <i class="fa-solid fa-users"></i>
-        </a>
-    </button>
     <button type="button" class="btn btnIndex btn-warning col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>departments_list">Departamentos
             <i class="fa-solid fa-building-user"></i>

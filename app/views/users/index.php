@@ -11,7 +11,7 @@ $('#input_photo').change(function() {
 </script>
 
 
-<div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
+<div class="body d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
 
         <?php if (Session::existe()): ?>
@@ -46,10 +46,7 @@ $('#input_photo').change(function() {
             </form>
         </button>
         <?php endif; ?>
- 
 </div>
-
-
 <section class="d-flex justify-content-around flex-wrap">
 
     <!-- ADMIN MENU -->
@@ -76,7 +73,7 @@ $('#input_photo').change(function() {
     <button type="button" class="btn btnIndex btn-primary col-md-3 col-12" style="margin:10px">
         <a class="nav-link" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar item
             <!-- image of item-->
-            <i class="fa-solid fa-list-alt" aria-hidden="true" style="size:20px"></i>
+            <i class="fa-solid fa-file-circle-plus" aria-hidden="true" style="size:20px"></i>
         </a>
     </button>
     <?php

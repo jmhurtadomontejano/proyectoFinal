@@ -22,7 +22,14 @@ header {
     background-color: #eee;
     text-decoration: none;
     color: black;
+}
 
+.body{
+    /*background-image "<?= RUTA?>web/images/icons/trash.svg"*/
+    background-image: url("../../web/images/DonQuijotebackground.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    opacity: 0.8;
 }
 
 .photos_articulo {
@@ -47,7 +54,6 @@ header {
     margin: 5px;
     padding: 5px;
     position: relative;
-
 }
 
 .papelera {
@@ -165,6 +171,7 @@ ul#menu_usuario li a {
 
 .fa-solid {
     font-size: 5em;
+    font-weight: 900;
 }
 
 .photo_user_index{

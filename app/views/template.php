@@ -36,6 +36,28 @@
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="<?= RUTA?>app/css/style.css">
+
+    <!--- SOCIAL MEDIA ICONS -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bracket">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:url" content="http://themepixels.me/bracket">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta property="og:image" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/bracket/img/bracket-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+    <title>Acceso</title>
+    <link href="public/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="public/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+
 </head>
 
 <body class="body container-fluid p-1">
@@ -124,7 +146,8 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
-                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Usuarios SuperAdmin</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Usuarios
+                                    SuperAdmin</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items</a></li>
                     </li>
@@ -163,9 +186,10 @@
                                     <input type="password" placeholder="password" name="password" class="form-control">
                                     <br>
                                     <section class="d-flex justify-content-evenly flex-wrap">
-                                        <input type="submit" value="login" class="btn btn-primary btn-sm" style="padding:3px">
+                                        <input type="submit" value="login" class="btn btn-primary btn-sm"
+                                            style="padding:3px">
                                         <input type="button" value="registrar" class="btn btn-info btn-sm"
-                                            onclick="location.href = '<?= RUTA?>registrar'" >
+                                            onclick="location.href = '<?= RUTA?>registrar'">
                                     </section>
                                 </form>
                             </button>
@@ -196,10 +220,10 @@
             <div class="col-md-12">
                 <p class="text-center">
                     <small>
-               
-                </div>
+
             </div>
         </div>
+    </div>
     </div>
 </footer>
 

@@ -31,7 +31,7 @@ $('#input_photo').change(function() {
         </div>
 
         <?php else: ?>
-        <button  class="btn btn-secondary col-md-6 col-12 align-items-center justify-content-center">
+        <button  class="btn btn-secondary col-md-6 col-12 ">
             <h1>Inicia Sesión</h1>
 
             <form id="login" action="login" method="post">

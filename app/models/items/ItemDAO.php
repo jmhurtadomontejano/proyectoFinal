@@ -49,7 +49,7 @@ class ItemDAO {
 
     public function update($item) {
         //Comprobamos que el parámetro es de la clase Usuario
-        if (!$usuario instanceof item) {
+        if (!$item instanceof Item) {
             return false;
         }
         $name = $item->getname();
@@ -66,12 +66,12 @@ class ItemDAO {
         $duration = $item->getDuration();
         $sql = "UPDATE items SET"
                 . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?, date=?, hour=?, duration=?"
-                . "WHERE id = ?";
+                . " WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("sssdiiiissss",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $id, $state, $date, $hour, $duration);
+        $stmt->bind_param("sssiiiissssi",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration, $id);
         $stmt->execute();
         $result = $stmt->get_result();
                 
@@ -160,15 +160,26 @@ class ItemDAO {
         return $array_obj_items;
     }
     
-    public function findItemsByUser($id_user) {
-        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_attendUser=? ORDER BY id DESC";
+    public function findItemsByUser($id_user, $byDate, $byDepart) {
+        $where = "WHERE id_attendUser=? ";
+
+        if($byDate) $where = $where."AND date=? ";
+        if($byDepart) $where = $where."AND id_department=? ";
+
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where."ORDER BY id DESC";
+
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
         
-        $stmt->bind_param('i', $id_user);
+
+        if($byDate && $byDepart) $stmt->bind_param('iss', $id_user, $byDate, $byDepart);
+        else if($byDate) $stmt->bind_param('is', $id_user, $byDate);
+        else if($byDepart) $stmt->bind_param('is', $id_user, $byDepart);
+        else $stmt->bind_param('i', $id_user);
+
         $stmt->execute();
         $result = $stmt->get_result();
         

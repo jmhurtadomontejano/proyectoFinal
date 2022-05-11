@@ -3,9 +3,10 @@ function update()
     $("#btnUpdateSubmit").on("click", function() {
         const $this = $(this); //submit button selector using ID
         const $caption = $this.html();// We store the html content of the submit button
-        const form = "#edit-form"; //defined the #form ID
+        const form = "#editItemForm"; //defined the #form ID
         const formData = $(form).serializeArray(); //serialize the form into array
         const route = $(form).attr('action'); //get the route using attribute action
+        debugger
 
         // Ajax config
         $.ajax({
@@ -24,6 +25,30 @@ function update()
     });
 }
 
+function filterByColumn()
+{
+    let filter = {date: null, depart: null }
+
+    $("#inputDate").change(function () {
+        const date = new Date($("#inputDate").val());
+        filter.date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`
+        handleFilter(filter)
+    });
+
+    $("#inputDepartment").change(function () {
+        const depart = $("#inputDepartment").val();
+        filter.depart = depart
+        handleFilter(filter)
+    });
+}
+
+function handleFilter(filter)
+{
+   $("#formFilter").submit();
+
+}
+
 $(document).ready(function() {
-    update()
+    update();
+    filterByColumn();
 });

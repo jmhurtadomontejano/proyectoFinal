@@ -7,26 +7,28 @@ ob_start();
 
 <div class="m-10" style="margin:10px; padding:10px; border:1px solid black; background-color:#e6d4ff">
     <h4 class="w-100">Filtros por fecha y Departamento</h4>
-    <div class="d-flex col-11 m-10" style="margin:10px;">
-        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-calendar-days fa-2x col-2"></i>    
-                <label for="inputDate" class="form-label">Fecha para filtrar </label>
-                <input type="date" class="col-10 form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
-        </div>
+        <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
+            <div class="d-flex col-11 m-10" style="margin:10px;">
+                <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
+                        <i class="fa-solid fa-calendar-days fa-2x col-2"></i>
+                        <label for="inputDate" class="form-label">Fecha para filtrar </label>
+                        <input type="date" class="col-10 form-control" id="inputDate" value="<?php echo $dateFilter?>" name="inputDate">
+                </div>
 
-        <!-- input department to filter -->
-        <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-        <i class="fa-solid fa-building-user fa-2x col-2"></i>
-            <label for="inputDepartment" class="form-label">Filtro por Depart.</label>
-            <select class="form-control" id="inputDepartment" name="inputDepartment" required>
-                <option value="">Seleccione....</option>
-                <?php foreach ($departments as $department): ?>
-                <option value="<?php echo $department->idDepartment  ?>">
-                    <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-    </div>
+                <!-- input department to filter -->
+                <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
+                <i class="fa-solid fa-building-user fa-2x col-2"></i>
+                    <label for="inputDepartment" class="form-label">Filtro por Depart.</label>
+                    <select class="form-control" id="inputDepartment" name="inputDepartment" >
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($departments as $department): ?>
+                        <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?> value="<?php echo $department->idDepartment  ?>">
+                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </form>
 </div>
 
 
@@ -108,8 +110,39 @@ ob_start();
  require '../app/views/template.php';
  ?>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#mydatatable tfoot th').each(function() {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Filtrar.." />');
+    });
 
-<script src="app/scripts/items.js"></script>
+    var table = $('#mydatatable').DataTable({
+        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+        "responsive": false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "order": [
+            [0, "desc"]
+        ],
+        "initComplete": function() {
+            this.api().columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            })
+        }
+    });
+});
+</script>
+
 
 <script type="text/javascript">
 $(document).on('click', '#boton_editar', function() {
@@ -154,7 +187,7 @@ $(document).on('click', '#boton_editar', function() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editItemForm" action="<?= RUTA."items/edit_item"?>" enctype="multipart/form-data">
+                <form id="editItemForm" action="<?= RUTA."edit_item"?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="id">ID</label>
                         <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
@@ -239,16 +272,4 @@ $(document).on('click', '#boton_editar', function() {
     </div>
 </div>
 
-<!-- script to control when name="inputDate" change -->
-<script>
-$(document).ready(function () {
-    $("#inputDate").change(function () {
-        var date = $("#inputDate").val();
-        var hour = $("#inputHour").val();
-        var duration = $("#inputDuration").val();
-        var dateHour = date + " " + hour;
-        var dateHourDuration = dateHour + " " + duration;
-        $("#inputDateHourDuration").val(dateHourDuration);
-    });
-});
-</script>
+<script src="app/scripts/items.js"></script>

@@ -234,15 +234,21 @@ class ItemsController {
 
     public function ownItemsDaylyAdmins(){
         if (Session::existe() == true) {
+
+            $dateFilter = $_POST["inputDate"] ?? "";
+            $idDepart = $_POST["inputDepartment"] ?? "";
+
             $conn = ConexionBD::conectar();
             $usuDAO = new UsuarioDAO($conn);
             $itemDAO = new ItemDAO($conn);
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
-                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId());  
+
+                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId(), $dateFilter, $idDepart);
                 $departments = $itemDAO->listar_departamentos();
-                $clients = $itemDAO->list_users();              
+                $clients = $itemDAO->list_users();
+
                 require '../app/views/items/own_itemsDaylyAdmins.php';
                     
             }else{
@@ -328,7 +334,7 @@ class ItemsController {
     public function editItem(){
         $itemDAO = new ItemDAO(ConexionBD::conectar());
 
-        $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['inputQuantity'], $_POST['id_Department'], $_POST['id_service'], $_POST['inputAttendUser'], $_POST['inputClientUser']);
+        $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['id_department'], $_POST['id_service'], $_POST['id_attendUser'], $_POST['id_clientUser'], $_POST['state'], $_POST['date'], $_POST['hour'], $_POST['duration']);
 
         $itemDAO->update($item);
     }

@@ -395,10 +395,25 @@ class UsersController {
     }
 
     public function deleteUser(){
-        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-        $user = new Usuario();
-        $user->setId($_POST['id']);
-        $usuDAO->delete($user);
+        if (Session::existe() == true) {
+            $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() =='superAdmin') {
+                $user = new Usuario();
+                $user->setId($_POST['id']);
+                $usuDAO->delete($user);
+                MensajesFlash::add_message("Usuario eliminado correctamente");
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes eliminar usuarios si no eres SUPERAdministrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            die();
+        }
     }
 
     public function index() {
@@ -412,15 +427,30 @@ class UsersController {
     }
 
     public function editUser(){
-        $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-
-        $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
-
-        $usuDAO->update($user);
-
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+                $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+                $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
+                $usuDAO->update($user);
+                MensajesFlash::add_message("Usuario actualizado correctamente");
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes editar usuarios si no eres Administrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes editar usuarios si no inicias sesión");
+            die();
+        }
     }
 
     public function myUser(){
+        if (Session::existe() == true) {
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO($conn);
         //call to posatlCodes
@@ -428,6 +458,6 @@ class UsersController {
         $user = $usuDAO->findUserById(Session::obtener()->getId());
             
         require '../app/views/users/myUser.php';
+        }
     }
-
 }

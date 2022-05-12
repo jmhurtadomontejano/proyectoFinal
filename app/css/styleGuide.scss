@@ -1,5 +1,5 @@
-$colour1:#303841;
-$colour2:#3A4750;
+$colour1:#0F47AF;
+$colour2:#031432;
 $colour3:#F6C90E;
 $colour4:#EEEEEE;
 
@@ -17,3 +17,7 @@ $colour4:#EEEEEE;
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+  footer{
+    background: $colour2;
+  }

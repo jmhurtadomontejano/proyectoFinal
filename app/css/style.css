@@ -28,6 +28,11 @@ header {
 
 }
 
+.index-options{
+    font-size: 2em !important;
+    font-weight: 600 !important;
+}
+
 .photos_articulo {
     height: 100px;
     background-size: contain;
@@ -166,7 +171,7 @@ ul#menu_usuario li a {
 }
 
 .fa-solid {
-    font-size: 5em;
+    font-size: 4em;
     font-weight: 900;
 }
 
@@ -175,6 +180,7 @@ ul#menu_usuario li a {
 }
 
 .footer {
+    background-color: $colour2;
     background-image: url("../../web/images/DonQuijotebackground.png");
     background-repeat: no-repeat;
     background-position: right;
@@ -194,6 +200,16 @@ ul#menu_usuario li a {
         position: relative;
     }
 
+.logo{
+    width: 50px;
+    height: 60px;
+}    
+
+.index-options{
+    font-size: 2em !important;
+    font-weight: bold;
+}
+
 .fa-solid  {
     font-size: 1.5em;
     float: right;
@@ -207,4 +223,17 @@ ul#menu_usuario li a {
 .photo_user_index{
 display:flex;
 }
+}
+
+/* to little screen less than 480px */
+@media screen and (max-width: 480px) {
+    .fa-solid  {
+        font-size: 1.2em;
+        float: right;
+    }
+
+    .index-options{
+        font-size: 1em !important;
+        font-weight: bold;
+    }
 }

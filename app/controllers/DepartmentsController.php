@@ -92,11 +92,27 @@ class DepartmentsController {
     }
 
     public function editDepartment(){
-        $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
-
-        $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['phone'], $_POST['emailDepartment'], $_POST['iconDepartment']);
-
-        $departmentDAO->update($department);
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $itemDAO = new ItemDAO($conn);
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() =='superAdmin') {
+                $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
+                $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['phone'], $_POST['emailDepartment'], $_POST['iconDepartment']);
+                $departmentDAO->update($department);
+                MensajesFlash::add_message("Departamento actualizado");    
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
+            die();
+        }
     }
 
     

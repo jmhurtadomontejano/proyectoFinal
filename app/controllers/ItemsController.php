@@ -245,7 +245,7 @@ class ItemsController {
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
 
-                $mis_items = $itemDAO->findItemsByUser(Session::obtener()->getId(), $dateFilter, $idDepart);
+                $mis_items = $itemDAO->findItemsByUserFilters(Session::obtener()->getId(), $dateFilter, $idDepart);
                 $departments = $itemDAO->listar_departamentos();
                 $clients = $itemDAO->list_users();
 

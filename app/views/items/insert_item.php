@@ -112,7 +112,7 @@ $(function() {
 </form>
 <?php
 $contenido = ob_get_clean();
-$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Insertar Items";
 require '../app/views/template.php';
 ?>

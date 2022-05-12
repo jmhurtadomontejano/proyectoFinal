@@ -62,27 +62,30 @@
 
 <body class="body container-fluid p-1">
     <header>
+        <!-- if $titulo is not empty    -->
+        <?php if (!empty($titulo)) : ?>
         <div id="titulo">
             <h1><?php echo $titulo ?></h1>
         </div>
+        <?php endif; ?>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-
-                <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
+                <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" class="logo"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs">
-                    <a class="nav-link" style="colour:black" href="<?= RUTA?>">
-                        <p class="font-heading"> Ayuntamiento de <br> Argamasilla de Alba </p>
-                        <p class="font-primary-light-italic display@md"> El lugar de La Mancha </p>
+                    <a class="nav-link" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
+                        <p class="font-heading"> Ayuntamiento de <br>Argamasilla de Alba</p>
+                        <p>El lugar de La Mancha</p>
                 </div>
                 </a>
 
-                <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">Menu</a>
+                <a class="navbar-brand" href="#" type="button" 
+                style="position:right; margin-right:10px; margin-top:10px;"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Menu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -163,7 +166,7 @@
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                         <section class="col-12">
                             <?php if (Session::existe()): ?>
-                            <div id="userInfo">
+                            <div id="userInfo" class="d-flex">
                                 <div id="photo_usuario"
                                     style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                                 </div>

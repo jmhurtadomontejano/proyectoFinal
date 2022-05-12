@@ -3,34 +3,42 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
-<!-- input date format -->
-
-<div class="m-10" style="margin:10px; padding:10px; border:1px solid black; background-color:#e6d4ff">
-    <h4 class="w-100">Filtros por fecha y Departamento</h4>
-        <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
-            <div class="d-flex col-11 m-10" style="margin:10px;">
-                <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-                        <i class="fa-solid fa-calendar-days fa-2x col-4"></i>
-                        <label for="inputDate" class="form-label">Fecha para filtrar </label>
-                        <input type="date" class="col-10 form-control" id="inputDate" value="<?php echo $dateFilter?>" name="inputDate">
-                </div>
-
-                <!-- input department to filter -->
-                <div class="form-group col-6" style="margin:5px; padding:10px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-building-user fa-2x col-4"></i>
-                    <label for="inputDepartment" class="form-label">Filtro por Depart.</label>
-                    <select class="form-control" id="inputDepartment" name="inputDepartment" >
-                        <option value="">Seleccione....</option>
-                        <?php foreach ($departments as $department): ?>
-                        <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?> value="<?php echo $department->idDepartment  ?>">
-                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+<div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
+    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
+        <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
+            <a href="<?= RUTA?>insert_itemUsers">
+                <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
+                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
+                </button>
+            </a>
+            <!-- filter by input date format -->
+            <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+                <i class="fa-solid fa-calendar-days"></i>
+                <div>
+                    <label for="inputDate" class="form-label">Fecha para filtrar</label>
+                    <input type="date" class="form-control" id="inputDate" value="<?php echo $dateFilter?>"
+                        name="inputDate">
                 </div>
             </div>
-        </form>
-</div>
 
+            <!-- filter by input date format -->
+            <div class="form-group d-flex col-12 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+                <i class="fa-solid fa-building-user"></i>
+                <div class="">
+                    <label for="inputDepartment" class="form-label">Filtro por Depart.  </label>
+                        <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
+                            <option value="">Seleccione....</option>
+                            <?php foreach ($departments as $department): ?>
+                            <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
+                                value="<?php echo $department->idDepartment  ?>">
+                                <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 <div class="col-sm-12">
     <div class="table-responsive" id="mydatatable-container">
@@ -41,7 +49,7 @@ ob_start();
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
-                    <th scope="col">Atendido por nombre:</th>
+                    <th scope="col">Atendió:</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha</th>
@@ -104,44 +112,13 @@ ob_start();
 
 <?php
  $contenido = ob_get_clean();
- $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+ /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
  $titulo2 = "Detalle de Items";
  
  require '../app/views/template.php';
  ?>
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#mydatatable tfoot th').each(function() {
-        var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Filtrar.." />');
-    });
 
-    var table = $('#mydatatable').DataTable({
-        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
-        "responsive": false,
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-        },
-        "order": [
-            [0, "desc"]
-        ],
-        "initComplete": function() {
-            this.api().columns().every(function() {
-                var that = this;
-
-                $('input', this.footer()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            })
-        }
-    });
-});
-</script>
 
 
 <script type="text/javascript">

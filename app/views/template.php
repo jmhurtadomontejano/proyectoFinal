@@ -76,8 +76,8 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs">
-                    <a class="nav-link" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
-                        <p class="font-heading"> Ayuntamiento de <br>Argamasilla de Alba</p>
+                    <a class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
+                        <p class="font-heading">Ayuntamiento de<br>Argamasilla de Alba</p>
                         <p>El lugar de La Mancha</p>
                 </div>
                 </a>
@@ -203,12 +203,11 @@
             </div>
         </nav>
 
+        <?php if (!empty($titulo2)) : ?>
         <div id="titulo">
-            <h3><?php echo $titulo2 ?></h3>
+            <h1><?php echo $titulo2 ?></h1>
         </div>
-
-
-
+        <?php endif; ?>
 
         <div class="MensajesFlash"><?php mensajesFlash::imprimir_mensajes() ?></div>
         <main>

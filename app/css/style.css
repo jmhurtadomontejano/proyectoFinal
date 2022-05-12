@@ -223,6 +223,11 @@ ul#menu_usuario li a {
 .photo_user_index{
 display:flex;
 }
+
+.town-hall-text{
+    font-size: 0.6rem !important;
+}
+
 }
 
 /* to little screen less than 480px */

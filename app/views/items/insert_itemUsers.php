@@ -29,9 +29,6 @@ $(function() {
         <label for="inputState" class="form-label">Estado</label>
         <select id="inputState" name="inputState" class="form-select" readonly>
             <option selected>Registrada</option>
-            <option>Iniciada</option>
-            <option>En Proceso</option>
-            <option>Finalizada</option>
         </select>
     </div>
     <div class="col-md-3 col-4">
@@ -54,13 +51,14 @@ $(function() {
             readonly>
     </div>
     <?php } ?>
-    <div class="col-6">
-        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
-                    <input class="form-control" name="inputClientUser" id="inputClientUser"
-                        value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                        readonly>
+    <div class="col-6" hidden>
+        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes
+            buscar a partir de la 5ª cifra del DNI o NIE)</label>
+        <input class="form-control" name="inputClientUser" id="inputClientUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
     </div>
-    <div class="col-6">
+    <div class="col-6" hidden>
         <label for="inputUser" class="form-label">Usuario Registro</label>
         <input class="form-control" name="inputUser"
             value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
@@ -94,7 +92,7 @@ $(function() {
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
     </div>
-  
+
     <div class="col-12">
         <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
         <input type="file" class="form-control" name="inputPhotoItem[]" id="photoItem" multiple="multiple">

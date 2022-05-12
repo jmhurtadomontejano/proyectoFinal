@@ -22,7 +22,7 @@ ob_start();
             </div>
 
             <!-- filter by input date format -->
-            <div class="form-group d-flex col-12 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+            <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
                 <i class="fa-solid fa-building-user"></i>
                 <div class="">
                     <label for="inputDepartment" class="form-label">Filtro por Depart.  </label>
@@ -113,7 +113,7 @@ ob_start();
 <?php
  $contenido = ob_get_clean();
  /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- $titulo2 = "Detalle de Items";
+ /*$titulo2 = "Detalle de Items";*/
  
  require '../app/views/template.php';
  ?>
@@ -163,18 +163,18 @@ $(document).on('click', '#boton_editar', function() {
                 <h5 class="modal-title" id="editItemModalLabel">Editar Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="editItemForm" action="<?= RUTA."edit_item"?>" enctype="multipart/form-data">
-                    <div class="form-group">
+            <div class="modal-body d-flex">
+                <form id="editItemForm" class="modal-body d-flex flex-wrap" action="<?= RUTA."edit_item"?>" enctype="multipart/form-data">
+                    <div class="form-group col-3">
                         <label for="id">ID</label>
                         <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-8">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value=""
                             required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label for="description">Descripción</label>
                         <input type="text" class="form-control" id="description" name="description"
                             placeholder="Descripción" value="" required>
@@ -198,7 +198,7 @@ $(document).on('click', '#boton_editar', function() {
                         <label for="id_service">Servicio</label>
                         <input type="text" class="form-control" id="id_service" name="id_service" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>

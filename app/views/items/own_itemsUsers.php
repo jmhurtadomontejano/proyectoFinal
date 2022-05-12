@@ -13,7 +13,7 @@ ob_start();
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
-                    <th scope="col">Atendido por:</th>
+                    <th scope="col">Atendió:</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha</th>
@@ -47,11 +47,11 @@ ob_start();
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
                     <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
-                        <td id="attendUserInfo">No asignado</td>
+                    <td id="attendUserInfo">No asignado</td>
                     <?php else: ?>
-                        <td id="attendUserInfo">
-                            <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
-                        </td>
+                    <td id="attendUserInfo">
+                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
+                    </td>
                     <?php endif; ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
@@ -80,45 +80,11 @@ ob_start();
 
 <?php
  $contenido = ob_get_clean();
-/* $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- $titulo2 = "Detalle de Items";
+ /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+ /*$titulo2 = "Detalle de Items";*/
+ 
  require '../app/views/template.php';
  ?>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#mydatatable tfoot th').each(function() {
-        var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Filtrar.." />');
-    });
-
-    var table = $('#mydatatable').DataTable({
-        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
-        "responsive": false,
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-        },
-        "order": [
-            [0, "desc"]
-        ],
-        "initComplete": function() {
-            this.api().columns().every(function() {
-                var that = this;
-
-                $('input', this.footer()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            })
-        }
-    });
-});
-</script>
-
-<script src="app/scripts/items.js"></script>
 
 <script type="text/javascript">
 $(document).on('click', '#boton_editar', function() {
@@ -162,18 +128,19 @@ $(document).on('click', '#boton_editar', function() {
                 <h5 class="modal-title" id="editItemModalLabel">Editar Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="editItemForm" action="<?= RUTA."items/edit_item"?>" enctype="multipart/form-data">
-                    <div class="form-group">
+            <div class="modal-body d-flex">
+                <form id="editItemForm" class="modal-body d-flex flex-wrap" action="<?= RUTA."edit_item"?>"
+                    enctype="multipart/form-data">
+                    <div class="form-group col-3">
                         <label for="id">ID</label>
                         <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-8">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value=""
                             required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label for="description">Descripción</label>
                         <input type="text" class="form-control" id="description" name="description"
                             placeholder="Descripción" value="" required>
@@ -188,7 +155,7 @@ $(document).on('click', '#boton_editar', function() {
                         <select class="form-control" id="id_department" name="id_department" required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
-                            <option value="<?php echo $department->idDepartment  ?>">
+                            <option value="<?php echo $department->idDepartment ?>">
                                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -197,30 +164,57 @@ $(document).on('click', '#boton_editar', function() {
                         <label for="id_service">Servicio</label>
                         <input type="text" class="form-control" id="id_service" name="id_service" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="id_attendUser">Atendido por:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
                     </div>
-                    <div class="form-group">
-                        <label for="id_clientUser">Cliente:</label>
-                        <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">Estado</label>
-                        <input type="text" class="form-control" id="state" name="state" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="hour">Hora</label>
-                        <input type="time" class="form-control" id="hour" name="hour" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duración</label>
-                        <input type="time" class="form-control" id="duration" name="duration" required>
-                    </div>
+                    <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
+                        entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <select class="form-control" name="id_clientUser" id="id_clientUser">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo $client->id  ?>">
+                            <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php } ?>
+                        <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                        <select class="form-control" name="id_clientUser" id="id_clientUser" hidden readonly>
+                            <option value="">Seleccione....</option>
+                            <?php foreach ($clients as $client): ?>
+                            <option value="<?php echo $client->id  ?>">
+                                <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
+                            </option>
+                            <?php endforeach; ?>
+                            <?php } ?>
+                            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                            <input class="form-control" name="inputUser"
+                                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                                readonly>
+                            <?php } ?>
+                        </select>
+                        <div class="form-group">
+                            <label for="state" class="form-label">Estado</label>
+                            <select id="state" name="state" class="form-select">
+                                <option selected>Registrada</option>
+                                <option>Iniciada</option>
+                                <option>En Proceso</option>
+                                <option>Finalizada</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hour">Hora</label>
+                            <input type="time" class="form-control" id="hour" name="hour" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duración</label>
+                            <input type="time" class="form-control" id="duration" name="duration" required>
+                        </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -229,3 +223,38 @@ $(document).on('click', '#boton_editar', function() {
         </div>
     </div>
 </div>
+
+<script src="app/scripts/items.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#mydatatable tfoot th').each(function() {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Filtrar.." />');
+    });
+
+    var table = $('#mydatatable').DataTable({
+        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+        "responsive": false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "order": [
+            [0, "desc"]
+        ],
+        "initComplete": function() {
+            this.api().columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            })
+        }
+    });
+});
+</script>

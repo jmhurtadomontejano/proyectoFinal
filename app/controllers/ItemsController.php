@@ -269,7 +269,8 @@ class ItemsController {
             $usuDAO = new UsuarioDAO($conn);
             $itemDAO = new ItemDAO($conn);
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
-
+            $departments = $itemDAO->listar_departamentos();
+            $clients = $itemDAO->list_users();
                 $mis_items = $itemDAO->findItemsByClientUser(Session::obtener()->getId());                
                 require '../app/views/items/own_itemsUsers.php';
                       //Generamos Token para seguridad del borrado

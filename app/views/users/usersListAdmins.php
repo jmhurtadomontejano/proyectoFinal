@@ -42,7 +42,7 @@ ob_start();
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
                 <th id="userInfo"><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
-                <th id="userInfo"><?= $u->getEmail() ?></th>
+                <th id="userInfo"><?= substr($u->getEmail(),4,9 )?></th>
                 <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
                 <th id="userInfo"><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>

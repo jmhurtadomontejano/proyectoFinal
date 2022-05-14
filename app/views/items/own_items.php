@@ -56,7 +56,7 @@ ob_start();
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
                             id="boton_editar">Editar</button>
-                        <button type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
+                        <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
                    

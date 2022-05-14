@@ -222,6 +222,15 @@ ul#menu_usuario li a {
 display:flex;
 }
 
+.dt-buttons{
+    scale: none;
+    visibility: collapse;
+}
+
+.dataTables_wrapper{
+    scale: none;
+}
+
 }
 
 /* to little screen less than 480px */

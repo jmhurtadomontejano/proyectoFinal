@@ -41,8 +41,8 @@ ob_start();
             <tr>
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
-                <th id="userInfo"><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
-                <th id="userInfo"><?= $u->getEmail() ?></th>
+                <th id="userInfo"><?= substr($u->getBirth_date(),0,4)."-xx" ?></th>
+                <th id="userInfo"><?= substr($u->getEmail(),4,9 )?></th>
                 <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
                 <th id="userInfo"><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
@@ -145,7 +145,7 @@ ob_start();
                                     placeholder="Introduce aqui tu direccion completa con numero, portal, etc..."
                                     class="form-control" aria-describedby="addressHelp" style="margin-bottom:1em">
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12" hidden>
                                 <label for="rol">Rol</label>
                                 <select class="form-control" id="rol" name="rol" style="margin-bottom:1em">
                                     <option value=""></option>
@@ -154,7 +154,7 @@ ob_start();
                                     <option value="user">Usuario</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12" hidden>
                                 <label for="department">Departamento</label>
                                 <select class="form-control" id="department" name="department" required>
    

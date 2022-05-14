@@ -82,10 +82,10 @@
                 </div>
                 </a>
 
-                <a class="navbar-brand" href="#" type="button" 
-                style="position:right; margin-right:10px; margin-top:10px;"
-                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">Menu</a>
+                <a class="navbar-brand" href="#" type="button"
+                    style="position:right; margin-right:10px; margin-top:10px;" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">Menu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -148,11 +148,11 @@
                             SuperAdministradores
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
-                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Usuarios
-                                    SuperAdmin</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Users SuperAdmin</a>
+                            </li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
-                            <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items
+                                    SuperAdmin</a></li>
                     </li>
                     <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
 

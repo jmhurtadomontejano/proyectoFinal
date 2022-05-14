@@ -58,11 +58,12 @@ class UsuarioDAO {
         $postalCode = $usuario->getPostalCode();
         $address = $usuario->getAddress();
         $rol = $usuario->getRol();
+        $department = $usuario->getDepartment();
         $restart_password = $usuario->getRestart_password();
         $restart_code = $usuario->getRestart_code();
 
         $sql = "UPDATE usuarios SET"
-                . " nombre='$nombre', surname='$surname', dni='$dni', gender='$gender', birth_date='$birth_date', email='$email', phone='$phone', postalCode='$postalCode', address='$address', rol='$rol', restart_password='$restart_password', restart_code='$restart_code' "
+                . " nombre='$nombre', surname='$surname', dni='$dni', gender='$gender', birth_date='$birth_date', email='$email', phone='$phone', postalCode='$postalCode', address='$address', rol='$rol', department='$department', restart_password='$restart_password', restart_code='$restart_code' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
@@ -143,12 +144,16 @@ class UsuarioDAO {
             $usuario = new Usuario();
             $usuario->setNombre($fila['nombre']);
             $usuario->setSurname($fila['surname']);
+            $usuario->setDni($fila['dni']);
+            $usuario->setGender($fila['gender']);
+            $usuario->setBirth_date($fila['birth_date']);
             $usuario->setEmail($fila['email']);
             $usuario->setPassword($fila['password']);
             $usuario->setId($fila['id']);
             $usuario->setPhoto($fila['photo']);
             $usuario->setPhone($fila['phone']);
             $usuario->setPostalCode($fila['postalCode']);
+            $usuario->setAddress($fila['address']);
             console.log($usuario);
             return $usuario;
         } else {

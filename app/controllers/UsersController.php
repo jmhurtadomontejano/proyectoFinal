@@ -347,6 +347,9 @@ class UsersController {
                     $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                     $usersList = $usuDAO->findAll();
                     $list_postalCodes = $usuDAO->list_postalCodes();
+                    //Save in a variable the array with all departments
+                    $itemDAO = new ItemDAO($conn);
+                    $departments = $itemDAO->listar_departamentos();
                     require '../app/views/users/usersList.php';
             }else{
             header("Location: " . RUTA);
@@ -371,6 +374,9 @@ class UsersController {
                     $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                     $usersList = $usuDAO->findAll();
                     $list_postalCodes = $usuDAO->list_postalCodes();
+                    //Save in a variable the array with all departments
+                    $itemDAO = new ItemDAO($conn);
+                    $departments = $itemDAO->listar_departamentos();
                     require '../app/views/users/usersListAdmins.php';
             }else{
             header("Location: " . RUTA);
@@ -447,7 +453,7 @@ class UsersController {
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-                $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['gender'], $_POST['birth_date'] , $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
+                $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['gender'], $_POST['birth_date'] , $_POST['email'], $_POST['phone'], $_POST['postalCode'], $_POST['address'], $_POST['rol'], $_POST['department'] );
                 $usuDAO->update($user);
                 MensajesFlash::add_message("Usuario actualizado correctamente");
             }else{

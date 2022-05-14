@@ -15,7 +15,7 @@ ob_start();
                 <th scope="col">Fecha Nacimiento</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
-                <th scope="col">Código Postal</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Foto</th>
@@ -41,12 +41,12 @@ ob_start();
             <tr>
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
-                <th id="userInfo"><?= $u->getBirth_date() ?></th>
+                <th id="userInfo"><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
                 <th id="userInfo"><?= $u->getEmail() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
-                <th id="userInfo"><?= $u->getPostalCode() ?></th>
+                <th id="userInfo"><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
-                <th id="userInfo"><?= $u->getRol() ?></th>
+                <th id="userInfo"><?= $u->getRol() ." - ". $u->getDepartment() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <img id="photo_usuario"
@@ -76,8 +76,8 @@ ob_start();
  require '../app/views/template.php';
  ?>
 
-       <!-- Modal to edit user -->
-       <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <!-- Modal to edit user -->
+        <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content d-flex">
                     <div class="modal-header">
@@ -102,10 +102,10 @@ ob_start();
                                 <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF"
                                     class="form-control" aria-describedby="dniHelp" style="margin-bottom:1em">
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-4 col-6">
                                 <label for="gender" class="form-label">Genero</label>
                                 <select class="form-control" id="gender" name="gender" aria-describedby="genderHelp"
-                                    style="margin-bottom:1em">
+                                    style="margin-bottom:1em" value="">
                                     <option value="">Selecciona el gendero del desplegable</option>
                                     <option value="Mujer">Mujer</option>
                                     <option value="Hombre">Hombre</option>
@@ -113,7 +113,7 @@ ob_start();
                                     <option value="Otro">Otro</option>
                                 </select>
                             </div>
-                            <div class="col-md-4 col-12">
+                            <div class="col-md-4 col-6">
                                 <label for="birth_date" class="form-label">Fecha de Nacimiento</label>
                                 <input type="date" name="birth_date" id="birth_date" class="form-control"
                                     aria-describedby="birthdateHelp" style="margin-bottom:1em">
@@ -130,7 +130,8 @@ ob_start();
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="postalCode">Código Postal</label>
-                                <select class="form-control" id="postalCode" name="postalCode" style="margin-bottom:1em" required>
+                                <select class="form-control" id="postalCode" name="postalCode" style="margin-bottom:1em"
+                                    required>
                                     <option value="">Seleccione Código Postal</option>
                                     <?php foreach ($list_postalCodes as $postalCode): ?>
                                     <option value="<?php echo $postalCode->code  ?>">
@@ -146,7 +147,7 @@ ob_start();
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="rol">Rol</label>
-                                <select class="form-control" id="rol" name="rol">
+                                <select class="form-control" id="rol" name="rol" style="margin-bottom:1em">
                                     <option value=""></option>
                                     <option value="superAdmin">Super Administrador</option>
                                     <option value="admin">Administrador</option>
@@ -155,8 +156,8 @@ ob_start();
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="department">Departamento</label>
-                                <select class="form-control" id="inputDepartment" name="inputDepartment" required>
-                                    <option value="">Seleccione....</option>
+                                <select class="form-control" id="department" name="department" required>
+   
                                     <?php foreach ($departments as $department): ?>
                                     <option value="<?php echo $department->idDepartment  ?>">
                                         <?php echo $department->idDepartment, " - " ; echo $department->name; ?>

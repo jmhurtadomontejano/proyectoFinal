@@ -19,15 +19,16 @@ class Usuario {
     private $password;
     private $photo;
     private $rol;
+    private $cookie_id;
     private $restart_password;
     private $restart_code;
-    private $cookie_id;
+    private $disableUser;
 
     public function __construct()
     {
     }
 
-    public static function initValues($id, $nombre, $surname, $dni, $gender, $birth_date, $email, $phone, $postalCode, $rol) {
+    public static function initValues($id, $nombre, $surname, $dni, $gender, $birth_date, $email, $phone, $postalCode, $address, $rol, $department) {
         $obj = new Usuario();
         $obj->id = $id;
         $obj->nombre = $nombre;
@@ -38,7 +39,9 @@ class Usuario {
         $obj->email = $email;
         $obj->phone = $phone;
         $obj->postalCode = $postalCode;
+        $obj->address = $address;
         $obj->rol = $rol;
+        $obj->department = $department;
         return $obj;
     }
 
@@ -104,6 +107,19 @@ class Usuario {
 
     function getRol() {
         return $this->rol;
+    }
+
+    function getDepartment(){
+        return $this->department;
+    }
+
+    function getUserDepartment() {
+        $departmentDAO = new departmentDAO(ConexionBD::conectar());
+        $this->department = $departmentDAO->find($this->getDepartment());
+        if(!$this->department){
+        }else{
+        return $this->department;
+    }
     }
 
     function getRestart_password() {
@@ -172,6 +188,10 @@ class Usuario {
 
     function setRol($rol): void {
         $this->rol = $rol;
+    }
+
+    function setDepartment($department): void {
+        $this->department = $department;
     }
 
     function setRestart_password($restart_password): void {

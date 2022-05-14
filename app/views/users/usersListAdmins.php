@@ -12,9 +12,10 @@ ob_start();
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
+                <th scope="col">Fecha Nacimiento</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
-                <th scope="col">Código Postal</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Foto</th>
@@ -31,7 +32,8 @@ ob_start();
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
-                <th>Filter..</th>
+                <th hidden>Filter..</th>
+                <th hidden>Filter..</th>
             </tr>
         </tfoot>
         <tbody>
@@ -39,11 +41,12 @@ ob_start();
             <tr>
                 <th id="userInfo"><?= $u->getNombre() ?></th>
                 <th id="userInfo"><?= $u->getSurname() ?></th>
+                <th id="userInfo"><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
                 <th id="userInfo"><?= $u->getEmail() ?></th>
-                <th id="userInfo"><?= $u->getPhone() ?></th>
-                <th id="userInfo"><?= $u->getPostalCode() ?></th>
+                <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
+                <th id="userInfo"><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
                 <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
-                <th id="userInfo"><?= $u->getRol() ?></th>
+                <th id="userInfo"><?= $u->getRol() ." - ". $u->getDepartment() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <img id="photo_usuario"
@@ -69,6 +72,7 @@ ob_start();
     </table>
     <div>
 
+
         <?php
  $contenido = ob_get_clean();
 /* $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
@@ -76,40 +80,62 @@ ob_start();
  require '../app/views/template.php';
  ?>
 
-        <!-- Modal to edit user -->
-        <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel" aria-hidden="true">
+         <!-- Modal to edit user -->
+         <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content d-flex">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form action="<?=RUTA."/edit_user"?>" id="edit-form">
+                    <div class="modal-body d-flex">
+                        <form action="<?=RUTA."/edit_user"?>" class="modal-body d-flex flex-wrap" id="edit-form">
                             <input type="text" class="form-control" id="id" name="id" hidden>
-                            <div class="form-group">
+                            <div class="form-group col-md-4 col-12">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    style="margin-bottom:1em">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-8 col-12">
                                 <label for="apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos">
+                                <input type="text" class="form-control" id="apellidos" name="apellidos"
+                                    style="margin-bottom:1em">
                             </div>
-                            <div class="form-group">
-                                <label for="dni">DNI</label>
-                                <input type="dni" class="form-control" id="dni" name="dni">
+                            <div class="col-md-4 col-12">
+                                <label class="form-label">DNI o NIE completo</label>
+                                <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF"
+                                    class="form-control" aria-describedby="dniHelp" style="margin-bottom:1em">
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-4 col-6">
+                                <label for="gender" class="form-label">Genero</label>
+                                <select class="form-control" id="gender" name="gender" aria-describedby="genderHelp"
+                                    style="margin-bottom:1em" value="">
+                                    <option value="">Selecciona el gendero del desplegable</option>
+                                    <option value="Mujer">Mujer</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="NoBinario">No binario</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <label for="birth_date" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" name="birth_date" id="birth_date" class="form-control"
+                                    aria-describedby="birthdateHelp" style="margin-bottom:1em">
+                            </div>
+                            <div class="col-md-6 col-12">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    style="margin-bottom:1em">
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-6 col-12">
                                 <label for="phone">Telefono</label>
-                                <input type="phone" class="form-control" id="phone" name="phone">
+                                <input type="phone" class="form-control" id="phone" name="phone"
+                                    style="margin-bottom:1em">
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Código Postal</label>
-                                <select class="form-control" id="postalCode" name="postalCode" required>
+                            <div class="col-md-6 col-12">
+                                <label for="postalCode">Código Postal</label>
+                                <select class="form-control" id="postalCode" name="postalCode" style="margin-bottom:1em"
+                                    required>
                                     <option value="">Seleccione Código Postal</option>
                                     <?php foreach ($list_postalCodes as $postalCode): ?>
                                     <option value="<?php echo $postalCode->code  ?>">
@@ -117,16 +143,33 @@ ob_start();
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-6 col-12">
+                                <label for="address">Direccion Postal</label>
+                                <input type="text" name="address"
+                                    placeholder="Introduce aqui tu direccion completa con numero, portal, etc..."
+                                    class="form-control" aria-describedby="addressHelp" style="margin-bottom:1em">
+                            </div>
+                            <div class="col-md-6 col-12">
                                 <label for="rol">Rol</label>
-                                <select class="form-control" id="rol" name="rol">
+                                <select class="form-control" id="rol" name="rol" style="margin-bottom:1em">
                                     <option value=""></option>
                                     <option value="superAdmin">Super Administrador</option>
                                     <option value="admin">Administrador</option>
                                     <option value="user">Usuario</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-6 col-12">
+                                <label for="department">Departamento</label>
+                                <select class="form-control" id="department" name="department" required>
+                                    <option>Seleccione....</option>
+                                    <?php foreach ($departments as $department): ?>
+                                    <option value="<?php echo $department->idDepartment  ?>">
+                                        <?php echo $department->idDepartment, " - " ; echo $department->name; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12" hidden>
                                 <label for="photo">Foto</label>
                                 <input type="file" class="form-control" id="photo" name="photo">
                             </div>

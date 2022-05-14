@@ -9,23 +9,39 @@
 
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
             <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
-                <div class="row" style="paddin:10px; margin:10px" >
+                <div class="row" style="paddin:10px; margin:10px">
                     <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
                     <input type="hidden" name="token" value="<?= $token ?>">
-                    <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
+                    <div class="col-md-4 col-12 m-10" style="padding-bottom: 20px">
                         <label class="form-label">Nombre</label>
                         <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                             aria-describedby="nameHelp">
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <div class="col-md-8 col-12" style="padding-bottom:20px">
                         <label class="form-label">Apellidos</label>
                         <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <div class="col-md-4 col-12" style="padding-bottom:20px">
                         <label class="form-label">DNI o NIE completo</label>
                         <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                             aria-describedby="dniHelp">
+                    </div>
+                    <div class="col-md-4 col-6" style="padding-bottom:20px">
+                        <label class="form-label">Genero</label>
+                        <select name="gender" value="Selecciona el Genero" class="form-control"
+                            aria-describedby="gender">
+                            <option>Selecciona el gendero del desplegable</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="NoBinario">No binario</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-6" style="padding-bottom:20px">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" name="birth_date" placeholder="Introduce aqui tu fecha de nacimiento"
+                            class="form-control" aria-describedby="birthdateHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Teléfono</label>
@@ -44,59 +60,82 @@
                         <select class="form-control" id="postalCode" name="postalCode" required>
                             <option value="">Seleccione Código Postal</option>
                             <?php foreach ($list_postalCodes as $postalCode): ?>
-                            <option  value="<?php echo $postalCode->code  ?>">
+                            <option value="<?php echo $postalCode->code  ?>">
                                 <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px" hidden>
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                        <label class="form-label">Direccion Postal</label>
+                        <input type="text" name="address"
+                            placeholder="Introduce aqui tu direccion completa con numero, portal, etc..."
+                            class="form-control" aria-describedby="addressHelp">
+                    </div>
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control"
                             placeholder="Introduce aqui tu password">
                         <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                             Mayusculas y minusculas</div>
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px" hidden>
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                         <input type="password" name="password2" id="password2" class="form-control"
                             placeholder="Introduce aqui tu password">
                         <div id="passwordHelp" class="form-text">Escribe la misma contraseña que en la casilla anterior
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" >Foto del Usuario</label>
-                        <input type="file" name="photo" class="form-control" accept="image/*"
-                            aria-describedby="photoHelp">
-                        <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
-                    </div>
+
                     <?php if (Session::existe()) { ?>
                     <?php
                             $conn = ConexionBD::conectar();
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
-                    <?php if ($usuario->getRol() == 'admin') { ?>
-                    <div class="mb-3">
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <div class="col-md-6" style="padding-bottom:20px">
                         <label class="form-label">Rol</label>
-                        <select name="rol" class="form-control">
+                        <select name="rol" id="rol" class="form-control">
                             <option value="user">Usuario</option>
                             <?php if ($usuario->getRol() =='superAdmin') { ?>
                             <option value="admin">Administrador</option>
                             <option value="superAdmin">Super Administrador</option>
+                            <?php } ?>
+                        </select>
+                        <?php } ?>
+                        <div id="roldHelp" class="form-text">Selecciona el Rol del Usuario</div>
+                    </div>
+                    <?php } ?>
+
+                    <?php if ($usuario->getRol() =='superAdmin') { ?>
+                    <div class="col-md-6" style="padding-bottom:20px">
+                        <label class="form-label" for="department">Departamento</label>
+                        <select class="form-control" id="department" name="department" required>
+
+                            <?php foreach ($departments as $department): ?>
+                            <option value="<?php echo $department->idDepartment  ?>">
+                                <?php echo $department->idDepartment, " - " ; echo $department->name; ?>
+                            </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
-                    </li>
                     <?php } ?>
-                    <?php } ?>
-                    <?php } ?>
+
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                        <label class="form-label">Foto del Usuario</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*"
+                            aria-describedby="photoHelp">
+                        <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
+                    </div>
+
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
-                            checked>
-                        <label class="form-check-label" for="flexCheckChecked">Doy mi Consentimiento según Ley de
-                            Protección de Datos
+                        <input class="form-check-input col-md-6 col-12" style="padding-bottom:20px" type="checkbox" value="" id="datesConsent"
+                            name="datesConsent" checked>
+                        <label class="form-check-label" for="flexCheckChecked">Se necesita consentimiento firmado de los
+                            datos del Usuario
                         </label>
                     </div>
-                    <div style="justify-content:center; align-items:center">
+                    <div style="justify-content:center; align-items:center padding-top:20px">
                         <button type="submit" value="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
                     </div>
                 </div>
@@ -167,5 +206,5 @@ $(document).ready(function() {
             $("#dniHelp").html("El DNI no es correcto");
         }
     });
-}   );
+});
 </script>

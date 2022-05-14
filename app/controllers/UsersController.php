@@ -190,6 +190,22 @@ class UsersController {
           }
             
 
+            if (empty($_POST['password'])) {
+                MensajesFlash::add_message("El password es obligatorio.");
+                $error = true;
+            }
+
+            if (empty($_POST['password2'])) {
+                MensajesFlash::add_message("No es escrito la comprobación de la contraseña");
+                $error = true;
+            }
+
+            if ($_POST['password'] != $_POST['password2']) {
+                MensajesFlash::add_message("Las contraseñas no coinciden");
+                $error = true;
+            }
+
+            if (!$error) {
             //if photo is null or empty, set default photo
             if (empty($_FILES['photo']['name'])) {
                 $usuario->setPhoto("default.jpg");
@@ -202,12 +218,12 @@ class UsersController {
                 MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                 $error = true;
             }
-        }
-
             if ($_FILES['photo']['size'] > 1000000) {
                 MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
                 $error = true;
             }
+        }
+        }
 
      /*       if(!($_POST['datesConsent'])){
                 MensajesFlash::add_message("Es obligatorio marcar la casilla de las condiciones de uso para poder registrarse.");
@@ -234,9 +250,12 @@ class UsersController {
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $gender = filter_var($_POST['gender'], FILTER_SANITIZE_SPECIAL_CHARS);
-                $birth_date = filter_var($_POST['birth_date'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $birth_date = filter_var($_POST['birth_date']);
                 $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $postalCode = filter_var($_POST['postalCode'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $rol = filter_var($_POST['rol'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $department = filter_var($_POST['department'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
@@ -246,6 +265,10 @@ class UsersController {
                 $usuario->setBirth_date($birth_date);
                 $usuario->setPhone($phone);
                 $usuario->setPostalCode($postalCode);
+                $usuario->setAddress($address);
+                $usuario->setRol($rol);
+                $usuario->setDepartment($department);
+                $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
 
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
@@ -259,15 +282,18 @@ class UsersController {
                 //Call Conexion and ItemDao
                 $conn = ConexionBD::conectar();
                 $usuarioDAO = new UsuarioDAO($conn);
-        //call to posatlCodes
-        $list_postalCodes = $usuarioDAO->list_postalCodes();
+                //call to posatlCodes
+                $list_postalCodes = $usuarioDAO->list_postalCodes();
 
+                 //Save in a variable the array with all departments
+                 $itemDAO = new ItemDAO($conn);
+                 $departments = $itemDAO->listar_departamentos();
 
         //Calculamos un token
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;
 
-        require '../app/views/users/addUser.php';
+        require '../app/views/users/add_user.php';
     }
 
     public function subir_photo() {

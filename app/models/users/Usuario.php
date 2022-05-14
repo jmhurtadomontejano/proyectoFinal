@@ -130,6 +130,10 @@ class Usuario {
         return $this->restart_code;
     }
 
+    function getDisableUser() {
+        return $this->disableUser;
+    }
+
     function getArticulos() {
         return $this->articulos;
     }
@@ -200,6 +204,10 @@ class Usuario {
 
     function setRestart_code($restart_code): void {
         $this->restart_code = $restart_code;
+    }
+
+    function setDisableUser($disableUser): void {
+        $this->disableUser = $disableUser;
     }
 
 }

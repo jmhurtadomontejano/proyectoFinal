@@ -154,6 +154,11 @@ class UsuarioDAO {
             $usuario->setPhone($fila['phone']);
             $usuario->setPostalCode($fila['postalCode']);
             $usuario->setAddress($fila['address']);
+            $usuario->setRol($fila['rol']);
+            $usuario->setDepartment($fila['department']);
+            $usuario->setRestart_password($fila['restart_password']);
+            $usuario->setRestart_code($fila['restart_code']);
+            $usuario->setDisableUser($fila['disable_user']);
             console.log($usuario);
             return $usuario;
         } else {

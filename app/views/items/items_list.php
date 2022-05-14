@@ -133,26 +133,27 @@ $(document).on('click', '#boton_editar', function() {
                     enctype="multipart/form-data">
                     <div class="form-group col-3">
                         <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value=""
+                            style="margin-bottom:1em" required readonly>
                     </div>
-                    <div class="form-group col-8">
+                    <div class="form-group col-9">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value=""
-                            required>
+                            style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group col-12">
                         <label for="description">Descripción</label>
                         <input type="text" class="form-control" id="description" name="description"
-                            placeholder="Descripción" value="" required>
+                            placeholder="Descripción" value="" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group" hidden>
+                    <div class="form-group col-12" hidden>
                         <label for="location">Ubicación</label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="Ubicación"
-                            value="" required>
+                            value="" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-md-6">
                         <label for="id_department">Departamento</label>
-                        <select class="form-control" id="id_department" name="id_department" required>
+                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em" required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
                             <option value="<?php echo $department->idDepartment ?>">
@@ -160,18 +161,18 @@ $(document).on('click', '#boton_editar', function() {
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-md-6">
                         <label for="id_service">Servicio</label>
-                        <input type="text" class="form-control" id="id_service" name="id_service" required>
+                        <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group" hidden>
                         <label for="id_attendUser">Atendido por:</label>
-                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
+                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
                         entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
                     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                    <select class="form-control" name="id_clientUser" id="id_clientUser">
+                    <select class="form-control" name="id_clientUser" id="id_clientUser" style="margin-bottom:1em">
                         <option value="">Seleccione....</option>
                         <?php foreach ($clients as $client): ?>
                         <option value="<?php echo $client->id  ?>">
@@ -185,26 +186,26 @@ $(document).on('click', '#boton_editar', function() {
                             readonly>
                         <?php } ?>
                     </select>
-                    <div class="form-group">
-                        <label for="state" class="form-label">Estado</label>
-                        <select id="state" name="state" class="form-select">
+                    <div class="form-group col-6 col-md-4">
+                        <label for="date">Fecha</label>
+                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em" required>
+                    </div>
+                    <div class="form-group col-6 col-md-4">
+                        <label for="hour">Hora</label>
+                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em" required>
+                    </div>
+                    <div class="form-group col-6 col-md-4">
+                        <label for="duration">Duración</label>
+                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em" required>
+                    </div>
+                    <div class="form-group col-6 col-md-4">
+                        <label for="state">Estado</label>
+                        <select id="state" name="state" class="form-select" >
                             <option selected>Registrada</option>
                             <option>Iniciada</option>
                             <option>En Proceso</option>
                             <option>Finalizada</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="hour">Hora</label>
-                        <input type="time" class="form-control" id="hour" name="hour" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duración</label>
-                        <input type="time" class="form-control" id="duration" name="duration" required>
                     </div>
             </div>
             <div class="modal-footer">

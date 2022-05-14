@@ -152,64 +152,84 @@ $(document).on('click', '#boton_editar', function() {
                 <h5 class="modal-title" id="editItemModalLabel">Editar Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="editItemForm" action="<?= RUTA."items/edit_item"?>" enctype="multipart/form-data">
-                    <div class="form-group">
+            <div class="modal-body d-flex">
+                <form id="editItemForm" class="modal-body d-flex flex-wrap" action="<?= RUTA."edit_item"?>"
+                    enctype="multipart/form-data">
+                    <div class="form-group col-3">
                         <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value="" required>
+                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value=""
+                            style="margin-bottom:1em" required readonly>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-9">
                         <label for="name">Nombre</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value=""
-                            required>
+                            style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label for="description">Descripción</label>
                         <input type="text" class="form-control" id="description" name="description"
-                            placeholder="Descripción" value="" required>
+                            placeholder="Descripción" value="" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group" hidden>
+                    <div class="form-group col-12" hidden>
                         <label for="location">Ubicación</label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="Ubicación"
-                            value="" required>
+                            value="" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-md-6">
                         <label for="id_department">Departamento</label>
-                        <select class="form-control" id="id_department" name="id_department" required>
+                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em" required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
-                            <option value="<?php echo $department->idDepartment  ?>">
+                            <option value="<?php echo $department->idDepartment ?>">
                                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-md-6">
                         <label for="id_service">Servicio</label>
-                        <input type="text" class="form-control" id="id_service" name="id_service" required>
+                        <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="id_attendUser">Atendido por:</label>
-                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" required>
+                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
-                        <label for="id_clientUser">Cliente:</label>
-                        <input type="text" class="form-control" id="id_clientUser" name="id_clientUser" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">Estado</label>
-                        <input type="text" class="form-control" id="state" name="state" required>
-                    </div>
-                    <div class="form-group">
+                    <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
+                        entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
+                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                    <select class="form-control" name="id_clientUser" id="id_clientUser" style="margin-bottom:1em">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($clients as $client): ?>
+                        <option value="<?php echo $client->id  ?>">
+                            <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
+                        </option>
+                        <?php endforeach; ?>
+                        <?php } ?>
+                        <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                        <input class="form-control" name="inputUser"
+                            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                            readonly>
+                        <?php } ?>
+                    </select>
+                    <div class="form-group col-6 col-md-4">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6 col-md-4">
                         <label for="hour">Hora</label>
-                        <input type="time" class="form-control" id="hour" name="hour" required>
+                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-6 col-md-4">
                         <label for="duration">Duración</label>
-                        <input type="time" class="form-control" id="duration" name="duration" required>
+                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em" required>
+                    </div>
+                    <div class="form-group col-6 col-md-4">
+                        <label for="state">Estado</label>
+                        <select id="state" name="state" class="form-select" >
+                            <option selected>Registrada</option>
+                            <option>Iniciada</option>
+                            <option>En Proceso</option>
+                            <option>Finalizada</option>
+                        </select>
                     </div>
             </div>
             <div class="modal-footer">

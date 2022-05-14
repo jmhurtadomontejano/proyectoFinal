@@ -66,6 +66,7 @@ class UsersController {
                 $error = true;
             }
 
+            if (!$error) {
             //if photo is null or empty, set default photo
             if (empty($_FILES['photo']['name'])) {
                 $usuario->setPhoto("default.jpg");
@@ -78,12 +79,14 @@ class UsersController {
                 MensajesFlash::add_message("El archivo seleccionado no es una foto.");
                 $error = true;
             }
-        }
-
             if ($_FILES['photo']['size'] > 1000000) {
                 MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
                 $error = true;
             }
+        }
+        }
+
+          
 
      /*       if(!($_POST['datesConsent'])){
                 MensajesFlash::add_message("Es obligatorio marcar la casilla de las condiciones de uso para poder registrarse.");
@@ -109,15 +112,21 @@ class UsersController {
                 $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $gender = filter_var($_POST['gender'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $birth_date = filter_var($_POST['birth_date']);
                 $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $postalCode = filter_var($_POST['postalCode'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
                 $usuario->setEmail($email);
                 $usuario->setNombre($name);
                 $usuario->setSurname($surname);
                 $usuario->setDni($dni);
+                $usuario->setGender($gender);
+                $usuario->setBirth_date($birth_date);
                 $usuario->setPhone($phone);
                 $usuario->setPostalCode($postalCode);
+                $usuario->setAddress($address);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
 
@@ -224,6 +233,8 @@ class UsersController {
                 $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $surname = filter_var($_POST['surname'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $dni = filter_var($_POST['dni'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $gender = filter_var($_POST['gender'], FILTER_SANITIZE_SPECIAL_CHARS);
+                $birth_date = filter_var($_POST['birth_date'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $postalCode = filter_var($_POST['postalCode'], FILTER_SANITIZE_SPECIAL_CHARS);
                 //Insertamos el usuario en la BBDD
@@ -231,6 +242,8 @@ class UsersController {
                 $usuario->setNombre($name);
                 $usuario->setSurname($surname);
                 $usuario->setDni($dni);
+                $usuario->setGender($gender);
+                $usuario->setBirth_date($birth_date);
                 $usuario->setPhone($phone);
                 $usuario->setPostalCode($postalCode);
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
@@ -434,7 +447,7 @@ class UsersController {
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-                $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
+                $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['gender'], $_POST['birth_date'] , $_POST['email'], $_POST['phone'],$_POST['postalCode'],$_POST['rol'] );
                 $usuDAO->update($user);
                 MensajesFlash::add_message("Usuario actualizado correctamente");
             }else{

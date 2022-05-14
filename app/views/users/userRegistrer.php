@@ -22,10 +22,25 @@
                         <input type="text" name="surname" placeholder="Introduce aqui tus apellidos"
                             class="form-control" aria-describedby="surnameHelp">
                     </div>
-                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <div class="col-md-4 col-12" style="padding-bottom:20px">
                         <label class="form-label">DNI o NIE completo</label>
                         <input type="dni" name="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                             aria-describedby="dniHelp">
+                    </div>
+                    <div class="col-md-4 col-12" style="padding-bottom:20px">
+                        <label class="form-label">Genero</label>
+                        <select name="gender" value="Selecciona el Genero" class="form-control" aria-describedby="gender">
+                            <option>Selecciona el gendero del desplegable</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="NoBinario">No binario</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-12" style="padding-bottom:20px">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" name="birth_date" placeholder="Introduce aqui tu fecha de nacimiento"
+                            class="form-control" aria-describedby="birthdateHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Teléfono</label>
@@ -48,6 +63,11 @@
                                 <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                             <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="col-md-6 col-12" style="padding-bottom:20px">
+                        <label class="form-label">Direccion Postal</label>
+                        <input type="text" name="address" placeholder="Introduce aqui tu direccion completa con numero, portal, etc..."
+                            class="form-control" aria-describedby="addressHelp">
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Password</label>

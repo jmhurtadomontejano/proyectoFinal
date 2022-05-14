@@ -10,6 +10,8 @@ class Usuario {
     private $nombre;
     private $surname;
     private $dni;
+    private $gender;
+    private $birth_date;
     private $email;
     private $phone;
     private $postalCode;
@@ -25,12 +27,14 @@ class Usuario {
     {
     }
 
-    public static function initValues($id, $nombre, $surname, $dni, $email, $phone, $postalCode, $rol) {
+    public static function initValues($id, $nombre, $surname, $dni, $gender, $birth_date, $email, $phone, $postalCode, $rol) {
         $obj = new Usuario();
         $obj->id = $id;
         $obj->nombre = $nombre;
         $obj->surname = $surname;
         $obj->dni = $dni;
+        $obj->gender = $gender;
+        $obj->birth_date = $birth_date;
         $obj->email = $email;
         $obj->phone = $phone;
         $obj->postalCode = $postalCode;
@@ -64,6 +68,14 @@ class Usuario {
 
     function getDni() {
         return $this->dni;
+    }
+
+    function getGender() {
+        return $this->gender;
+    }
+
+    function getBirth_date() {
+        return $this->birth_date;
     }
 
     function getEmail() {
@@ -120,6 +132,14 @@ class Usuario {
 
     function setDni($dni): void {
         $this->dni = $dni;
+    }
+
+    function setGender($gender): void{
+        $this->gender = $gender;
+    }
+
+    function setBirth_date($birth_date): void{
+        $this->birth_date = $birth_date;
     }
 
     function setEmail($email): void {

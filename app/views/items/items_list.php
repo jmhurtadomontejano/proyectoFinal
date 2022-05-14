@@ -55,9 +55,13 @@ ob_start();
                         <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
                     </td>
                     <?php endif; ?>
+                    <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
+                    <td id="clientUserInfo">No asignado</td>
+                    <?php else: ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>
+                    <?php endif; ?>
                     <td id="stateInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
@@ -65,10 +69,10 @@ ob_start();
                     <td id="resultInfo"><?= $i->getResult() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                        <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
                             id="boton_editar">Editar</button>
-                        <button type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
+                        <button type="button" class="btn btn-danger btn-table m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
 

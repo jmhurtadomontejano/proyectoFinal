@@ -55,11 +55,13 @@ ob_start();
                     <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
                     <th scope="col">Duracion</th>
+                    <th scope="col">Resultado</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
             <tfoot style="display: table-header-group !important">
                 <tr hidden>
+                    <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
@@ -92,7 +94,7 @@ ob_start();
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
                     <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
-
+                    <td id="resultInfo"><?= $i->getResult() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
@@ -149,6 +151,7 @@ $(document).on('click', '#boton_editar', function() {
                 $("#date").val(valor.date);
                 $("#hour").val(valor.hour);
                 $("#duration").val(valor.duration);
+                $("#result").val(valor.result);
             });
         }
     });
@@ -247,6 +250,16 @@ $(document).on('click', '#boton_editar', function() {
                             <option>Iniciada</option>
                             <option>En Proceso</option>
                             <option>Finalizada</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-6 col-md-4">
+                        <label for="result">Result</label>
+                        <select id="result" name="result" class="form-select">
+                            <option selected>NO</option>
+                            <option value="Anulada">Anulada</option>
+                            <option value="No asiste">NO asiste</option>
+                            <option value="Asistio">Asistió</option>
+                            <option value="No responde">No responde</option>
                         </select>
                     </div>
             </div>

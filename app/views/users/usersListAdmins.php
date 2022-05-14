@@ -59,11 +59,11 @@ ob_start();
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
+                    <button type="button" class="btn btn-primary btn-table" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
                         data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
-                    <button class="btn btn-danger" onclick="deleteUser(<?= $u->getId() ?>)"
+                    <button class="btn btn-danger btn-table" onclick="deleteUser(<?= $u->getId() ?>)"
                         id="deleteUser">Eliminar<?= $u->getId() ?><img src="<?= RUTA?>web/images/icons/trash.svg"
-                            class="papelera"></button>
+                            class="papelera hidden"></button>
                 </th>
             </tr>
             <?php endforeach; ?>

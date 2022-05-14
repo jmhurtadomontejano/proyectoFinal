@@ -6,7 +6,7 @@ function update()
         const form = "#editItemForm"; //defined the #form ID
         const formData = $(form).serializeArray(); //serialize the form into array
         const route = $(form).attr('action'); //get the route using attribute action
-        debugger
+       // debugger
 
         // Ajax config
         $.ajax({

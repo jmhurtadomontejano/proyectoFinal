@@ -39,7 +39,7 @@
                 <th id="departmentInfo"><?= $d->getIconDepartment() ?></th>
                 <th>
                     <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->
-                    <button type="button" class="btn btn-primary" id="<?= $d->getIdDepartment() ?>"
+                    <button type="button" class="btn btn-primary btn-table" id="<?= $d->getIdDepartment() ?>"
                         data-id=<?= $d->getIdDepartment() ?> data-bs-toggle="modal"
                         data-bs-target="#editDepartmentModal">Editar <?= $d->getIdDepartment() ?></button>
                 </th>

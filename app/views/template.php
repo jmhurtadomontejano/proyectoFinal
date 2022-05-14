@@ -153,9 +153,6 @@
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items
                                     SuperAdmin</a></li>
-                    </li>
-                    <li><a class="dropdown-item" href="instalaciones.php">Instalaciones</a></li>
-
                     </ul>
                     </li>
                     <?php } ?>

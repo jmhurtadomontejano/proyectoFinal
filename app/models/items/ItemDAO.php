@@ -64,14 +64,15 @@ class ItemDAO {
         $date = $item->getDate();
         $hour = $item->getHour();
         $duration = $item->getDuration();
+        $result = $item->getResult();
         $sql = "UPDATE items SET"
-                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?, date=?, hour=?, duration=?"
+                . " name=?, description=?,location=?, id_department=?, id_service=?, id_attendUser=?, id_clientUser=?, state=?, date=?, hour=?, duration=?, result=?"
                 . " WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
             die("Error al preparar la consulta: ". $this->conn->error);
         }
-        $stmt->bind_param("sssiiiissssi",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration, $id);
+        $stmt->bind_param("sssiiiisssssi",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration, $result, $id);
         $stmt->execute();
         $result = $stmt->get_result();
                 

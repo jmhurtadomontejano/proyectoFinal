@@ -335,7 +335,7 @@ class ItemsController {
     public function editItem(){
         $itemDAO = new ItemDAO(ConexionBD::conectar());
 
-        $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['id_department'], $_POST['id_service'], $_POST['id_attendUser'], $_POST['id_clientUser'], $_POST['state'], $_POST['date'], $_POST['hour'], $_POST['duration']);
+        $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['id_department'], $_POST['id_service'], $_POST['id_attendUser'], $_POST['id_clientUser'], $_POST['state'], $_POST['date'], $_POST['hour'], $_POST['duration'], $_POST['result']);
 
         $itemDAO->update($item);
     }

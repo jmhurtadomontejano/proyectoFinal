@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2022 at 09:48 AM
+-- Generation Time: May 14, 2022 at 04:19 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -99,6 +99,7 @@ CREATE TABLE `items` (
   `id_clientUser` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `state` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `result` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   `date` date NOT NULL,
   `hour` time NOT NULL,
   `duration` time NOT NULL,
@@ -109,24 +110,24 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_attendUser`, `id_clientUser`, `id_user`, `state`, `date`, `hour`, `duration`, `registrationDate`) VALUES
-(118, 'prueba 15', 'descripcion 15', '', 1, 15, 65, 65, 65, 'Iniciada', '2022-05-15', '15:55:00', '00:15:00', '2022-05-06 18:55:42'),
-(119, 'cintia prueba', 'descripcion cintia', '', 6, 24, 65, 88, 65, 'Registrada', '2022-05-06', '18:55:00', '00:30:00', '2022-05-06 18:56:12'),
-(120, 'prueba Alicia', 'descripcion prueba Alicia', '', 4, 41, 85, 86, 85, 'Registrada', '2022-05-06', '20:02:00', '00:15:00', '2022-05-06 20:02:38'),
-(121, 'Prueba Cintia', 'descripcion prueba CIntia', '', 3, 39, 65, 88, 65, 'Registrada', '2022-05-07', '10:00:00', '00:30:00', '2022-05-07 10:01:12'),
-(122, 'Necesito ayuda', 'descripcion de la ayuda', '', 3, 32, 0, 87, 87, 'Registrada', '2022-05-07', '12:17:00', '00:00:00', '2022-05-07 12:18:09'),
-(123, 'Prueba Alicia Centro Mujer', '', '', 4, 47, 65, 86, 65, 'Registrada', '2022-05-08', '13:36:00', '00:00:00', '2022-05-07 13:37:01'),
-(124, 'Prueba Jaime 9 Mayo', 'Incripcion centro Adultos', '', 7, 73, 65, 86, 65, 'Registrada', '2022-05-09', '13:37:00', '00:15:00', '2022-05-07 13:37:48'),
-(125, 'Nueva Ayuda', 'Necesito nueva ayuda adicional', '', 3, 31, 0, 87, 87, 'Iniciada', '2022-05-07', '17:02:00', '00:35:00', '2022-05-07 17:03:54'),
-(126, 'Paro Alicia', 'Paro Alicia descripcion', '', 3, 31, 65, 86, 65, 'Iniciada', '2022-05-07', '17:16:00', '00:00:00', '2022-05-07 17:16:42'),
-(127, 'Nueva Ayuda', 'Nueva ayuda necesito', '', 3, 31, 0, 86, 87, 'Registrada', '2022-05-07', '17:24:00', '00:13:00', '2022-05-07 17:25:05'),
-(128, 'Ayuda Empleo Arnau', 'Arnau descripcion', '', 3, 31, 0, 93, 93, 'Registrada', '2022-05-07', '17:28:00', '00:00:00', '2022-05-07 17:28:55'),
-(129, '12Solicitar duplicado Empadronamiento', 'Ayuda Empadronamiento12', '', 1, 12, 65, 92, 65, 'En Proceso', '2022-05-13', '12:12:00', '00:12:12', '2022-05-07 17:30:50'),
-(130, 'Alicia ayuda a Arnau', 'Descripcion Alicia ayuda a Arnau', '', 3, 31, 86, 93, 86, 'Registrada', '2022-05-07', '17:46:00', '00:00:00', '2022-05-07 17:46:31'),
-(131, 'Ayuda Servicios Sociales Arnau', 'Descripcion Ayuda Servicios Sociales Arnau', '', 1, 12, 0, 93, 93, 'Registrada', '2022-05-07', '17:51:00', '00:00:00', '2022-05-07 17:51:28'),
-(132, 'Atencion dia 13', 'descripcion dia 13', '', 3, 35, 86, 93, 86, 'Registrada', '2022-05-12', '00:25:00', '00:00:00', '2022-05-12 00:26:10'),
-(133, 'Necesito ayuda', 'ayuda 12 Mayo', '', 3, 34, 0, 87, 87, 'Registrada', '2022-05-12', '23:10:00', '00:00:00', '2022-05-12 23:11:06'),
-(134, 'Ayuda 13 Mayo', '2descripcion que necesito ayuda', '', 1, 14, 0, 92, 92, 'Registrada', '2022-05-13', '00:00:00', '00:00:00', '2022-05-13 00:00:52');
+INSERT INTO `items` (`id`, `name`, `description`, `location`, `id_department`, `id_service`, `id_attendUser`, `id_clientUser`, `id_user`, `state`, `result`, `date`, `hour`, `duration`, `registrationDate`) VALUES
+(118, 'prueba 15', 'descripcion 15', '', 1, 15, 65, 65, 65, 'Iniciada', '', '2022-05-15', '15:55:00', '00:15:00', '2022-05-06 18:55:42'),
+(119, 'cintia prueba', 'descripcion cintia', '', 6, 24, 65, 88, 65, 'Registrada', '', '2022-05-06', '18:55:00', '00:30:00', '2022-05-06 18:56:12'),
+(120, 'prueba Alicia', 'descripcion prueba Alicia', '', 4, 41, 85, 86, 85, 'Registrada', '', '2022-05-06', '20:02:00', '00:15:00', '2022-05-06 20:02:38'),
+(121, 'Prueba Cintia', 'descripcion prueba CIntia', '', 3, 39, 65, 88, 65, 'Registrada', '', '2022-05-07', '10:00:00', '00:30:00', '2022-05-07 10:01:12'),
+(122, 'Necesito ayuda', 'descripcion de la ayuda', '', 3, 32, 0, 87, 87, 'Registrada', '', '2022-05-07', '12:17:00', '00:00:00', '2022-05-07 12:18:09'),
+(123, 'Prueba Alicia Centro Mujer', 'Empadronamiento12', '', 4, 47, 65, 86, 65, 'Registrada', '', '2022-05-08', '13:36:00', '00:00:00', '2022-05-07 13:37:01'),
+(124, 'Prueba Jaime 9 Mayo', '2Incripcion centro Adultos', '', 7, 73, 65, 86, 65, 'Registrada', '', '2022-05-09', '13:37:00', '00:15:00', '2022-05-07 13:37:48'),
+(125, 'Nueva Ayuda', 'Necesito nueva ayuda adicional', '', 3, 31, 0, 87, 87, 'Iniciada', '', '2022-05-07', '17:02:00', '00:35:00', '2022-05-07 17:03:54'),
+(126, 'Paro Alicia', 'Paro Alicia descripcion', '', 3, 31, 65, 86, 65, 'Iniciada', '', '2022-05-07', '17:16:00', '00:00:00', '2022-05-07 17:16:42'),
+(127, 'Nueva Ayuda', 'Nueva ayuda necesito', '', 3, 31, 0, 86, 87, 'Registrada', '', '2022-05-07', '17:24:00', '00:13:00', '2022-05-07 17:25:05'),
+(128, 'Ayuda Empleo Arnau', 'Arnau descripcion', '', 3, 31, 0, 93, 93, 'Registrada', '', '2022-05-07', '17:28:00', '00:00:00', '2022-05-07 17:28:55'),
+(129, '12Solicitar duplicado Empadronamiento', 'Ayuda ', '', 1, 12, 65, 92, 65, 'En Proceso', '', '2022-05-13', '12:12:00', '00:12:12', '2022-05-07 17:30:50'),
+(130, 'Alicia ayuda a Arnau', 'Descripcion Alicia ayuda a Arnau', '', 3, 31, 86, 93, 86, 'Registrada', '', '2022-05-07', '17:46:00', '00:00:00', '2022-05-07 17:46:31'),
+(131, 'Ayuda Servicios Sociales Arnau', 'Descripcion Ayuda Servicios Sociales Arnau', '', 1, 12, 0, 93, 93, 'Registrada', '', '2022-05-07', '17:51:00', '00:00:00', '2022-05-07 17:51:28'),
+(132, 'Atencion dia 13', 'descripcion dia 13', '', 3, 35, 86, 93, 86, 'Registrada', '', '2022-05-12', '00:25:00', '00:00:00', '2022-05-12 00:26:10'),
+(133, 'Necesito ayuda', 'ayuda 12 Mayo', '', 3, 34, 0, 87, 87, 'Registrada', '', '2022-05-12', '23:10:00', '00:00:00', '2022-05-12 23:11:06'),
+(134, 'Ayuda 13 Mayo', '2descripcion que necesito ayuda', '', 1, 14, 0, 92, 92, 'Registrada', '', '2022-05-13', '00:00:00', '00:00:00', '2022-05-13 00:00:52');
 
 -- --------------------------------------------------------
 
@@ -396,16 +397,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `surname`, `dni`, `gender`, `birth_date`, `password`, `email`, `phone`, `address`, `postalCode`, `photo`, `rol`, `department`, `cookie_id`, `restart_password`, `restart_code`, `disableUser`, `registrationDate`) VALUES
-(65, 'Juanmi', 'Hurtado Montejano', '06268333M', '', '1983-10-13', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 'j@gmail.com', 649564806, '', 13700, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, '42269521a080b0698f7ad0a816724529f5cfc79f', 0, 0, 0, '2022-04-12 15:57:28'),
-(85, 'Marta', 'Hurtado Coronado', '12312312B', 'Mujer', '1995-03-25', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta@gmail.com', 654325320, '', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'superAdmin', 0, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, 0, '2022-05-06 10:03:00'),
-(86, 'Alicia', 'Montejano García', '741741741A', '', '1975-02-04', '$2y$10$BTYlDEXdn8Zuhp6gBjlWbOy4z6PWtljHwzmHk1Q8tEVa6OSSTf39e', 'alicia@gmail.com', 685685685, '', 13700, '7b201a8a662542d8efdda9313ee9756d.png', 'admin', 0, 'aa5765b27746f246b5fa2335a6eef45b8caa52ec', 0, 0, 0, '2022-05-06 10:25:14'),
-(87, 'Jaime', 'Hurtado', '74125125D', '', '1999-10-18', '$2y$10$Jvqhys1XuQPQ6pmVEwtW6OJv1sDk78hDJkiWSkk8YkZoQFBqlLRci', 'jaime@gmail.com', 632632632, '', 13180, '872be5ab6648302e50f701190428d20b.png', 'admin', 0, 'efd4b6695db128bc21117e8a8045d58257a58009', 0, 0, 0, '2022-05-06 11:08:23'),
-(88, 'Cintia', 'Moreno Hurtado', '74521523D', '', '1990-05-24', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', '', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, 0, '2022-05-06 11:19:20'),
-(92, 'Alberto', 'Picazo Parra', '74859632D', '', '1983-10-14', '$2y$10$v6XDqpAggrKmJojkAs9d1u069ECopDCawq/TMxYBhx7QpVRo226Fe', 'alpicazo25@gmail.com', 630063281, '', 13700, '187d83cc9d73390d2c6b35604bd243bf.png', '', 0, '9190ff411b07cc696f14766b9a12bb97355b58b6', 0, 0, 0, '2022-05-07 15:27:28'),
-(93, 'Arnau', 'Compayns Rufián', '85741254D', '', '1989-01-31', '$2y$10$FSuYydr77Sq7.OyObjcohefx5CCrrBuGK5fjvtMITCgqHrCp9u9Gu', 'arnau@gmail.com', 651579021, '', 13700, 'ca306df79c41baa18d267ac23b40d116.png', '', 0, '7ed03e47588d2cbe221c5f315fe98061f71f18e6', 0, 0, 0, '2022-05-07 15:28:23'),
-(96, 'Ada', 'Lovelace Matemática', '01010101A', '', '1815-12-10', '$2y$10$RUB23PtD6e90m6hswrtoneYvErSu8Q..EM.5yX8/.FtSv99DpoHMC', 'ada@gmail.com', 610610610, '', 13700, '213eef8d6fc25df5933365e6730936e3.jpg', '', 0, '7010c7eefbdc43feafeeeb29dfee9a02f2c61529', 0, 0, 0, '2022-05-12 22:32:49'),
-(97, 'Josefa', 'Montejano', '74521541F', 'Mujer', '1939-12-31', '$2y$10$5AW/SSUksU73giQ9UfPnhuoD7F.iZIaCrPsZcZFWsp9j0wQU9T56W', 'josefa@gmail.com', 652652652, 'Calle Triunfo Ave maría 40', 13700, '06c2cf54df44ca090ae86753e450e391.jpg', 'admin', 0, '3d69d336a2ebdd57e04fc08e0c3fcd97d51ccd1a', 0, 0, 0, '2022-05-13 17:50:17'),
-(99, 'Marco', 'Polo', '74125412S', 'NoBinario', '2000-01-01', '', 'marco@gmail.com', 632632632, 'Calle Vacia', 13700, 'd1264d3721b4aaae195c49e01bda4ad2.', '', 0, 'e1e3dc374bf57e0a595a69fc73a8b3e50ca60adc', 0, 0, 0, '2022-05-13 21:32:29');
+(65, 'Juanmi', 'Hurtado Montejano', '06268333M', 'Hombre', '1983-10-13', '$2y$10$nDjluAPNbvDS6a8ArPDOBen4rO.3JKKwsxuclb2ii/gSBBRC0NBXm', 'j@gmail.com', 649564806, '', 13700, '19dc4e173dcb6ba6c36ba8e1a6f186d2.jpg', 'superAdmin', 0, '42269521a080b0698f7ad0a816724529f5cfc79f', 0, 0, 0, '2022-04-12 15:57:28'),
+(85, 'Marta', 'Hurtado Coronado', '12312312B', 'Mujer', '1995-03-25', '$2y$10$ihNoOQwkXeczUDzbncYxA.YvGLyTSCjkdScSvEFol885izFxWyPSq', 'marta@gmail.com', 654321234, 'Calle León 9', 13700, '0edb023a7637d990d372cfe6ed6630ec.png', 'superAdmin', 2, '7d3cab6837c9eead7f79cd850d4fc8ff8d20fb65', 0, 0, 0, '2022-05-06 10:03:00'),
+(86, 'Alicia', 'Montejano García', '741741741A', 'Mujer', '1975-02-04', '$2y$10$BTYlDEXdn8Zuhp6gBjlWbOy4z6PWtljHwzmHk1Q8tEVa6OSSTf39e', 'alicia@gmail.com', 685685685, '', 13700, '7b201a8a662542d8efdda9313ee9756d.png', 'admin', 0, 'aa5765b27746f246b5fa2335a6eef45b8caa52ec', 0, 0, 0, '2022-05-06 10:25:14'),
+(87, 'Jaime', 'Hurtado', '74125125D', 'Hombre', '1999-10-18', '$2y$10$Jvqhys1XuQPQ6pmVEwtW6OJv1sDk78hDJkiWSkk8YkZoQFBqlLRci', 'jaime@gmail.com', 632632632, '', 13180, '872be5ab6648302e50f701190428d20b.png', 'admin', 0, 'efd4b6695db128bc21117e8a8045d58257a58009', 0, 0, 0, '2022-05-06 11:08:23'),
+(88, 'Cintia', 'Moreno Hurtado', '74521523D', 'Mujer', '1990-05-24', '$2y$10$oc3Pp0PFVk/mHe1mlcMfq.Y5.yaJmHL5frTxYo38fMI48dR63Y1uy', 'cintia@gmail.com', 674674674, '', 13700, 'b41a7661a76c4fdb0c957072856db845.png', 'user', 0, 'bf188ccd4180f6187411f39f1540d5d95a9e1121', 0, 0, 0, '2022-05-06 11:19:20'),
+(92, 'Alberto', 'Picazo Parra', '74859632D', 'Hombre', '1983-10-14', '$2y$10$v6XDqpAggrKmJojkAs9d1u069ECopDCawq/TMxYBhx7QpVRo226Fe', 'alpicazo25@gmail.com', 630063281, '', 13700, '187d83cc9d73390d2c6b35604bd243bf.png', '', 0, '9190ff411b07cc696f14766b9a12bb97355b58b6', 0, 0, 0, '2022-05-07 15:27:28'),
+(93, 'Arnau', 'Compayns Rufián', '85741254D', 'NoBinario', '1989-01-31', '$2y$10$FSuYydr77Sq7.OyObjcohefx5CCrrBuGK5fjvtMITCgqHrCp9u9Gu', 'arnau@gmail.com', 651579021, '', 13700, 'ca306df79c41baa18d267ac23b40d116.png', '', 0, '7ed03e47588d2cbe221c5f315fe98061f71f18e6', 0, 0, 0, '2022-05-07 15:28:23'),
+(96, 'Ada', 'Lovelace Matemática', '01010101A', 'Mujer', '1815-12-10', '$2y$10$RUB23PtD6e90m6hswrtoneYvErSu8Q..EM.5yX8/.FtSv99DpoHMC', 'ada@gmail.com', 610610610, '', 13700, '213eef8d6fc25df5933365e6730936e3.jpg', 'superAdmin', 0, '7010c7eefbdc43feafeeeb29dfee9a02f2c61529', 0, 0, 0, '2022-05-12 22:32:49'),
+(97, 'Josefa', 'Montejano', '74521541F', 'Mujer', '1939-12-31', '$2y$10$5AW/SSUksU73giQ9UfPnhuoD7F.iZIaCrPsZcZFWsp9j0wQU9T56W', 'josefa@gmail.com', 652652600, '', 13700, '06c2cf54df44ca090ae86753e450e391.jpg', 'superAdmin', 0, '3d69d336a2ebdd57e04fc08e0c3fcd97d51ccd1a', 0, 0, 0, '2022-05-13 17:50:17');
 
 --
 -- Indexes for dumped tables
@@ -526,7 +526,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- Constraints for dumped tables

@@ -25,15 +25,15 @@ ob_start();
             <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
                 <i class="fa-solid fa-building-user"></i>
                 <div class="">
-                    <label for="inputDepartment" class="form-label">Filtro por Depart.  </label>
-                        <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
-                            <option value="">Seleccione....</option>
-                            <?php foreach ($departments as $department): ?>
-                            <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
-                                value="<?php echo $department->idDepartment  ?>">
-                                <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
+                    <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($departments as $department): ?>
+                        <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
+                            value="<?php echo $department->idDepartment  ?>">
+                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
         </div>
@@ -178,8 +178,9 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12">
                         <label for="description">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description"
+                        <textarea type="textarea" class="form-control" id="description" name="description"
                             placeholder="Descripción" value="" style="margin-bottom:1em" required>
+                        </textarea>
                     </div>
                     <div class="form-group col-12" hidden>
                         <label for="location">Ubicación</label>
@@ -188,7 +189,8 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12 col-md-6">
                         <label for="id_department">Departamento</label>
-                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em" required>
+                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em"
+                            required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
                             <option value="<?php echo $department->idDepartment ?>">
@@ -198,11 +200,13 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12 col-md-6">
                         <label for="id_service">Servicio</label>
-                        <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
+                        <input type="text" class="form-control" id="id_service" name="id_service"
+                            style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group" hidden>
                         <label for="id_attendUser">Atendido por:</label>
-                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
+                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser"
+                            style="margin-bottom:1em" required>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
                         entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
@@ -223,19 +227,22 @@ $(document).on('click', '#boton_editar', function() {
                     </select>
                     <div class="form-group col-6 col-md-4">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em" required>
+                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="hour">Hora</label>
-                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em" required>
+                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="duration">Duración</label>
-                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em" required>
+                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="state">Estado</label>
-                        <select id="state" name="state" class="form-select" >
+                        <select id="state" name="state" class="form-select">
                             <option selected>Registrada</option>
                             <option>Iniciada</option>
                             <option>En Proceso</option>

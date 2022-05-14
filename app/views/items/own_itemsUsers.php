@@ -166,7 +166,7 @@ $(document).on('click', '#boton_editar', function() {
                         <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group" hidden>
-                        <label for="id_attendUser">Atendido por:</label>
+                        <label for="id_attendUser">Atendió:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni

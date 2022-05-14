@@ -13,7 +13,7 @@ ob_start();
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
-                    <th scope="col">Atendido por nombre:</th>
+                    <th scope="col">Atendió:</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha</th>
@@ -167,8 +167,9 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12">
                         <label for="description">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description"
+                        <textarea type="textarea" class="form-control" id="description" name="description"
                             placeholder="Descripción" value="" style="margin-bottom:1em" required>
+                        </textarea>
                     </div>
                     <div class="form-group col-12" hidden>
                         <label for="location">Ubicación</label>
@@ -190,7 +191,7 @@ $(document).on('click', '#boton_editar', function() {
                         <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group" hidden>
-                        <label for="id_attendUser">Atendido por:</label>
+                        <label for="id_attendUser">Atendió:</label>
                         <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni

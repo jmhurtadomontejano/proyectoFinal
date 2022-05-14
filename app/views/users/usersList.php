@@ -12,7 +12,7 @@ ob_start();
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
-                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Nació</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Dirección</th>

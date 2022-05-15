@@ -52,7 +52,15 @@ ob_start();
                     <td id="departmentInfo"><?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?></td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
                     <td id="attendUserInfo"><?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?></td>
-                    <td id="clientUserInfo"><?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?></td>
+                   
+                    <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
+                    <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
+                    <?php else: ?>
+                    <td id="clientUserInfo">
+                        <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
+                    </td>
+                    <?php endif; ?>
+
                     <td id="stateInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>

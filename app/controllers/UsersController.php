@@ -412,6 +412,7 @@ class UsersController {
                     $conn = ConexionBD::conectar();
                     $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                     $usersList = $usuDAO->findAll();
+                    $adminsList = $usuDAO->findAdmins();
                     $list_postalCodes = $usuDAO->list_postalCodes();
                     //Save in a variable the array with all departments
                     $itemDAO = new ItemDAO($conn);
@@ -477,6 +478,10 @@ class UsersController {
 
     public function index() {
         require '../app/views/users/index.php';
+    }
+
+    public function indexBootstrap(){
+        require '../app/views/users/indexBootstrap.php';
     }
 
     public function detailUser() {

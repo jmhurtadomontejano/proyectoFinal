@@ -96,6 +96,8 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= RUTA?>">Inicio</a>
                         </li>
+                        <li><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
+                                </li>
                         <li class="nav-item dropdown" hidden>
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -151,6 +153,7 @@
                             <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Users SuperAdmin</a>
                             </li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>departments_listResponsive">Lista Departamentos Responsive</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items
                                     SuperAdmin</a></li>
                     </ul>
@@ -213,7 +216,7 @@
     </header>
 </body>
 
-<footer class="footer">
+<footer class="footer" style="float:bottom">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

@@ -27,7 +27,7 @@ ob_start();
                 <div class="">
                     <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
                     <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
-                        <option value="">Seleccione....</option>
+                        <option value="<?php $departmentUser ?>">Seleccione....</option>
                         <?php foreach ($departments as $department): ?>
                         <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
                             value="<?php echo $department->idDepartment  ?>">
@@ -84,12 +84,22 @@ ob_start();
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
+                    <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
+                    <td id="attendUserInfo" style="color:red">0000 - No asignado</td>
+                    <?php else: ?>
                     <td id="attendUserInfo">
                         <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
                     </td>
+                    <?php endif; ?>
+
+                    <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
+                    <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
+                    <?php else: ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>
+                    <?php endif; ?>
+
                     <td id="stateInfo"><?= $i->getState() ?></td>
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
@@ -97,12 +107,11 @@ ob_start();
                     <td id="resultInfo"><?= $i->getResult() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                        <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
-                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
-                            id="boton_editar">Modal</button>
+                        <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
+                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Modal</button>
                         <!-- button to open windows view_item, no modal -->
                         <a href="ver_item/<?= $i->getId() ?>">
-                            <button type="button" class="btn btn-primary m-0 p-1">Ver</button>
+                            <button type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
                         </a>
 
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
@@ -211,10 +220,23 @@ $(document).on('click', '#boton_editar', function() {
                         <input type="text" class="form-control" id="id_service" name="id_service"
                             style="margin-bottom:1em" required>
                     </div>
-                    <div class="form-group" hidden>
-                        <label for="id_attendUser">Atendido por:</label>
-                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser"
-                            style="margin-bottom:1em" required>
+                    <div class="form-group">
+                        <label for="id_attendUser">Atendió:</label>
+                        <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
+                        <select class="form-control" name="id_attendUser" id="id_attendUser" style="margin-bottom:1em">
+                            <option value="">Seleccione....</option>
+                            <?php foreach ($admins as $admin): ?>
+                            <option value="<?php echo $admin->id  ?>">
+                                <?php echo $admin->nombre , " " ;  echo $admin->surname; ?>
+                            </option>
+                            <?php endforeach; ?>
+                            <?php } ?>
+                            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                            <input class="form-control" name="inputUser"
+                                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                                readonly>
+                            <?php } ?>
+                        </select>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
                         entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>

@@ -49,14 +49,14 @@ ob_start();
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
                     <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
-                    <td id="attendUserInfo">No asignado</td>
+                    <td id="attendUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="attendUserInfo">
                         <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
                     </td>
                     <?php endif; ?>
                     <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
-                    <td id="clientUserInfo">No asignado</td>
+                    <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="clientUserInfo">
                         <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
@@ -177,9 +177,9 @@ $(document).on('click', '#boton_editar', function() {
                         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                     <select class="form-control" name="id_attendUser" id="id_attendUser" style="margin-bottom:1em">
                         <option value="">Seleccione....</option>
-                        <?php foreach ($clients as $client): ?>
-                        <option value="<?php echo $client->id  ?>">
-                            <?php echo $client->nombre , " " ;  echo $client->surname; ?>
+                        <?php foreach ($admins as $admin): ?>
+                        <option value="<?php echo $admin->id  ?>">
+                            <?php echo $admin->nombre , " " ;  echo $admin->surname; ?>
                         </option>
                         <?php endforeach; ?>
                         <?php } ?>

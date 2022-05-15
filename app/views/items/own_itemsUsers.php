@@ -53,7 +53,7 @@ ob_start();
                     </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
                     <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
-                    <td id="attendUserInfo">No asignado</td>
+                    <td id="attendUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="attendUserInfo">
                         <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>

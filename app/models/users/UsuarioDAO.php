@@ -106,24 +106,9 @@ class UsuarioDAO {
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL : " . $this->conn->error);
         }
-
-
         return $result->fetch_object('Usuario');
-        /* También se podría sustituir el fetch_object por lo siguiente:
-         *
-         * if ($fila = $result->fetch_assoc()) {
-          $usuario = new Usuario();
-          $usuario->setEmail($fila['email']);
-          $usuario->setPassword($fila['password']);
-          $usuario->setId($fila['id']);
-          $usuario->setPhoto($fila['photo']);
-          $usuario->setNombre($fila['nombre']);
-
-          return $usuario;
-          } else {
-          return null;
-          } */
     }
+
 
     public function findUserByIdV2($id) {
         $sql = "SELECT * FROM usuarios WHERE id=$id";
@@ -182,6 +167,18 @@ class UsuarioDAO {
             $array_obj_usuarios[] = $usuario;
         }
         return $array_obj_usuarios;
+    }
+
+    public function findAdmins() {
+        $sql = "SELECT * FROM usuarios WHERE rol='admin'";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_admins = array();
+        while ($admin = $result->fetch_object('Usuario')) {
+            $array_obj_admins[] = $admin;
+        }
+        return $array_obj_admins;
     }
 
     public function findByEmail($email) {

@@ -41,6 +41,7 @@ $mapa = array(
     //departmentsController
     'insert_department' => array('controller' => 'DepartmentsController', 'method' => 'insert', 'publica' => false),
     'departments_list' => array('controller' => 'DepartmentsController', 'method' => 'departments_list', 'publica' => true),
+    'departments_listResponsive' => array('controller' => 'DepartmentsController', 'method' => 'departments_listResponsive', 'publica' => true),
     'edit_department' => array('controller' => 'DepartmentsController', 'method' => 'editDepartment', 'publica' => true),
     'detail_department' => array('controller' => 'DepartmentsController', 'method' => 'detailDepartment', 'publica' => true),
      
@@ -62,6 +63,7 @@ $mapa = array(
 
     //userController
     'inicio' => array('controller' => 'UsersController', 'method' => 'index', 'publica' => true),
+    'indexBootstrap' => array('controller' => 'UsersController', 'method' => 'indexBootstrap', 'publica' => true),
     'registrar' => array('controller' => 'UsersController', 'method' => 'registrar', 'publica' => true),
     'add_user' => array('controller' => 'UsersController', 'method' => 'add_user', 'publica' => false),
     'subir_photo' => array('controller' => 'UsersController', 'method' => 'subir_photo', 'publica' => false),

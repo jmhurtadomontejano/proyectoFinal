@@ -187,7 +187,7 @@ class ItemDAO {
         if($byDate) $where = $where."AND date=? ";
         if($byDepart) $where = $where."AND id_department=? ";
 
-        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where."ORDER BY id DESC";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." or id_attendUser=0 ORDER BY id DESC";
 
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);
@@ -247,7 +247,7 @@ class ItemDAO {
     }
 
     public function list_users() { //: 
-        $sql = "SELECT *  FROM usuarios";
+        $sql = "SELECT *  FROM usuarios order by nombre";
         if (!$result = $this->conn->query($sql)) {
             die("Error en la SQL: " . $this->conn->error);
         }
@@ -256,6 +256,18 @@ class ItemDAO {
             $array_obj_users[] = $user;
         }
         return $array_obj_users;
+    }
+
+    public function list_admins(){
+        $sql = "SELECT *  FROM usuarios WHERE rol='admin' or rol='superadmin' order by nombre";
+        if (!$result = $this->conn->query($sql)) {
+            die("Error en la SQL: " . $this->conn->error);
+        }
+        $array_obj_admins = array();
+        while ($user = $result->fetch_object()) {
+            $array_obj_admins[] = $user;
+        }
+        return $array_obj_admins;
     }
 
     public function list_postal_codes() { //: 

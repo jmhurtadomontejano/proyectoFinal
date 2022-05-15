@@ -13,7 +13,7 @@ class ItemsController {
         $token = $_SESSION['token'];
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
-
+        $admins = $itemDAO->list_admins();
         require '../app/views/items/items_list.php';
         die();
     }
@@ -67,6 +67,7 @@ class ItemsController {
         $item = $itemDAO->findByItemId($id);
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
         require '../app/views/items/view_item.php';
         return $item;
     }
@@ -206,6 +207,7 @@ class ItemsController {
         //Save in a variable the array with all departments
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
         $usuDAO = new UsuarioDAO($conn);
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
 
@@ -226,6 +228,7 @@ class ItemsController {
         $item = $itemDAO->find($id);
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
 
         require '../app/views/items/view_item.php';
         die();
@@ -239,7 +242,7 @@ class ItemsController {
 
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
-
+        $admins = $itemDAO->list_admins();
         require '../app/views/items/own_items.php';
     } else {
         header("Location: inicio");
@@ -250,31 +253,33 @@ class ItemsController {
 
     public function ownItemsDaylyAdmins(){
         if (Session::existe() == true) {
-
-            $dateFilter = $_POST["inputDate"] ?? "";
-            $idDepart = $_POST["inputDepartment"] ?? "";
-
             $conn = ConexionBD::conectar();
             $usuDAO = new UsuarioDAO($conn);
             $itemDAO = new ItemDAO($conn);
+            $departmentUser = $usuDAO->findUserById(Session::obtener()->getDepartment());
+            echo $departmentUser;
+            $dateFilter = $_POST["inputDate"] ?? "";
+            $idDepart = $_POST["inputDepartment"] ?? "";
+
+
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
-
                 $mis_items = $itemDAO->findItemsByUserFilters(Session::obtener()->getId(), $dateFilter, $idDepart);
                 $departments = $itemDAO->listar_departamentos();
                 $clients = $itemDAO->list_users();
-
+                $admins = $itemDAO->list_admins();
+                
                 require '../app/views/items/own_itemsDaylyAdmins.php';
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver items si no eres Administrador");
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver items si no inicias sesión");
             die();
         }
     }
@@ -287,6 +292,7 @@ class ItemsController {
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             $departments = $itemDAO->listar_departamentos();
             $clients = $itemDAO->list_users();
+            $admins = $itemDAO->list_admins();
                 $mis_items = $itemDAO->findItemsByClientUser(Session::obtener()->getId());                
                 require '../app/views/items/own_itemsUsers.php';
                       //Generamos Token para seguridad del borrado

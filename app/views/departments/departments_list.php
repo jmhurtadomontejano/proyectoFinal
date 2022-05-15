@@ -103,7 +103,7 @@ $(document).ready(function() {
             <div class="modal-body">
                 <form action="<?=RUTA."/edit_department"?>" id="edit-form">
                 <div class="form-group">
-                        <label for="id">ID</label>
+                        <label for="idDepartment">ID</label>
                         <input type="text" class="form-control" id="id" name="id">
                     </div>
                     <div class="form-group">

@@ -24,8 +24,8 @@
                             <input type="file" name="photo" id="input_photo">
                             <input type="submit">
                         </form>
-                        <div id="userInfo"><?= Session::obtener()->getNombre() ?>
-                            <?= Session::obtener()->getSurname() ?>
+                        <div id="userInfo"><?= $user->getNombre() ?>
+                            <?= $user->getSurname() ?>
                             <br>
                             <a href="logout">cerrar sesión</a>
                         </div>
@@ -35,27 +35,37 @@
                 </section>
                 <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
                     <label class="form-label">Nombre</label>
-                    <input type="text" name="name" value=<?= Session::obtener()->getNombre() ?> class="form-control"
+                    <input type="text" name="name" value=<?= $user->getNombre() ?> class="form-control"
                         aria-describedby="nameHelp">
                 </div>
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Apellidos</label>
-                    <input type="text" name="surname" value=<?= Session::obtener()->getSurname() ?> class="form-control"
+                  <!-- Input for surname what show $user->getSurname() completely, including spaces  -->
+                    <input type="text" name="surname" value=<?= substr($user->getSurname(),0,100) ?> class="form-control"
                         aria-describedby="surnameHelp">
                 </div>
-                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">DNI o NIE completo</label>
-                    <input type="dni" name="dni" value=<?= Session::obtener()->getDni() ?> class="form-control"
+                    <input type="dni" name="dni" value=<?= $user->getDni() ?> class="form-control"
                         aria-describedby="dniHelp">
                 </div>
-                <div class="col-md-6 col-12" style="padding-bottom:20px">
+                <div class="col-md-4 col-6" style="padding-bottom:20px">
+                    <label class="form-label">Genero</label>
+                    <input type="text" name="gender" value=<?= $user->getGender() ?> class="form-control"
+                        aria-describedby="genderHelp">
+                </div>
+                <div class="col-md-4 col-6" style="padding-bottom:20px">
+                    <label class="form-label">BirthDate</label>
+                    <input type="date" name="birth_date" value=<?= $user->getBirth_date() ?> class="form-control"
+                        aria-describedby="birth_dateHelp">
+                </div>
+                <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">Teléfono</label>
-                    <input type="number" name="phone" value=<?= Session::obtener()->getPhone() ?> class="form-control"
-                        max=999999999>
+                    <input type="number" name="phone" value=<?= $user->getPhone() ?> class="form-control" max=999999999>
                 </div>
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Email/Direccion de correo electrónico</label>
-                    <input type="email" name="email" value=<?= Session::obtener()->getEmail() ?> class="form-control"
+                    <input type="email" name="email" value=<?= $user->getEmail() ?> class="form-control"
                         aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                 </div>
@@ -63,7 +73,7 @@
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Código Postal</label>
                     <select class="form-control" id="postalCode" name="postalCode" required>
-                        <option value=<?= Session::obtener()->getPostalCode() ?>>Seleccione Código Postal</option>
+                        <option value=<?= $user->getPostalCode() ?>>Seleccione Código Postal</option>
                         <?php foreach ($list_postalCodes as $postalCode): ?>
                         <option value="<?php echo $postalCode->code  ?>">
                             <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
@@ -71,9 +81,13 @@
                     </select>
                 </div>
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
+                    <label class="form-label">Dirección</label>
+                    <input type="text" name="address" value=<?= $user->getAddress() ?> class="form-control"
+                        aria-describedby="addressHelp">
+                </div>
+                <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Password</label>
-                    <input class="form-control" type="password" name="password"
-                        value=<?= Session::obtener()->getPassword() ?>>
+                    <input class="form-control" type="password" name="password" value=<?= $user->getPassword() ?>>
                     <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                         Mayusculas y minusculas</div>
                 </div>
@@ -95,12 +109,12 @@
                             $usuDAO = new UsuarioDAO($conn);
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
-                <?php if ($usuario->getRol() == 'admin') { ?>
+                <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') { ?>
                 <div class="mb-3">
                     <label class="form-label">Rol</label>
                     <select name="rol" class="form-control">
                         <option value="user">Usuario</option>
-                        <?php if ($usuario->getRol() =='superAdmin') { ?>
+                        <?php if ($user->getRol() =='superAdmin') { ?>
                         <option value="admin">Administrador</option>
                         <option value="superAdmin">Super Administrador</option>
                     </select>
@@ -117,7 +131,7 @@
                     </label>
                 </div>
                 <div style="justify-content:center; align-items:center">
-                    <button type="submit" value="registrar" class="btn btn-primary w-75">Cambiar mis datos de
+                    <button type="submit" value="edit_user" class="btn btn-primary w-75">Cambiar mis datos de
                         Usuario</button>
                 </div>
             </div>

@@ -49,6 +49,13 @@ class UsersController {
               MensajesFlash::add_message("El email ya está registrado.");
               $error = true;
           }
+
+          //check the dni is not registrer yet 
+            $usuarioDNI = $usuarioDAO->findByDNI($_POST['dni']);
+            if($usuarioDNI != null) {
+                MensajesFlash::add_message("El dni ya está registrado.");
+                $error = true;
+            }
             
 
             if (empty($_POST['password'])) {
@@ -184,11 +191,17 @@ class UsersController {
            $usuarioDAO = new UsuarioDAO(ConexionBD::conectar());
           $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
 
-          if ($usuarioEmail != null) {
-              MensajesFlash::add_message("El email ya está registrado.");
-              $error = true;
-          }
-            
+            if ($usuarioEmail != null) {
+                MensajesFlash::add_message("El email ya está registrado.");
+                $error = true;
+            }
+
+            //check the dni is not registrer yet 
+            $usuarioDNI = $usuarioDAO->findByDNI($_POST['dni']);
+            if($usuarioDNI != null) {
+                MensajesFlash::add_message("El dni ya está registrado.");
+                $error = true;
+            }
 
             if (empty($_POST['password'])) {
                 MensajesFlash::add_message("El password es obligatorio.");
@@ -437,6 +450,7 @@ class UsersController {
         //Borramos la cookie diciendole al navegador que está caducada
         setcookie('uid', '', time() - 5);
         header("Location: " . RUTA);
+        die();
     }
 
     public function deleteUser(){
@@ -501,8 +515,9 @@ class UsersController {
         //call to posatlCodes
         $list_postalCodes = $usuDAO->list_postalCodes();
         $user = $usuDAO->findUserById(Session::obtener()->getId());
-            
         require '../app/views/users/myUser.php';
+        return $user;
         }
+    die();
     }
 }

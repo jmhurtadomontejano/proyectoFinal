@@ -15,6 +15,7 @@ class ItemsController {
         $clients = $itemDAO->list_users();
 
         require '../app/views/items/items_list.php';
+        die();
     }
 
      function pb() {
@@ -27,10 +28,10 @@ class ItemsController {
        /*Se realizara la consulta de todos los datos
             Es importante que se nombren todos los datos en la consulta
        */
-        $busqueda = mysqli_prepare($conn,"SELECT id, name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration, registrationDate FROM items WHERE id = $id");
+        $busqueda = mysqli_prepare($conn,"SELECT id, name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration, result, registrationDate FROM items WHERE id = $id");
             mysqli_stmt_execute($busqueda);
             mysqli_stmt_store_result($busqueda);
-            mysqli_stmt_bind_result($busqueda, $id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration, $registrationDate);  
+            mysqli_stmt_bind_result($busqueda, $id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration, $result, $registrationDate);  
 
 
             /*Usando la erramienta de while recorreremos todos los datos que nos trajo la consulta */
@@ -49,12 +50,14 @@ class ItemsController {
                   'date'=> $date,
                   'hour'=> $hour,
                   'duration'=> $duration,
+                  'result'=> $result,
                );
 
                }
         /*El array lo convertiremos en formato JSON para que este sea leido por javascrip*/
     $vari = json_encode($array_busqueda);
         echo $vari;
+        die();
     }
     
 
@@ -80,6 +83,7 @@ class ItemsController {
             MensajesFlash::add_message("¡El item no es tuyo!");
         }
         header("Location: " . RUTA);
+        die();
     }
 
     function insert() {
@@ -197,10 +201,11 @@ class ItemsController {
 
         //if user is admin or superadmin
         if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
-            require '../app/views/items/insert_item.php';
+            require '../app/views/items/insert_itemAdmins.php';
         } else {
             require '../app/views/items/insert_itemUsers.php';
     }
+    die();
 }
 
     public function find() {
@@ -213,6 +218,7 @@ class ItemsController {
         $clients = $itemDAO->list_users();
 
         require '../app/views/items/view_item.php';
+        die();
     }
 
     public function ownItems() {

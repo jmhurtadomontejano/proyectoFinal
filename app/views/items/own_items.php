@@ -5,6 +5,11 @@ ob_start();
 
 
 <div class="col-sm-12">
+<a href="<?= RUTA?>insert_itemUsers">
+                <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
+                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
+                </button>
+            </a>
     <div class="table-responsive" id="mydatatable-container">
         <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
             <thead>

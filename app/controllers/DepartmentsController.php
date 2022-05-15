@@ -100,9 +100,14 @@ class DepartmentsController {
             /*if user is admin o superadmin can watch, if not, no */
             if ($usuario->getRol() =='superAdmin') {
                 $departmentDAO = new DepartmentDAO(ConexionBD::conectar());
-                $department = Department::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['phone'], $_POST['emailDepartment'], $_POST['iconDepartment']);
-                $departmentDAO->update($department);
-                MensajesFlash::add_message("Departamento actualizado");    
+                $department = Department::initValues($_POST['idDepartment'], $_POST['name'], $_POST['description'], $_POST['phone'], $_POST['emailDepartment'], $_POST['iconDepartment']);
+                /*if return true, MensajeFlash succes */
+                if ($departmentDAO->update($department)) {
+                    MensajesFlash::add_message("Departamento editado");
+                } else {
+                    MensajesFlash::add_message("No se ha podido editar el departamento");
+                }
+                
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");

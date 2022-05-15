@@ -3,7 +3,7 @@ ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
 
-<button type="button" class="btn btn-primary" style="margin:10px; color:white" data-bs> <a class="dropdown-item"
+<button type="button" class="btn btn-primary btn-table" style="margin:10px; color:white" data-bs> <a class="dropdown-item"
         href="<?=RUTA?>add_user">Insertar Usuarios</a></button>
 
 <div class="table-responsive" id="mydatatable-container">

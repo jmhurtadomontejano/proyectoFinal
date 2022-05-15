@@ -2,7 +2,11 @@
 ob_start();
 ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
-
+<a href="<?= RUTA?>insert_itemUsers">
+                <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
+                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
+                </button>
+            </a>
 
 <div class="col-sm-12">
     <div class="table-responsive" id="mydatatable-container">
@@ -220,7 +224,7 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="result">Result</label>
-                        <select id="result" name="result" class="form-select" readonly>
+                        <select id="result" name="result" class="form-select">
                             <option selected>NO</option>
                             <option value="Anulada">Anulada</option>
                             <option value="No asiste">NO asiste</option>

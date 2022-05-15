@@ -20,6 +20,7 @@ class Department {
     }
 
     public static function initValues($idDepartment, $name, $description, $phone, $emailDepartment, $iconDepartment) {
+        debbuger("initValues");
         $obj = new Department();
         $obj->idDepartment = $idDepartment;
         $obj->name = $name;

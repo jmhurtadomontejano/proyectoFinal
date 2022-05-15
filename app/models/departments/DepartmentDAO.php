@@ -37,19 +37,22 @@ class DepartmentDAO {
     public function update($department) {
         //Comprobamos que el parámetro es de la clase Departamento
         if (!$department instanceof department) {
+            MensajesFlash::error("El parámetro no es de la clase Department");
             return false;
+            die();
         }
         $departmentName = $department->getName();
         $departmentDescription = $department->getDescription();
-        $departmentId = $department->getId();
+        $departmentId = $department->getIdDepartment();
         //SQL to update department on the database
-        $sql = "UPDATE departments SET name =?, description =? WHERE id =". $department->getIdDepartment();
+        $sql = "UPDATE departments SET name =?, description =? WHERE idDepartment =". $department->getIdDepartment();
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
         $stmt->bind_param('ssi',$departmentName, $departmentDescription, $departmentId);
         $stmt->execute();
         $result = $stmt->get_result();
+        MensajesFlash::success("El departamento se ha actualizado correctamente");
         return true;
     }
 

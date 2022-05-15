@@ -1,6 +1,6 @@
 <?php ob_start() ?>
 <?php MensajesFlash::imprimir_mensajes(); ?>
-<button type="button" class="btn btn-primary" style="margin:10px; color:white" data-bs> <a class="dropdown-item"
+<button type="button" class="btn btn-primary btn-table" style="font-color:white" data-bs> <a class="dropdown-item"
         href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
 
 
@@ -14,11 +14,13 @@
                 <th scope="col">Telefono</th>
                 <th scope="col">Email</th>
                 <th scope="col">Icono</th>
+                <th scope="col">Hab/Deshab</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tfoot style="display: table-header-group !important">
             <tr>
+                <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
                 <th>Filter..</th>
@@ -37,6 +39,11 @@
                 <th id="departmentInfo"><?= $d->getPhone() ?></th>
                 <th id="departmentInfo"><?= $d->getEmailDepartment() ?></th>
                 <th id="departmentInfo"><?= $d->getIconDepartment() ?></th>
+                <?php if ($d->getDisable()==0): ?>
+                <td id="departmentInfo">Habilitado</td>
+                <?php else: ?>
+                <td id="departmentInfo">DESHabilitado</td>
+                <?php endif; ?>
                 <th>
                     <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->
                     <button type="button" class="btn btn-primary btn-table" id="<?= $d->getIdDepartment() ?>"
@@ -102,7 +109,7 @@ $(document).ready(function() {
             </div>
             <div class="modal-body">
                 <form action="<?=RUTA."/edit_department"?>" id="edit-form">
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="idDepartment">ID</label>
                         <input type="text" class="form-control" id="id" name="id">
                     </div>
@@ -125,6 +132,10 @@ $(document).ready(function() {
                     <div class="form-group">
                         <label for="iconDepartment">Icono</label>
                         <input type="text" class="form-control" id="iconDepartment" name="iconDepartment">
+                    </div>
+                    <div class="form-group">
+                        <label for="disable">DesHabilitado</label>
+                        <input class="form-check-input" type="checkbox" id="disable" name="disable">
                     </div>
                 </form>
             </div>

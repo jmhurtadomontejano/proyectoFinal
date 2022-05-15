@@ -41,15 +41,20 @@ class DepartmentDAO {
             return false;
             die();
         }
+        $departmentId = $department->getIdDepartment();
         $departmentName = $department->getName();
         $departmentDescription = $department->getDescription();
-        $departmentId = $department->getIdDepartment();
+        $departmentPhone = $department->getPhone();
+        $departmentEmail = $department->getEmailDepartment();
+        $departmentIcon = $department->getIconDepartment();
+        
+   
         //SQL to update department on the database
-        $sql = "UPDATE departments SET name =?, description =? WHERE idDepartment =". $department->getIdDepartment();
+        $sql = "UPDATE departments SET name =?, description =?, phone=?, emailDepartment=?, iconDepartment=?, disableDepartment=? WHERE idDepartment =". $department->getIdDepartment();
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
-        $stmt->bind_param('ssi',$departmentName, $departmentDescription, $departmentId);
+        $stmt->bind_param('ssissii',$departmentName, $departmentDescription, $phone, $emailDepartment, $iconDepartment, $disableDepartment, $departmentId);
         $stmt->execute();
         $result = $stmt->get_result();
         MensajesFlash::success("El departamento se ha actualizado correctamente");

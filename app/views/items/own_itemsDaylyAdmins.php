@@ -99,7 +99,12 @@ ob_start();
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
-                            id="boton_editar">Editar</button>
+                            id="boton_editar">Modal</button>
+                        <!-- button to open windows view_item, no modal -->
+                        <a href="ver_item/<?= $i->getId() ?>">
+                            <button type="button" class="btn btn-primary m-0 p-1">Ver</button>
+                        </a>
+
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>

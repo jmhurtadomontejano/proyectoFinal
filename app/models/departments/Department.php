@@ -11,6 +11,7 @@ class Department {
     private $phone;
     private $emailDepartment;
     private $iconDepartment; 
+    private $disable;
     
     //Va a almacenar los datos de los usuarios relacionado con este Departamento
     private $users;
@@ -19,7 +20,7 @@ class Department {
     {
     }
 
-    public static function initValues($idDepartment, $name, $description, $phone, $emailDepartment, $iconDepartment) {
+    public static function initValues($idDepartment, $name, $description, $phone, $emailDepartment, $iconDepartment, $disable) {
         debbuger("initValues");
         $obj = new Department();
         $obj->idDepartment = $idDepartment;
@@ -28,6 +29,7 @@ class Department {
         $obj->phone = $phone;
         $obj->emailDepartment = $emailDepartment;
         $obj->iconDepartment = $iconDepartment;
+        $obj->disable = $disable;
         return $obj;
     }
     
@@ -55,6 +57,9 @@ class Department {
         return $this->iconDepartment;
     }
 
+    function getDisable() {
+        return $this->disable;
+    }
 
     function setIdDepartment($id): void {
         $this->id = $idDepartment;
@@ -78,6 +83,10 @@ class Department {
 
     function setIconDepartment($iconDepartment): void {
         $this->iconDepartment = $iconDepartment;
+    }
+
+    function setDisable($disable): void {
+        $this->disable = $disable;
     }
     
 }

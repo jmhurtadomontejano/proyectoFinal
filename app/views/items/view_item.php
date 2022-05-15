@@ -18,40 +18,31 @@ $(function() {
             ?>
 <?php } ?>
 
-<!-- boton to print item info -->
-<div class="col-md-11" style="margin:10px; padding:10px; border:1px solid black">
-    <button type="button" class="btn btn-primary col-12" onclick="printDiv('printableArea')"><i
-            class="fa-solid fa-file-arrow-down"></i> Imprimir Justificante</button>
-</div>
-
-
-<form class="row g-3 col-md-12" action="<?= RUTA."edit_item"?>" method="post" enctype="multipart/form-data">
+<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
     <div class="col-md-3 col-6">
         <label for="inputUser" class="form-label">Usuario Registro</label>
-        <input class="form-control" name="inputUser" value="<?php $item->getId_user() ?>" readonly>
+        <input class="form-control" name="inputUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
     </div>
     <div class="col-md-3 col-6">
         <label for="inputState" class="form-label">Estado</label>
-        <select id="inputState" name="inputState" class="form-select">
+        <select id="inputState" name="inputState" class="form-select" readonly>
             <option selected>Registrada</option>
-            <option>Iniciada</option>
-            <option>En Proceso</option>
-            <option>Finalizada</option>
         </select>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-3 col-4">
         <label for="inputDate" class="form-label">Fecha</label>
-        <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>">
+        <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>" readonly>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-3 col-4">
         <label for="inputHour" class="form-label">Hora</label>
-        <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>">
+        <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>" readonly>
     </div>
-    <div class="col-md-2 col-4">
+    <div class="col-md-2 col-4" hidden>
         <label for="inputDuration" class="form-label">Duracion</label>
         <input type="time" class="form-control" name="inputDuration">
     </div>
-
     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
     <div class="col-6">
         <label for="inputAttendUser" class="form-label">Atendido por:</label>
@@ -60,25 +51,19 @@ $(function() {
             readonly>
     </div>
     <?php } ?>
-
-    <div class="col-6">
-        <label for="inputClientUser" class="form-label">Cliente:</label>
-        <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-        <select class="form-control" name="inputClientUser" id="inputClientUser">
-            <option value="">Seleccione....</option>
-            <?php foreach ($clients as $client): ?>
-            <option value="<?php echo $client->id  ?>">
-                <?php echo $client->dni, " - " ; echo $client->nombre , " " ;  echo $client->surname; ?></option>
-            <?php endforeach; ?>
-            <?php } ?>
-            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
-            <input class="form-control" name="inputUser"
-                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                readonly>
-            <?php } ?>
-        </select>
+    <div class="col-6" hidden>
+        <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero, puedes
+            buscar a partir de la 5ª cifra del DNI o NIE)</label>
+        <input class="form-control" name="inputClientUser" id="inputClientUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
     </div>
-
+    <div class="col-6" hidden>
+        <label for="inputUser" class="form-label">Usuario Registro</label>
+        <input class="form-control" name="inputUser"
+            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+            readonly>
+    </div>
     <div class="col-md-6 w-100">
         <label for="inputName" class="form-label">Titulo</label>
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
@@ -89,12 +74,10 @@ $(function() {
         <textarea type="textarea" class="form-control" name="inputDescription" id="description"
             placeholder="Descripción..."></textarea>
     </div>
-
     <div class="col-12" hidden>
         <label for="inputLocation" class="form-label">Localización</label>
         <input type="text" class="form-control" name="inputLocation" placeholder="Ubicación">
     </div>
-
     <div class="col-6">
         <label for="inputDepartment" class="form-label">Departamento</label>
         <select class="form-control" id="inputDepartment" name="inputDepartment" required>
@@ -105,7 +88,6 @@ $(function() {
             <?php endforeach; ?>
         </select>
     </div>
-
     <div class="col-6">
         <label for="inputService" class="form-label">Servicio</label>
         <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
@@ -116,25 +98,14 @@ $(function() {
         <input type="file" class="form-control" name="inputPhotoItem[]" id="photoItem" multiple="multiple">
     </div>
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Editar Item</button>
-    </div>
 
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Agregar Item</button>
+    </div>
 </form>
 <?php
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-$titulo2 = "Modificar Items e Imprimir Justificantes";
+$titulo2 = "Insertar Items";
 require '../app/views/template.php';
 ?>
-
-<!-- script to  onclick="printDiv('printableArea')" -->
-<script>
-function printDiv(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-}
-</script>

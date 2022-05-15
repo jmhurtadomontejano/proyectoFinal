@@ -59,8 +59,18 @@ class ItemsController {
         echo $vari;
         die();
     }
-    
 
+    function viewItem(){
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $item = $itemDAO->findByItemId($id);
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
+        require '../app/views/items/view_item.php';
+        return $item;
+    }
+    
     function borrar() {
         //Comprobamos que el token recibido es igual al que tenemos en la variable de sesión para evitar ataques CSRF
         if ($_GET['t'] != $_SESSION['token']) {

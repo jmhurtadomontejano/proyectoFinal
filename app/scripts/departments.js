@@ -18,6 +18,7 @@ function getDepartment()
                 $("#edit-form [name=\"phone\"]").val(department.phone);
                 $("#edit-form [name=\"emailDepartment\"]").val(department.emailDepartment);
                 $("#edit-form [name=\"iconDepartment\"]").val(department.iconDepartment);
+                $("#edit-form [name=\"disable\"]").val(department.disable);
             }
         });
     });

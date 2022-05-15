@@ -434,7 +434,7 @@ class UsersController {
         $usuDAO = new UsuarioDAO(ConexionBD::conectar());
         $user = $usuDAO->find($userId);
         echo $user;
-        console.log($user);
+       /* console.log($user);*/
     }
 
     public function findUserByIdJson($userId) {

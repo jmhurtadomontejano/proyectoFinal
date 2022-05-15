@@ -188,6 +188,15 @@ $(document).ready(function() {
             $("#emailHelp").html("El formato del email parece correcto");
             $("#email").css("border-color", "green");
             $("#emailHelp").css("color", "green");
+            /*check if the email exists with findByEmail(email) */
+          /*  var conn = ConexionBD::conectar();
+            var usuDAO = new UsuarioDAO(conn);
+            var usuario = usuDAO.findByEmail(email);
+            if (usuario != null) {
+                $("#emailHelp").html("El email ya existe");
+                $("#email").css("border-color", "red");
+                $("#emailHelp").css("color", "red");
+            }*/
         } else {
             $("#emailHelp").html("El email introducido no es correcto");
             $("#email").css("border-color", "red");
@@ -197,39 +206,6 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- script to control when the user change input email, check the email exists in our UsuarioDAO findByEmail-->
-<script>
-$(document).ready(function() {
-    $("#email").change(function() {
-        var email = $("#email").val();
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (regex.test(email)) {
-            $.ajax({
-                url: "../app/controllers/UsuarioController.php",
-                type: "POST",
-                data: {
-                    email: email
-                },
-                success: function(response) {
-                    if (response == "true") {
-                        $("#emailHelp").html("El email introducido ya existe");
-                        $("#email").css("border-color", "red");
-                        $("#emailHelp").css("color", "red");
-                    } else {
-                        $("#emailHelp").html("");
-                        $("#email").css("border-color", "green");
-                        $("#emailHelp").css("color", "green");
-                    }
-                }
-            });
-        } else {
-            $("#emailHelp").html("El email introducido no es correcto");
-            $("#email").css("border-color", "red");
-            $("#emailHelp").css("color", "red");
-        }
-    });
-});
-</script>
 
 <!-- script to control when the user change input phone, check the phone have 9 digits and start for 6,7 or 9 to be correct or not -->
 <script>
@@ -267,8 +243,8 @@ $(document).ready(function() {
             number = number.replace('Y', 1);
             number = number.replace('Z', 2);
             dni = value.substr(value.length - 1, 1);
-            console.log(dni);
-            console.log(number);
+           /* console.log(dni);
+            console.log(number);*/
             number = number % 23;
             letter = 'TRWAGMYFPDXBNJZSQVHLCKET';
             letter = letter.substring(number, number + 1);

@@ -2,7 +2,7 @@
 <div class="body d-flex align-items-center justify-content-center bg-br-primary ht-100v">
     <?php if (Session::existe()): ?>
     <div id="userInfo" hidden>
-        <div id="photo_usuario"
+        <div id="photo_user_index"
             style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
         </div>
         <form id="formulario_actualizar_photo" action="subir_photo" method="post" enctype="multipart/form-data">

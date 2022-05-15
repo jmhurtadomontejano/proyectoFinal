@@ -49,6 +49,10 @@
                     <button type="button" class="btn btn-primary btn-table" id="<?= $d->getIdDepartment() ?>"
                         data-id=<?= $d->getIdDepartment() ?> data-bs-toggle="modal"
                         data-bs-target="#editDepartmentModal">Editar <?= $d->getIdDepartment() ?></button>
+                                <!-- button to open windows view_item, no modal -->
+                                <a href="edit_department/<?= $d->getIdDepartment() ?>">
+                            <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
+                        </a>
                 </th>
             </tr>
             <?php endforeach; ?>

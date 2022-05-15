@@ -61,14 +61,14 @@ class DepartmentsController {
             $itemDAO = new ItemDAO($conn);
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             /*if user is admin o superadmin can watch, if not, no */
-            if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+            if ($usuario->getRol() =='superAdmin') {
                 $departmentDAO = new DepartmentDAO($conn);
                 $departments = $departmentDAO->findAll();
                 require '../app/views/departments/departments_list.php';
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres SuperAdministrador");
             die();
             }
         }else{

@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="<?= RUTA?>app/css/style.css">
+    <link rel="stylesheet" href="<?= RUTA?>app/css/styleGuide.css">
 
     <!--- SOCIAL MEDIA ICONS -->
     <meta name="twitter:site" content="@themepixels">
@@ -97,7 +97,7 @@
                             <a class="nav-link active" aria-current="page" href="<?= RUTA?>">Inicio</a>
                         </li>
                         <li><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
-                                </li>
+                        </li>
                         <li class="nav-item dropdown" hidden>
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -153,10 +153,11 @@
                             <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Users SuperAdmin</a>
                             </li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
-                            <li><a class="dropdown-item" href="<?= RUTA?>departments_listResponsive">Lista Departamentos Responsive</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>departments_listResponsive">Lista Departamentos
+                                    Responsive</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items
                                     SuperAdmin</a></li>
-                    </ul>
+                        </ul>
                     </li>
                     <?php } ?>
                     <?php } ?>
@@ -210,29 +211,14 @@
         <?php endif; ?>
 
         <div class="MensajesFlash"><?php mensajesFlash::imprimir_mensajes() ?></div>
-        <main>
-            <?= $contenido ?>
-        </main>
     </header>
-</body>
-
-<footer class="footer" style="float:bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-center">
-                    <small>
-
-            </div>
-        </div>
-    </div>
-    </div>
-</footer>
+    <main>
+        <?= $contenido ?>
+    </main>
 
 
-</html>
 
-<script type="text/javascript">
+     <script type="text/javascript">
 $('#photo_usuario').click(function() {
     $('#input_photo').click();
 });
@@ -242,4 +228,3 @@ $('#input_photo').change(function() {
 })
 </script>
 
-</html>

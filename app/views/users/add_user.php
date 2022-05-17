@@ -114,8 +114,8 @@
                     <?php if ($usuario->getRol() =='superAdmin') { ?>
                     <div class="col-md-6" style="padding-bottom:20px">
                         <label class="form-label" for="department">Departamento</label>
-                        <select class="form-control" id="department" name="department" required>
-
+                        <select class="form-control" id="department" name="department">
+                            <option value="">Seleccione Departamento</option>
                             <?php foreach ($departments as $department): ?>
                             <option value="<?php echo $department->idDepartment  ?>">
                                 <?php echo $department->idDepartment, " - " ; echo $department->name; ?>
@@ -200,6 +200,14 @@ $(document).ready(function() {
             $("#emailHelp").html("El formato del email parece correcto");
             $("#email").css("border-color", "green");
             $("#emailHelp").css("color", "green");
+           /* $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $usuario = $usuDAO->findUserByEmail(email);
+            if ($usuario != null) {
+                $("#emailHelp").html("El email ya esta registrado");
+                $("#email").css("border-color", "red");
+                $("#emailHelp").css("color", "red");
+            }*/
         } else {
             $("#emailHelp").html("El email introducido no es correcto");
             $("#email").css("border-color", "red");

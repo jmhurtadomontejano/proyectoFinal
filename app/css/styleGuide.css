@@ -1,32 +1,11 @@
-$colour1:#0F47AF;
-$colour2:#031432;
-$colour3:#F6C90E;
-$colour4:#EEEEEE;
-
-@mixin titleLetters{
-    color: $colour3;
+@import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
+footer {
+  background: #031432;
 }
 
-@mixin styleBoxes {
-    background: transparent;
-    background: linear-gradient(180deg, $colour2 13%, $colour4 100%);
-    color: $colour3;
-    font-weight: bold;
-    margin: 1% 1% 1% 1%;
-    border-radius: 15px;
-  }
-
-  @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
-
-  footer{
-    background: $colour2;
-  }
-
-  
-
-.overflow_menu{
+.overflow_menu {
   overflow: visible !important;
-  color:red;
+  color: red;
 }
 
 #usuario,
@@ -40,7 +19,6 @@ $colour4:#EEEEEE;
   margin-top: 3px;
 }
 
-
 .boton_formulario {
   border: 1px solid black;
   box-sizing: border-box;
@@ -51,11 +29,7 @@ $colour4:#EEEEEE;
   color: black;
 }
 
-.body{
-
-}
-
-.index-options{
+.index-options {
   font-size: 2em !important;
   font-weight: 600 !important;
 }
@@ -106,7 +80,6 @@ main {
 }
 
 .precio_articulo {
-
   font-weight: bold;
   color: #f00;
   width: 100px;
@@ -210,10 +183,6 @@ ul#menu_usuario li a {
   font-weight: 900;
 }
 
-.photo_user_index{
-
-}
-
 .footer {
   position: inherit;
   flex-wrap: wrap;
@@ -224,84 +193,82 @@ ul#menu_usuario li a {
   bottom: 0;
   width: 100%;
   height: 18em;
-  background-color: $colour2;
+  background-color: #031432;
 }
-
 
 /* to little screen less than 768px */
 @media screen and (max-width: 768px) {
   #usuario,
-  #login {
-      width: 100%;
-      float: none;
-      position: relative;
+#login {
+    width: 100%;
+    float: none;
+    position: relative;
   }
 
-  .logo{
-      width: 50px;
-  }    
-
-  .index-options{
-      font-size: 2em !important;
-      font-weight: bold;
+  .logo {
+    width: 50px;
   }
 
-  .fa-solid  {
-      font-size: 1.5em;
-      float: right;
+  .index-options {
+    font-size: 2em !important;
+    font-weight: bold;
   }
 
-  .btnIndex{
-      margin: 4px 0px 4px 0px !important;
-      padding: 2px 0px 2px 0px !important;
+  .fa-solid {
+    font-size: 1.5em;
+    float: right;
   }
 
-  .photo_user_index{
-  display:flex;
+  .btnIndex {
+    margin: 4px 0px 4px 0px !important;
+    padding: 2px 0px 2px 0px !important;
   }
 
-  .dt-buttons{
-      display:none !important;
+  .photo_user_index {
+    display: flex;
   }
 
-  .dataTables_wrapper, .records_list{
-      font-size:0.7rem !important;
+  .dt-buttons {
+    display: none !important;
   }
 
-  .btn-table{
-      font-size:0.7rem !important;
+  .dataTables_wrapper, .records_list {
+    font-size: 0.7rem !important;
   }
 
-  .hidden{
-      display:none !important;
+  .btn-table {
+    font-size: 0.7rem !important;
   }
 
-  #photo_usuario{
-      height: 65px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px;
-      box-shadow: 0px 0px 5px 0px #aaa;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      -o-border-radius: 10px;
+  .hidden {
+    display: none !important;
+  }
+
+  #photo_usuario {
+    height: 65px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #aaa;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
 }
-
-}
-
 /* to little screen less than 480px */
 @media screen and (max-width: 480px) {
-  .fa-solid  {
-      font-size: 1.2em;
-      float: right;
+  .fa-solid {
+    font-size: 1.2em;
+    float: right;
   }
 
-  .index-options{
-      font-size: 1.5em !important;
-      font-weight: bold;
+  .index-options {
+    font-size: 1.5em !important;
+    font-weight: bold;
   }
-  .town-hall-text{
-      font-size: 0.8rem !important;
+
+  .town-hall-text {
+    font-size: 0.8rem !important;
   }
-}
+}/*# sourceMappingURL=styleGuide.css.map */

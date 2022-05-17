@@ -207,7 +207,7 @@
     </section>
 
     <!-- scripts to change Userphoto-->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     $('#photo_usuario').click(function() {
         $('#input_photo').click();
     });
@@ -216,3 +216,4 @@
         $('#formulario_actualizar_photo').submit();
     })
     </script>
+-->

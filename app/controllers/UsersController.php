@@ -136,7 +136,7 @@ class UsersController {
                 $usuario->setAddress($address);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
-
+                $usuario->setRol("user");
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                 $usuDAO->insert($usuario);
                 MensajesFlash::add_message("Usuario creado.");
@@ -279,7 +279,11 @@ class UsersController {
                 $usuario->setPhone($phone);
                 $usuario->setPostalCode($postalCode);
                 $usuario->setAddress($address);
-                $usuario->setRol($rol);
+                if($rol == null){
+                    $rol = "user";
+                }else{
+                    $usuario->setRol($rol);
+                }
                 $usuario->setDepartment($department);
                 $usuario->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
@@ -310,6 +314,8 @@ class UsersController {
     }
 
     public function subir_photo() {
+        echo("hola333");
+
         if (($_FILES['photo']['type'] != 'image/png' &&
                 $_FILES['photo']['type'] != 'image/gif' &&
                 $_FILES['photo']['type'] != 'image/jpeg')) {
@@ -326,6 +332,37 @@ class UsersController {
         }
         //movemos la photo a la carpeta que queramos guardarla y con el nombre original
         move_uploaded_file($_FILES['photo']['tmp_name'], "images/users/$nombre_photo.$extension_photo");
+        //Actualizamos en la BD
+        $conn = ConexionBD::conectar();
+        $usuarioDAO = new UsuarioDAO($conn);
+        $usuario = $usuarioDAO->findUserById(Session::obtener()->getId());
+        $usuario->setphoto("$nombre_photo.$extension_photo");
+        $usuarioDAO->update($usuario);
+
+        //Para que recarge en la sesión la nueva photo
+        Session::iniciar($usuario);
+
+        header("Location: " . RUTA);
+    }
+
+    public function subir_photo2() {
+        alert("holaaa2");
+        if (($_FILES['photo2']['type'] != 'image/png' &&
+                $_FILES['photo2']['type'] != 'image/gif' &&
+                $_FILES['photo2']['type'] != 'image/jpeg')) {
+            MensajesFlash::add_message('La imagen no tiene el formato adecuado');
+            header('Location: inicio');
+            die();
+        }
+        //Generamos un nombre para la photo
+        $nombre_photo = md5(time() + rand(0, 999999));
+        $extension_photo = substr($_FILES['photo2']['name'], strrpos($_FILES['photo2']['name'], '.') + 1);
+        //Comprobamos que no exista ya una photo con el mismo nombre, si existe calculamos uno nuevo
+        while (file_exists("imagenes/$nombre_photo.$extension_photo")) {
+            $nombre_photo = md5(time() + rand(0, 999999));
+        }
+        //movemos la photo a la carpeta que queramos guardarla y con el nombre original
+        move_uploaded_file($_FILES['photo2']['tmp_name'], "images/users/$nombre_photo.$extension_photo");
         //Actualizamos en la BD
         $conn = ConexionBD::conectar();
         $usuarioDAO = new UsuarioDAO($conn);

@@ -29,7 +29,11 @@ class UsuarioDAO {
         $address = $usuario->getAddress();
         $password = $usuario->getPassword();
         $photo = $usuario->getPhoto();
-        $rol = $usuario->getRol();
+        if($usuario->getRol() == null){
+            $rol = "user";
+        }else{
+            $rol = $usuario->getRol();
+        }
         $restart_password = $usuario->getRestart_password();
         $restart_code = $usuario->getRestart_code();
         $cookie_id = sha1(time() + rand());

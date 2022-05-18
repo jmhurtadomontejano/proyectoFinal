@@ -1,7 +1,11 @@
 <?php
-ob_start();
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+/*$titulo2 = "Detalle de Items";*/
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
+
 <a href="<?= RUTA?>insert_itemUsers">
                 <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
                     <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
@@ -82,13 +86,6 @@ ob_start();
     </div>
 </div>
 
-<?php
- $contenido = ob_get_clean();
- /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- /*$titulo2 = "Detalle de Items";*/
- 
- require '../app/views/template.php';
- ?>
 
 <script type="text/javascript">
 $(document).on('click', '#boton_editar', function() {

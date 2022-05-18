@@ -1,20 +1,23 @@
 <?php
-ob_start();
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+$titulo2 = "Detalle de Items";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
 
 
 <div class="col-sm-12">
-<a href="<?= RUTA?>insert_itemUsers">
-                <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
-                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
-                </button>
-            </a>
+    <a href="<?= RUTA?>insert_itemUsers">
+        <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
+            <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
+        </button>
+    </a>
     <div class="table-responsive" id="mydatatable-container">
         <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
             <thead>
                 <tr>
-                <th scope="col">Nombre</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Servicio</th>
@@ -47,12 +50,16 @@ ob_start();
             <tbody>
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
-                <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
+                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
-                    <td id="departmentInfo"><?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?></td>
+                    <td id="departmentInfo">
+                        <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
+                    </td>
                     <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
-                    <td id="attendUserInfo"><?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?></td>
-                   
+                    <td id="attendUserInfo">
+                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
+                    </td>
+
                     <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
                     <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
@@ -65,7 +72,7 @@ ob_start();
                     <td id="dateInfo"><?= $i->getDate() ?></td>
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
                     <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
-                    <td id="resultInfo"><?= $i->getResult() ?></td>                
+                    <td id="resultInfo"><?= $i->getResult() ?></td>
                     <th>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
@@ -74,7 +81,7 @@ ob_start();
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
-                   
+
                 </tr>
                 <?php endforeach; ?>
                 <!-- include modal windows to edit or delete user -->
@@ -83,12 +90,6 @@ ob_start();
     </div>
 </div>
 
-<?php
- $contenido = ob_get_clean();
- /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- $titulo2 = "Detalle de Items";
- require '../app/views/template.php';
- ?>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -194,7 +195,8 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12 col-md-6">
                         <label for="id_department">Departamento</label>
-                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em" required>
+                        <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em"
+                            required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
                             <option value="<?php echo $department->idDepartment ?>">
@@ -204,11 +206,13 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12 col-md-6">
                         <label for="id_service">Servicio</label>
-                        <input type="text" class="form-control" id="id_service" name="id_service" style="margin-bottom:1em" required>
+                        <input type="text" class="form-control" id="id_service" name="id_service"
+                            style="margin-bottom:1em" required>
                     </div>
                     <div class="form-group" hidden>
                         <label for="id_attendUser">Atendió:</label>
-                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser" style="margin-bottom:1em" required>
+                        <input type="text" class="form-control" id="id_attendUser" name="id_attendUser"
+                            style="margin-bottom:1em" required>
                     </div>
                     <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
                         entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
@@ -229,19 +233,22 @@ $(document).on('click', '#boton_editar', function() {
                     </select>
                     <div class="form-group col-6 col-md-4">
                         <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em" required>
+                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="hour">Hora</label>
-                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em" required>
+                        <input type="time" class="form-control" id="hour" name="hour" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="duration">Duración</label>
-                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em" required>
+                        <input type="time" class="form-control" id="duration" name="duration" style="margin-bottom:1em"
+                            required>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="state">Estado</label>
-                        <select id="state" name="state" class="form-select" >
+                        <select id="state" name="state" class="form-select">
                             <option selected>Registrada</option>
                             <option>Iniciada</option>
                             <option>En Proceso</option>
@@ -250,7 +257,7 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="result">Result</label>
-                        <select id="result" name="result" class="form-select" >
+                        <select id="result" name="result" class="form-select">
                             <option selected>NO</option>
                             <option value="Anulada">Anulada</option>
                             <option value="No asiste">NO asiste</option>

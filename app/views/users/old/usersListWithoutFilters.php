@@ -1,7 +1,10 @@
 <?php
-ob_start();
+ $contenido = ob_get_clean();
+ $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+ $titulo2 = "Detalle de Articulos";
+ require '../app/views/template.php';
+ MensajesFlash::imprimir_mensajes();
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
 
 <table class="table" id="table">
     <thead>
@@ -43,15 +46,8 @@ ob_start();
 
         <?php endforeach; ?>
         <!-- include modal windows to edit or delete user -->
-
 </table>
 
-<?php
- $contenido = ob_get_clean();
- $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
- $titulo2 = "Detalle de Articulos";
- require '../app/views/template.php';
- ?>
 
 <!-- Modal to edit user -->
 <div class="modal fade" id="editUserModal" tabindex="1" aria-labelledby="editUserModalLabel" aria-hidden="true">

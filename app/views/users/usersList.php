@@ -1,10 +1,15 @@
 <?php
-ob_start();
+$contenido = ob_get_clean();
+/* $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+$titulo2 = "Detalle de Usuarios";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes(); 
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
 
-<button type="button" class="btn btn-primary btn-table" style="margin:10px; color:white" data-bs> <a class="dropdown-item"
-        href="<?=RUTA?>add_user">Insertar Usuarios</a></button>
+
+<button type="button" class="btn btn-primary btn-table" style="margin:10px; color:white" data-bs> <a
+        class="dropdown-item" href="<?=RUTA?>add_user">Insertar Usuarios</a>
+</button>
 
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
@@ -39,17 +44,17 @@ ob_start();
         <tbody>
             <?php foreach ($usersList as $u): ?>
             <tr>
-                <th id="userInfo"><?= $u->getNombre() ?></th>
-                <th id="userInfo"><?= $u->getSurname() ?></th>
-                <th id="userInfo"><?= substr($u->getBirth_date(),0,4)."-xx" ?></th>
-                <th id="userInfo"><?= substr($u->getEmail(),4,9 )?></th>
-                <th id="userInfo"><?= "----".substr($u->getPhone(),5,9) ?></th>
-                <th id="userInfo"><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
-                <th id="userInfo"><?= "----".substr($u->getDni(),4,9) ?></th>
-                <th id="userInfo"><?= $u->getRol() ." - ". $u->getDepartment() ?></th>
+                <th><?= $u->getNombre() ?></th>
+                <th><?= $u->getSurname() ?></th>
+                <th><?= substr($u->getBirth_date(),0,4)."-xx" ?></th>
+                <th><?= substr($u->getEmail(),4,9 )?></th>
+                <th><?= "----".substr($u->getPhone(),5,9) ?></th>
+                <th><?= $u->getPostalCode() ." - ". $u->getAddress() ?></th>
+                <th><?= "----".substr($u->getDni(),4,9) ?></th>
+                <th><?= $u->getRol() ." - ". $u->getDepartment() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
-                    <img id="photo_usuario"
+                    <img class="photo_user"
                         style="background-image: url(<?= RUTA?>web/images/users/<?= $u->getPhoto() ?>)"
                         class="img-thumbnail" alt="" width="100" height="100">
                     <?php else: ?>
@@ -64,20 +69,13 @@ ob_start();
                 </th>
             </tr>
             <?php endforeach; ?>
-            <!-- include modal windows to edit or delete user -->
         </tbody>
     </table>
     <div>
 
-        <?php
- $contenido = ob_get_clean();
-/* $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- $titulo2 = "Detalle de Usuarios";
- require '../app/views/template.php';
- ?>
 
         <!-- Modal to edit user -->
-        <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editUserModal" aria-labelledby="editUserModalLabel">
             <div class="modal-dialog">
                 <div class="modal-content d-flex">
                     <div class="modal-header">
@@ -157,7 +155,7 @@ ob_start();
                             <div class="col-md-6 col-12" hidden>
                                 <label for="department">Departamento</label>
                                 <select class="form-control" id="department" name="department" required>
-   
+
                                     <?php foreach ($departments as $department): ?>
                                     <option value="<?php echo $department->idDepartment  ?>">
                                         <?php echo $department->idDepartment, " - " ; echo $department->name; ?>

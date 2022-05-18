@@ -142,16 +142,7 @@ ul#menu_usuario li a {
   cursor: pointer;
 }
 
-#photo_usuario {
-  height: 80px;
-  width: 80px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 40px;
-  box-shadow: 0px 0px 5px 0px #aaa;
-}
-
-#photo_usuario2 {
+.photo_user {
   height: 80px;
   width: 80px;
   background-size: cover;
@@ -224,10 +215,6 @@ ul#menu_usuario li a {
     padding: 2px 0px 2px 0px !important;
   }
 
-  .photo_user_index {
-    display: flex;
-  }
-
   .dt-buttons {
     display: none !important;
   }
@@ -244,16 +231,16 @@ ul#menu_usuario li a {
     display: none !important;
   }
 
-  #photo_usuario {
+  .userInfoIndex {
+    display: flex !important;
+  }
+
+  .photo_user {
     height: 65px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px #aaa;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
   }
 }
 /* to little screen less than 480px */
@@ -271,4 +258,5 @@ ul#menu_usuario li a {
   .town-hall-text {
     font-size: 0.8rem !important;
   }
-}/*# sourceMappingURL=styleGuide.css.map */
+}
+/*# sourceMappingURL=styleGuide.css.map *//*# sourceMappingURL=styleGuide.css.map */

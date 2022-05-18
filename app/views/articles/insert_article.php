@@ -1,4 +1,10 @@
-<?php ob_start() ?>
+<?php 
+ob_start();
+$contenido = ob_get_clean();
+$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+$titulo2 = "Insertar Articulos";
+require '../app/views/template.php';
+?>
         <link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
@@ -18,9 +24,3 @@
             <input type="submit" value="Poner a la venta">
         </form>
 
-<?php
-$contenido = ob_get_clean();
-$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
-$titulo2 = "Insertar Articulos";
-require '../app/views/template.php';
-?>

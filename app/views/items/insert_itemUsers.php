@@ -1,4 +1,10 @@
-<?php ob_start() ?>
+<?php 
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+$titulo2 = "Insertar Items";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
+?>
 
 
 
@@ -101,9 +107,3 @@ $(function() {
         <button type="submit" class="btn btn-primary">Agregar Item</button>
     </div>
 </form>
-<?php
-$contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-$titulo2 = "Insertar Items";
-require '../app/views/template.php';
-?>

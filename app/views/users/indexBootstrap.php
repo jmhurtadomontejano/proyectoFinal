@@ -1,31 +1,13 @@
-<div class="template">
-    <?php
-    $contenido = ob_get_clean();
-    /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-    /*$titulo2 = "INICIO";*/
-    require '../app/views/template.php';
-    ?>
-</div>
+<?php
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+/*$titulo2 = "INICIO";*/
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
+?>
 
-<?php ob_start() ?>
 <div class="body d-flex align-items-center justify-content-center bg-br-primary ht-100v">
-    <?php if (Session::existe()): ?>
-    <div id="userInfo" hidden>
-        <div id="photo_user_index"
-            style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
-        </div>
-        <form id="formulario_actualizar_photo" action="subir_photo" method="post" enctype="multipart/form-data">
-            <input type="file" name="photo" id="input_photo">
-            <input type="submit">
-        </form>
-        <div id="userInfo"><?= Session::obtener()->getNombre() ?>
-            <?= Session::obtener()->getSurname() ?>
-            <br>
-            <a href="logout">cerrar sesión</a>
-        </div>
-    </div>
-
-    <?php else: ?>
+    <?php if (!Session::existe()): ?>
     <!-- social networks section -->
     <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
         <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
@@ -120,22 +102,19 @@
         <!-- ADMIN MENU -->
         <?php if (Session::existe()) { ?>
         <button type="button"
-            class="d-flex btn btnIndex btn-secondary col-12 col-md-3 col-xl-2 d-flex align-items-center justify-content-center"
+            class="btn btnIndex btn-secondary col-12 col-md-3 col-xl-2 d-flex align-items-center justify-content-center"
             style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>my_user">Mis Datos
             </a>
-            <div id="userInfo" class="photo_user_index">
-                <div id="photo_usuario" class="align-items-center justify-content-center"
+            <div class="userInfoIndex">
+                <div class="photo_user"
                     style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                 </div>
-                <form id="formulario_actualizar_photo" action="subir_photo" method="post" enctype="multipart/form-data">
-                    <input type="file" name="photo" id="input_photo">
-                    <input type="submit">
-                </form>
-                <div id="userInfo"><?= Session::obtener()->getNombre() ?>
-                    <?= Session::obtener()->getSurname() ?>
+                <div class="d-flex-wrap"><?= Session::obtener()->getNombre() ?>
+                    <?= Session::obtener()->getSurname() ?> </div>
                     <br>
-                    <a href="logout" style="color:black; width:bold">cerrar sesión</a>
+                <div class="d-flex-wrap">
+                    <a href="logout" style="color:white">cerrar sesión</a>
                 </div>
             </div>
         </button>
@@ -205,9 +184,11 @@
         <?php } ?>
         <?php } ?>
     </section>
+</div>
+<!-- END MENU -->
 
-    <!-- scripts to change Userphoto-->
-    <!-- <script type="text/javascript">
+<!-- scripts to change Userphoto-->
+<!--  <script type="text/javascript">
     $('#photo_usuario').click(function() {
         $('#input_photo').click();
     });
@@ -215,5 +196,4 @@
     $('#input_photo').change(function() {
         $('#formulario_actualizar_photo').submit();
     })
-    </script>
--->
+    </script> -->

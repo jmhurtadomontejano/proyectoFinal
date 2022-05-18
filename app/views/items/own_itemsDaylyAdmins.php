@@ -1,7 +1,11 @@
 <?php
-ob_start();
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+/*$titulo2 = "Detalle de Items";*/
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes(); 
 ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
+
 
 <div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
     <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
@@ -125,15 +129,6 @@ ob_start();
         </table>
     </div>
 </div>
-
-<?php
- $contenido = ob_get_clean();
- /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
- /*$titulo2 = "Detalle de Items";*/
- 
- require '../app/views/template.php';
- ?>
-
 
 
 

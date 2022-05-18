@@ -1,7 +1,11 @@
-<?php ob_start() ?>
-<link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
+<?php 
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+$titulo2 = "Mis Datos de usuario";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
+?>
+
 
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ">
@@ -15,16 +19,17 @@
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <section class="col-12">
                     <?php if (Session::existe()): ?>
-                    <div id="userInfo">
-                        <div id="photo_usuario"
+                    <div id="userMyInfo">
+                        <div class="photo_user"
                             style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                         </div>
-                        <form id="formulario_actualizar_photo" action="subir_photo" method="post"
+                       <form id="formulario_actualizar_photo" action="subir_photo" method="post"
                             enctype="multipart/form-data">
                             <input type="file" name="photo" id="input_photo">
                             <input type="submit">
                         </form>
-                        <div id="userInfo"><?= $user->getNombre() ?>
+                    
+                        <div id="userInfoData"><?= $user->getNombre() ?>
                             <?= $user->getSurname() ?>
                             <br>
                             <a href="logout">cerrar sesión</a>
@@ -72,7 +77,7 @@
 
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Código Postal</label>
-                    <select class="form-control" id="postalCode" name="postalCode" required>
+                    <select class="form-control" id="postalCode" name="postalCode" title="Postal Code">
                         <option value=<?= $user->getPostalCode() ?>>Seleccione Código Postal</option>
                         <?php foreach ($list_postalCodes as $postalCode): ?>
                         <option value="<?php echo $postalCode->code  ?>">
@@ -95,7 +100,7 @@
                     <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                     <input type="password" name="password2" id="password2" class="form-control"
                         placeholder="Introduce aqui tu password">
-                    <div id="passwordHelp" class="form-text">Escribe la misma contraseña que en la casilla anterior
+                    <div id="passwordHelp2" class="form-text">Escribe la misma contraseña que en la casilla anterior
                     </div>
                 </div>
                 <div class="mb-3">
@@ -112,7 +117,7 @@
                 <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') { ?>
                 <div class="mb-3">
                     <label class="form-label">Rol</label>
-                    <select name="rol" class="form-control">
+                    <select name="rol" class="form-control" title="Rol">
                         <option value="user">Usuario</option>
                         <?php if ($user->getRol() =='superAdmin') { ?>
                         <option value="admin">Administrador</option>
@@ -139,12 +144,7 @@
     </div>
 </div>
 
-<?php
-$contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-$titulo2 = "Mis Datos de usuario";
-require '../app/views/template.php';
-?>
+
 <script>
 window.onload = function() {
     var myInput = document.getElementById('password2');

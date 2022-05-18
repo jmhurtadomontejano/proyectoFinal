@@ -1,5 +1,12 @@
-<?php ob_start() ?>
-<?php MensajesFlash::imprimir_mensajes(); ?>
+<?php 
+$contenido = ob_get_clean();
+$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+$titulo2 = "Detalle de Departamentos";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
+?>
+
+
 <button type="button" class="btn btn-primary btn-table" style="font-color:white" data-bs> <a class="dropdown-item"
         href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
 
@@ -49,10 +56,10 @@
                     <button type="button" class="btn btn-primary btn-table" id="<?= $d->getIdDepartment() ?>"
                         data-id=<?= $d->getIdDepartment() ?> data-bs-toggle="modal"
                         data-bs-target="#editDepartmentModal">Editar <?= $d->getIdDepartment() ?></button>
-                                <!-- button to open windows view_item, no modal -->
-                                <a href="edit_department/<?= $d->getIdDepartment() ?>">
-                            <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
-                        </a>
+                    <!-- button to open windows view_item, no modal -->
+                    <a href="edit_department/<?= $d->getIdDepartment() ?>">
+                        <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
+                    </a>
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -61,12 +68,6 @@
     </table>
 </div>
 
-<?php
- $contenido = ob_get_clean();
- $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
- $titulo2 = "Detalle de Departamentos";
- require '../app/views/template.php';
- ?>
 
 <script type="text/javascript">
 $(document).ready(function() {

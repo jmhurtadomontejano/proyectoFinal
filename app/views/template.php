@@ -2,8 +2,9 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+
     <!-- Required meta tags -->
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -76,7 +77,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs">
-                    <a class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
+                    <a title="town_hall" class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
                         <p class="font-heading">Ayuntamiento de<br>Argamasilla de Alba</p>
                         <p>El lugar de La Mancha</p>
                 </div>
@@ -99,11 +100,11 @@
                         <li><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
                         </li>
                         <li class="nav-item dropdown" hidden>
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Articulos
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownArticles">
                                 <li><a class="nav-link" href="<?= RUTA?>insertar_articulo">Poner artículo a la venta</a>
                                 </li>
                                 <li><a class="nav-link" href="<?= RUTA?>listar_articulos">Listar Todos Los Articulos</a>
@@ -127,11 +128,11 @@
                         ?>
                     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Administradores
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                             <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
                                     Admins</a></li>
@@ -167,8 +168,8 @@
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                         <section class="col-12">
                             <?php if (Session::existe()): ?>
-                            <div id="userInfo" class="d-flex">
-                                <div id="photo_usuario"
+                            <div class="userInfo" class="d-flex">
+                                <div class="photo_user" id="photo_usuario"
                                     style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
                                 </div>
                                 <form id="formulario_actualizar_photo" action="subir_photo" method="post"

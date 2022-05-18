@@ -1,7 +1,10 @@
-<?php ob_start() ?>
-<link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
+<?php
+$contenido = ob_get_clean();
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+$titulo2 = "Registrar Usuario Nuevo";
+require '../app/views/template.php';
+MensajesFlash::imprimir_mensajes();
+?>
 
 
 <div class="d-flex align-items-center justify-content-center bg-br-primary ">
@@ -16,7 +19,7 @@
                         <label class="form-label">Nombre</label>
                         <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                             aria-describedby="nameHelp">
-                            <div id="nameHelp" class="form-text"></div>
+                        <div id="nameHelp" class="form-text"></div>
                     </div>
                     <div class="col-md-6 col-12" style="padding-bottom:20px">
                         <label class="form-label">Apellidos</label>
@@ -30,7 +33,6 @@
                         <div id="dniHelp" class="form-text">
                             <small>Ejemplo: 12345678A</small>
                         </div>
-
                     </div>
                     <div class="col-md-4 col-6" style="padding-bottom:20px">
                         <label class="form-label">Genero</label>
@@ -127,19 +129,14 @@
                         </label>
                     </div>
                     <div style="justify-content:center; align-items:center">
-                        <button type="submit" value="registrar" id="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
+                        <button type="submit" value="registrar" id="registrar" class="btn btn-primary w-75">Registrar
+                            Usuario</button>
                     </div>
                 </div>
         </form>
     </div>
 </div>
 
-<?php
-$contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-$titulo2 = "Registrar Usuario Nuevo";
-require '../app/views/template.php';
-?>
 
 <script>
 window.onload = function() {
@@ -189,14 +186,14 @@ $(document).ready(function() {
             $("#email").css("border-color", "green");
             $("#emailHelp").css("color", "green");
             /*check if the email exists with findByEmail(email) */
-          /*  var conn = ConexionBD::conectar();
-            var usuDAO = new UsuarioDAO(conn);
-            var usuario = usuDAO.findByEmail(email);
-            if (usuario != null) {
-                $("#emailHelp").html("El email ya existe");
-                $("#email").css("border-color", "red");
-                $("#emailHelp").css("color", "red");
-            }*/
+            /*  var conn = ConexionBD::conectar();
+              var usuDAO = new UsuarioDAO(conn);
+              var usuario = usuDAO.findByEmail(email);
+              if (usuario != null) {
+                  $("#emailHelp").html("El email ya existe");
+                  $("#email").css("border-color", "red");
+                  $("#emailHelp").css("color", "red");
+              }*/
         } else {
             $("#emailHelp").html("El email introducido no es correcto");
             $("#email").css("border-color", "red");
@@ -243,8 +240,8 @@ $(document).ready(function() {
             number = number.replace('Y', 1);
             number = number.replace('Z', 2);
             dni = value.substr(value.length - 1, 1);
-           /* console.log(dni);
-            console.log(number);*/
+            /* console.log(dni);
+             console.log(number);*/
             number = number % 23;
             letter = 'TRWAGMYFPDXBNJZSQVHLCKET';
             letter = letter.substring(number, number + 1);

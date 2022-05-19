@@ -86,7 +86,7 @@ if (!empty($_GET['accion'])) {
     if (isset($mapa[$_GET['accion']])) {  //Si existe en el mapa
         $accion = $_GET['accion'];
     } else { //Si no existe en el mapa
-        MensajesFlash::add_message("La página que buscas no existe.");
+        MensajesFlash::add_message("La página que buscas no existe.", MessageType::ERROR);
         header("Location: inicio");
         die();
     }
@@ -107,7 +107,7 @@ if (isset($_COOKIE['uid']) && Session::existe() == false) { //Si existe la cooki
 //Si va a acceder a una página que no es pública y no está identificado lo echamos a index
 if ($mapa[$accion]['publica'] == false) { //Debe tener la sesión iniciada
     if (!Session::existe()) {
-        MensajesFlash::add_message("Debes iniciar sesión para acceder a esta página");
+        MensajesFlash::add_message("Debes iniciar sesión para acceder a esta página", MessageType::ERROR);
         header('Location: inicio');
         die();
     }

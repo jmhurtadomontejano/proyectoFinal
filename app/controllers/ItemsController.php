@@ -98,7 +98,6 @@ class ItemsController {
     }
 
     function insert() {
-        alert("antes del if");
         if (Session::existe() == false) {
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes añadir items si no inicias sesión", MessageType::ERROR);

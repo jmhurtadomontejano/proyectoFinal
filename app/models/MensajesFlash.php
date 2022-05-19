@@ -15,7 +15,9 @@ class MensajesFlash {
         if(isset($_SESSION['mensajes_flash'])) {
             foreach($_SESSION['mensajes_flash'] as $mensaje_flash){
                 $title = $mensaje_flash[1];
-                if($mensaje_flash[1] == MessageType::ERROR )  $mensaje_flash[1] = 'danger';
+                if($mensaje_flash[1] == MessageType::ERROR){
+                      $mensaje_flash[1] = 'danger';
+                    }
                 print '<div class="error alert alert-'.$mensaje_flash[1].'" role="alert">'
                     .'<strong style="text-transform: capitalize ">'.$title.'</strong>'.": " 
                     . $mensaje_flash[0] .

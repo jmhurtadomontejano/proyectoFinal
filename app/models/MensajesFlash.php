@@ -27,8 +27,8 @@ class MensajesFlash {
 }
 
 class MessageType {
+    const WARNING = 'warning';
     const ERROR = 'error';
     const SUCCESS = 'success';
-    const WARNING = 'warning';
     const INFO = 'info';
 }

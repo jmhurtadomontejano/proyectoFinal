@@ -64,7 +64,7 @@ class UsersController {
             }
 
             if (empty($_POST['password2'])) {
-                MensajesFlash::add_message(".crito la comprobación de la contraseña", MessageType::ERROR);
+                MensajesFlash::add_message(".Falta la comprobación de la contraseña", MessageType::ERROR);
                 $error = true;
             }
 
@@ -77,7 +77,7 @@ class UsersController {
             //if photo is null or empty, set default photo
             if (empty($_FILES['photo']['name'])) {
                 $usuario->setPhoto("default.jpg");
-                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente");
+                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente", MessageType::INFO);
             } else {
             //Validación photo
             if ($_FILES['photo']['type'] != 'image/png' &&
@@ -87,7 +87,7 @@ class UsersController {
                 $error = true;
             }
             if ($_FILES['photo']['size'] > 1000000) {
-                MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
+                MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB", MessageType::ERROR);
                 $error = true;
             }
         }
@@ -139,7 +139,7 @@ class UsersController {
                 $usuario->setRol("user");
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                 $usuDAO->insert($usuario);
-                MensajesFlash::add_message("Usuario creado.");
+                MensajesFlash::add_message("Usuario creado.", MessageType::SUCCESS);
                 header('Location: inicio');
                 die();
             }
@@ -165,24 +165,24 @@ class UsersController {
             //Comprobamos el token
             if ($_POST['token'] != $_SESSION['token']) {
                 header('Location: #');
-                MensajesFlash::add_message("Token incorrecto");
+                MensajesFlash::add_message("Token incorrecto", MessageType::ERROR);
                 die();
             }
 
             $usuario = new Usuario();
             $error = false;
             if (empty($_POST['name'])) {
-                MensajesFlash::add_message("El nombre es obligatorio.");
+                MensajesFlash::add_message("El nombre es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (empty($_POST['email'])) {
-                MensajesFlash::add_message("El email es obligatorio.");
+                MensajesFlash::add_message("El email es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                MensajesFlash::add_message("El email no es correcto.");
+                MensajesFlash::add_message("El email no es correcto.", MessageType::ERROR);
                 $error = true;
             }
 
@@ -192,29 +192,29 @@ class UsersController {
           $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
 
             if ($usuarioEmail != null) {
-                MensajesFlash::add_message("El email ya está registrado.");
+                MensajesFlash::add_message("El email ya está registrado.", MessageType::ERROR);
                 $error = true;
             }
 
             //check the dni is not registrer yet 
             $usuarioDNI = $usuarioDAO->findByDNI($_POST['dni']);
             if($usuarioDNI != null) {
-                MensajesFlash::add_message("El dni ya está registrado.");
+                MensajesFlash::add_message("El dni ya está registrado.", MessageType::ERROR);
                 $error = true;
             }
 
             if (empty($_POST['password'])) {
-                MensajesFlash::add_message("El password es obligatorio.");
+                MensajesFlash::add_message("El password es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (empty($_POST['password2'])) {
-                MensajesFlash::add_message("No has escrito la comprobación de la contraseña");
+                MensajesFlash::add_message("No has escrito la comprobación de la contraseña", MessageType::ERROR);
                 $error = true;
             }
 
             if ($_POST['password'] != $_POST['password2']) {
-                MensajesFlash::add_message("Las contraseñas no coinciden");
+                MensajesFlash::add_message("Las contraseñas no coinciden", MessageType::ERROR);
                 $error = true;
             }
 
@@ -222,7 +222,7 @@ class UsersController {
             //if photo is null or empty, set default photo
             if (empty($_FILES['photo']['name'])) {
                 $usuario->setPhoto("default.jpg");
-                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente");
+                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente", MessageType::INFO);
             } else {
             //Validación photo
             if ($_FILES['photo']['type'] != 'image/png' &&
@@ -232,7 +232,7 @@ class UsersController {
                 $error = true;
             }
             if ($_FILES['photo']['size'] > 1000000) {
-                MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
+                MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB", MessageType::ERROR);
                 $error = true;
             }
         }
@@ -290,7 +290,7 @@ class UsersController {
 
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                 $usuDAO->insert($usuario);
-                MensajesFlash::add_message("Usuario creado.");
+                MensajesFlash::add_message("Usuario creado.", MessageType::SUCCESS);
                 header('Location: inicio');
                 die();
             }
@@ -319,7 +319,7 @@ class UsersController {
         if (($_FILES['photo']['type'] != 'image/png' &&
                 $_FILES['photo']['type'] != 'image/gif' &&
                 $_FILES['photo']['type'] != 'image/jpeg')) {
-            MensajesFlash::add_message('La imagen no tiene el formato adecuado');
+            MensajesFlash::add_message('La imagen no tiene el formato adecuado', MessageType::ERROR);
             header('Location: inicio');
             die();
         }
@@ -350,7 +350,7 @@ class UsersController {
         if (($_FILES['photo2']['type'] != 'image/png' &&
                 $_FILES['photo2']['type'] != 'image/gif' &&
                 $_FILES['photo2']['type'] != 'image/jpeg')) {
-            MensajesFlash::add_message('La imagen no tiene el formato adecuado');
+            MensajesFlash::add_message('La imagen no tiene el formato adecuado', MessageType::ERROR);
             header('Location: inicio');
             die();
         }
@@ -394,7 +394,7 @@ class UsersController {
             die();
         }
         //Usuario y password correctos, redirijo al listado de anuncios
-        MensajesFlash::add_message("LOGIN CORRECTO");
+        MensajesFlash::add_message("LOGIN CORRECTO", MessageType::SUCCESS);
         Session::iniciar($usuario);
 
         //Generamos un código aleatorio sha1 y lo guardamos en la BD
@@ -500,7 +500,7 @@ class UsersController {
                 $user = new Usuario();
                 $user->setId($_POST['id']);
                 $usuDAO->delete($user);
-                MensajesFlash::add_message("Usuario eliminado correctamente");
+                MensajesFlash::add_message("Usuario eliminado correctamente", MessageType::SUCCESS);
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes eliminar usuarios si no eres SUPERAdministrador", MessageType::ERROR);
@@ -537,7 +537,7 @@ class UsersController {
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                 $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['gender'], $_POST['birth_date'] , $_POST['email'], $_POST['phone'], $_POST['postalCode'], $_POST['address'], $_POST['rol'], $_POST['department'] );
                 $usuDAO->update($user);
-                MensajesFlash::add_message("Usuario actualizado correctamente");
+                MensajesFlash::add_message("Usuario actualizado correctamente", MessageType::SUCCESS);
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes editar usuarios si no eres Administrador", MessageType::ERROR);

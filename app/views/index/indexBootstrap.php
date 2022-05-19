@@ -8,20 +8,7 @@ MensajesFlash::imprimir_mensajes();
 
 <div class="body d-flex align-items-center justify-content-center bg-br-primary ht-100v">
     <?php if (!Session::existe()): ?>
-    <!-- social networks section -->
-    <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
-        <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
-            <div class="alert alert-danger" role="alert" id="lblmensaje">
-                <strong class="d-block d-sm-inline-block-force">Error!</strong> Campos vacios.
-            </div>
 
-            <div class="alert alert-warning" role="alert" id="lblerror">
-                <strong class="d-block d-sm-inline-block-force">Advertencia!</strong> Verificar Credenciales.
-            </div>
-
-            <div class="alert alert-warning" role="alert" id="lblregistro">
-                <strong class="d-block d-sm-inline-block-force">Error!</strong> No Registrado.
-            </div>
             <!-- OWN LOGIN -->
             <div>
                 <h1>Inicia Sesión</h1>
@@ -34,24 +21,7 @@ MensajesFlash::imprimir_mensajes();
                     </section>
                 </form>
                 <!-- END OWN LOGIN-->
-                <br>
-                <!-- LOGIN ORIGINAL SOCIAL MEDIA -->
-                <div class="form-group">
-                    <input type="email" id="txtcorreo" name="txtcorreo" class="form-control"
-                        placeholder="Ingrese Correo Electronico">
-
-                    <div class="form-group">
-                        <input type="password" id="txtpass" name="txtpass" class="form-control"
-                            placeholder="Ingrese Contraseña">
-                    </div>
-                    <button type="button" class="btn btn-info btn-block" id="btnlogin">Iniciar Sesion</button>
-
-
-                    <input type="submit" value="Login Propio" id="btnlogin" class="btn btn-info btn-block"
-                        style="padding:10px">
-
-                </div>
-                <!-- END LOGIN ORIGINAL SOCIAL MEDIA -->
+              
                 <br>
                 <!-- SOCIAL MEDIA BUTTONS-->
                 <a href="#" class="btn btn-primary btn-block btn-with-icon" id="btnloginf">

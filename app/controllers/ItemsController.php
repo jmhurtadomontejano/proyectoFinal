@@ -76,7 +76,7 @@ class ItemsController {
         //Comprobamos que el token recibido es igual al que tenemos en la variable de sesión para evitar ataques CSRF
         if ($_GET['t'] != $_SESSION['token']) {
             header("Location: " . RUTA);
-            MensajesFlash::add_message("El token no es correcto");
+            MensajesFlash::add_message("El token no es correcto", MessageType::ERROR);
             die();
         }
 
@@ -86,12 +86,12 @@ class ItemsController {
         //Comprobamos el el usuario es propietario del item
         if ($item->getId_usuario() == Session::obtener()->getId()) {
             if ($itemDAO->delete($item)) {
-                MensajesFlash::add_message("Item borrado");
+                MensajesFlash::add_message("Item borrado", MessageType::ERROR);
             } else {
-                MensajesFlash::add_message("Item no encontrado");
+                MensajesFlash::add_message("Item no encontrado", MessageType::ERROR);
             }
         } else {
-            MensajesFlash::add_message("¡El item no es tuyo!");
+            MensajesFlash::add_message("¡El item no es tuyo!", MessageType::ERROR);
         }
         header("Location: " . RUTA);
         die();
@@ -100,7 +100,7 @@ class ItemsController {
     function insert() {
         if (Session::existe() == false) {
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes añadir items si no inicias sesión");
+            MensajesFlash::add_message("No puedes añadir items si no inicias sesión", MessageType::ERROR);
             die();
         }
 
@@ -152,11 +152,11 @@ class ItemsController {
                 if ($_FILES['inputPhotoItem']['type'][$i] != 'image/png' &&
                         $_FILES['inputPhotoItem']['type'][$i] != 'image/gif' &&
                         $_FILES['inputPhotoItem']['type'][$i] != 'image/jpeg') {
-                    MensajesFlash::add_message("El archivo seleccionado no es una foto.");
+                    MensajesFlash::add_message("El archivo seleccionado no es una foto.", MessageType::ERROR);
                     $error = true;
                 }
                 if ($_FILES['inputPhotoItem']['size'][$i] > 1000000) {
-                    MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB");
+                    MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB", MessageType::ERROR);
                     $error = true;
                 }
 
@@ -176,7 +176,7 @@ class ItemsController {
                     }
                     //movemos la photo a la carpeta que queramos guardarla y con el nuevo nombre
                     if (!move_uploaded_file($_FILES['inputPhotoItem']['tmp_name'][$i], "images/items/$nombre_photo.$extension_photo")) {
-                        MensajesFlash::add_message("No se ha podido copiar la photo");
+                        MensajesFlash::add_message("No se ha podido copiar la photo", MessageType::ERROR);
                         header("Location: inicio");
                         die();
                     }
@@ -191,12 +191,12 @@ class ItemsController {
                     $photo->setId_item($id_item);
                     $photo->setFile_name($nombre_archivo);
                     if (!$photoDAO->insert($photo)) {
+                        MensajesFlash::add_message("Error al insertar la photo del Item en la BD", MessageType::ERROR);
                         die("Error al insertar la photo del Item en la BD");
                     }
                 }//if(!$error)
             } //for
-
-            MensajesFlash::add_message("Se ha insertado el Item correctamente");
+            MensajesFlash::add_message("Se ha insertado el Item correctamente", MessageType::SUCCESS);
             header("Location: " . RUTA);
             die();
         }
@@ -246,7 +246,7 @@ class ItemsController {
         require '../app/views/items/own_items.php';
     } else {
         header("Location: inicio");
-        MensajesFlash::add_message("Debe iniciar sesión para acceder a esta página");
+        MensajesFlash::add_message("Debes iniciar sesión para ver tus propios Items", MessageType::ERROR);
         die();
     }
 }
@@ -274,12 +274,12 @@ class ItemsController {
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver items si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver items si no eres Administrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver items si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver items si no inicias sesión", MessageType::ERROR);
             die();
         }
     }
@@ -301,7 +301,7 @@ class ItemsController {
       
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión", MessageType::ERROR);
             die();
         }
     }
@@ -329,6 +329,7 @@ class ItemsController {
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;
 
+        
         require '../app/views/items/update_item.php';
     }
 
@@ -351,7 +352,6 @@ class ItemsController {
             fputcsv($fp, $item);
         }
         fclose($fp);
-        
     }
 
     public function editItem(){
@@ -359,7 +359,11 @@ class ItemsController {
 
         $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['id_department'], $_POST['id_service'], $_POST['id_attendUser'], $_POST['id_clientUser'], $_POST['state'], $_POST['date'], $_POST['hour'], $_POST['duration'], $_POST['result']);
 
-        $itemDAO->update($item);
+        if($itemDAO->update($item)){
+            MensajesFlash::add_message("Item actualizado correctamente", MessageType::SUCCESS);
+        }else{
+            MensajesFlash::add_message("Error al actualizar el item", MessageType::ERROR);
+        }
     }
     
 

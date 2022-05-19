@@ -108,7 +108,7 @@ MensajesFlash::imprimir_mensajes();
                                     class="form-control" aria-describedby="dniHelp" style="margin-bottom:1em">
                             </div>
                             <div class="col-md-4 col-6">
-                                <label for="gender" class="form-label">Genero</label>
+                                <label class="form-label">Genero</label>
                                 <select class="form-control" id="gender" name="gender" aria-describedby="genderHelp"
                                     style="margin-bottom:1em" value="">
                                     <option value="">Selecciona el gendero del desplegable</option>

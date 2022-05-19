@@ -19,24 +19,24 @@ class UsersController {
             //Comprobamos el token
             if ($_POST['token'] != $_SESSION['token']) {
                 header('Location: #');
-                MensajesFlash::add_message("Token incorrecto");
+                MensajesFlash::add_message("Token incorrecto", MessageType::ERROR);
                 die();
             }
 
             $usuario = new Usuario();
             $error = false;
             if (empty($_POST['name'])) {
-                MensajesFlash::add_message("El nombre es obligatorio.");
+                MensajesFlash::add_message("El nombre es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (empty($_POST['email'])) {
-                MensajesFlash::add_message("El email es obligatorio.");
+                MensajesFlash::add_message("El email es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                MensajesFlash::add_message("El email no es correcto.");
+                MensajesFlash::add_message("El email no es correcto.", MessageType::ERROR);
                 $error = true;
             }
 
@@ -46,30 +46,30 @@ class UsersController {
           $usuarioEmail = $usuarioDAO->findByEmail($_POST['email']);
 
           if ($usuarioEmail != null) {
-              MensajesFlash::add_message("El email ya está registrado.");
+              MensajesFlash::add_message("El email ya está registrado.", MessageType::ERROR);
               $error = true;
           }
 
           //check the dni is not registrer yet 
             $usuarioDNI = $usuarioDAO->findByDNI($_POST['dni']);
             if($usuarioDNI != null) {
-                MensajesFlash::add_message("El dni ya está registrado.");
+                MensajesFlash::add_message("El dni ya está registrado.", MessageType::ERROR);
                 $error = true;
             }
             
 
             if (empty($_POST['password'])) {
-                MensajesFlash::add_message("El password es obligatorio.");
+                MensajesFlash::add_message("El password es obligatorio.", MessageType::ERROR);
                 $error = true;
             }
 
             if (empty($_POST['password2'])) {
-                MensajesFlash::add_message("No es escrito la comprobación de la contraseña");
+                MensajesFlash::add_message(".crito la comprobación de la contraseña", MessageType::ERROR);
                 $error = true;
             }
 
             if ($_POST['password'] != $_POST['password2']) {
-                MensajesFlash::add_message("Las contraseñas no coinciden");
+                MensajesFlash::add_message("Las contraseñas no coinciden", MessageType::ERROR);
                 $error = true;
             }
 
@@ -209,7 +209,7 @@ class UsersController {
             }
 
             if (empty($_POST['password2'])) {
-                MensajesFlash::add_message("No es escrito la comprobación de la contraseña");
+                MensajesFlash::add_message("No has escrito la comprobación de la contraseña");
                 $error = true;
             }
 
@@ -382,14 +382,14 @@ class UsersController {
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         if (!$usuario = $usuDAO->findByEmail($email)) {
             //Usuario no encontrado
-            MensajesFlash::add_message("Usuario o password incorrectos.");
+            MensajesFlash::add_message("Usuario o password incorrectos.", MessageType::ERROR);
             header("Location: " . RUTA);
             die();
         }
         //Compruebo la contraseña, si no existe vuelvo a index con un parámetro de error
         if (!password_verify($_POST['password'], $usuario->getPassword())) {
             //password incorrecto
-            MensajesFlash::add_message("Usuario o password incorrectos.");
+            MensajesFlash::add_message("Usuario o password incorrectos.", MessageType::ERROR);
             header("Location: " . RUTA);
             die();
         }
@@ -429,12 +429,12 @@ class UsersController {
                     require '../app/views/users/usersList.php';
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión", MessageType::ERROR);
             die();
         }
     }
@@ -457,12 +457,12 @@ class UsersController {
                     require '../app/views/users/usersListAdmins.php';
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no eres SUPERAdministrador");
+            MensajesFlash::add_message("No puedes ver usuarios si no eres SUPERAdministrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión", MessageType::ERROR);
             die();
         }
     }
@@ -503,22 +503,22 @@ class UsersController {
                 MensajesFlash::add_message("Usuario eliminado correctamente");
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes eliminar usuarios si no eres SUPERAdministrador");
+            MensajesFlash::add_message("No puedes eliminar usuarios si no eres SUPERAdministrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver usuarios si no inicias sesión", MessageType::ERROR);
             die();
         }
     }
 
     public function index() {
-        require '../app/views/users/index.php';
+        require '../app/views/index/index.php';
     }
 
     public function indexBootstrap(){
-        require '../app/views/users/indexBootstrap.php';
+        require '../app/views/index/indexBootstrap.php';
     }
 
     public function detailUser() {
@@ -540,12 +540,12 @@ class UsersController {
                 MensajesFlash::add_message("Usuario actualizado correctamente");
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes editar usuarios si no eres Administrador");
+            MensajesFlash::add_message("No puedes editar usuarios si no eres Administrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes editar usuarios si no inicias sesión");
+            MensajesFlash::add_message("No puedes editar usuarios si no inicias sesión", MessageType::ERROR);
             die();
         }
     }

@@ -7,17 +7,28 @@
  */
 class MensajesFlash {
 
-    static public function add_message($mensaje) {
-        $_SESSION['mensajes_flash'][] = $mensaje;
+    static public function add_message(string $mensaje, string $type = MessageType::SUCCESS) {
+        $_SESSION['mensajes_flash'][] = array($mensaje, $type);
     }
 
     static public function imprimir_mensajes() {
         if(isset($_SESSION['mensajes_flash'])) {
             foreach($_SESSION['mensajes_flash'] as $mensaje_flash){
-                print '<div class="error">' . $mensaje_flash . '</div>';
+                $title = $mensaje_flash[1];
+                if($mensaje_flash[1] == MessageType::ERROR )  $mensaje_flash[1] = 'danger';
+                print '<div class="error alert alert-'.$mensaje_flash[1].'" role="alert">'
+                    .'<strong style="text-transform: capitalize ">'.$title.'</strong>'.": " 
+                    . $mensaje_flash[0] .
+                '</div>';
             }
             unset($_SESSION['mensajes_flash']);
         }
     }
+}
 
+class MessageType {
+    const ERROR = 'error';
+    const SUCCESS = 'success';
+    const WARNING = 'warning';
+    const INFO = 'info';
 }

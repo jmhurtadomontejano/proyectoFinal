@@ -261,7 +261,7 @@ $(document).ready(function() {
 
         } else {
             console.log('Wrong ID, invalid format');
-            $("#dniHelp").html("Faltan numeros en el DNI");
+            $("#dniHelp").html("El DNI o NIE introducido no cumple el formato");
             $("#dni").css("border-color", "red");
             $("#dniHelp").css("color", "red");
             return false;

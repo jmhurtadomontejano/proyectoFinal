@@ -405,10 +405,8 @@ class UsersController {
         //if user admin or superadmin send to own_itemsDaylyAdmins
         if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') {
             header("Location: " . RUTA . "own_itemsDaylyAdmins");
-            die();
         } else {
         header("Location: " . RUTA);
-        die();
         }
     }
 
@@ -499,8 +497,11 @@ class UsersController {
             if ($usuario->getRol() =='superAdmin') {
                 $user = new Usuario();
                 $user->setId($_POST['id']);
-                $usuDAO->delete($user);
+                if($usuDAO->delete($user)){
                 MensajesFlash::add_message("Usuario eliminado correctamente", MessageType::SUCCESS);
+                }else{
+                MensajesFlash::add_message("No se ha podido eliminar el usuario", MessageType::ERROR);
+                }
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes eliminar usuarios si no eres SUPERAdministrador", MessageType::ERROR);
@@ -536,8 +537,15 @@ class UsersController {
             if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
                 $user = Usuario::initValues($_POST['id'], $_POST['nombre'],$_POST['apellidos'], $_POST['dni'], $_POST['gender'], $_POST['birth_date'] , $_POST['email'], $_POST['phone'], $_POST['postalCode'], $_POST['address'], $_POST['rol'], $_POST['department'] );
-                $usuDAO->update($user);
-                MensajesFlash::add_message("Usuario actualizado correctamente", MessageType::SUCCESS);
+                if($usuDAO->update($user)){
+                $name= filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+                $lastName= filter_var($_POST['apellidos'], FILTER_SANITIZE_STRING);
+                MensajesFlash::add_message("Usuario ".$name ." ". $lastName." actualizado correctamente", MessageType::SUCCESS);
+            } else {
+                header("Location: " . RUTA);
+                MensajesFlash::add_message("Fallo al editar el usuario", MessageType::ERROR);
+                die();
+            }
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes editar usuarios si no eres Administrador", MessageType::ERROR);

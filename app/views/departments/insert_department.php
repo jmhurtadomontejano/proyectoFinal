@@ -1,6 +1,6 @@
 <?php 
 $contenido = ob_get_clean();
-$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Insertar Departamentos";
 require '../app/views/template.php';
 MensajesFlash::imprimir_mensajes();

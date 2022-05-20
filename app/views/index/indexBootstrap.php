@@ -55,13 +55,14 @@ MensajesFlash::imprimir_mensajes();
         </div>
 
         <script src="public/lib/jquery/jquery.js"></script>
-        <!--   <script src="public/lib/popperjs/popper.js"></script> -->
+        <!-- 2508  <script src="public/lib/popperjs/popper.js"></script> 
         <script src="public/lib/bootstrap/bootstrap.js"></script>
 
         <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-        <script src="index.js"></script>
+        <script src="app/scripts/index.js"></script>
+        -->
         </body>
         <!-- END SOCIAL MEDIA SECTION -->
 

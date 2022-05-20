@@ -245,18 +245,18 @@ $(document).ready(function() {
             number = number % 23;
             letter = 'TRWAGMYFPDXBNJZSQVHLCKET';
             letter = letter.substring(number, number + 1);
-            if (letter != dni) {
-                console.log('Wrong ID, the letter of the NIF does not correspond');
-                $("#dni").css("border-color", "red");
-                $("#dniHelp").html("El DNI introducido no es correcto");
-                $("#dniHelp").css("color", "red");
-                return false;
-            } else {
+            if (letter == dni) {
                 console.log('Correct ID');
                 $("#dni").css("border-color", "green");
                 $("#dniHelp").html("DNI o NIE correcto");
                 $("#dniHelp").css("color", "green");
                 return true;
+            } else {
+                console.log('Wrong ID, la letra no corresponde con el DNI o NIE');
+                $("#dni").css("border-color", "red");
+                $("#dniHelp").html("El DNI o NIE introducido no es correcto");
+                $("#dniHelp").css("color", "red");
+                return false;
             }
 
         } else {

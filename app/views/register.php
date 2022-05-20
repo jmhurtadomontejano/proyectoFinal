@@ -73,7 +73,8 @@
     </div>
   </div>
 
-  <script src="public/lib/jquery/jquery.js"></script>
+ 
+   <script src="public/lib/jquery/jquery.js"></script>
   <script src="public/lib/popper.js/popper.js"></script>
   <script src="public/lib/bootstrap/bootstrap.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -81,7 +82,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-
+  
   <script src="register.js"></script>
 </body>
 

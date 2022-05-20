@@ -7,7 +7,6 @@ MensajesFlash::imprimir_mensajes();
 ?>
 
 
-
 <div class="d-flex align-items-center justify-content-center bg-br-primary ">
     <div class="row col-12">
 

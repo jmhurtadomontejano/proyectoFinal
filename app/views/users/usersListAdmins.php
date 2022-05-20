@@ -44,7 +44,7 @@ MensajesFlash::imprimir_mensajes();
         <tbody>
             <?php foreach ($usersList as $u): ?>
             <tr>
-                <th><?= $u->getNombre() ?></th>
+                <th><a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $u->getId() ?>"><?= $u->getNombre() ?></a></th>
                 <th><?= $u->getSurname() ?></th>
                 <th><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
                 <th><?= substr($u->getEmail(),4,9 )?></th>

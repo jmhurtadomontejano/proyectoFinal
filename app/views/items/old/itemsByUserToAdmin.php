@@ -100,9 +100,7 @@ MensajesFlash::imprimir_mensajes();
                     <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="clientUserInfo">
-                        <a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $i->getId_clientUser() ?>">
-                            <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
-                        </a>
+                        <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>
                     <?php endif; ?>
 
@@ -300,12 +298,3 @@ $(document).on('click', '#boton_editar', function() {
 </div>
 
 <script src="app/scripts/items.js"></script>
-
-<!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()-->
-<script>
-    $(document).ready(function () {
-        $('#id_clientUser').on('click', function () {
-            findItemsByUser($(this).val('#id_clientUser'));
-        });
-    });
-</script>

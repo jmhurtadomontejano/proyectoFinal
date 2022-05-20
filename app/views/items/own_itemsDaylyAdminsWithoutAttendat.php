@@ -100,9 +100,7 @@ MensajesFlash::imprimir_mensajes();
                     <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="clientUserInfo">
-                        <a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $i->getId_clientUser() ?>">
-                            <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
-                        </a>
+                        <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>
                     <?php endif; ?>
 
@@ -112,7 +110,6 @@ MensajesFlash::imprimir_mensajes();
                     <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
                     <td id="resultInfo"><?= $i->getResult() ?></td>
                     <th>
-                        <?php if($i->getState()!="Finalizada"){ ?>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Modal</button>
@@ -123,9 +120,6 @@ MensajesFlash::imprimir_mensajes();
 
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
-                        <?php }else{ ?>
-                        <p>Finalizada</p>
-                        <?php } ?>
                     </th>
 
                 </tr>
@@ -300,12 +294,3 @@ $(document).on('click', '#boton_editar', function() {
 </div>
 
 <script src="app/scripts/items.js"></script>
-
-<!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()-->
-<script>
-    $(document).ready(function () {
-        $('#id_clientUser').on('click', function () {
-            findItemsByUser($(this).val('#id_clientUser'));
-        });
-    });
-</script>

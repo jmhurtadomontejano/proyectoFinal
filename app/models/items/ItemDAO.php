@@ -212,6 +212,38 @@ class ItemDAO {
         return $array_obj_items;
     }
 
+    public function findItemsPendingByUserFilters($byDate, $byDepart) {
+        $where = "WHERE id_attendUser='0' ";
+
+        
+        if($byDate) $where = $where."AND date=? ";
+        if($byDepart) $where = $where."AND id_department=? ";
+
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." ORDER BY id DESC";
+
+        if(!$stmt = $this->conn->prepare($sql)){
+            die("Error en la consulta $sql:" . $this->conn->error);
+        }
+        
+        $stmt instanceof mysqli_stmt;
+        
+
+        if($byDate && $byDepart) $stmt->bind_param('ss', $byDate, $byDepart);
+        else if($byDate) $stmt->bind_param('s', $byDate);
+        else if($byDepart) $stmt->bind_param('s', $byDepart);
+        else $stmt->bind_param('i', '0');
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        
+        $array_obj_items = array();
+        while ($item = $result->fetch_object('Item')) {
+            $array_obj_items[] = $item;
+        }
+        return $array_obj_items;
+    }
+
     public function findItemsByClientUser($id_user) {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_clientUser=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){

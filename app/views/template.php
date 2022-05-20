@@ -2,13 +2,13 @@
 <html>
 
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  <!--  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+-->
 
     <!-- Google Apis -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="<?= RUTA?>app/css/styleGuide.css">
+    <link rel="stylesheet" href="app/css/styleGuide.css">
 
     <!--- SOCIAL MEDIA ICONS -->
     <meta name="twitter:site" content="@themepixels">
@@ -72,12 +72,13 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" class="logo"
+                <img src="web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" class="logo"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs">
-                    <a title="town_hall" class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px" href="<?= RUTA?>">
+                    <a title="town_hall" class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px"
+                        href="<?= RUTA?>">
                         <p class="font-heading">Ayuntamiento de<br>Argamasilla de Alba</p>
                         <p>El lugar de La Mancha</p>
                 </div>
@@ -100,8 +101,8 @@
                         <li><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
                         </li>
                         <li class="nav-item dropdown" hidden>
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Articulos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownArticles">
@@ -128,14 +129,16 @@
                         ?>
                     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Administradores
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                             <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
                                     Admins</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdminsWithoutAttendat">Items
+                                    Pendientes</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_items">Todos Mis Items sin filtros</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsUsers">Mis Items como Cliente</a>
                             </li>
@@ -158,6 +161,8 @@
                                     Responsive</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>items_list">Listar todos los items
                                     SuperAdmin</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdminsWithoutAttendat">Items
+                                    Pendientes</a></li>
                         </ul>
                     </li>
                     <?php } ?>
@@ -219,13 +224,12 @@
 
 
 
-     <script type="text/javascript">
-$('#photo_usuario').click(function() {
-    $('#input_photo').click();
-});
+    <script type="text/javascript">
+    $('#photo_usuario').click(function() {
+        $('#input_photo').click();
+    });
 
-$('#input_photo').change(function() {
-    $('#formulario_actualizar_photo').submit();
-})
-</script>
-
+    $('#input_photo').change(function() {
+        $('#formulario_actualizar_photo').submit();
+    })
+    </script>

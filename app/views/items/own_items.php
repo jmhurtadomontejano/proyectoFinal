@@ -73,7 +73,7 @@ MensajesFlash::imprimir_mensajes();
                     <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
                     <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
                     <td id="resultInfo"><?= $i->getResult() ?></td>
-                    <th>
+                    <th><?php if($i->getState()!="Finalizada"){ ?>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary m-0 p-1" data-bs-toggle="modal"
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
@@ -81,7 +81,9 @@ MensajesFlash::imprimir_mensajes();
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
                     </th>
-
+                    <?php }else{ ?>
+                        <p>Finalizada</p>
+                    <?php } ?>
                 </tr>
                 <?php endforeach; ?>
                 <!-- include modal windows to edit or delete user -->

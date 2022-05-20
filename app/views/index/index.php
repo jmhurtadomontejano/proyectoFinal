@@ -56,13 +56,15 @@ MensajesFlash::imprimir_mensajes();
 
 <script src="public/lib/jquery/jquery.js"></script>
 <!--   <script src="public/lib/popperjs/popper.js"></script> -->
-<script src="public/lib/bootstrap/bootstrap.js"></script>
+<!-- 
+    <script src="public/lib/bootstrap/bootstrap.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-<script src="index.js"></script>
-</body>
+<script src="app/scripts/index.js"></script>
+-->
+
 <!-- END SOCIAL MEDIA SECTION -->
 
 <?php endif; ?>
@@ -155,6 +157,7 @@ MensajesFlash::imprimir_mensajes();
     <?php } ?>
 </section>
 </div>
+</body>
 <!-- END MENU -->
 
 <!-- scripts to change Userphoto-->

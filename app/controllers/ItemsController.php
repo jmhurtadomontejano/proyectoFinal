@@ -251,6 +251,28 @@ class ItemsController {
     }
 }
 
+
+public function itemsByUserToAdmin() {
+    if (Session::existe() == true) {
+    $conn = ConexionBD::conectar();
+    $usuDAO = new UsuarioDAO($conn);
+    $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+    /*if user is admin o superadmin can watch, if not, no */
+        if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+        $itemDAO = new ItemDAO($conn);
+        $mis_items = $itemDAO->findItemsByClientUser($user);
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
+        require '../app/views/items/itemsByUserToAdmin.php';
+    } else {
+        header("Location: inicio");
+        MensajesFlash::add_message("Debes ser Admin para ver Items de Otro Usuario", MessageType::ERROR);
+        die();
+    }
+}
+}
+
     public function ownItemsDaylyAdmins(){
         if (Session::existe() == true) {
             $conn = ConexionBD::conectar();
@@ -271,6 +293,39 @@ class ItemsController {
                 $admins = $itemDAO->list_admins();
                 
                 require '../app/views/items/own_itemsDaylyAdmins.php';
+                    
+            }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver items si no eres Administrador", MessageType::ERROR);
+            die();
+            }
+        }else{
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("No puedes ver items si no inicias sesión", MessageType::ERROR);
+            die();
+        }
+    }
+
+    public function ownItemsDaylyAdminsWithoutAttendat(){
+        if (Session::existe() == true) {
+            $conn = ConexionBD::conectar();
+            $usuDAO = new UsuarioDAO($conn);
+            $itemDAO = new ItemDAO($conn);
+            $departmentUser = $usuDAO->findUserById(Session::obtener()->getDepartment());
+            echo $departmentUser;
+            $dateFilter = $_POST["inputDate"] ?? "";
+            $idDepart = $_POST["inputDepartment"] ?? "";
+
+
+            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+            /*if user is admin o superadmin can watch, if not, no */
+            if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
+                $mis_items = $itemDAO->findItemsPendingByUserFilters(Session::obtener()->getId(), $dateFilter, $idDepart);
+                $departments = $itemDAO->listar_departamentos();
+                $clients = $itemDAO->list_users();
+                $admins = $itemDAO->list_admins();
+                
+                require '../app/views/items/own_itemsDaylyAdminsWithoutAttendat.php';
                     
             }else{
             header("Location: " . RUTA);
@@ -358,9 +413,10 @@ class ItemsController {
         $itemDAO = new ItemDAO(ConexionBD::conectar());
 
         $item = Item::initValues($_POST['id'], $_POST['name'], $_POST['description'], $_POST['location'], $_POST['id_department'], $_POST['id_service'], $_POST['id_attendUser'], $_POST['id_clientUser'], $_POST['state'], $_POST['date'], $_POST['hour'], $_POST['duration'], $_POST['result']);
-
+        $id= filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+        $id_clientUser= filter_var($_POST['id_clientUser'], FILTER_SANITIZE_NUMBER_INT);
         if($itemDAO->update($item)){
-            MensajesFlash::add_message("Item actualizado correctamente", MessageType::SUCCESS);
+            MensajesFlash::add_message("Item ". $id ." del usuario ". $id_clientUser ." actualizado correctamente", MessageType::SUCCESS);
         }else{
             MensajesFlash::add_message("Error al actualizar el item", MessageType::ERROR);
         }

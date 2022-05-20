@@ -64,7 +64,7 @@ MensajesFlash::imprimir_mensajes();
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                    <button type="button" class="btn btn-primary" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
+                    <button type="button" class="btn btn-primary btn-table" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
                         data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
                 </th>
             </tr>

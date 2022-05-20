@@ -231,6 +231,10 @@ ul#menu_usuario li a {
     font-size: 0.7rem !important;
   }
 
+  .error{
+    font-size: 0.7rem !important;
+  }
+
   .hidden {
     display: none !important;
   }
@@ -240,7 +244,7 @@ ul#menu_usuario li a {
   }
 
   .photo_user {
-    height: 65px;
+    height: 50px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;

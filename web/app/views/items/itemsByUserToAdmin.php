@@ -6,6 +6,24 @@ require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
 
+<div class="detailUsertoAdmin" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
+    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
+        <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
+        <h3>Datos del Usuario</h3>    
+        <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" value="">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
 
 <div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
     <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
@@ -303,9 +321,9 @@ $(document).on('click', '#boton_editar', function() {
 
 <!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()-->
 <script>
-    $(document).ready(function () {
-        $('#id_clientUser').on('click', function () {
-            findItemsByUser($(this).val('#id_clientUser'));
-        });
+$(document).ready(function() {
+    $('#id_clientUser').on('click', function() {
+        findItemsByUser($(this).val('#id_clientUser'));
     });
+});
 </script>

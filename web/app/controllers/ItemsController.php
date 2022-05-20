@@ -260,10 +260,11 @@ public function itemsByUserToAdmin() {
     /*if user is admin o superadmin can watch, if not, no */
         if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
         $itemDAO = new ItemDAO($conn);
-        $mis_items = $itemDAO->findItemsByClientUser($user);
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
+
+        $mis_items = $itemDAO->findItemsByClientUser($user);
         require './app/views/items/itemsByUserToAdmin.php';
     } else {
         header("Location: inicio");
@@ -315,7 +316,7 @@ public function itemsByUserToAdmin() {
             echo $departmentUser;
             $dateFilter = $_POST["inputDate"] ?? "";
             $idDepart = $_POST["inputDepartment"] ?? "";
-
+            $departments = $itemDAO->listar_departamentos();
 
             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
             /*if user is admin o superadmin can watch, if not, no */

@@ -36,7 +36,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="web/css/styleGuide.css">
+        <!-- link css funciona en local -->
+      <!-- if exists href="web/css/styleGuide.css"> -->
+  <link rel="stylesheet" href="web/css/styleGuide.css">
+  <!-- link css funciona en web -->
+  <link rel="stylesheet" href="css/styleGuide.css">
+
 
     <!--- SOCIAL MEDIA ICONS -->
     <meta name="twitter:site" content="@themepixels">

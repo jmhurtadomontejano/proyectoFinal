@@ -26,7 +26,7 @@ require './app/controllers/ArticlesController.php';
 require './app/controllers/DepartmentsController.php';
 require './app/controllers/ItemsController.php';
 require './app/controllers/UsersController.php';
-require '../web/config.php';
+require './config.php';
 
 
 //Enrutamiento

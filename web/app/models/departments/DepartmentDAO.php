@@ -34,31 +34,20 @@ class DepartmentDAO {
         return true;
     }
 
-    public function update($department) {
-        //Comprobamos que el parámetro es de la clase Departamento
-        if (!$department instanceof department) {
-            MensajesFlash::error("El parámetro no es de la clase Department");
-            return false;
-            die();
-        }
-        $departmentId = $department->getIdDepartment();
-        $departmentName = $department->getName();
-        $departmentDescription = $department->getDescription();
-        $departmentPhone = $department->getPhone();
-        $departmentEmail = $department->getEmailDepartment();
-        $departmentIcon = $department->getIconDepartment();
-        
-   
+    public function update($id,$name,$description,$phone,$emailDepartment,$iconDepartment,$disableDepartment) {   
         //SQL to update department on the database
-        $sql = "UPDATE departments SET name =?, description =?, phone=?, emailDepartment=?, iconDepartment=?, disableDepartment=? WHERE idDepartment =". $department->getIdDepartment();
+        $sql = "UPDATE departments SET name =?, description =?, phone=?, emailDepartment=?, iconDepartment=?, disableDepartment=? WHERE idDepartment = ?";
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error al preparar la consulta: " . $this->conn->error);
         }
-        $stmt->bind_param('ssissii',$departmentName, $departmentDescription, $phone, $emailDepartment, $iconDepartment, $disableDepartment, $departmentId);
+        $stmt->bind_param('ssissii',$name, $description, $phone, $emailDepartment, $iconDepartment, $disableDepartment, $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        MensajesFlash::success("El departamento se ha actualizado correctamente");
-        return true;
+        if ($stmt->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -107,7 +96,7 @@ class DepartmentDAO {
             die("Error en la SQL: " . $this->conn->error);
         }
         $array_obj_departments = array();
-        while ($department = $result->fetch_object('department')) {
+        while ($department = $result->fetch_object()) {
             $array_obj_departments[] = $department;
         }
         return $array_obj_departments;

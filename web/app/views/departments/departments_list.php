@@ -1,16 +1,21 @@
 <?php 
-$contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-$titulo2 = "Detalle de Departamentos";
-require './app/views/template.php';
-MensajesFlash::imprimir_mensajes();
-?>
+ $contenido = ob_get_clean();
+ $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+ $titulo2 = "Detalle de Departamentos";
+ require './app/views/template.php';
+ MensajesFlash::imprimir_mensajes(); ?>
 
 
 <button type="button" class="btn btn-primary btn-table" style="font-color:white" data-bs> <a class="dropdown-item"
         href="<?=RUTA?>insert_department">Insertar Departamentos</a></button>
 
 
+
+
+
+ 
+<i class="fa-solid fa-alien"></i>
+<input type="hidden" id="url_post" name="" value="<?= RUTA?>traer_campos_departament" >
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
@@ -46,6 +51,7 @@ MensajesFlash::imprimir_mensajes();
                 <th id="departmentInfo"><?= $d->getPhone() ?></th>
                 <th id="departmentInfo"><?= $d->getEmailDepartment() ?></th>
                 <th id="departmentInfo"><?= $d->getIconDepartment() ?></th>
+
                 <?php if ($d->getDisable()==0): ?>
                 <td id="departmentInfo">Habilitado</td>
                 <?php else: ?>
@@ -53,13 +59,13 @@ MensajesFlash::imprimir_mensajes();
                 <?php endif; ?>
                 <th>
                     <!-- buttons bootstrap to edit the Department with call to modalEditDepartment windowsDialog Modal to edit Department with id="id="modalEditDepartment" -->
-                    <button type="button" class="btn btn-primary btn-table" id="<?= $d->getIdDepartment() ?>"
-                        data-id=<?= $d->getIdDepartment() ?> data-bs-toggle="modal"
-                        data-bs-target="#editDepartmentModal">Editar <?= $d->getIdDepartment() ?></button>
-                    <!-- button to open windows view_item, no modal -->
-                    <a href="edit_department/<?= $d->getIdDepartment() ?>">
-                        <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
-                    </a>
+                     <button id="open_modal" type="button" class="btn btn-primary btn-table"
+                        data-id="<?= $d->getIdDepartment() ?>"  data-bs-toggle="modal"
+                        data-bs-target="#editDepartmentModal" >Editar <?= $d->getIdDepartment() ?></button>
+                                <!-- button to open windows view_item, no modal -->
+                        <a href="edit_department/<?= $d->getIdDepartment() ?>">
+                            <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
+                        </a>
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -68,8 +74,11 @@ MensajesFlash::imprimir_mensajes();
     </table>
 </div>
 
+<!-- script necesario para cargar fontawesome, pero con el la página devuelve errores en dataTable, si lo quitamos, no da errores -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script type="text/javascript">
+
+<script>
 $(document).ready(function() {
     $('#mydatatable tfoot th').each(function() {
         var title = $(this).text();
@@ -102,7 +111,37 @@ $(document).ready(function() {
 });
 </script>
 
-<script src="web/app/scripts/departments.js"></script>
+
+<script type="text/javascript">
+$(document).on('click', '#open_modal', function(){
+    let id = $(this).attr('data-id');
+    let url_post = $("#url_post").val();
+    console.log(id);
+    $.ajax({
+            type:'POST',
+            data:{id},
+            url:url_post,
+            success:function(response){
+                  console.log(response); 
+                  //console.log("hola");  
+                  let traer = JSON.parse(response);
+                  traer.forEach((value)=>{
+
+                $("#id").val(value.idDepartment);
+                $("#inputName").val(value.name);
+                $("#inputDescription").val(value.description);
+                $("#inputPhone").val(value.phone);
+                $("#inputEmail").val(value.emailDepartment);
+                $("#inputIcon").val(value.iconDepartment);
+                $("#disableDepartment").val(value.disableDepartment);
+             });
+            }
+       });
+
+});
+</script>
+
+
 
 <!-- Modal to edit Department -->
 <div class="modal fade" id="editDepartmentModal" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
@@ -113,36 +152,40 @@ $(document).ready(function() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?=RUTA."/edit_department"?>" id="edit-form">
+                <!-- <form action="" id="edit-form"> -->
+                    <input type="hidden" id="url" value="<?php echo RUTA."updateDepartament"?>" name="">
                     <div class="form-group">
                         <label for="idDepartment">ID</label>
                         <input type="text" class="form-control" id="id" name="id">
                     </div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="inputName" name="name">
                     </div>
                     <div class="form-group">
                         <label for="description">Descripcion</label>
-                        <input type="text" class="form-control" id="description" name="description">
+                        <input type="text" class="form-control" id="inputDescription" name="description">
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefono</label>
-                        <input type="phone" class="form-control" id="phone" name="phone">
+                        <input type="phone" class="form-control" id="inputPhone" name="phone">
                     </div>
                     <div class="form-group">
                         <label for="emailDepartment">Email</label>
-                        <input type="emailDepartment" class="form-control" id="emailDepartment" name="emailDepartment">
+                        <input type="emailDepartment" class="form-control" id="inputEmail" name="emailDepartment">
                     </div>
                     <div class="form-group">
                         <label for="iconDepartment">Icono</label>
-                        <input type="text" class="form-control" id="iconDepartment" name="iconDepartment">
+                        <input type="text" class="form-control" id="inputIcon" name="iconDepartment">
                     </div>
                     <div class="form-group">
-                        <label for="disable">DesHabilitado</label>
-                        <input class="form-check-input" type="checkbox" id="disable" name="disable">
+                        <label for="disable" class="form-label">DesHabilitado</label>
+                                <select class="form-control" name="disableDepartment" id="disableDepartment">    
+                                    <option value="0">Habilitado</option>
+                                    <option value="1">Deshabilitado</option>
+                                </select>
                     </div>
-                </form>
+               <!--  </form> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -151,3 +194,4 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+<script src="web/app/scripts/departments.js"></script>

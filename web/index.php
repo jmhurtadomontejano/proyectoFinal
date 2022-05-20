@@ -44,6 +44,9 @@ $mapa = array(
     'departments_listResponsive' => array('controller' => 'DepartmentsController', 'method' => 'departments_listResponsive', 'publica' => true),
     'edit_department' => array('controller' => 'DepartmentsController', 'method' => 'editDepartment', 'publica' => true),
     'detail_department' => array('controller' => 'DepartmentsController', 'method' => 'detailDepartment', 'publica' => true),
+    'update_departament' => array('controller' => 'DepartmentsController', 'method' => 'updateDepartament', 'publica' => true),
+    'updateDepartament' => array('controller' => 'DepartmentsController', 'method' => 'updateDepartament', 'publica' => true),
+    'traer_campos_departament' => array('controller' => 'DepartmentsController', 'method' => 'traer_campos_departament', 'publica' => true),
      
     //ItemsController
      'items_list' => array('controller' => 'ItemsController', 'method' => 'toList', 'publica' => true),

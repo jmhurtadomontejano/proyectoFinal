@@ -1,50 +1,97 @@
 <?php 
-$contenido = ob_get_clean();
-$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
-$titulo2 = "Insertar Departamentos";
-require './app/views/template.php';
-MensajesFlash::imprimir_mensajes();
-?>
+ $contenido = ob_get_clean();
+ $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+ $titulo2 = "Detalle de Departamentos";
+ require './app/views/template.php';
+ 
+ MensajesFlash::imprimir_mensajes(); ?>
+
 <link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
+<script src="<?= RUTA?>./web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
+<script src="./ruta/hola"></script>
+<script src="../../web/css/styleGuide.css"></script>
+  <!-- link css funciona en web -->
+  <link rel="stylesheet" href="css/styleGuide.css">"
+
+
+   <script src="https://use.fontawesome.com/2a534a9a61.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+        integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
 
 <script type="text/javascript">
-$(function() {
-    $("#descripcion").jqte();
-});
+    $(function() {
+        $("#descripcion").jqte();
+    });
 </script>
-<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
-    <div class="col-md-6">
-        <label for="inputName" class="form-label">Nombre</label>
-        <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
-    </div>
+<!-- Recoge informacións -->
 
-    <div class="col-md-6">
-        <label for="inputDescription" class="form-label">Descripcion</label>
-        <textarea type="textarea" class="form-control" name="inputDescription" id="description"
-            placeholder="Descripción..."></textarea>
-    </div>
-    <div class="col-md-6">
-        <label for="inputPhone" class="form-label">Telefono</label>
-        <input type="text" name="inputPhone" class="form-control" placeholder="Telefono">
-    </div>
+<div class="row col-12 align-center justify-content-center">
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">
+                <h3>Editar Departamento</h3>
+               
+            </div>
+            <div class="card-body">
+                    <!-- <form class="row g-3 col-md-12" id="departament" action="" method="post" enctype="multipart/form-data"> -->
+                       <div class="row">   
+                        <input type="hidden" id="id" name="id" value="<?php echo $traedatosDepartamento[0]->idDepartment  ?>">
+                        <input type="hidden" id="url" value="<?php echo RUTA."updateDepartament"?>" name="">
+                        <?php foreach ($traedatosDepartamento as $datos): ?>
 
-    <div class="col-md-6">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" name="inputEmail" class="form-control" placeholder="Email">
-    </div>
+                            <div class="col-md-6">
+                                <label for="inputName" class="form-label">Nombre</label>
+                                <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Titulo del Item" value="<?php echo $datos->name ?>">
+                            </div>
 
-    <div class="col-md-6">
-        <label for="inputIcon" class="form-label">Icono departamento</label>
-        <input type="text" name="inputIcon" class="form-control" placeholder="icono EJ: <i class='fa-thin fa-alicorn'>">
-    </div>
-    <div class="form-group">
-        <label for="disable">DesHabilitado</label>
-        <input class="form-check-input" type="checkbox" id="disable" name="disable">
-    </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Editar Departamento</button>
-    </div>
-</form>
+                            <div class="col-md-6">
+                                <label for="inputDescription" class="form-label">Descripcion</label>
+                                <textarea  type="textarea" class="form-control" name="inputDescription" id="inputDescription"
+                                placeholder="Descripción..." ><?php echo $datos->description?></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPhone" class="form-label">Telefono</label>
+                                <input type="text" name="inputPhone" id="inputPhone" class="form-control" placeholder="Telefono" value="<?php echo $datos->phone ?>">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email" value="<?php echo $datos->emailDepartment ?>">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputIcon" class="form-label">Icono departamento</label>
+                                <input type="text" name="inputIcon" id="inputIcon" class="form-control" value='<?php echo $datos->iconDepartment?>' placeholder="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Icono</label><br>
+                                <?php echo $datos->iconDepartment ?>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="disable" class="form-label">DesHabilitado</label>
+                                <select class="form-control" name="disableDepartment" id="disableDepartment">    
+                                    <?php if ($datos->disableDepartment == 1){$muestra = 'Deshabilitado';}else{$muestra = 'Habilitado';} ?>
+                                    <option value="<?php echo $datos->disableDepartment ?>"><?php echo $muestra ; ?></option>
+                                    <option value="0">Habilitado</option>
+                                    <option value="1">Deshabilitado</option>
+                                </select>
+                            </div>    
+                        <?php endforeach ?>
+                     
+                        <div style="text-align: center;">
+                            <br>
+                            <button id="btnUpdateSubmit" class="btn btn-primary">Editar Departamento</button>
+                        </div>
+                 </div>    
+            </div>
+        </div> 
+    </div>               
+</div>
+<!-- </form> -->
+<script src="../web/app/scripts/departments.js"></script>
+
+
+

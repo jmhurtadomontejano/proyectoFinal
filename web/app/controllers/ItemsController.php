@@ -14,7 +14,7 @@ class ItemsController {
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
-        require '../web/app/views/items/items_list.php';
+        require './app/views/items/items_list.php';
         die();
     }
 
@@ -68,7 +68,7 @@ class ItemsController {
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
-        require '../web/app/views/items/view_item.php';
+        require './app/views/items/view_item.php';
         return $item;
     }
     
@@ -213,9 +213,9 @@ class ItemsController {
 
         //if user is admin or superadmin
         if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') {
-            require '../web/app/views/items/insert_itemAdmins.php';
+            require './app/views/items/insert_itemAdmins.php';
         } else {
-            require '../web/app/views/items/insert_itemUsers.php';
+            require './app/views/items/insert_itemUsers.php';
     }
     die();
 }
@@ -230,7 +230,7 @@ class ItemsController {
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
 
-        require '../web/app/views/items/view_item.php';
+        require './app/views/items/view_item.php';
         die();
     }
 
@@ -243,7 +243,7 @@ class ItemsController {
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
-        require '../web/app/views/items/own_items.php';
+        require './app/views/items/own_items.php';
     } else {
         header("Location: inicio");
         MensajesFlash::add_message("Debes iniciar sesión para ver tus propios Items", MessageType::ERROR);
@@ -264,7 +264,7 @@ public function itemsByUserToAdmin() {
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
-        require '../web/app/views/items/itemsByUserToAdmin.php';
+        require './app/views/items/itemsByUserToAdmin.php';
     } else {
         header("Location: inicio");
         MensajesFlash::add_message("Debes ser Admin para ver Items de Otro Usuario", MessageType::ERROR);
@@ -292,7 +292,7 @@ public function itemsByUserToAdmin() {
                 $clients = $itemDAO->list_users();
                 $admins = $itemDAO->list_admins();
                 
-                require '../web/app/views/items/own_itemsDaylyAdmins.php';
+                require './app/views/items/own_itemsDaylyAdmins.php';
                     
             }else{
             header("Location: " . RUTA);
@@ -325,7 +325,7 @@ public function itemsByUserToAdmin() {
                 $clients = $itemDAO->list_users();
                 $admins = $itemDAO->list_admins();
                 
-                require '../web/app/views/items/own_itemsDaylyAdminsWithoutAttendat.php';
+                require './app/views/items/own_itemsDaylyAdminsWithoutAttendat.php';
                     
             }else{
             header("Location: " . RUTA);
@@ -349,7 +349,7 @@ public function itemsByUserToAdmin() {
             $clients = $itemDAO->list_users();
             $admins = $itemDAO->list_admins();
                 $mis_items = $itemDAO->findItemsByClientUser(Session::obtener()->getId());                
-                require '../web/app/views/items/own_itemsUsers.php';
+                require './app/views/items/own_itemsUsers.php';
                       //Generamos Token para seguridad del borrado
                         $_SESSION['token'] = md5(time() + rand(0, 999));
                         $token = $_SESSION['token'];
@@ -385,7 +385,7 @@ public function itemsByUserToAdmin() {
         $_SESSION['token'] = $token;
 
         
-        require '../web/app/views/items/update_item.php';
+        require './app/views/items/update_item.php';
     }
 
 

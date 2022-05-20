@@ -2,7 +2,7 @@
 $contenido = ob_get_clean();
 $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
 $titulo2 = "Insertar Departamentos";
-require '../web/app/views/template.php';
+require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
 <link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">

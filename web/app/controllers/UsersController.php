@@ -156,7 +156,7 @@ class UsersController {
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;
 
-        require '../web/app/views/users/userRegistrer.php';
+        require './app/views/users/userRegistrer.php';
     }
 
     public function add_user() {
@@ -310,7 +310,7 @@ class UsersController {
         $token = md5(time() + rand(0, 999));
         $_SESSION['token'] = $token;
 
-        require '../web/app/views/users/add_user.php';
+        require './app/views/users/add_user.php';
     }
 
     public function subir_photo() {
@@ -424,7 +424,7 @@ class UsersController {
                     //Save in a variable the array with all departments
                     $itemDAO = new ItemDAO($conn);
                     $departments = $itemDAO->listar_departamentos();
-                    require '../web/app/views/users/usersList.php';
+                    require './app/views/users/usersList.php';
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver usuarios si no eres Administrador", MessageType::ERROR);
@@ -452,7 +452,7 @@ class UsersController {
                     //Save in a variable the array with all departments
                     $itemDAO = new ItemDAO($conn);
                     $departments = $itemDAO->listar_departamentos();
-                    require '../web/app/views/users/usersListAdmins.php';
+                    require './app/views/users/usersListAdmins.php';
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver usuarios si no eres SUPERAdministrador", MessageType::ERROR);
@@ -515,11 +515,11 @@ class UsersController {
     }
 
     public function index() {
-        require '../web/app/views/index/index.php';
+        require './app/views/index/index.php';
     }
 
     public function indexBootstrap(){
-        require '../web/app/views/index/indexBootstrap.php';
+        require './app/views/index/indexBootstrap.php';
     }
 
     public function detailUser() {
@@ -565,7 +565,7 @@ class UsersController {
         //call to posatlCodes
         $list_postalCodes = $usuDAO->list_postalCodes();
         $user = $usuDAO->findUserById(Session::obtener()->getId());
-        require '../web/app/views/users/myUser.php';
+        require './app/views/users/myUser.php';
         return $user;
         }
     die();

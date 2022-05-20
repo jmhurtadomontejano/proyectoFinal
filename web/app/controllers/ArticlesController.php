@@ -11,7 +11,7 @@ class ArticlesController {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../web/app/views/index/index.php';
+        require './app/views/index/index.php';
     }
 
     function borrar() {
@@ -126,7 +126,7 @@ class ArticlesController {
             die();
         }
 
-        require '../web/app/views/articles/insert_article.php';
+        require './app/views/articles/insert_article.php';
     }
 
     public function ver() {
@@ -136,7 +136,7 @@ class ArticlesController {
         $articuloDAO = new ArticuloDAO($conn);
         $articulo = $articuloDAO->find($id);
 
-        require '../web/app/views/articles/see_article.php';
+        require './app/views/articles/see_article.php';
     }
 
     public function mis_articulos() {
@@ -148,7 +148,7 @@ class ArticlesController {
         $_SESSION['token'] = md5(time() + rand(0, 999));
         $token = $_SESSION['token'];
 
-        require '../web/app/views/articles/own_articles.php';
+        require './app/views/articles/own_articles.php';
     }
 
 }

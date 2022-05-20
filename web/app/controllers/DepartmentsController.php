@@ -41,7 +41,7 @@ class DepartmentsController {
                 header('Location: ' . RUTA . '/departments_list');
                     die();
             }
-            require '../web/app/views/departments/insert_department.php';
+            require './app/views/departments/insert_department.php';
             }else{
             header("Location: " . RUTA);
             MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador", MessageType::ERROR);
@@ -64,7 +64,7 @@ class DepartmentsController {
             if ($usuario->getRol() =='superAdmin') {
                 $departmentDAO = new DepartmentDAO($conn);
                 $departments = $departmentDAO->findAll();
-                require '../web/app/views/departments/departments_list.php';
+                require './app/views/departments/departments_list.php';
                     
             }else{
             header("Location: " . RUTA);
@@ -88,7 +88,7 @@ class DepartmentsController {
             if ($usuario->getRol() =='superAdmin') {
                 $departmentDAO = new DepartmentDAO($conn);
                 $departments = $departmentDAO->findAll();
-                require '../web/app/views/departments/departments_listResponsive.php';
+                require './app/views/departments/departments_listResponsive.php';
                     
             }else{
             header("Location: " . RUTA);

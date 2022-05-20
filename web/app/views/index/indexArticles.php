@@ -2,7 +2,7 @@
 $contenido = ob_get_clean();
 $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
 $titulo2 = "";
-require '../web/app/views/template.php';
+require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
 

@@ -10,14 +10,14 @@ MensajesFlash::imprimir_mensajes();
 <div class="articulo_listado">
     <div class="titulo_articulo"><a href="<?= RUTA?>ver_articulo/<?= $a->getId() ?>"><?= $a->getTitulo() ?></a></div>
     <?php if(count($a->getPhotos())>=1): ?>
-    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/articles/<?= $a->getPhotos()[0]->getNombre_archivo() ?>');
+    <div class="photos_articulo" style="background-image:url('<?= RUTA?>images/articles/<?= $a->getPhotos()[0]->getNombre_archivo() ?>');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
                 height:100px;">
     </div>
     <?php else: ?>
-    <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/articles/articulo_generico.jpg')">
+    <div class="photos_articulo" style="background-image:url('<?= RUTA?>images/articles/articulo_generico.jpg')">
     </div>
     <?php endif; ?>
     <div class="descripcion_articulo"><?= substr($a->getDescripcion(), 0, 20) . "..." ?></div>
@@ -33,7 +33,7 @@ MensajesFlash::imprimir_mensajes();
     <?= $a->getUsuario()->getNombre(); ?>
     <?php if (Session::existe() && $a->getUsuario()->getId() == (Session::obtener())->getId()): ?>
     <div class="borrar_articulo"><a href="borrar_articulo/<?= $a->getId() ?>/<?=$token ?>"><img
-                src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></div>
+                src="<?= RUTA?>images/icons/trash.svg" class="papelera"></a></div>
     <?php endif; ?>
 </div>
 <?php endforeach; ?>

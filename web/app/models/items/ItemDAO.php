@@ -182,12 +182,12 @@ class ItemDAO {
     }
     
     public function findItemsByUserFilters($id_user, $byDate, $byDepart) {
-        $where = "WHERE id_attendUser=? ";
+        $where = "WHERE (id_attendUser=? OR id_attendUser=0) ";
 
         if($byDate) $where = $where."AND date=? ";
         if($byDepart) $where = $where."AND id_department=? ";
 
-        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." or id_attendUser=0 ORDER BY id DESC";
+        $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." ORDER BY id DESC";
 
         if(!$stmt = $this->conn->prepare($sql)){
             die("Error en la consulta $sql:" . $this->conn->error);

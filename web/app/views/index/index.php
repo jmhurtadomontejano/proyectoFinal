@@ -62,7 +62,7 @@ MensajesFlash::imprimir_mensajes();
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-<script src="web/app/scripts/index.js"></script>
+<script src="app/scripts/index.js"></script>
 -->
 
 <!-- END SOCIAL MEDIA SECTION -->
@@ -80,7 +80,7 @@ MensajesFlash::imprimir_mensajes();
         </a>
         <div class="userInfoIndex">
             <div class="photo_user"
-                style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
             </div>
             <div class="d-flex-wrap"><?= Session::obtener()->getNombre() ?>
                 <?= Session::obtener()->getSurname() ?> </div>

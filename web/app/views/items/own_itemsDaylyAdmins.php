@@ -8,7 +8,7 @@ MensajesFlash::imprimir_mensajes();
 
 
 <div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
-    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
+    <form id="formFilter" method="post" action="<?php RUTA?>own_itemsDaylyAdmins">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
             <a href="<?= RUTA?>insert_itemUsers">
                 <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
@@ -82,7 +82,7 @@ MensajesFlash::imprimir_mensajes();
             <tbody>
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
-                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
+                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getId(). " - ". $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
                     <td id="departmentInfo">
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
@@ -100,7 +100,8 @@ MensajesFlash::imprimir_mensajes();
                     <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="clientUserInfo">
-                        <a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $i->getId_clientUser() ?>">
+                        <a class="" href="<?= RUTA?>itemsByUserToAdmin?clientId=<?= $i->getId_clientUser() ?>"
+                            data="<?= $i->getId_clientUser() ?>">
                             <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                         </a>
                     </td>
@@ -115,7 +116,7 @@ MensajesFlash::imprimir_mensajes();
                         <?php if($i->getState()!="Finalizada"){ ?>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
-                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Modal</button>
+                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Editar</button>
                         <!-- button to open windows view_item, no modal -->
                         <a href="ver_item/<?= $i->getId() ?>">
                             <button type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
@@ -299,13 +300,14 @@ $(document).on('click', '#boton_editar', function() {
     </div>
 </div>
 
-<script src="web/app/scripts/items.js"></script>
+<script src="app/scripts/items.js"></script>
 
-<!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()-->
+<!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()
 <script>
-    $(document).ready(function () {
-        $('#id_clientUser').on('click', function () {
-            findItemsByUser($(this).val('#id_clientUser'));
-        });
+$(document).ready(function() {
+    $('#id_clientUser').on('click', function() {
+        findItemsByUser($(this).val('#id_clientUser'));
     });
+});
 </script>
+-->

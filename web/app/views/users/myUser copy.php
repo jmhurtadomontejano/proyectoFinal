@@ -7,9 +7,9 @@ MensajesFlash::imprimir_mensajes();
 ?>
 
 
-<link href="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
+<link href="<?= RUTA?>js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<?= RUTA?>web/js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
+<script src="<?= RUTA?>js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
 <head>
 
 </head>
@@ -27,7 +27,7 @@ MensajesFlash::imprimir_mensajes();
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
-                <img src="<?= RUTA?>web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
+                <img src="<?= RUTA?>images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -121,7 +121,7 @@ MensajesFlash::imprimir_mensajes();
                             <?php if (Session::existe()): ?>
                             <div id="userInfo">
                                 <div id="photo_usuario"
-                                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                                    style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
                                 </div>
                                 <form id="formulario_actualizar_photo" action="subir_photo" method="post"
                                     enctype="multipart/form-data">

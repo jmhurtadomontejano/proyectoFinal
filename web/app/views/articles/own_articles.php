@@ -11,7 +11,7 @@ require './app/views/template.php';
                 <div class="articulo_listado">
                     <div class="titulo_articulo"><a href="ver_articulo/<?= $a->getId() ?>"><?= $a->getTitulo() ?></a></div>
                     <?php if(count($a->getPhotos())>=1): ?>
-                        <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/images/articles/<?= $a->getPhotos()[0]->getNombre_archivo() ?>')"></div>
+                        <div class="photos_articulo" style="background-image:url('<?= RUTA?>images/articles/<?= $a->getPhotos()[0]->getNombre_archivo() ?>')"></div>
                     <?php else: ?>
                         <div class="photos_articulo" style="background-image:url('<?= RUTA?>web/imagenes/articulo_generico.jpg')"></div>
                     <?php endif; ?>
@@ -21,7 +21,7 @@ require './app/views/template.php';
                     <div class="fecha_articulo"><?= $a->getFecha() ?></div>
                     <?= $a->getUsuario()->getNombre(); ?>
                     <?php if (Session::existe() && $a->getUsuario()->getId() == (Session::obtener())->getId()): ?>
-                        <div class="borrar_articulo"><a href="<?= RUTA?>borrar_articulo/<?= $a->getId() ?>/<?=$token ?>"><img src="<?= RUTA?>web/images/icons/trash.svg" class="papelera"></a></div>
+                        <div class="borrar_articulo"><a href="<?= RUTA?>borrar_articulo/<?= $a->getId() ?>/<?=$token ?>"><img src="<?= RUTA?>images/icons/trash.svg" class="papelera"></a></div>
                             <?php endif; ?>
 
                 </div>

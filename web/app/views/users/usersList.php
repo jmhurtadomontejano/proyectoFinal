@@ -55,17 +55,17 @@ MensajesFlash::imprimir_mensajes();
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
                     <img class="photo_user"
-                        style="background-image: url(<?= RUTA?>web/images/users/<?= $u->getPhoto() ?>)"
+                        style="background-image: url(<?= RUTA?>images/users/<?= $u->getPhoto() ?>)"
                         class="img-thumbnail" alt="" width="100" height="100">
                     <?php else: ?>
-                    <img style="background-image: url(<?= RUTA?>web/images/users/user_generico.png)"
+                    <img style="background-image: url(<?= RUTA?>images/users/user_generico.png)"
                         class="img-thumbnail" alt="" width="100" height="100">
                     <?php endif; ?>
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary btn-table" id="<?= $u->getId() ?>" data-id=<?= $u->getId() ?>
-                        data-bs-toggle="modal" data-bs-target="#editUserModal">Editar <?= $u->getId() ?></button>
+                        data-bs-toggle="modal" data-bs-target="#editUserModal" data-url="<?= RUTA ?>">Editar <?= $u->getId() ?></button>
                 </th>
             </tr>
             <?php endforeach; ?>
@@ -210,4 +210,4 @@ MensajesFlash::imprimir_mensajes();
             });
         });
         </script>
-        <script src="web/app/scripts/users.js"></script>
+        <script src="app/scripts/users.js"></script>

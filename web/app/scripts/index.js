@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 firebase.analytics();
 
 
+export const URL = 'http://localhost/proyectoFinal/web';
 
 
 var auth = firebase.auth();

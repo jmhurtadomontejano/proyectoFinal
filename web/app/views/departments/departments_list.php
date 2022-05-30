@@ -5,14 +5,15 @@
  require './app/views/template.php';
  MensajesFlash::imprimir_mensajes(); ?>
 
-<!-- NOTA IMPORTANT! script necesario para cargar fontawesome, pero con el la página devuelve errores en dataTable, si lo quitamos, no da errores pero no muestra iconos font-awesome -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- NOTA IMPORTANT! script necesario para cargar fontawesome, pero con el la página devuelve errores en dataTable, si lo quitamos, no da errores pero no muestra iconos font-awesome 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+-->
 
 <button type="button" class="btn btn-primary btn-table" style="font-color:white" data-bs> <a class="dropdown-item"
         href="<?=RUTA?>insert_department">Insertar Departamentos</a></button> 
 <input type="hidden" id="url_post" name="" value="<?= RUTA?>traer_campos_departament" >
 <div class="table-responsive" id="mydatatable-container">
-    <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
+        <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -58,18 +59,17 @@
                         data-id="<?= $d->getIdDepartment() ?>"  data-bs-toggle="modal"
                         data-bs-target="#editDepartmentModal" >Editar <?= $d->getIdDepartment() ?></button>
                                 <!-- button to open windows view_item, no modal -->
-                        <a href="edit_department/<?= $d->getIdDepartment() ?>">
-                            <button type="button" class="btn btn-primary m-0 p-1">Ver en ventana Nueva</button>
+                        <a href="edit_department/<?= $d->getIdDepartment() ?>" hidden>
+                            <button type="button" class="btn btn-table btn-primary m-0 p-1">Ver</button>
                         </a>
                 </th>
             </tr>
             <?php endforeach; ?>
-            <!-- include modal windows to edit or delete Department -->
         </tbody>
     </table>
 </div>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
     $('#mydatatable tfoot th').each(function() {
         var title = $(this).text();
@@ -185,4 +185,4 @@ $(document).on('click', '#open_modal', function(){
         </div>
     </div>
 </div>
-<script src="web/app/scripts/departments.js"></script>
+<script src="app/scripts/departments.js"></script>

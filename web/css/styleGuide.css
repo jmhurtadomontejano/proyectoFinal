@@ -177,7 +177,7 @@ ul#menu_usuario li a {
 .footer {
   position: inherit;
   flex-wrap: wrap;
-  background-image: url("../../web/images/DonQuijotebackground.png");
+  background-image: url("../../images/DonQuijotebackground.png");
   background-repeat: no-repeat;
   background-position: right;
   opacity: 0.7;

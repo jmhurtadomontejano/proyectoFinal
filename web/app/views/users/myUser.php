@@ -20,7 +20,7 @@ MensajesFlash::imprimir_mensajes();
                     <?php if (Session::existe()): ?>
                     <div id="userMyInfo">
                         <div class="photo_user"
-                            style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                            style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
                         </div>
                        <form id="formulario_actualizar_photo" action="subir_photo" method="post"
                             enctype="multipart/form-data">

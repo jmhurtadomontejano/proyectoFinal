@@ -51,8 +51,8 @@
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
     <!-- link css funciona en local -->
-    <!-- if exists href="web/css/styleGuide.css"> -->
-    <link rel="stylesheet" href="web/css/styleGuide.css">
+    <!-- if exists href="css/styleGuide.css"> -->
+    <link rel="stylesheet" href="css/styleGuide.css">
     <!-- link css funciona en web -->
     <link rel="stylesheet" href="css/styleGuide.css">
 
@@ -91,7 +91,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <img src="web/images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" class="logo"
+                <img src="images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" type="button" class="logo"
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -194,7 +194,7 @@
                             <?php if (Session::existe()): ?>
                             <div class="userInfo" class="d-flex">
                                 <div class="photo_user" id="photo_usuario"
-                                    style="background-image: url(<?= RUTA?>web/images/users/<?= Session::obtener()->getPhoto() ?>)">
+                                    style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
                                 </div>
                                 <form id="formulario_actualizar_photo" action="subir_photo" method="post"
                                     enctype="multipart/form-data">

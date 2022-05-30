@@ -27,10 +27,10 @@
             <th> <?php if ($u->getPhoto() != null): ?>
                 <!-- we check the photo exists in the gallery -->
 
-                <img id="photo_usuario" style="background-image: url(<?= RUTA?>web/images/users/<?= $u->getPhoto() ?>)"
+                <img id="photo_usuario" style="background-image: url(<?= RUTA?>images/users/<?= $u->getPhoto() ?>)"
                     class="img-thumbnail" alt="" width="100" height="100">
                 <?php else: ?>
-                <img style="background-image: url(<?= RUTA?>web/images/users/user_generico.png)" class="img-thumbnail"
+                <img style="background-image: url(<?= RUTA?>images/users/user_generico.png)" class="img-thumbnail"
                     alt="" width="100" height="100">
                 <?php endif; ?>
             </th>

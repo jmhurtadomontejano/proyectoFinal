@@ -2,10 +2,13 @@ function get()
 {
     $(document).delegate("[data-bs-target='#editUserModal']", "click", function() {
         const employee_id = $(this).attr('data-id');
+        const route =       $(this).attr('data-url'); //get the route using attribute action
+        //get the route using attribute action
+
         // Ajax config
         $.ajax({
             type: "POST", //we are using GET method to get data from server side
-            url: 'http://localhost/proyectoFinal/detail_user', // get the route value
+            url: `${route}detail_user`, // get the route value
             data: {employee_id}, //set data
             beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
             },

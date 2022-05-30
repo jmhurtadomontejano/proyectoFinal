@@ -126,7 +126,7 @@ $(document).ready(function() {
 });
 </script>
 
-<script src="web/app/scripts/items.js"></script>
+<script src="app/scripts/items.js"></script>
 
 <script type="text/javascript">
 $(document).on('click', '#boton_editar', function() {

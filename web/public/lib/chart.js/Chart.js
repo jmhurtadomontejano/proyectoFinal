@@ -10362,7 +10362,7 @@ module.exports = {
 	 * @param {Number|String} value - The lineHeight to parse (eg. 1.6, '14px', '75%', '1.6em').
 	 * @param {Number} size - The font size (in pixels) used to resolve relative `value`.
 	 * @returns {Number} The effective line height in pixels (size * 1.2 if value is invalid).
-	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
+	 * @see https://developer.mozilla.org/en-US/docs/css/line-height
 	 * @since 2.7.0
 	 */
 	toLineHeight: function(value, size) {
@@ -10508,7 +10508,7 @@ var EVENT_TYPES = {
  * if the computed style is not expressed in pixels. That can happen in some cases where
  * `element` has a size relative to its parent and this last one is not yet displayed,
  * for example because of `display: none` on a parent node.
- * @see https://developer.mozilla.org/en-US/docs/Web/CSS/used_value
+ * @see https://developer.mozilla.org/en-US/docs/css/used_value
  * @returns {Number} Size in pixels or undefined if unknown.
  */
 function readUsedSize(element, property) {

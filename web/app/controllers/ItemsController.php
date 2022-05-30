@@ -1,102 +1,6 @@
 <?php
 
 class ItemsController {
-    
-
-    public function toList() {
-        $conn = ConexionBD::conectar();
-        $itemDAO = new ItemDAO($conn);
-        $items = $itemDAO->findAll('DESC', 'date');
-
-        //Generamos Token para seguridad del borrado
-        $_SESSION['token'] = md5(time() + rand(0, 999));
-        $token = $_SESSION['token'];
-        $departments = $itemDAO->listar_departamentos();
-        $clients = $itemDAO->list_users();
-        $admins = $itemDAO->list_admins();
-        require './app/views/items/items_list.php';
-        die();
-    }
-
-     function pb() {
-        $conn = ConexionBD::conectar();
-        //$itemDAO = new ItemDAO($conn);
-        $id = $_POST['id'];
-
-        $array_busqueda = array();
-
-       /*Se realizara la consulta de todos los datos
-            Es importante que se nombren todos los datos en la consulta
-       */
-        $busqueda = mysqli_prepare($conn,"SELECT id, name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration, result, registrationDate FROM items WHERE id = $id");
-            mysqli_stmt_execute($busqueda);
-            mysqli_stmt_store_result($busqueda);
-            mysqli_stmt_bind_result($busqueda, $id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration, $result, $registrationDate);  
-
-
-            /*Usando la erramienta de while recorreremos todos los datos que nos trajo la consulta */
-        while ($row = mysqli_stmt_fetch($busqueda)) {
-               $array_busqueda[] = array(
-                  'id' => $id,
-                  'name'=> $name,
-                  'description'=> $description,
-                  'location'=> $location,
-                  'id_department'=> $id_department,
-                  'id_service'=> $id_service,
-                  'id_attendUser'=> $id_attendUser,
-                  'id_clientUser'=> $id_clientUser,
-                  'id_user'=> $id_user,
-                  'state'=> $state,
-                  'date'=> $date,
-                  'hour'=> $hour,
-                  'duration'=> $duration,
-                  'result'=> $result,
-               );
-
-               }
-        /*El array lo convertiremos en formato JSON para que este sea leido por javascrip*/
-    $vari = json_encode($array_busqueda);
-        echo $vari;
-        die();
-    }
-
-    function viewItem(){
-        $conn = ConexionBD::conectar();
-        $itemDAO = new ItemDAO($conn);
-        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-        $item = $itemDAO->findByItemId($id);
-        $departments = $itemDAO->listar_departamentos();
-        $clients = $itemDAO->list_users();
-        $admins = $itemDAO->list_admins();
-        require './app/views/items/view_item.php';
-        return $item;
-    }
-    
-    function borrar() {
-        //Comprobamos que el token recibido es igual al que tenemos en la variable de sesión para evitar ataques CSRF
-        if ($_GET['t'] != $_SESSION['token']) {
-            header("Location: " . RUTA);
-            MensajesFlash::add_message("El token no es correcto", MessageType::ERROR);
-            die();
-        }
-
-        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-        $itemDAO = new ItemDAO(ConexionBD::conectar());
-        $item = $itemDAO->find($id);
-        //Comprobamos el el usuario es propietario del item
-        if ($item->getId_usuario() == Session::obtener()->getId()) {
-            if ($itemDAO->delete($item)) {
-                MensajesFlash::add_message("Item borrado", MessageType::ERROR);
-            } else {
-                MensajesFlash::add_message("Item no encontrado", MessageType::ERROR);
-            }
-        } else {
-            MensajesFlash::add_message("¡El item no es tuyo!", MessageType::ERROR);
-        }
-        header("Location: " . RUTA);
-        die();
-    }
-
     function insert() {
         if (Session::existe() == false) {
             header("Location: " . RUTA);
@@ -220,6 +124,101 @@ class ItemsController {
     die();
 }
 
+    public function toList() {
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        $items = $itemDAO->findAll('DESC', 'date');
+
+        //Generamos Token para seguridad del borrado
+        $_SESSION['token'] = md5(time() + rand(0, 999));
+        $token = $_SESSION['token'];
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
+        require './app/views/items/items_list.php';
+        die();
+    }
+
+     function pb() {
+        $conn = ConexionBD::conectar();
+        //$itemDAO = new ItemDAO($conn);
+        $id = $_POST['id'];
+
+        $array_busqueda = array();
+
+       /*Se realizara la consulta de todos los datos
+            Es importante que se nombren todos los datos en la consulta
+       */
+        $busqueda = mysqli_prepare($conn,"SELECT id, name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration, result, registrationDate FROM items WHERE id = $id");
+            mysqli_stmt_execute($busqueda);
+            mysqli_stmt_store_result($busqueda);
+            mysqli_stmt_bind_result($busqueda, $id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration, $result, $registrationDate);  
+
+
+            /*Usando la erramienta de while recorreremos todos los datos que nos trajo la consulta */
+        while ($row = mysqli_stmt_fetch($busqueda)) {
+               $array_busqueda[] = array(
+                  'id' => $id,
+                  'name'=> $name,
+                  'description'=> $description,
+                  'location'=> $location,
+                  'id_department'=> $id_department,
+                  'id_service'=> $id_service,
+                  'id_attendUser'=> $id_attendUser,
+                  'id_clientUser'=> $id_clientUser,
+                  'id_user'=> $id_user,
+                  'state'=> $state,
+                  'date'=> $date,
+                  'hour'=> $hour,
+                  'duration'=> $duration,
+                  'result'=> $result,
+               );
+
+               }
+        /*El array lo convertiremos en formato JSON para que este sea leido por javascrip*/
+    $vari = json_encode($array_busqueda);
+        echo $vari;
+        die();
+    }
+
+    function viewItem(){
+        $conn = ConexionBD::conectar();
+        $itemDAO = new ItemDAO($conn);
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $item = $itemDAO->findByItemId($id);
+        $departments = $itemDAO->listar_departamentos();
+        $clients = $itemDAO->list_users();
+        $admins = $itemDAO->list_admins();
+        require './app/views/items/view_item.php';
+        return $item;
+    }
+    
+    function borrar() {
+        //Comprobamos que el token recibido es igual al que tenemos en la variable de sesión para evitar ataques CSRF
+        if ($_GET['t'] != $_SESSION['token']) {
+            header("Location: " . RUTA);
+            MensajesFlash::add_message("El token no es correcto", MessageType::ERROR);
+            die();
+        }
+
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+        $itemDAO = new ItemDAO(ConexionBD::conectar());
+        $item = $itemDAO->find($id);
+        //Comprobamos el el usuario es propietario del item
+        if ($item->getId_usuario() == Session::obtener()->getId()) {
+            if ($itemDAO->delete($item)) {
+                MensajesFlash::add_message("Item borrado", MessageType::ERROR);
+            } else {
+                MensajesFlash::add_message("Item no encontrado", MessageType::ERROR);
+            }
+        } else {
+            MensajesFlash::add_message("¡El item no es tuyo!", MessageType::ERROR);
+        }
+        header("Location: " . RUTA);
+        die();
+    }
+
+
     public function find() {
         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $conn = ConexionBD::conectar();
@@ -263,15 +262,16 @@ public function itemsByUserToAdmin() {
         $departments = $itemDAO->listar_departamentos();
         $clients = $itemDAO->list_users();
         $admins = $itemDAO->list_admins();
-
-        $mis_items = $itemDAO->findItemsByClientUser($user);
+        $clientId = explode('=', $_SERVER['REQUEST_URI'])[1];
+        $client = $usuDAO->findUserById($clientId);
+        $mis_items = $itemDAO->findItemsByClientUser($clientId);
         require './app/views/items/itemsByUserToAdmin.php';
     } else {
         header("Location: inicio");
         MensajesFlash::add_message("Debes ser Admin para ver Items de Otro Usuario", MessageType::ERROR);
         die();
     }
-}
+    }
 }
 
     public function ownItemsDaylyAdmins(){
@@ -419,7 +419,7 @@ public function itemsByUserToAdmin() {
         if($itemDAO->update($item)){
             MensajesFlash::add_message("Item ". $id ." del usuario ". $id_clientUser ." actualizado correctamente", MessageType::SUCCESS);
         }else{
-            MensajesFlash::add_message("Error al actualizar el item", MessageType::ERROR);
+            MensajesFlash::add_message("El item NO se actualizó", MessageType::INFO);
         }
     }
     

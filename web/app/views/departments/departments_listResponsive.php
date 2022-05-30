@@ -58,7 +58,7 @@ MensajesFlash::imprimir_mensajes();
 </div>
 
 
-<script src="web/app/scripts/departments.js"></script>
+<script src="app/scripts/departments.js"></script>
 
 <!-- Modal to edit Department -->
 <div class="modal fade" id="editDepartmentModal" aria-labelledby="editDepartmentModalLabel" aria-hidden="true">
@@ -69,7 +69,7 @@ MensajesFlash::imprimir_mensajes();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?=RUTA."/edit_department"?>" id="edit-form">
+                <form action="<?=RUTA."../edit_department"?>" id="edit-form">
                     <div class="form-group">
                         <label for="idDepartment">ID</label>
                         <input type="text" class="form-control" id="id" name="id">

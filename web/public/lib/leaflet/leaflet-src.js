@@ -2766,7 +2766,7 @@ function enableImageDrag() {
 var _outlineElement;
 var _outlineStyle;
 // @function preventOutline(el: HTMLElement)
-// Makes the [outline](https://developer.mozilla.org/docs/Web/CSS/outline)
+// Makes the [outline](https://developer.mozilla.org/docs/css/outline)
 // of the element `el` invisible. Used internally by Leaflet to prevent
 // focusable elements from displaying an outline when the user performs a
 // drag interaction on them.
@@ -8773,7 +8773,7 @@ var ImageOverlay = Layer.extend({
 		errorOverlayUrl: '',
 
 		// @option zIndex: Number = 1
-		// The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the tile layer.
+		// The explicit [zIndex](https://developer.mozilla.org/docs/css/CSS_Positioning/Understanding_z_index) of the tile layer.
 		zIndex: 1,
 
 		// @option className: String = ''

@@ -50,7 +50,7 @@ MensajesFlash::imprimir_mensajes();
             <tbody>
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
-                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
+                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getId(). " - ". $i->getName() ?></a></td>
                     <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
                     <td id="departmentInfo">
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
@@ -212,7 +212,7 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="state">Estado</label>
-                        <select readonly id="state" name="state" class="form-select" >
+                        <select id="state" name="state" class="form-select" readonly>
                             <option selected>Registrada</option>
                             <option>Iniciada</option>
                             <option>En Proceso</option>
@@ -221,7 +221,7 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="result">Result</label>
-                        <select id="result" name="result" class="form-select">
+                        <select id="result" name="result" class="form-select" readonly>
                             <option selected>NO</option>
                             <option value="Anulada">Anulada</option>
                             <option value="No asiste">NO asiste</option>
@@ -238,7 +238,7 @@ $(document).on('click', '#boton_editar', function() {
     </div>
 </div>
 
-<script src="web/app/scripts/items.js"></script>
+<script src="app/scripts/items.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {

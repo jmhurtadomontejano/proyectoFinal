@@ -1,9 +1,9 @@
 //alert('hola');
 $("#btnUpdateSubmit").click(function(){
-
+    let id = $("#id").val();
     Swal.fire({
            title: 'Atención',
-           text: '¿Deseas editar el Departamento?',
+           text: '¿Deseas editar el Departamento '+id+' ?',
            icon: 'warning',
            showCancelButton: true,
            confirmButtonColor: '#3085d6',
@@ -12,7 +12,7 @@ $("#btnUpdateSubmit").click(function(){
            cancelButtonText: 'No'
        }).then((result)=>{
            //console.log(result);
-           if (result.value) {
+            if (result.value) {
                 let url_post = $("#url").val();
                 let id = $("#id").val();
                 let inputName = $("#inputName").val();
@@ -45,17 +45,20 @@ $("#btnUpdateSubmit").click(function(){
                                timer:1000
                            });
                        }else{
-                           alert("error");
+                        Swal.fire({
+                            position:'center',
+                            icon:'info',
+                            title:'El departamento NO ha sido actualizado',
+                            showConfirmButton: false,
+                            timer:1000
+                        });
                        }
                    }
                  });
         
-           }else{
-               
+            }else{    
            }
-
        })
-
 });
 
 function getDepartment()

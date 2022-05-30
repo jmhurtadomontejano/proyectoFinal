@@ -1,4 +1,3 @@
 <?php
 
-define("RUTA", '/proyectoFinal/');
-
+define("RUTA", '/proyectoFinal/web/');

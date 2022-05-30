@@ -293,4 +293,4 @@ $(document).on('click', '#boton_editar', function() {
     </div>
 </div>
 
-<script src="web/app/scripts/items.js"></script>
+<script src="app/scripts/items.js"></script>

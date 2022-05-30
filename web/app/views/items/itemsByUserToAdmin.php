@@ -12,12 +12,28 @@ MensajesFlash::imprimir_mensajes();
         <h3>Datos del Usuario</h3>    
         <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="">
+                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $client->getNombre() ?>">
             </div>
             <div class="form-group">
                 <label for="apellidos">Apellidos</label>
-                <input type="text" class="form-control" id="apellidos" name="apellidos" value="">
+                <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?php echo $client->getSurname() ?>">
             </div>
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" id="dni" name="dni" value="<?php echo $client->getDni() ?>">
+                </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?php echo $client->getEmail() ?>">
+                </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $client->getPhone() ?>">
+                </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="<?php echo $client->getAddress() ?>">
+                </div>
         </div>
     </form>
 </div>
@@ -38,20 +54,20 @@ MensajesFlash::imprimir_mensajes();
                 <i class="fa-solid fa-calendar-days"></i>
                 <div>
                     <label for="inputDate" class="form-label">Fecha para filtrar</label>
-                    <input type="date" class="form-control" id="inputDate" value="<?php echo $dateFilter?>"
+                    <input type="date" class="form-control" id="inputDate" value="<?php $client->getNombre()?>"
                         name="inputDate">
                 </div>
             </div>
 
-            <!-- filter by input date format -->
-            <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+           <!-- filter by input date format -->
+           <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
                 <i class="fa-solid fa-building-user"></i>
                 <div class="">
                     <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
                     <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
                         <option value="<?php $departmentUser ?>">Seleccione....</option>
                         <?php foreach ($departments as $department): ?>
-                        <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
+                        <option <?php if($idDepartment==$department->idDepartment) echo "selected=\"selected\""; ?>
                             value="<?php echo $department->idDepartment  ?>">
                             <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
                         <?php endforeach; ?>
@@ -317,7 +333,7 @@ $(document).on('click', '#boton_editar', function() {
     </div>
 </div>
 
-<script src="web/app/scripts/items.js"></script>
+<script src="app/scripts/items.js"></script>
 
 <!-- script to call public function findItemsByUser($id_user) with the selected $i->getId_clientUser()-->
 <script>

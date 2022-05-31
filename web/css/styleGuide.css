@@ -29,9 +29,17 @@ footer {
   color: black;
 }
 
+.btnIndex {
+  background-color: #303841 !important;
+}
+
 .index-options {
   font-size: 2em !important;
   font-weight: 600 !important;
+}
+
+.filter_box {
+  background-color: #F6C90E;
 }
 
 .photos_articulo {
@@ -210,9 +218,10 @@ ul#menu_usuario li a {
     float: right;
   }
 
-  .btnIndex {
+  .btnIndexBootstrap {
     margin: 4px 0px 4px 0px !important;
     padding: 2px 0px 2px 0px !important;
+    background-color: #303841 !important;
   }
 
   .dt-buttons {

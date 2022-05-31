@@ -52,18 +52,21 @@ class ItemsController {
                 /*                 * ****************************************** */
                 /*                 * ************ VALIDAMOS LA photo *********** */
                 /*                 * ****************************************** */
-
+                if ($_FILES['inputPhotoItem']['error'][$i] != 0) {
+                    MensajesFlash::add_message("No se ha adjuntado archivo, aun asi el item se registrará " . $_FILES['inputPhotoItem']['name'][$i], MessageType::INFO);
+                    $error = true;
+                }else{
                 if ($_FILES['inputPhotoItem']['type'][$i] != 'image/png' &&
                         $_FILES['inputPhotoItem']['type'][$i] != 'image/gif' &&
                         $_FILES['inputPhotoItem']['type'][$i] != 'image/jpeg') {
-                    MensajesFlash::add_message("El archivo seleccionado no es una foto.", MessageType::ERROR);
+                    MensajesFlash::add_message("El archivo seleccionado no es una foto.", MessageType::INFO);
                     $error = true;
                 }
                 if ($_FILES['inputPhotoItem']['size'][$i] > 1000000) {
                     MensajesFlash::add_message("El archivo seleccionado es demasiado grande. Debe tener un tamaño inferior a 1MB", MessageType::ERROR);
                     $error = true;
                 }
-
+            }
                 if (!$error) {
 
 

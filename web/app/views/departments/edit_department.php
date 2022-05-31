@@ -20,11 +20,6 @@
         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous" />
 
 
-<script type="text/javascript">
-    $(function() {
-        $("#descripcion").jqte();
-    });
-</script>
 <!-- Recoge informacións -->
 
 <div class="row col-12 align-center justify-content-center">

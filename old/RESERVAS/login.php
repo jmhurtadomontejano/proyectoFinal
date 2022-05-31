@@ -13,14 +13,14 @@ require 'utilidades/MensajesFlash.php';
 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
 if (!$usuario = $usuDAO->findByEmail($_POST['email'])) {
     //Usuario no encontrado
-    MensajesFlash::anadir_mensaje("Usuario o password incorrectos. email");
+    MensajesFlash::anadir_mensaje("Usuario o password incorrectos. email", MessageType::ERROR);
     header('Location: index.php');
     die();
 }
 //Compruebo la contraseña, si no existe vuelvo a index con un parámetro de error
 if (!password_verify($_POST['password'], $usuario->getPassword())) {
     //password incorrecto
-    MensajesFlash::anadir_mensaje("Usuario o password incorrectos. pass");
+    MensajesFlash::anadir_mensaje("Usuario o password incorrectos. pass", MessageType::ERROR);
     header('Location: index.php');
     die();
 }

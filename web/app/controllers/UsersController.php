@@ -83,7 +83,7 @@ class UsersController {
             if ($_FILES['photo']['type'] != 'image/png' &&
                     $_FILES['photo']['type'] != 'image/gif' &&
                     $_FILES['photo']['type'] != 'image/jpeg') {
-                MensajesFlash::add_message("El archivo seleccionado no es una foto.");
+                MensajesFlash::add_message("El archivo seleccionado no es una foto.", MessageType::INFO);
                 $error = true;
             }
             if ($_FILES['photo']['size'] > 1000000) {
@@ -228,7 +228,7 @@ class UsersController {
             if ($_FILES['photo']['type'] != 'image/png' &&
                     $_FILES['photo']['type'] != 'image/gif' &&
                     $_FILES['photo']['type'] != 'image/jpeg') {
-                MensajesFlash::add_message("El archivo seleccionado no es una foto.");
+                MensajesFlash::add_message("El archivo seleccionado no es una foto.", MessageType::INFO);
                 $error = true;
             }
             if ($_FILES['photo']['size'] > 1000000) {

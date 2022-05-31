@@ -33,9 +33,9 @@ class DepartmentsController {
                         $department->setEmailDepartment($emailDepartment);
                         $department->setIconDepartment($iconDepartment);
                         $departmentDAO->insert($department);
-                        MensajesFlash::add_message("Departamento añadido");
+                        MensajesFlash::add_message("Departamento añadido", MessageType::SUCCESS);
                     } else {
-                        MensajesFlash::add_message("No puedes añadir un departamento sin nombre ni descripción");
+                        MensajesFlash::add_message("No puedes añadir un departamento sin nombre ni descripción", MessageType::ERROR);
                     }
               /*header location RUTA department_list */
                 header('Location: ' . RUTA . '/departments_list');
@@ -44,12 +44,12 @@ class DepartmentsController {
             require './app/views/departments/insert_department.php';
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión", MessageType::INFO);
             die();
         }
     }
@@ -68,12 +68,12 @@ class DepartmentsController {
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no eres SuperAdministrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres SuperAdministrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión", MessageType::INFO);
             die();
         }
     }
@@ -92,12 +92,12 @@ class DepartmentsController {
                     
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no eres SuperAdministrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres SuperAdministrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión", MessageType::INFO);
             die();
         }
     }
@@ -153,18 +153,20 @@ class DepartmentsController {
                 require './app/views/departments/edit_department.php';
                 /*if return true, MensajeFlash succes */
                 if ($departmentDAO->update($department)) {
-                    MensajesFlash::add_message("Departamento editado");
+                    MensajesFlash::add_message("Departamento editado", MessageType::SUCCESS);
+                    /*refresh page to actualize data */
+                    header('Location: ' . RUTA . '/departments_list');
                 } else {
-                    MensajesFlash::add_message("No se ha podido editar el departamento");
+                    MensajesFlash::add_message("No se ha podido editar el departamento", MessageType::ERROR);
                 }
             }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador");
+            MensajesFlash::add_message("No puedes ver departamentos si no eres Administrador", MessageType::ERROR);
             die();
             }
         }else{
             header("Location: " . RUTA);
-            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión");
+            MensajesFlash::add_message("No puedes ver departamentos si no inicias sesión", MessageType::INFO);
             die();
         }
     }

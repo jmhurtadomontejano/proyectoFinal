@@ -44,6 +44,8 @@ $("#btnUpdateSubmit").click(function(){
                                showConfirmButton: false,
                                timer:1000
                            });
+                           /*force to close id="editDepartmentModal" */
+                            $("#editDepartmentModal").modal('hide');
                        }else{
                         Swal.fire({
                             position:'center',

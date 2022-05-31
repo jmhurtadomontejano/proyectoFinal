@@ -1,3 +1,8 @@
+$colour1:#303841;
+$colour2:#3A4750;
+$colour3:#F6C90E;
+$colour4:#EEEEEE;
+
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
 footer {
   background: #031432;
@@ -29,9 +34,17 @@ footer {
   color: black;
 }
 
+.btnIndex {
+  background-color: $colour1 !important;
+}
+
 .index-options {
   font-size: 2em !important;
   font-weight: 600 !important;
+}
+
+.filter_box{
+  background-color:$colour3;
 }
 
 .photos_articulo {
@@ -214,9 +227,10 @@ ul#menu_usuario li a {
     float: right;
   }
 
-  .btnIndex {
+  .btnIndexBootstrap {
     margin: 4px 0px 4px 0px !important;
     padding: 2px 0px 2px 0px !important;
+    background-color: $colour1 !important;
   }
 
   .dt-buttons {

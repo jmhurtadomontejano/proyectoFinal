@@ -101,6 +101,11 @@ MensajesFlash::imprimir_mensajes();
                                     class="form-control" aria-describedby="dniHelp" style="margin-bottom:1em">
                             </div>
                             <div class="col-md-4 col-6">
+                                <label for="birth_date" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" name="birth_date" id="birth_date" class="form-control"
+                                    aria-describedby="birthdateHelp" style="margin-bottom:1em">
+                            </div>
+                            <div class="col-md-4 col-6">
                                 <label for="gender" class="form-label">Genero</label>
                                 <select class="form-control" id="gender" name="gender" aria-describedby="genderHelp"
                                     style="margin-bottom:1em" value="">
@@ -110,11 +115,6 @@ MensajesFlash::imprimir_mensajes();
                                     <option value="NoBinario">No binario</option>
                                     <option value="Otro">Otro</option>
                                 </select>
-                            </div>
-                            <div class="col-md-4 col-6">
-                                <label for="birth_date" class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" name="birth_date" id="birth_date" class="form-control"
-                                    aria-describedby="birthdateHelp" style="margin-bottom:1em">
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="email">Email</label>

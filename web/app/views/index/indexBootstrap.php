@@ -73,7 +73,7 @@ MensajesFlash::imprimir_mensajes();
         <!-- ADMIN MENU -->
         <?php if (Session::existe()) { ?>
         <button type="button"
-            class="btn btnIndex btn-secondary col-12 col-md-3 col-xl-2 d-flex align-items-center justify-content-center"
+            class="btn btnIndexBootstrap btn-secondary col-12 col-md-3 col-xl-2 d-flex align-items-center justify-content-center"
             style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>my_user">Mis Datos
             </a>
@@ -89,7 +89,7 @@ MensajesFlash::imprimir_mensajes();
                 </div>
             </div>
         </button>
-        <button type="button" class="btn btnIndex btn-primary col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-primary col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>insert_item">Insertar
                 item
                 <!-- image of item-->
@@ -102,26 +102,26 @@ MensajesFlash::imprimir_mensajes();
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
         ?>
         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-        <button type="button" class="btn btnIndex btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em"
                 href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items
                 Diarios
                 <i class="fa-solid fa-list-check"></i></a>
         </button>
-        <button type="button" class="btn btnIndex btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis
                 Items Cliente
                 <i class="fa-solid fa-id-badge"></i></a>
         </button>
         <?php if ($usuario->getRol() == 'admin') { ?>
-        <button type="button" class="btn btnIndex btn-success col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-success col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>usersList">Usuarios
                 <i class="fa-solid fa-users"></i>
             </a>
         </button>
         <?php } ?>
         <?php if($usuario->getRol() =='superAdmin') { ?>
-        <button type="button" class="btn btnIndex btn-success col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-success col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em"
                 href="<?= RUTA?>usersListAdmins">Usuarios SUPER
                 <i class="fa-solid fa-users"></i>
@@ -129,7 +129,7 @@ MensajesFlash::imprimir_mensajes();
         </button>
         <?php } ?>
         <?php } else{?>
-        <button type="button" class="btn btnIndex btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-info col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>own_itemsUsers">Mis
                 Items
                 <i class="fa-solid fa-id-badge"></i></i></a>
@@ -140,13 +140,13 @@ MensajesFlash::imprimir_mensajes();
 
         <!-- SUPERADMIN MENU -->
         <?php if ($usuario->getRol() == 'superAdmin') { ?>
-        <button type="button" class="btn btnIndex btn-warning col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-warning col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em"
                 href="<?= RUTA?>departments_list">Departamentos
                 <i class="fa-solid fa-building-user"></i>
             </a>
         </button>
-        <button type="button" class="btn btnIndex btn-danger col-12 col-md-3 col-xl-2" style="margin:10px">
+        <button type="button" class="btn btnIndexBootstrap btn-danger col-12 col-md-3 col-xl-2" style="margin:10px">
             <a class="nav-link index-options" style="color:white; font-size:2em" href="<?= RUTA?>items_list">Todos los
                 items
                 <i class="fa-solid fa-sitemap"></i>

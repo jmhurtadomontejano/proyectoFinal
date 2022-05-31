@@ -9,71 +9,41 @@ MensajesFlash::imprimir_mensajes();
 <div class="detailUsertoAdmin" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
     <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-        <h3>Datos del Usuario</h3>    
-        <div class="form-group">
+            <h3>Datos del Usuario
+            <div class="photo_user" id="photo_usuario"
+                style="background-image: url(<?= RUTA?>images/users/<?= $client->getPhoto() ?>)">
+            </div>
+            </h3>
+            <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $client->getNombre() ?>">
+                <input type="text" class="form-control col-12 col-md-6" id="nombre" name="nombre"
+                    value="<?php echo $client->getNombre() ?>">
             </div>
             <div class="form-group">
                 <label for="apellidos">Apellidos</label>
-                <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?php echo $client->getSurname() ?>">
+                <input type="text" class="form-control col-12 col-md-6" id="apellidos" name="apellidos"
+                    value="<?php echo $client->getSurname() ?>">
             </div>
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" id="dni" name="dni" value="<?php echo $client->getDni() ?>">
-                </div>
+                <input type="text" class="form-control col-12 col-md-6" id="dni" name="dni" value="<?php echo $client->getDni() ?>">
+            </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $client->getEmail() ?>">
-                </div>
+                <input type="email" class="form-control col-12 col-md-6" id="email" name="email"
+                    value="<?php echo $client->getEmail() ?>">
+            </div>
             <div class="form-group">
                 <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $client->getPhone() ?>">
-                </div>
+                <input type="text" class="form-control col-12 col-md-6" id="telefono" name="telefono"
+                    value="<?php echo $client->getPhone() ?>">
+            </div>
             <div class="form-group">
                 <label for="direccion">Dirección</label>
-                <input type="text" class="form-control" id="direccion" name="direccion" value="<?php echo $client->getAddress() ?>">
-                </div>
-        </div>
-    </form>
-</div>
-
-
-
-
-<div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
-    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
-        <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-            <a href="<?= RUTA?>insert_itemUsers">
-                <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
-                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
-                </button>
-            </a>
-            <!-- filter by input date format -->
-            <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-calendar-days"></i>
-                <div>
-                    <label for="inputDate" class="form-label">Fecha para filtrar</label>
-                    <input type="date" class="form-control" id="inputDate" value="<?php $client->getNombre()?>"
-                        name="inputDate">
-                </div>
+                <input type="text" class="form-control col-12 col-md-6" id="direccion" name="direccion"
+                    value="<?php echo $client->getAddress() ?>">
             </div>
-
-           <!-- filter by input date format -->
-           <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-building-user"></i>
-                <div class="">
-                    <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
-                    <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
-                        <option value="<?php $departmentUser ?>">Seleccione....</option>
-                        <?php foreach ($departments as $department): ?>
-                        <option <?php if($idDepartment==$department->idDepartment) echo "selected=\"selected\""; ?>
-                            value="<?php echo $department->idDepartment  ?>">
-                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
+         
         </div>
     </form>
 </div>
@@ -98,7 +68,7 @@ MensajesFlash::imprimir_mensajes();
                 </tr>
             </thead>
             <tfoot style="display: table-header-group !important">
-                <tr hidden>
+                <tr>
                     <th>Filter..</th>
                     <th>Filter..</th>
                     <th>Filter..</th>
@@ -134,9 +104,7 @@ MensajesFlash::imprimir_mensajes();
                     <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
                     <td id="clientUserInfo">
-                        <a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $i->getId_clientUser() ?>">
-                            <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
-                        </a>
+                        <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
                     </td>
                     <?php endif; ?>
 
@@ -340,6 +308,39 @@ $(document).on('click', '#boton_editar', function() {
 $(document).ready(function() {
     $('#id_clientUser').on('click', function() {
         findItemsByUser($(this).val('#id_clientUser'));
+    });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#mydatatable tfoot th').each(function() {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Filtrar.." />');
+    });
+
+    var table = $('#mydatatable').DataTable({
+        "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+        "responsive": false,
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        },
+        "order": [
+            [0, "desc"]
+        ],
+        "initComplete": function() {
+            this.api().columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function() {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            })
+        }
     });
 });
 </script>

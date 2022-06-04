@@ -8,7 +8,6 @@ MensajesFlash::imprimir_mensajes();
 
 
 <div class="" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
-    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
             <a href="<?= RUTA?>insert_itemUsers">
                 <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
@@ -41,7 +40,6 @@ MensajesFlash::imprimir_mensajes();
                 </div>
             </div>
         </div>
-    </form>
 </div>
 
 <div class="col-sm-12">

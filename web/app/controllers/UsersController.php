@@ -138,10 +138,15 @@ class UsersController {
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
                 $usuario->setRol("user");
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-                $usuDAO->insert($usuario);
-                MensajesFlash::add_message("Usuario creado.", MessageType::SUCCESS);
+                if($usuDAO->insert($usuario)){
+                MensajesFlash::add_message("Usuario creado:", MessageType::SUCCESS);
                 header('Location: inicio');
                 die();
+            }else{
+                MensajesFlash::add_message("Error al crear el usuario:", MessageType::ERROR);
+                header('Location: registro');
+                die();
+            }
             }
         }
 
@@ -289,10 +294,15 @@ class UsersController {
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
 
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
-                $usuDAO->insert($usuario);
-                MensajesFlash::add_message("Usuario creado.", MessageType::SUCCESS);
+                   if($usuDAO->insert($usuario)){
+                MensajesFlash::add_message("Usuario creado:", MessageType::SUCCESS);
                 header('Location: inicio');
                 die();
+            }else{
+                MensajesFlash::add_message("Error al crear el usuario:", MessageType::ERROR);
+                header('Location: registro');
+                die();
+            }
             }
         }
 

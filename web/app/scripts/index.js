@@ -18,6 +18,7 @@ firebase.analytics();
 export const URL = 'http://localhost/proyectoFinal/web';
 
 
+
 var auth = firebase.auth();
 document.getElementById('btnloging').addEventListener('click', function () {
     var provider = new firebase.auth.GoogleAuthProvider();

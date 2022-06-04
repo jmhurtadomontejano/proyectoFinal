@@ -45,7 +45,8 @@ MensajesFlash::imprimir_mensajes();
                 <!-- END SOCIAL MEDIA BUTTONS-->
 
                 <div class="mg-t-60 tx-center">¿Todavía no esta registrado? <a
-                        href="/proyectoFinal/app/views/users/registerSocialMedia.php" class="tx-info">Registrarse Redes
+                        href="<?=RUTA."../app/views/users/registerSocialMedia.php"?>"
+                        class="tx-info">Registrarse Redes
                         Sociales</a></div>
 
                 <div class="mg-t-60 tx-center">¿Todavía no esta registrado? <a href="<?= RUTA?>registrar">Registrarse

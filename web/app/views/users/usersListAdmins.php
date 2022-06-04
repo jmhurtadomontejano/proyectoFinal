@@ -6,10 +6,18 @@ require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
 
+<div class="options_box" style="margin:5px; padding:5px;">
+    <form id="formFilter" method="post" action="<?php RUTA?>own_itemsDaylyAdmins">
+        <div class="d-flex flex-wrap col-12" style="margin:10px">
+            <a href="<?=RUTA?>add_user">
+                <button type="button" class="btn btn-primary">
+                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Usuario
+                </button>
+            </a>
+        </div>
+    </form>
+</div>
 
-<button type="button" class="btn btn-primary btn-table" style="margin:10px; color:white" data-bs> <a
-        class="dropdown-item" href="<?=RUTA?>add_user">Insertar Usuarios</a>
-</button>
 
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
@@ -44,7 +52,8 @@ MensajesFlash::imprimir_mensajes();
         <tbody>
             <?php foreach ($usersList as $u): ?>
             <tr>
-                <th><a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $u->getId() ?>"><?= $u->getNombre() ?></a></th>
+                <th><a class="" href="<?= RUTA?>itemsByUserToAdmin" data="<?= $u->getId() ?>"><?= $u->getNombre() ?></a>
+                </th>
                 <th><?= $u->getSurname() ?></th>
                 <th><?= substr($u->getBirth_date(),0,7)."-xx" ?></th>
                 <th><?= substr($u->getEmail(),4,9 )?></th>
@@ -54,21 +63,21 @@ MensajesFlash::imprimir_mensajes();
                 <th><?= $u->getRol() ." - ". $u->getDepartment() ?></th>
                 <th> <?php if ($u->getPhoto() != null): ?>
                     <!-- we check the photo exists in the gallery -->
-                    <img class="photo_user"
-                        style="background-image: url(<?= RUTA?>images/users/<?= $u->getPhoto() ?>)"
+                    <img class="photo_user" style="background-image: url(<?= RUTA?>images/users/<?= $u->getPhoto() ?>)"
                         class="img-thumbnail" alt="" width="100" height="100">
                     <?php else: ?>
-                    <img style="background-image: url(<?= RUTA?>images/users/user_generico.png)"
-                        class="img-thumbnail" alt="" width="100" height="100">
+                    <img style="background-image: url(<?= RUTA?>images/users/user_generico.png)" class="img-thumbnail"
+                        alt="" width="100" height="100">
                     <?php endif; ?>
                 </th>
                 <th>
                     <!--buttons bootstrap to edit the user with call to editUserModal windowsDialog Modal to edit user with id="id="modalEditUser" -->
                     <button type="button" class="btn btn-primary btn-table" id="<?= $u->getId() ?>"
-                        data-id=<?= $u->getId() ?> data-bs-toggle="modal" data-bs-target="#editUserModal" data-url="<?= RUTA ?>">Editar
+                        data-id=<?= $u->getId() ?> data-bs-toggle="modal" data-bs-target="#editUserModal"
+                        data-url="<?= RUTA ?>">Editar
                         <?= $u->getId() ?>
                     </button>
-                    <button class="btn btn-danger btn-table deleteUser" onclick="deleteUser(<?= $u->getId() ?>)">
+                    <button hidden class="btn btn-danger btn-table deleteUser" onclick="deleteUser(<?= $u->getId() ?>)">
                         Eliminar<?= $u->getId() ?>
                         <img src="<?= RUTA?>images/icons/trash.svg" class="papelera hidden">
                     </button>

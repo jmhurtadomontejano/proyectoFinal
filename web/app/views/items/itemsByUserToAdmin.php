@@ -6,8 +6,7 @@ require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
 
-<div class="detailUsertoAdmin" style="margin:5px; padding:5px; border:1px solid black; background-color:#e6d4ff">
-    <form id="formFilter" method="post" action="http://localhost/proyectoFinal/own_itemsDaylyAdmins">
+<div class="options_box">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
             <h3>Datos del Usuario
             <div class="photo_user" id="photo_usuario"
@@ -43,9 +42,8 @@ MensajesFlash::imprimir_mensajes();
                 <input type="text" class="form-control col-12 col-md-6" id="direccion" name="direccion"
                     value="<?php echo $client->getAddress() ?>">
             </div>
-         
         </div>
-    </form>
+   
 </div>
 
 <div class="col-sm-12">

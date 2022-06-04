@@ -29,7 +29,7 @@ class ReservaDAO {
         $sql = "INSERT INTO reservas (id_usuario, id_instalacion, fecha_reserva, hora_inicio, hora_fin) VALUES "
                 . "(?,?,?,?,?)";
         if (!$stmt = $this->conn->prepare($sql)) {
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
             MensajesFlash::anadir_mensaje("Error al añadir la reserva");
         }
 
@@ -53,7 +53,7 @@ class ReservaDAO {
         }
         $sql = "DELETE FROM reservas WHERE id_reserva = " . $reserva->getId_reserva();
         if (!$this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -65,7 +65,7 @@ class ReservaDAO {
     public function findByUser($id_usuario) {
         $sql = "SELECT * FROM reservas WHERE id_usuario=$id_usuario order by fecha_reserva DESC, hora_inicio";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_horarios_reservados_por_usuario = array();
         while ($reserva = $result->fetch_object('Reserva')) {
@@ -77,7 +77,7 @@ class ReservaDAO {
     public function findallReservasByFecha($fecha_seleccionada) {
         $sql = "SELECT * FROM reservas WHERE fecha_reserva='$fecha_seleccionada'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_horarios_reservados = array();
         while ($reserva = $result->fetch_object('Reserva')) {
@@ -89,7 +89,7 @@ class ReservaDAO {
         public function findallReservasByFechaEInstalacion($fecha_seleccionada, $id_instalacion) {
         $sql = "SELECT * FROM reservas WHERE fecha_reserva='$fecha_seleccionada' and id_instalacion='$id_instalacion'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_horarios_reservados = array();
         while ($reserva = $result->fetch_object('Reserva')) {
@@ -102,7 +102,7 @@ class ReservaDAO {
     public function findByIdReserva($id_reservaPaEliminar) {
         $sql = "SELECT * FROM reservas WHERE id_reserva='$id_reservaPaEliminar'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
             MensajesFlash::anadir_mensaje("No se ha podido eliminar la reserva");
         }
         
@@ -112,7 +112,7 @@ class ReservaDAO {
         public function findallReservasToFecha($fecha_seleccionada) {
         $sql = "SELECT * FROM reservas WHERE fecha_reserva>'$fecha_seleccionada'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_horarios_reservados = array();
         while ($reserva = $result->fetch_object('Reserva')) {

@@ -396,7 +396,7 @@ public function itemsByUserToAdmin() {
     public function download_csv_files() {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ORDER BY id DESC";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_items = array();
         while ($item = $result->fetch_object('item')) {

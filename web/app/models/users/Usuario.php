@@ -210,4 +210,10 @@ class Usuario {
         $this->disableUser = $disableUser;
     }
 
+ /*function toString Usuario 
+    function toString(){
+        return "Usuario: ".$this->id." ".$this->nombre." ".$this->surname." ".$this->dni." ".$this->gender." ".$this->birth_date."
+        ".$this->$email." ".$this->$phone." ".$this->address." ".$this->rol." ".$this->department.";
+    }
+*/
 }

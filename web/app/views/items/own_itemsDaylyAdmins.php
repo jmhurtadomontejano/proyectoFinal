@@ -7,7 +7,7 @@ MensajesFlash::imprimir_mensajes();
 ?>
 
 
-<div class="filter_box" style="margin:5px; padding:5px; border:1px solid black;">
+<div class="options_box" style="margin:5px; padding:5px;">
     <form id="formFilter" method="post" action="<?php RUTA?>own_itemsDaylyAdmins">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
             <a href="<?= RUTA?>insert_itemUsers">

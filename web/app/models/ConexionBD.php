@@ -6,7 +6,7 @@
  */
 class ConexionBD {
     public static function conectar(): mysqli{
-       /*LOCAL CONFIGURATION*/
+/*LOCAL CONFIGURATION*/
         $conn = new mysqli('localhost','root','','proyectoFinal');
         if($conn->connect_error){
             die("Error al conectar con MySQL: " . $conn->error);
@@ -14,12 +14,11 @@ class ConexionBD {
         return $conn;
     }
 
-        /*SERVER CONFIGURATION*/
-      /*  $conn = new mysqli('localhost','sql_jmhurtadomon','mjCGKfksF3JhHptL','sql_jmhurtadomon');
+/*SERVER CONFIGURATION*/
+    /*  $conn = new mysqli('localhost','sql_jmhurtadomon','mjCGKfksF3JhHptL','sql_jmhurtadomon');
         if($conn->connect_error){
             die("Error al conectar con MySQL: " . $conn->error);
         }
         return $conn;
-    
     }*/
 }

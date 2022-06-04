@@ -35,7 +35,7 @@ class ItemDAO {
         $sql = "INSERT INTO items (name, description, location, id_department, id_service, id_attendUser, id_clientUser, id_user, state, date, hour, duration) VALUES "
                 . "(?,?,?,?,?,?,?,?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta ItemDAO->isert($item): " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         
         $stmt->bind_param('sssdiiiissss',$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $id_user, $state, $date, $hour, $duration);
@@ -70,7 +70,7 @@ class ItemDAO {
                 . " WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
-            die("Error al preparar la consulta: ". $this->conn->error);
+            die("Error al preparar la consulta: ItemDAO->update($item) " ."<br>"/n . $sql ." <br>"/n/n. $this->conn->error);
         }
         $stmt->bind_param("sssiiiisssssi",$name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration, $result, $id);
         $stmt->execute();
@@ -95,7 +95,7 @@ class ItemDAO {
         }
         $sql = "DELETE FROM items WHERE id = " . $item->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -112,7 +112,7 @@ class ItemDAO {
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM items WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         return $result->fetch_object('item');
         /* También se podría sustituir el fetch_object por lo siguiente:
@@ -135,7 +135,7 @@ class ItemDAO {
     public function findByItemId($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM items WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         return $result->fetch_object('item');
      
@@ -152,7 +152,7 @@ class ItemDAO {
     public function findAll($orden = 'ASC', $campo = 'id') {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         $array_obj_items = array();
         while ($item = $result->fetch_object('item')) {
@@ -164,7 +164,7 @@ class ItemDAO {
     public function findItemsByUser($id_user) {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_attendUser=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error en la consulta $sql:" . $this->conn->error);
+            die("Error en la consulta $sql:" ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
@@ -190,7 +190,7 @@ class ItemDAO {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." ORDER BY id DESC";
 
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error en la consulta $sql:" . $this->conn->error);
+            die("Error en la consulta $sql:" ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
@@ -222,7 +222,7 @@ class ItemDAO {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items ".$where." ORDER BY id DESC";
 
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error en la consulta $sql:" . $this->conn->error);
+            die("Error en la consulta $sql:" ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
@@ -247,7 +247,7 @@ class ItemDAO {
     public function findItemsByClientUser($id_user) {
         $sql = "SELECT *,date_format(date,'%e/%c/%Y') as date FROM items WHERE id_clientUser=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error en la consulta $sql:" . $this->conn->error);
+            die("Error en la consulta $sql:" ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;
@@ -268,7 +268,7 @@ class ItemDAO {
     public function listar_departamentos() { //: 
         $sql = "SELECT *  FROM departments";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL ItemDAO->listar_departamentos(): "."<br>"/n . $sql ."<br>"/n."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         $array_obj_departament = array();
         while ($department = $result->fetch_object()) {
@@ -281,7 +281,7 @@ class ItemDAO {
     public function list_users() { //: 
         $sql = "SELECT *  FROM usuarios order by nombre";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL ItemDAO->list_users(): " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         $array_obj_users = array();
         while ($user = $result->fetch_object()) {
@@ -293,7 +293,7 @@ class ItemDAO {
     public function list_admins(){
         $sql = "SELECT *  FROM usuarios WHERE rol='admin' or rol='superadmin' order by nombre";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL ItemDAO->list_admins(): " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         $array_obj_admins = array();
         while ($user = $result->fetch_object()) {
@@ -305,7 +305,7 @@ class ItemDAO {
     public function list_postal_codes() { //: 
         $sql = "SELECT *  FROM postal_codes";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL ItemDAO->list_postal_codes(): " ."<br>"/n . $sql ."<br>"/n. $this->conn->error);
         }
         $array_obj_postal_codes = array();
         while ($postal_code = $result->fetch_object()) {

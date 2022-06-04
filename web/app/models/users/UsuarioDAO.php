@@ -28,19 +28,22 @@ class UsuarioDAO {
         $postalCode = $usuario->getPostalCode();
         $address = $usuario->getAddress();
         $password = $usuario->getPassword();
-        $photo = $usuario->getPhoto();
         if($usuario->getRol() == null){
             $rol = "user";
         }else{
             $rol = $usuario->getRol();
         }
+        $department = $usuario->getDepartment();
+        $photo = $usuario->getPhoto();
         $restart_password = $usuario->getRestart_password();
         $restart_code = $usuario->getRestart_code();
         $cookie_id = sha1(time() + rand());
-        $sql = "INSERT INTO usuarios (nombre, surname, dni, email, gender, birth_date, phone, postalCode, address, password, photo, cookie_id) VALUES "
-                . "('$nombre','$surname','$dni','$email','$gender','$birth_date','$phone','$postalCode','$address','$password','$photo', '$cookie_id')";
+        $sql = "INSERT INTO usuarios (nombre, surname, dni, email, gender, birth_date, phone, postalCode, address, password, rol, department, photo, cookie_id) VALUES "
+                . "('$nombre','$surname','$dni','$email','$gender','$birth_date','$phone','$postalCode','$address','$password', '$rol', '$department', '$photo', '$cookie_id')";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            header("Location: index.php");
+            MensajesFlash::anadir_mensaje("Error en la SQL UsuarioDAO->insertUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error, MessageType::ERROR);
+            die("Error en la SQL UsuarioDAO->insertUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
         $usuario->setId($this->conn->insert_id);
@@ -70,7 +73,9 @@ class UsuarioDAO {
                 . " nombre='$nombre', surname='$surname', dni='$dni', gender='$gender', birth_date='$birth_date', email='$email', phone='$phone', postalCode='$postalCode', address='$address', rol='$rol', department='$department', restart_password='$restart_password', restart_code='$restart_code' "
                 . "WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            header("Location: index.php");
+            MensajesFlash::anadir_mensaje("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error, MessageType::ERROR);
+            die("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -91,7 +96,7 @@ class UsuarioDAO {
         }
         $sql = "DELETE FROM usuarios WHERE id = " . $usuario->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->deleteUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -108,7 +113,7 @@ class UsuarioDAO {
     public function findUserById($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL : " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findUserById : " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }
@@ -117,7 +122,7 @@ class UsuarioDAO {
     public function findUserByIdV2($id) {
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL : " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findUserByIdV2: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $row = $result->fetch_assoc();
         $result->free_result();
@@ -127,7 +132,7 @@ class UsuarioDAO {
     public function findUserByIdJson($id) {
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL : " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findUserByJson: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($fila = $result->fetch_assoc()) {
             $usuario = new Usuario();
@@ -164,7 +169,7 @@ class UsuarioDAO {
     public function findAll($orden = 'ASC', $campo = 'id') {
         $sql = "SELECT * FROM usuarios ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findAll: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_usuarios = array();
         while ($usuario = $result->fetch_object('Usuario')) {
@@ -176,7 +181,7 @@ class UsuarioDAO {
     public function findAdmins() {
         $sql = "SELECT * FROM usuarios WHERE rol='admin'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findAdmins: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_admins = array();
         while ($admin = $result->fetch_object('Usuario')) {
@@ -188,7 +193,7 @@ class UsuarioDAO {
     public function findByEmail($email) {
         $sql = "SELECT * FROM usuarios WHERE email='$email'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findByEmail: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }
@@ -196,7 +201,7 @@ class UsuarioDAO {
     public function findByDNI($dni){
         $sql = "SELECT * FROM usuarios WHERE dni='$dni'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findByDNI: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }
@@ -204,7 +209,7 @@ class UsuarioDAO {
     public function findByCookie_id($cookie_id) {
         $sql = "SELECT * FROM usuarios WHERE cookie_id='$cookie_id'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL : " . $this->conn->error);
+            die("Error en la SQL UsuarioDAO->findByCookie_id: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }
@@ -212,7 +217,7 @@ class UsuarioDAO {
     public function list_postalCodes(){
         $sql = "SELECT * from postalcodes";
         if (!$result = $this->conn->query($sql)) {
-                die("Error en la SQL : " . $this->conn->error);
+                die("Error en la SQL UsuarioDAO->list_postalCodes: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
             }
             $array_obj_postalCodes = array();
             while ($postalCode = $result->fetch_object()) {

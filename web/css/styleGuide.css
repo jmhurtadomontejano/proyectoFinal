@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
-footer {
-  background: #031432;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+.font-heading {
+  font-family: roboto, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
 }
 
-.overflow_menu {
-  overflow: visible !important;
-  color: red;
+.menu {
+  visibility: hidden;
+}
+
+.font-heading-subtitle {
+  font-family: roboto, sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  font-style: italic;
 }
 
 #usuario,
@@ -29,8 +39,40 @@ footer {
   color: black;
 }
 
+.btn-table {
+  background-color: #2d4fa4;
+  font-style: #ffffff;
+  color: #ffffff;
+}
+
+.index-options {
+  color: white;
+  font-size: 2em;
+}
+
 .btnIndex {
-  background-color: #303841 !important;
+  background-color: #2d4fa4 !important;
+  border: 0.2em solid #2d4fa4 !important;
+  border-radius: 1em;
+  padding: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+}
+
+.btnIndex:hover {
+  background-color: #bddef7 !important;
+  color: #000000 !important;
+  box-shadow: 0px 0px 1em 0px #2d4fa4;
+}
+
+.btnIndexText-Name {
+  font-size: 0.5em;
+  color: #ffffff;
 }
 
 .index-options {
@@ -38,8 +80,12 @@ footer {
   font-weight: 600 !important;
 }
 
-.filter_box {
-  background-color: #F6C90E;
+.index-options:hover {
+  color: #000000 !important;
+}
+
+.options_box {
+  background-color: #bddef7;
 }
 
 .photos_articulo {
@@ -150,6 +196,10 @@ ul#menu_usuario li a {
   cursor: pointer;
 }
 
+.userInfoIndex {
+  display: flex;
+}
+
 .photo_user {
   height: 80px;
   width: 80px;
@@ -157,6 +207,7 @@ ul#menu_usuario li a {
   background-position: center;
   border-radius: 40px;
   box-shadow: 0px 0px 5px 0px #aaa;
+  margin-right: 0.6em;
 }
 
 #datos_usuario {
@@ -178,8 +229,17 @@ ul#menu_usuario li a {
 }
 
 .fa-solid {
-  font-size: 4em;
+  font-size: 2.5em;
   font-weight: 900;
+}
+
+.form {
+  border: 0.5em solid #2d4fa4;
+  color: #000000;
+}
+
+.form-text {
+  color: #2d4fa4;
 }
 
 .footer {
@@ -208,6 +268,14 @@ ul#menu_usuario li a {
     width: 50px;
   }
 
+  .font-heading {
+    font-size: 1.2em !important;
+  }
+
+  .font-heading-subtitle {
+    display: none;
+  }
+
   .index-options {
     font-size: 2em !important;
     font-weight: bold;
@@ -218,10 +286,16 @@ ul#menu_usuario li a {
     float: right;
   }
 
+  .btnIndex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: inherit;
+  }
+
   .btnIndexBootstrap {
     margin: 4px 0px 4px 0px !important;
     padding: 2px 0px 2px 0px !important;
-    background-color: #303841 !important;
+    background-color: #2d4fa4 !important;
   }
 
   .dt-buttons {

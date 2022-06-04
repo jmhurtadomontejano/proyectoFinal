@@ -25,7 +25,7 @@ class InstalacionDAO {
         $sql = "INSERT INTO instalaciones (nombre_instalacion, descripcion_instalacion, precio_hora_instalacion, foto_instalacion) VALUES "
                 . "(?,?,?,?)";
         if (!$stmt = $this->conn->prepare($sql)) {
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
 
         $stmt->bind_param('ssis', $nombre_instalacion, $descripcion_instalacion, $precio_hora, $foto_instalacion);
@@ -48,7 +48,7 @@ class InstalacionDAO {
         }
         $sql = "DELETE FROM instalaciones WHERE id_instalacion=" . $instalacion->getId_instalacion();
         if (!$this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -60,7 +60,7 @@ class InstalacionDAO {
     public function findByInstalacion($id_instalacion) {
         $sql = "SELECT * FROM instalaciones WHERE id_instalacion='$id_instalacion'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         //return $result->fetch_object('Instalacion');
         //return $result;
@@ -70,7 +70,7 @@ class InstalacionDAO {
     public function findByNombreInstalacion($nombreInstalacion) {
         $sql = "SELECT * FROM instalaciones WHERE nombre_instalacion='$nombreInstalacion'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         //return $result->fetch_object('Instalacion');
         //return $result;
@@ -80,7 +80,7 @@ class InstalacionDAO {
     public function findallInstalaciones() {
         $sql = "SELECT * FROM instalaciones";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_instalaciones = Array();
         while ($instalacion = $result->fetch_object('Instalacion')) {
@@ -92,7 +92,7 @@ class InstalacionDAO {
     public function findallReservasByInstalacionFecha($idInstalacion, $fecha_seleccionada) {
         $sql = "SELECT * FROM reservas WHERE id_instalacion='$id_instalacion'&fecha_reserva='$fecha_seleccionada'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_horarios_reservados = array();
         while ($reserva = $result->fetch_object('Reserva')) {
@@ -104,7 +104,7 @@ class InstalacionDAO {
     public function findByIdReserva($id_reservaPaEliminar) {
         $sql = "SELECT * FROM reservas WHERE id_reserva='$id_reservaPaEliminar'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
             MensajesFlash::anadir_mensaje("No se ha podido eliminar la reserva");
         }
 

@@ -23,7 +23,7 @@ class photoItemDAO {
         $sql = "INSERT INTO photositems (file_name, id_item) VALUES "
                 . "('$file_name', $id_item)";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL PhotoItemDao->insert($photoItem): " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
         $photoItem->setId($this->conn->insert_id);
@@ -42,7 +42,7 @@ class photoItemDAO {
         }
         $sql = "DELETE FROM photositems WHERE id = " . $photoItem->getId();
         if (!$this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL PhotoItemDao->delete($photoItem): " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -59,7 +59,7 @@ class photoItemDAO {
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM photositems WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL PhotoItemDao->find($id): " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('photo');   //Para poder hacer esto 
     }
@@ -73,7 +73,7 @@ class photoItemDAO {
     public function findByIdItem($id_item) {
         $sql = "SELECT * FROM photositems WHERE id_item=$id_item";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL PhotoItemDao->findByItem($id_item): " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_photos = array();
         while ($photoItem = $result->fetch_object('PhotoItem')) {

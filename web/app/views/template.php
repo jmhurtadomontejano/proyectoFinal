@@ -95,15 +95,15 @@
                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
-                <div class="margin-left-xs">
+                <div class="margin-left-xs ayto">
                     <a title="town_hall" class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px"
                         href="<?= RUTA?>">
                         <p class="font-heading">Ayuntamiento de<br>Argamasilla de Alba</p>
-                        <p>El lugar de La Mancha</p>
+                        <p class="font-heading-subtitle">El lugar de La Mancha</p>
                 </div>
                 </a>
 
-                <a class="navbar-brand" href="#" type="button"
+                <a class="navbar-brand menu" href="#" type="button"
                     style="position:right; margin-right:10px; margin-top:10px;" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">Menu</a>
@@ -117,7 +117,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= RUTA?>">Inicio</a>
                         </li>
-                        <li><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
+                        <li hidden><a class="nav-link" href="<?= RUTA?>indexBootstrap">Index Bootstrap</a>
                         </li>
                         <li class="nav-item dropdown" hidden>
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -231,7 +231,11 @@
 
         <?php if (!empty($titulo2)) : ?>
         <div id="titulo">
-            <h1><?php echo $titulo2 ?></h1>
+            <div class="options_box" style="margin:5px; padding:5px;">
+                <div class="d-flex flex-wrap col-12" style="margin:10px">
+                    <h2><?php echo $titulo2  ?></h2>
+                </div>
+            </div>
         </div>
         <?php endif; ?>
 

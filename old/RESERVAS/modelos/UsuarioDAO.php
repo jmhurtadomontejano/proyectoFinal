@@ -62,7 +62,7 @@ class UsuarioDAO {
         $sql = "INSERT INTO usuarios (nombre, apellidos, telefono, email, password, foto, cookie_id) VALUES "
                 . "(?,?,?,?,?,?,?)";
         if (!$stmt = $this->conn->prepare($sql)) {
-            die("Error al preparar la consulta SQL: " . $this->conn->error);
+            die("Error al preparar la consulta SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
 
         $stmt->bind_param('ssissss', $nombre, $apellidos, $telefono, $email, $password, $foto, $cookie_id);
@@ -73,7 +73,7 @@ class UsuarioDAO {
         $usuario->setId($this->conn->insert_id);
         return true;
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
     }
 
@@ -93,7 +93,7 @@ class UsuarioDAO {
                 . " nombre='$nombre', email='$email',password='$password', foto='$foto', cookie_id='$cookie_id' "
                 . "WHERE id = " . $usuarios->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -113,7 +113,7 @@ class UsuarioDAO {
         }
         $sql = "DELETE FROM usuarios WHERE id = " . $usuarios->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -130,7 +130,7 @@ class UsuarioDAO {
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM usuarios WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
         /* También se podría sustituir el fetch_object por lo siguiente:
@@ -158,7 +158,7 @@ class UsuarioDAO {
     public function findAll($orden = 'ASC', $campo = 'id') {
         $sql = "SELECT * FROM usuarios ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_usuarios = array();
         while ($usuario = $result->fetch_object('Usuario')) {
@@ -170,7 +170,7 @@ class UsuarioDAO {
     public function findByEmail($email) {
         $sql = "SELECT * FROM usuarios WHERE email='$email'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }
@@ -178,7 +178,7 @@ class UsuarioDAO {
     public function findByCookie($cookie_id) {
         $sql = "SELECT *  FROM usuarios WHERE cookie_id='$cookie_id'";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');
     }

@@ -11,7 +11,7 @@ MensajesFlash::imprimir_mensajes();
     <div class="row col-sm-10 col-12">
 
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
-            <fieldset class="border border-primary" style="border-radius: 35px; background-color:#CCCCCC">
+            <fieldset class="form" style="border-radius: 35px">
                 <div class="row" style="paddin:10px; margin:10px">
                     <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
                     <input type="hidden" name="token" value="<?= $token ?>">
@@ -56,7 +56,7 @@ MensajesFlash::imprimir_mensajes();
                             class="form-control" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
                     </div>
-                    <div class="col-md-6 col-4" style="padding-bottom:20px">
+                    <div class="col-md-6 col-5" style="padding-bottom:20px">
                         <label class="form-label">Teléfono</label>
                         <input type="number" name="phone" id="phone" placeholder="Introduce aqui tu numero de telefono"
                             class="form-control" max=999999999>
@@ -65,7 +65,7 @@ MensajesFlash::imprimir_mensajes();
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-8" style="padding-bottom:20px">
+                    <div class="col-md-6 col-7" style="padding-bottom:20px">
                         <label class="form-label">Código Postal</label>
                         <select class="form-control" id="postalCode" name="postalCode" required>
                             <option value="">Seleccione Código Postal</option>

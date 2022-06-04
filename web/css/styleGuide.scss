@@ -1,16 +1,27 @@
-$colour1:#303841;
-$colour2:#3A4750;
-$colour3:#F6C90E;
-$colour4:#EEEEEE;
+$colour1:#2d4fa4;
+$colour2:#bddef7;
+$colour3:#000000;
+$colour4:#ffffff;
 
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
-footer {
-  background: #031432;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.font-heading{
+font-family: roboto, sans-serif;
+font-weight: 700;
+font-size: 20px;
+color: $colour3;
 }
 
-.overflow_menu {
-  overflow: visible !important;
-  color: red;
+.menu{
+  visibility: hidden;
+}
+
+.font-heading-subtitle{
+font-family: roboto, sans-serif;
+font-weight: 100;
+font-size: 18px;
+font-style: italic;
 }
 
 #usuario,
@@ -34,8 +45,40 @@ footer {
   color: black;
 }
 
+.btn-table {
+  background-color:$colour1;
+  font-style: $colour4;
+  color:$colour4;
+}
+
+.index-options{
+  color:white; 
+  font-size:2em;
+}
+
 .btnIndex {
   background-color: $colour1 !important;
+  border: 0.2em solid $colour1 !important;
+  border-radius: 1em;
+  padding: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+}
+
+.btnIndex:hover {
+  background-color: $colour2 !important;
+  color: $colour3 !important;
+  box-shadow: 0px 0px 1em 0px $colour1;
+}
+
+.btnIndexText-Name{
+  font-size: 0.5em;
+  color: $colour4;
 }
 
 .index-options {
@@ -43,8 +86,12 @@ footer {
   font-weight: 600 !important;
 }
 
-.filter_box{
-  background-color:$colour3;
+.index-options:hover {
+  color: $colour3 !important;
+}
+
+.options_box{
+  background-color:$colour2;
 }
 
 .photos_articulo {
@@ -156,7 +203,7 @@ ul#menu_usuario li a {
 }
 
 .userInfoIndex{
-
+display:flex;
 }
 
 .photo_user {
@@ -166,6 +213,7 @@ ul#menu_usuario li a {
   background-position: center;
   border-radius: 40px;
   box-shadow: 0px 0px 5px 0px #aaa;
+  margin-right: 0.6em;
 }
 
 #datos_usuario {
@@ -187,9 +235,19 @@ ul#menu_usuario li a {
 }
 
 .fa-solid {
-  font-size: 4em;
+  font-size: 2.5em;
   font-weight: 900;
 }
+
+.form{ 
+  border: 0.5em solid $colour1;
+  color:$colour3;
+}
+
+.form-text{
+  color:$colour1;
+}
+
 
 .footer {
   position: inherit;
@@ -217,6 +275,14 @@ ul#menu_usuario li a {
     width: 50px;
   }
 
+  .font-heading{
+    font-size: 1.2em !important;
+  }
+
+  .font-heading-subtitle{
+    display:none;
+  }
+
   .index-options {
     font-size: 2em !important;
     font-weight: bold;
@@ -225,6 +291,12 @@ ul#menu_usuario li a {
   .fa-solid {
     font-size: 1.5em;
     float: right;
+  }
+
+  .btnIndex {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: inherit;
   }
 
   .btnIndexBootstrap {

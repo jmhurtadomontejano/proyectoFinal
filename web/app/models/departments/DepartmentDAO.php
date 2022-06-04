@@ -25,7 +25,7 @@ class DepartmentDAO {
         //SQL to insert department on the database
         $sql = "INSERT INTO departments (name, description, phone, emailDepartment, iconDepartment) VALUES (?,?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $stmt->bind_param('ssiss',$departmentName, $departmentDescription, $departmentPhone, $departmentEmail, $departmentIcon);
         $stmt->execute();
@@ -38,7 +38,7 @@ class DepartmentDAO {
         //SQL to update department on the database
         $sql = "UPDATE departments SET name =?, description =?, phone=?, emailDepartment=?, iconDepartment=?, disableDepartment=? WHERE idDepartment = ?";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $stmt->bind_param('ssissii',$name, $description, $phone, $emailDepartment, $iconDepartment, $disableDepartment, $id);
         $stmt->execute();
@@ -62,7 +62,7 @@ class DepartmentDAO {
         }
         $sql = "DELETE FROM departments WHERE idDepartment = " . $department->getIdDepartment();
         if (!$this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -79,7 +79,7 @@ class DepartmentDAO {
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM departments WHERE idDepartment=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('department');   //Para poder hacer esto 
     }
@@ -93,7 +93,7 @@ class DepartmentDAO {
     public function findByIdDepartment($id_department) {
         $sql = "SELECT * FROM departments WHERE idDepartment=$id_department";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_departments = array();
         while ($department = $result->fetch_object()) {
@@ -105,7 +105,7 @@ class DepartmentDAO {
     public function findDepartmentByIdJsonModal($id){
         $sql = "SELECT * FROM departments WHERE idDepartment=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $department = $result->fetch_assoc();
         $result->free_result();
@@ -115,7 +115,7 @@ class DepartmentDAO {
     public function findAll() {
         $sql = "SELECT * FROM departments order by idDepartment ASC";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_departments = array();
         while ($department = $result->fetch_object('department')) {

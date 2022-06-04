@@ -24,7 +24,7 @@ class ArticuloDAO {
         $sql = "INSERT INTO articulos (titulo, descripcion, precio, id_usuario) VALUES "
                 . "(?,?,?,?)";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error al preparar la consulta: " . $this->conn->error);
+            die("Error al preparar la consulta: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         
         $stmt->bind_param('ssdi',$titulo, $descripcion, $precio, $id_usuario);
@@ -50,7 +50,7 @@ class ArticuloDAO {
                 . "WHERE id = ?";
         if(!$stmt = $this->conn->prepare($sql))
         {
-            die("Error al preparar la consulta: ". $this->conn->error);
+            die("Error al preparar la consulta: "."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $stmt->bind_param("ssdi",$titulo, $descripcion, $precio, $id);
         $stmt->execute();
@@ -75,7 +75,7 @@ class ArticuloDAO {
         }
         $sql = "DELETE FROM articulos WHERE id = " . $articulo->getId();
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         if ($this->conn->affected_rows == 1) {
             return true;
@@ -92,7 +92,7 @@ class ArticuloDAO {
     public function find($id) { //: Usuario especifica el tipo de datos que va a devolver pero no es obligatorio ponerlo
         $sql = "SELECT * FROM articulos WHERE id=$id";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Articulo');
         /* También se podría sustituir el fetch_object por lo siguiente:
@@ -120,7 +120,7 @@ class ArticuloDAO {
     public function findAll($orden = 'ASC', $campo = 'id') {
         $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos ORDER BY $campo $orden";
         if (!$result = $this->conn->query($sql)) {
-            die("Error en la SQL: " . $this->conn->error);
+            die("Error en la SQL: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         $array_obj_articulos = array();
         while ($articulo = $result->fetch_object('Articulo')) {
@@ -132,7 +132,7 @@ class ArticuloDAO {
     public function findByUser($id_usuario) {
         $sql = "SELECT *,date_format(fecha,'%e/%c/%Y') as fecha FROM articulos WHERE id_usuario=? ORDER BY id DESC";
         if(!$stmt = $this->conn->prepare($sql)){
-            die("Error en la consulta $sql:" . $this->conn->error);
+            die("Error en la consulta $sql:" ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         
         $stmt instanceof mysqli_stmt;

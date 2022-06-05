@@ -1,18 +1,16 @@
 <?php
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-/*$titulo2 = "Detalle de Items";*/
+$titulo2 = "Detalle del Usuario y sus Items";
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
 
 <div class="options_box">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-            <h3>Datos del Usuario
             <div class="photo_user" id="photo_usuario"
                 style="background-image: url(<?= RUTA?>images/users/<?= $client->getPhoto() ?>)">
             </div>
-            </h3>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control col-12 col-md-6" id="nombre" name="nombre"
@@ -85,7 +83,7 @@ MensajesFlash::imprimir_mensajes();
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
                     <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getName() ?></a></td>
-                    <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
+                    <td id="descriptionInfo"><?= $i->getId()." - ".substr($i->getDescription(),0,20) ."..."?></td>
                     <td id="departmentInfo">
                         <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
                     </td>
@@ -115,10 +113,10 @@ MensajesFlash::imprimir_mensajes();
                         <?php if($i->getState()!="Finalizada"){ ?>
                         <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
                         <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
-                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Modal</button>
+                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Modificar</button>
                         <!-- button to open windows view_item, no modal -->
                         <a href="ver_item/<?= $i->getId() ?>">
-                            <button type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
+                            <button hidden type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
                         </a>
 
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"

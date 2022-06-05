@@ -1,7 +1,7 @@
 <?php
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-/*$titulo2 = "Detalle de Items";*/
+$titulo2 = "Detalle de Items";
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
@@ -10,8 +10,9 @@ MensajesFlash::imprimir_mensajes();
 <div class="options_box" style="margin:5px; padding:5px;">
     <form id="formFilter" method="post" action="<?php RUTA?>own_itemsDaylyAdmins">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
+        <?php echo $titulo2 = "Detalle de Items";?>
             <a href="<?= RUTA?>insert_itemUsers">
-                <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
+                <button type="button" class="btn btn-primary">
                     <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
                 </button>
             </a>
@@ -119,7 +120,7 @@ MensajesFlash::imprimir_mensajes();
                             data-bs-target="#editItemModal" data-id="<?= $i->getId()?>" id="boton_editar">Editar</button>
                         <!-- button to open windows view_item, no modal -->
                         <a href="ver_item/<?= $i->getId() ?>">
-                            <button type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
+                            <button hidden type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
                         </a>
 
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"

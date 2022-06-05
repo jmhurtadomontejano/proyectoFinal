@@ -1,7 +1,9 @@
 <?php
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
-/*$titulo2 = "INICIO";*/
+if (!Session::existe()){
+    $titulo2 = "Inicia Sesión";
+}
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
@@ -11,7 +13,6 @@ MensajesFlash::imprimir_mensajes();
 
     <!-- OWN LOGIN -->
     <div>
-        <h1>Inicia Sesión</h1>
         <div class="tx-center mg-b-60">Ingrese usuario y contraseña</div>
         <form action="login" method="post">
             <input type="email" placeholder="email" name="email" id="email" class="form-control">
@@ -115,7 +116,7 @@ MensajesFlash::imprimir_mensajes();
         <div class="btnIndexText">
             Insertar item
         </div>
-        <div style="float:bottom">
+        <div>
             <i class="fa-solid fa-file-circle-plus" aria-hidden="true" style="size:20px"></i>
         </div>
     </a>

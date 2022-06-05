@@ -58,10 +58,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  -ms-border-radius: 1em;
-  -o-border-radius: 1em;
 }
 
 .btnIndex:hover {
@@ -231,6 +227,7 @@ ul#menu_usuario li a {
 .fa-solid {
   font-size: 2.5em;
   font-weight: 900;
+  float: right;
 }
 
 .form {

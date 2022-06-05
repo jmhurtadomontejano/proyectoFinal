@@ -13,7 +13,6 @@ MensajesFlash::imprimir_mensajes();
         <form class="form-floating" action="" method="post" enctype="multipart/form-data">
 
             <div class="row" style="paddin:10px; margin:10px">
-                <h3 class="text-center">Mis Datos de Usuario</h3>
                 <!-- USER PHOTO -->
                 <input type="hidden" name="token" value="<?= $token ?>">
                 <section class="col-12">
@@ -129,7 +128,7 @@ MensajesFlash::imprimir_mensajes();
                 <?php } ?>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="datesConsent" name="datesConsent"
-                        checked>
+                        checked >
                     <label class="form-check-label" for="flexCheckChecked">Doy mi Consentimiento según Ley de
                         Protección de Datos
                     </label>

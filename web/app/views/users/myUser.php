@@ -15,6 +15,8 @@ MensajesFlash::imprimir_mensajes();
             <div class="row" style="paddin:10px; margin:10px">
                 <!-- USER PHOTO -->
                 <input type="hidden" name="token" value="<?= $token ?>">
+                <input type="hidden" name="actualizar" value="TRUE">
+                <input type="hidden" name="id" value="<?= $user->getId() ?>">
                 <section class="col-12">
                     <?php if (Session::existe()): ?>
                     <div id="userMyInfo">

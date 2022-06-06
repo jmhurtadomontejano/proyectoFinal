@@ -45,20 +45,16 @@ font-style: italic;
   color: black;
 }
 
-.btn-table {
-  background-color:$colour1;
-  font-style: $colour4;
-  color:$colour4;
-}
-
 .index-options{
   color:white; 
   font-size:2em;
+  overflow: auto;
 }
 
 .btnIndex {
   background-color: $colour1 !important;
   border: 0.2em solid $colour1 !important;
+  font-style: $colour4 !important;
   border-radius: 1em;
   padding: 0.2em;
   display: flex;
@@ -75,6 +71,25 @@ font-style: italic;
 .btnIndexText-Name{
   font-size: 0.5em;
   color: $colour4;
+}
+
+.btn-table {
+  background-color: $colour1 !important;
+  border: 0.2em solid $colour1 !important;
+  font-style: $colour4 !important;
+  color:$colour4 !important;
+  color: $colour4 !important;
+  border-radius: 1em;
+  padding: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-table:hover {
+  background-color: $colour2 !important;
+  color: $colour3 !important;
+  box-shadow: 0px 0px 1em 0px $colour1;
 }
 
 .index-options {

@@ -2,14 +2,19 @@
 $contenido = ob_get_clean();
 /* $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Detalle de Usuarios";
+$templateContent = '<button type="button" class="btn-table" style="margin:10px; color:white" data-bs> <a
+        class="dropdown-item" href="'.RUTA.'add_user">Insertar Usuarios</a>
+</button>';
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
 
 
+<!-- button added like templateContent to incrustate in the same div that title2 in template.php
 <button type="button" class="btn btn-primary btn-table" style="margin:10px; color:white" data-bs> <a
-        class="dropdown-item" href="<?=RUTA?>add_user">Insertar Usuarios</a>
+class="dropdown-item" href="<?=RUTA?>add_user">Insertar Usuarios</a>
 </button>
+-->
 
 <div class="table-responsive" id="mydatatable-container">
     <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">

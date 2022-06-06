@@ -2,15 +2,12 @@
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Detalle de Items Propios del Usuario";
+$templateContent = '<button type="button" class="btn-table" style="margin:10px; color:white" data-bs> <a
+        class="dropdown-item" href="'.RUTA.'insert_itemUsers"><i class="fa-solid fa-file-circle-plus"></i>Insertar Item</a>
+</button>';
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
-
-<a href="<?= RUTA?>insert_itemUsers">
-                <button type="button" class="btn btn-primary btn-table" onclick="printDiv('printableArea')">
-                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
-                </button>
-            </a>
 
 <div class="col-sm-12">
     <div class="table-responsive" id="mydatatable-container">

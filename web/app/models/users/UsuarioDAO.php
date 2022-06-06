@@ -84,10 +84,35 @@ class UsuarioDAO {
         }
     }
 
+    public function updateMyUser($usuario) {
+        //Comprobamos que el parámetro es de la clase Usuario
+        if (!$usuario instanceof Usuario) {
+            return false;
+        }
+        $email = $usuario->getEmail();
+        $phone =  $usuario->getPhone();
+        $address = $usuario->getAddress();
+
+        $sql = "UPDATE usuarios SET"
+            . " email='$email', phone='$phone', address='$address' "
+            . "WHERE id = " . $usuario->getId();
+        if (!$result = $this->conn->query($sql)) {
+            header("Location: index.php");
+            MensajesFlash::anadir_mensaje("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error, MessageType::ERROR);
+            die("Error en la SQL UsuarioDAO->updateMyUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
+        }
+        if ($this->conn->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
-     * Borra un registro de la tabla Usuarios
+     * Delete a user from the database
      * @param type $usuario Objeto de la clase usuario
      * @return bool Devuelve true si se ha borrado un usuario y false en caso contrario
+     * nowadays, no one can delete user because it´s no logical delete user in this case, should we activate the option to cancel without delete.
      */
     public function delete($usuario) {
         //Comprobamos que el parámetro no es nulo y es de la clase Usuario

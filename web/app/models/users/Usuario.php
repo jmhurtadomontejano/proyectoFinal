@@ -45,6 +45,16 @@ class Usuario {
         return $obj;
     }
 
+    /** INIT VALUES TO CHANGE USERS THEIR OWN DATA UserController.php -> myUser()*/
+    public static function InitValuesUpdateMyUser($id, $direccion, $email, $telefono){
+        $obj = new Usuario();
+        $obj->id = $id;
+        $obj->address = $direccion;
+        $obj->email = $email;
+        $obj->phone = $telefono;
+        return $obj;
+    }
+
     //Array que va a contener los artículos de este usuario
     private $articulos;
     

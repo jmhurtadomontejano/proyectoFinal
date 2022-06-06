@@ -572,6 +572,16 @@ class UsersController {
         if (Session::existe() == true) {
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO($conn);
+
+        /*CAMPS THAT THE OWN USER CAN CHANGE SINCE MYUSER.PHP */
+        $user = $_POST;
+        if(isset($user["actualizar"]) && $user["actualizar"] === 'TRUE') {
+            $updateUser = Usuario::InitValuesUpdateMyUser($user["id"],$user["address"],$user["email"],$user["phone"]);
+            $usuDAO->updateMyUser($updateUser);
+            MensajesFlash::add_message('Datos actualizados');
+
+        }
+
         //call to posatlCodes
         $list_postalCodes = $usuDAO->list_postalCodes();
         $user = $usuDAO->findUserById(Session::obtener()->getId());

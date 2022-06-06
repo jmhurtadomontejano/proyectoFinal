@@ -86,6 +86,11 @@
         <?php if (!empty($titulo)) : ?>
         <div id="titulo">
             <h1><?php echo $titulo ?></h1>
+            <!-- space to botton or filter in the same div that the "title2-->
+            <?php if (!empty($templateContent)) : ?>
+            <div><?php echo $templateContent ?></div>
+            <?php endif; ?>
+
         </div>
         <?php endif; ?>
 
@@ -232,8 +237,15 @@
         <?php if (!empty($titulo2)) : ?>
         <div id="titulo">
             <div class="options_box" style="margin:5px; padding:5px;">
-                <div class="d-flex flex-wrap col-12" style="margin:10px">
-                    <h2><?php echo $titulo2  ?></h2>
+                <div class="d-flex flex-row" style="margin:10px">
+                    <div class="col-6">
+                        <h2><?php echo $titulo2  ?></h2>
+                    </div>
+                    <?php if (!empty($templateContent)) : ?>
+                    <div class="col-6" style="text-align: end">
+                        <?php echo $templateContent ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

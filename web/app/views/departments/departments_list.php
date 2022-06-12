@@ -3,8 +3,9 @@
  /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
  $titulo2 = "Detalle de Departamentos";
  $templateContent = '<a href="'.RUTA.'insert_department" class="btn-title">
+ Insertar Departmanto
  <i class="fa-solid fa-file-circle-plus"></i> 
- Insertar Departmanto</a>';
+ </a>';
  require './app/views/template.php';
  MensajesFlash::imprimir_mensajes(); ?>
 

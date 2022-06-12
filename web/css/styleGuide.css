@@ -407,6 +407,26 @@ ul#menu_usuario li a {
     -ms-border-radius: 0.5em;
     -o-border-radius: 0.5em;
   }
+
+  .form-group {
+    padding: 0.3em;
+    margin-bottom: 0.8em !important;
+    font-size: 0.7rem;
+    font-weight: bold;
+    /*align content at bottom*/
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .form-control {
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  .form-label {
+    margin-bottom: 0 !important;
+  }
 }
 /* to little screen less than 480px */
 @media screen and (max-width: 480px) {

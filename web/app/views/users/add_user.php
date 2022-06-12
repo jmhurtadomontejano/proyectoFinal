@@ -13,17 +13,17 @@ MensajesFlash::imprimir_mensajes();
         <div class="row" style="paddin:10px; margin:10px">
             <legend class="text-center">Formulario de Registro de Usuarios Nuevos</legend>
             <input type="hidden" name="token" value="<?= $token ?>">
-            <div class="col-md-4 col-12 m-10" style="padding-bottom: 20px">
+            <div class="form-group col-md-4 col-12 m-10">
                 <label class="form-label">Nombre</label>
                 <input type="text" name="name" placeholder="Introduce aqui tu nombre" class="form-control"
                     aria-describedby="nameHelp">
             </div>
-            <div class="col-md-8 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-8 col-12">
                 <label class="form-label">Apellidos</label>
                 <input type="text" name="surname" placeholder="Introduce aqui tus apellidos" class="form-control"
                     aria-describedby="surnameHelp">
             </div>
-            <div class="col-md-4 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-4 col-12">
                 <label class="form-label">DNI o NIE completo</label>
                 <input type="dni" name="dni" id="dni" placeholder="Introduce aqui el DNI o NIF" class="form-control"
                     aria-describedby="dniHelp">
@@ -31,7 +31,7 @@ MensajesFlash::imprimir_mensajes();
                     <small>Ejemplo: 12345678A</small>
                 </div>
             </div>
-            <div class="col-md-4 col-6" style="padding-bottom:20px">
+            <div class="form-group col-md-4 col-6">
                 <label class="form-label">Genero</label>
                 <select name="gender" value="Selecciona el Genero" class="form-control" aria-describedby="gender">
                     <option>Selecciona del desplegable</option>
@@ -40,26 +40,34 @@ MensajesFlash::imprimir_mensajes();
                     <option value="NoBinario">No binario</option>
                     <option value="Otro">Otro</option>
                 </select>
+                <div id="genderHelp" class="form-text">
+                    <small>Entidad concienciada</small>
+                </div>
             </div>
-            <div class="col-md-4 col-6" style="padding-bottom:20px">
+            <div class="form-group col-md-4 col-6">
                 <label class="form-label">Fecha de Nacimiento</label>
                 <input type="date" name="birth_date" placeholder="Introduce aqui tu fecha de nacimiento"
                     class="form-control" aria-describedby="birthdateHelp">
+                <div id="birthdayHelp" class="form-text">
+                    <small>del DNI</small>
+                </div>
             </div>
-            <div class="col-md-6 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-12">
                 <label class="form-label">Email/Direccion de correo electrónico</label>
                 <input type="email" name="email" id="email" placeholder="Introduce aqui tu em@il" class="form-control"
                     aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Nunca compartas tu email con nadie</div>
             </div>
-            <div class="col-md-6 col-4" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-5">
                 <label class="form-label">Teléfono</label>
                 <input type="number" name="phone" id="phone" placeholder="Introduce aqui tu numero de telefono"
                     class="form-control" aria-describedby="phoneHelp" />
-                <div id="phoneHelp" class="form-text"></div>
+                <div id="phoneHelp" class="form-text">
+                    <small>Debe tener 9 digitos</small>
+                </div>
             </div>
 
-            <div class="col-md-6 col-8" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-7">
                 <label class="form-label">Código Postal</label>
                 <select class="form-control" id="postalCode" name="postalCode" required>
                     <option value="">Seleccione Código Postal</option>
@@ -68,25 +76,32 @@ MensajesFlash::imprimir_mensajes();
                         <?php echo $postalCode->code, " - " ; echo $postalCode->town; ?></option>
                     <?php endforeach; ?>
                 </select>
+                <div id="postalCodeHelp" class="form-text">
+                    <small>selecciona en el desplegable</small>
+                </div>
             </div>
-            <div class="col-md-6 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-12">
                 <label class="form-label">Direccion Postal</label>
                 <input type="text" name="address"
                     placeholder="Introduce aqui tu direccion completa con numero, portal, etc..." class="form-control"
                     aria-describedby="addressHelp">
+                <div id="addressHelp" class="form-text">
+                    <small>Introduce tu dirección completa con bloque, numero, etc...</small>
+                </div>
             </div>
-            <div class="col-md-6 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-12">
                 <label class="form-label">Password</label>
                 <input type="password" name="password" id="password" class="form-control"
                     placeholder="Introduce aqui tu password">
                 <div id="passwordHelp" class="form-text">Pon una Contraseña Segura: Con al menos 8 caracteres,
                     Mayusculas y minusculas</div>
             </div>
-            <div class="col-md-6 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-12">
                 <label class="form-label">Vuelve a escribir la Password para comprobación</label>
                 <input type="password" name="password2" id="password2" class="form-control"
                     placeholder="Introduce aqui tu password">
-                <div id="password2Help" class="form-text">Escribe la misma contraseña que en la casilla anterior
+                <div id="password2Help" class="form-text">Escribe la misma contraseña que en la casilla anterior,
+                    exactamente igual que antes.
                 </div>
             </div>
 
@@ -97,7 +112,7 @@ MensajesFlash::imprimir_mensajes();
                             $usuario = $usuDAO->findUserById(Session::obtener()->getId());
                         ?>
             <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-            <div class="col-md-6" style="padding-bottom:20px">
+            <div class="form-group col-md-6">
                 <label class="form-label">Rol</label>
                 <select name="rol" id="rol" class="form-control">
                     <option value="user" default selected>Usuario</option>
@@ -112,7 +127,7 @@ MensajesFlash::imprimir_mensajes();
             <?php } ?>
 
             <?php if ($usuario->getRol() =='superAdmin') { ?>
-            <div class="col-md-6" style="padding-bottom:20px">
+            <div class="form-group col-md-6">
                 <label class="form-label" for="department">Departamento</label>
                 <select class="form-control" id="department" name="department">
                     <option value="">Seleccione Departamento</option>
@@ -122,24 +137,29 @@ MensajesFlash::imprimir_mensajes();
                     </option>
                     <?php endforeach; ?>
                 </select>
+                <div id="departmentHelp" class="form-text">
+                    <small>Selecciona en el listado, solo si trabaja aqui</small>
+                </div>
             </div>
             <?php } ?>
 
-            <div class="col-md-6 col-12" style="padding-bottom:20px">
+            <div class="form-group col-md-6 col-12">
                 <label class="form-label">Foto del Usuario</label>
                 <input type="file" name="photo" class="form-control" accept="image/*" aria-describedby="photoHelp">
                 <div id="photoHelp" class="form-text">Añade aqui tu foto</div>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input col-md-6 col-12" style="padding-bottom:20px" type="checkbox" value=""
-                    id="datesConsent" name="datesConsent" checked>
-                <label class="form-check-label" for="flexCheckChecked">Se necesita consentimiento firmado de los
+                <input class=" form-check-input col-md-6 col-12" type="checkbox" value="" id="datesConsent"
+                    name="datesConsent" checked>
+                <label class="form-group form-check-label" for="flexCheckChecked">Se necesita consentimiento firmado de
+                    los
                     datos del Usuario
                 </label>
             </div>
             <div class="" style="justify-content:center; align-items:center padding-top:2em">
-                <button type="submit" value="registrar" class="btn-title col-12" style="margin-top:2em">Registrar Usuario</button>
+                <button type="submit" value="registrar" class="btn-title col-12" style="margin-top:2em">Registrar
+                    Usuario</button>
             </div>
         </div>
 </form>

@@ -31,7 +31,7 @@ MensajesFlash::imprimir_mensajes();
             </div>
             <div class="form-group col-md-3 col-6">
                 <label for="inputState" class="form-label">Estado</label>
-                <select id="inputState" name="inputState" class="form-select">
+                <select id="inputState" name="inputState" class="form-control">
                     <option selected>Registrada</option>
                     <option>Iniciada</option>
                     <option>En Proceso</option>

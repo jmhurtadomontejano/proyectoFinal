@@ -43,7 +43,9 @@ class UsuarioDAO {
         if (!$result = $this->conn->query($sql)) {
             header("Location: index.php");
             MensajesFlash::anadir_mensaje("Error en la SQL UsuarioDAO->insertUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error, MessageType::ERROR);
+            echo 'console.log("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error)';
             die("Error en la SQL UsuarioDAO->insertUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
+            return false;
         }
         //Guardo el id que le ha asignado la base de datos en la propiedad id del objeto
         $usuario->setId($this->conn->insert_id);
@@ -76,6 +78,8 @@ class UsuarioDAO {
             header("Location: index.php");
             MensajesFlash::anadir_mensaje("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error, MessageType::ERROR);
             die("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
+            echo 'console.log("Error en la SQL UsuarioDAO->updateUser: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error)';
+            return false;
         }
         if ($this->conn->affected_rows == 1) {
             return true;

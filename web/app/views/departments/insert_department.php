@@ -10,7 +10,8 @@ MensajesFlash::imprimir_mensajes();
 <script src="<?= RUTA?>js/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js"></script>
 
 </script>
-<form class="row g-3 col-md-12" action="" method="post" enctype="multipart/form-data">
+<form class="form-floating" action="" method="post" enctype="multipart/form-data">
+    <fieldset class="form" style="border-radius: 35px">
     <div class="col-md-6">
         <label for="inputName" class="form-label">Nombre</label>
         <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">

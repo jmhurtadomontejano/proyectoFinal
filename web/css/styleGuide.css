@@ -3,7 +3,7 @@
 .font-heading {
   font-family: roboto, sans-serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.4em;
   color: #000000;
 }
 
@@ -29,20 +29,31 @@
   margin-top: 3px;
 }
 
-.boton_formulario {
-  border: 1px solid black;
+.boton_form {
+  border: 1px solid #2d4fa4;
   box-sizing: border-box;
   display: inline-block;
   padding: 3px;
   background-color: #eee;
   text-decoration: none;
-  color: black;
+  color: #000000;
 }
 
 .index-options {
-  color: white;
+  color: #ffffff;
   font-size: 2em;
-  overflow: auto;
+  height: 6em;
+  margin: 1em;
+}
+
+.index-options {
+  font-size: 2em !important;
+  font-weight: 600 !important;
+  display: grid;
+}
+
+.index-options:hover {
+  color: #000000 !important;
 }
 
 .btnIndex {
@@ -51,9 +62,9 @@
   font-style: #ffffff !important;
   border-radius: 1em;
   padding: 0.2em;
-  display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .btnIndex:hover {
@@ -62,9 +73,12 @@
   box-shadow: 0px 0px 1em 0px #2d4fa4;
 }
 
+.btnIndexText {
+  font-size: 0.7em;
+}
+
 .btnIndexText-Name {
-  font-size: 0.5em;
-  color: #ffffff;
+  font-size: 0.6em;
 }
 
 .btn-table {
@@ -80,19 +94,36 @@
   align-items: center;
 }
 
+.btn-table a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.2em;
+}
+
 .btn-table:hover {
   background-color: #bddef7 !important;
   color: #000000 !important;
   box-shadow: 0px 0px 1em 0px #2d4fa4;
 }
 
-.index-options {
-  font-size: 2em !important;
-  font-weight: 600 !important;
+.btn-title {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #2d4fa4 !important;
+  border: 0.2em solid #2d4fa4 !important;
+  border-radius: 1em;
+  padding: 0.4em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.index-options:hover {
+.btn-title:hover {
+  background-color: #bddef7 !important;
   color: #000000 !important;
+  box-shadow: 0px 0px 1em 0px #2d4fa4;
 }
 
 .options_box {
@@ -138,10 +169,6 @@
   right: 5px;
   width: 20px;
   height: 20px;
-}
-
-main {
-  overflow: auto;
 }
 
 .precio_articulo {
@@ -209,6 +236,7 @@ ul#menu_usuario li a {
 
 .userInfoIndex {
   display: flex;
+  padding-right: 0.6em;
 }
 
 .photo_user {
@@ -219,6 +247,15 @@ ul#menu_usuario li a {
   border-radius: 40px;
   box-shadow: 0px 0px 5px 0px #aaa;
   margin-right: 0.6em;
+}
+
+.photo_user_index {
+  height: 2em;
+  width: 2em;
+  background-size: cover;
+  background-position: center;
+  float: right;
+  border-radius: 0.5em;
 }
 
 #datos_usuario {
@@ -242,7 +279,12 @@ ul#menu_usuario li a {
 .fa-solid {
   font-size: 2.5em;
   font-weight: 900;
-  float: right;
+}
+
+.fa-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form {
@@ -267,6 +309,14 @@ ul#menu_usuario li a {
   background-color: #031432;
 }
 
+.form-group {
+  padding: 0.5em;
+  /*align content at bottom*/
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
 /* to little screen less than 768px */
 @media screen and (max-width: 768px) {
   #usuario,
@@ -277,7 +327,7 @@ ul#menu_usuario li a {
   }
 
   .logo {
-    width: 50px;
+    width: 3em;
   }
 
   .font-heading {
@@ -291,11 +341,14 @@ ul#menu_usuario li a {
   .index-options {
     font-size: 2em !important;
     font-weight: bold;
+    height: 3em;
+    margin: 0.4em;
   }
 
   .fa-solid {
     font-size: 1.5em;
     float: right;
+    padding: auto;
   }
 
   .btnIndex {
@@ -310,6 +363,11 @@ ul#menu_usuario li a {
     background-color: #2d4fa4 !important;
   }
 
+  .btnIndexText-Name {
+    font-size: 0.5em;
+    padding-right: 0.6em;
+  }
+
   .dt-buttons {
     display: none !important;
   }
@@ -319,6 +377,10 @@ ul#menu_usuario li a {
   }
 
   .btn-table {
+    font-size: 0.7rem !important;
+  }
+
+  .btn-title {
     font-size: 0.7rem !important;
   }
 
@@ -335,11 +397,15 @@ ul#menu_usuario li a {
   }
 
   .photo_user {
-    height: 50px;
+    height: 3em;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
+    border-radius: 0.5em;
     box-shadow: 0px 0px 5px 0px #aaa;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
   }
 }
 /* to little screen less than 480px */
@@ -352,6 +418,7 @@ ul#menu_usuario li a {
   .index-options {
     font-size: 1.5em !important;
     font-weight: bold;
+    height: 2.4em;
   }
 
   .town-hall-text {

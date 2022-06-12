@@ -71,7 +71,7 @@ function getDepartment()
        // Ajax config
        $.ajax({
            type: "POST", //we are using GET method to get data from server side
-           url: 'http://localhost/proyectoFinal/detail_department', // get the route value
+           url: './detail_department', // get the route value
            data: {department_id}, //set data
            beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
            },
@@ -94,7 +94,7 @@ function deleteDepartment(id)
 {
        $.ajax({
            type: "POST", //we are using POST method to submit the data to the server side
-           url: "http://localhost/proyectoFinal/delete_department", // get the route value
+           url: "./delete_department", // get the route value
            data: {id}, // our serialized array data for server side
            beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
            },

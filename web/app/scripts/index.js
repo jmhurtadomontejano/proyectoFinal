@@ -15,7 +15,7 @@ firebase.initializeApp(config);
 firebase.analytics();
 
 
-export const URL = 'http://localhost/proyectoFinal/web';
+export const URL = './';
 
 
 
@@ -36,7 +36,7 @@ document.getElementById('btnloging').addEventListener('click', function () {
                 $('#lblmensaje').hide();
                 $('#lblregistro').show();
             }else{
-                window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                window.open('./','_self');
             }
         });
     }).catch(function (error) {
@@ -59,7 +59,7 @@ document.getElementById('btnloginf').addEventListener('click', function () {
                 $('#lblmensaje').hide();
                 $('#lblregistro').show();
             }else{
-                window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                window.open('./','_self');
             }
         });
     }).catch(function (error) {
@@ -82,7 +82,7 @@ document.getElementById('btnloginh').addEventListener('click', function () {
                 $('#lblmensaje').hide();
                 $('#lblregistro').show();
             }else{
-                window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                window.open('./','_self');
             }
         });
     }).catch(function (error) {
@@ -114,7 +114,7 @@ $(document).on("click", "#btnlogin", function () {
                 $('#lblerror').show();
                 $('#lblmensaje').hide();
             }else{
-                window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                window.open('./','_self');
             }
         });
     }

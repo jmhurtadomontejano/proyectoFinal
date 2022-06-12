@@ -74,8 +74,8 @@ MensajesFlash::imprimir_mensajes();
 
     <!-- ADMIN MENU -->
     <?php if (Session::existe()) { ?>
-    <!--   <button type="button" class="btn btnIndex col-12 col-md-3 col-xl-2 d-flex align-items-center justify-content-center"
-        style="margin:10px" hidden="hidden">
+    <!--   <button type="button" class="btn btnIndex col-12 col-md-3 d-flex align-items-center justify-content-center"
+         hidden="hidden">
         <div class="btnIndexText">
             <a class="nav-link index-options" href="<?= RUTA?>my_user">Mis Datos
             </a>
@@ -96,27 +96,26 @@ MensajesFlash::imprimir_mensajes();
         </div>
     </button>
     -->
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px" href="<?= RUTA?>my_user">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>my_user">
         <div class="btnIndexText">
             Mis Datos
         </div>
         <div class="userInfoIndex">
-            <div class="photo_user"
+            <div class="btnIndexText-Name"><?= Session::obtener()->getNombre() ?>
+                <?= Session::obtener()->getSurname() ?>
+            </div>
+            <div class="photo_user_index"
                 style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
             </div>
-            <div class="d-flex-wrap btnIndexText-Name"><?= Session::obtener()->getNombre() ?>
-                <?= Session::obtener()->getSurname() ?> </div>
-
         </div>
     </a>
 
 
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
-        href="<?= RUTA?>insert_item">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>insert_item">
         <div class="btnIndexText">
             Insertar item
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-file-circle-plus" aria-hidden="true" style="size:20px"></i>
         </div>
     </a>
@@ -128,58 +127,55 @@ MensajesFlash::imprimir_mensajes();
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
         ?>
     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
+    <a class="nav-link index-options btnIndex col-12 col-md-3" 
         href="<?= RUTA?>own_itemsDaylyAdmins">
         <div class="btnIndexText">
             Mis Items Diarios
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-list-check"></i>
         </div>
     </a>
 
 
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
-        href="<?= RUTA?>own_itemsUsers">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>own_itemsUsers">
         <div class="btnIndexText">
             Mis Items Cliente
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-id-badge"></i>
         </div>
     </a>
 
 
     <?php if ($usuario->getRol() == 'admin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px" href="<?= RUTA?>usersList">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>usersList">
         <div class="btnIndexText">
             Usuarios
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-users"></i>
         </div>
     </a>
     <?php } ?>
 
     <?php if($usuario->getRol() =='superAdmin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
-        href="<?= RUTA?>usersListAdmins">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>usersListAdmins">
         <div class="btnIndexText">
             Usuarios SUPER
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-users"></i>
         </div>
     </a>
     <?php } ?>
 
     <?php } else{?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
-        href="<?= RUTA?>own_itemsUsers">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>own_itemsUsers">
         <div class="btnIndexText">
             Mis Items
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-id-badge"></i></i>
         </div>
     </a>
@@ -189,21 +185,20 @@ MensajesFlash::imprimir_mensajes();
 
     <!-- SUPERADMIN MENU -->
     <?php if ($usuario->getRol() == 'superAdmin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px"
-        href="<?= RUTA?>departments_list">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>departments_list">
         <div class="btnIndexText">
             Departamentos
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-building-user"></i>
         </div>
     </a>
 
-    <a class="nav-link index-options btnIndex col-12 col-md-3 col-xl-2" style="margin:10px" href="<?= RUTA?>items_list">
+    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>items_list">
         <div class="btnIndexText">
             Todos los items
         </div>
-        <div>
+        <div class="fa-container">
             <i class="fa-solid fa-sitemap"></i>
         </div>
     </a>

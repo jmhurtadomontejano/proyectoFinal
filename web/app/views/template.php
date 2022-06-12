@@ -74,7 +74,7 @@
     <meta property="og:image:height" content="600">
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
-    <title>Acceso</title>
+    <title>Argamasilla de Alba</title>
     <link href="public/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="public/lib/Ionicons/css/ionicons.css" rel="stylesheet">
 
@@ -90,6 +90,10 @@
             <?php if (!empty($templateContent)) : ?>
             <div><?php echo $templateContent ?></div>
             <?php endif; ?>
+            <?php if (!empty($$templateContentFilters)) : ?>
+            <div><?php echo $templateContentFilters ?></div>
+        </div>
+        <?php endif; ?>
 
         </div>
         <?php endif; ?>
@@ -238,11 +242,11 @@
         <div id="titulo">
             <div class="options_box" style="margin:5px; padding:5px;">
                 <div class="d-flex flex-row" style="margin:10px">
-                    <div class="col-6">
+                    <div class="col-8">
                         <h2><?php echo $titulo2  ?></h2>
                     </div>
                     <?php if (!empty($templateContent)) : ?>
-                    <div class="col-6" style="text-align: end">
+                    <div style="text-align: end">
                         <?php echo $templateContent ?>
                     </div>
                     <?php endif; ?>

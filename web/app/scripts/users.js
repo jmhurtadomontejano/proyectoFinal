@@ -63,7 +63,7 @@ function deleteUser(id)
 {
         $.ajax({
             type: "POST", //we are using POST method to submit the data to the server side
-            url: "http://localhost/proyectoFinal/delete_user", // get the route value
+            url: "./delete_user", // get the route value
             data: {id}, // our serialized array data for server side
             beforeSend: function () {//We add this before send to disable the button once we submit it so that we prevent the multiple click
             },

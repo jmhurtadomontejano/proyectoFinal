@@ -9,7 +9,7 @@ $colour4:#ffffff;
 .font-heading{
 font-family: roboto, sans-serif;
 font-weight: 700;
-font-size: 20px;
+font-size: 1.4em;
 color: $colour3;
 }
 
@@ -35,20 +35,31 @@ font-style: italic;
   margin-top: 3px;
 }
 
-.boton_formulario {
-  border: 1px solid black;
+.boton_form {
+  border: 1px solid $colour1;
   box-sizing: border-box;
   display: inline-block;
   padding: 3px;
   background-color: #eee;
   text-decoration: none;
-  color: black;
+  color: $colour3;
 }
 
 .index-options{
-  color:white; 
+  color: $colour4; 
   font-size:2em;
-  overflow: auto;
+  height: 6em;
+  margin:1em;
+}
+
+.index-options{
+  font-size: 2em !important;
+  font-weight: 600 !important;
+  display: grid;
+}
+
+.index-options:hover {
+  color: $colour3 !important;
 }
 
 .btnIndex {
@@ -57,9 +68,9 @@ font-style: italic;
   font-style: $colour4 !important;
   border-radius: 1em;
   padding: 0.2em;
-  display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content:center;
 }
 
 .btnIndex:hover {
@@ -68,9 +79,12 @@ font-style: italic;
   box-shadow: 0px 0px 1em 0px $colour1;
 }
 
+.btnIndexText{
+  font-size: 0.7em;
+}
+
 .btnIndexText-Name{
-  font-size: 0.5em;
-  color: $colour4;
+  font-size: 0.6em;
 }
 
 .btn-table {
@@ -86,20 +100,40 @@ font-style: italic;
   align-items: center;
 }
 
+.btn-table a{
+  text-decoration: none;
+  color: $colour4;
+  padding: 0.2em;
+}
+
 .btn-table:hover {
   background-color: $colour2 !important;
   color: $colour3 !important;
   box-shadow: 0px 0px 1em 0px $colour1;
 }
 
-.index-options {
-  font-size: 2em !important;
-  font-weight: 600 !important;
+.btn-title{
+  text-decoration: none;
+  color: $colour4;
+  font-weight: bold;
+  background-color: $colour1 !important;
+  border: 0.2em solid $colour1 !important;
+  border-radius: 1em;
+  padding: 0.4em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content:center;
 }
 
-.index-options:hover {
+
+.btn-title:hover{
+  background-color: $colour2 !important;
   color: $colour3 !important;
+  box-shadow: 0px 0px 1em 0px $colour1;
 }
+
+
 
 .options_box{
   background-color:$colour2;
@@ -147,7 +181,6 @@ font-style: italic;
 }
 
 main {
-  overflow: auto;
 }
 
 .precio_articulo {
@@ -215,6 +248,7 @@ ul#menu_usuario li a {
 
 .userInfoIndex{
 display:flex;
+padding-right: 0.6em;
 }
 
 .photo_user {
@@ -225,6 +259,15 @@ display:flex;
   border-radius: 40px;
   box-shadow: 0px 0px 5px 0px #aaa;
   margin-right: 0.6em;
+}
+.photo_user_index{
+  height: 2em;
+  width: 2em;
+  background-size: cover;
+  background-position: center;
+ 
+  float:right;
+  border-radius: 0.5em;
 }
 
 #datos_usuario {
@@ -248,7 +291,12 @@ display:flex;
 .fa-solid {
   font-size: 2.5em;
   font-weight: 900;
-  float: right;
+}
+
+.fa-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form{ 
@@ -274,6 +322,15 @@ display:flex;
   background-color: #031432;
 }
 
+.form-group{
+  padding: 0.5em;
+  /*align content at bottom*/
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+}
+
 /* to little screen less than 768px */
 @media screen and (max-width: 768px) {
   #usuario,
@@ -284,7 +341,7 @@ display:flex;
   }
 
   .logo {
-    width: 50px;
+    width: 3em;
   }
 
   .font-heading{
@@ -298,11 +355,14 @@ display:flex;
   .index-options {
     font-size: 2em !important;
     font-weight: bold;
+    height: 3em;
+    margin:0.4em;
   }
 
   .fa-solid {
     font-size: 1.5em;
     float: right;
+    padding: auto;
   }
 
   .btnIndex {
@@ -317,6 +377,11 @@ display:flex;
     background-color: $colour1 !important;
   }
 
+  .btnIndexText-Name{
+    font-size: 0.5em;
+    padding-right: 0.6em;
+  }
+
   .dt-buttons {
     display: none !important;
   }
@@ -326,6 +391,10 @@ display:flex;
   }
 
   .btn-table {
+    font-size: 0.7rem !important;
+  }
+
+  .btn-title{
     font-size: 0.7rem !important;
   }
 
@@ -342,12 +411,16 @@ display:flex;
   }
 
   .photo_user {
-    height: 50px;
+    height: 3em;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
+    border-radius: 0.5em;
     box-shadow: 0px 0px 5px 0px #aaa;
-  }
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+}
 }
 /* to little screen less than 480px */
 @media screen and (max-width: 480px) {
@@ -359,6 +432,7 @@ display:flex;
   .index-options {
     font-size: 1.5em !important;
     font-weight: bold;
+    height: 2.4em;
   }
 
   .town-hall-text {

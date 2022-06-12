@@ -31,7 +31,7 @@ document.getElementById('btnloging').addEventListener('click', function () {
                     confirmButtonText: `Ok`,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                        window.open('./','_self');
                     }
                 });
             }else{
@@ -66,7 +66,7 @@ document.getElementById('btnloginf').addEventListener('click', function () {
                     confirmButtonText: `Ok`,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                        window.open('./','_self');
                     }
                 });
             }else{
@@ -101,7 +101,7 @@ document.getElementById('btnloginh').addEventListener('click', function () {
                     confirmButtonText: `Ok`,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                        window.open('./','_self');
                     }
                 });
             }else{
@@ -149,7 +149,7 @@ $(document).on("click", "#btnregistrar", function () {
                         confirmButtonText: `Ok`,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.open('http://localhost/PERSONAL_LoginRegisterSocialMedia/view/home/','_self');
+                            window.open('./','_self');
                         }
                     });
                 }else{

@@ -60,8 +60,8 @@ if (isset($_GET['fecha'])) {
         <form id="login" action="login.php" method="post">
             <input type="text" placeholder="email" name="email">
             <input type="password" placeholder="password" name="password"><br>
-            <input type="submit" value="login" class="boton_formulario">
-            <input type="button" onclick="location.href = 'registrar.php'" value="registrar" class="boton_formulario">
+            <input type="submit" value="login" class="boton_form">
+            <input type="button" onclick="location.href = 'registrar.php'" value="registrar" class="boton_form">
         </form>
     <?php endif; ?>
     <div id="titulo">

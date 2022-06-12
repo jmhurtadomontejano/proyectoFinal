@@ -138,8 +138,8 @@ MensajesFlash::imprimir_mensajes();
                     datos del Usuario
                 </label>
             </div>
-            <div style="justify-content:center; align-items:center padding-top:20px">
-                <button type="submit" value="registrar" class="btn btn-primary w-75">Registrar Usuario</button>
+            <div class="" style="justify-content:center; align-items:center padding-top:2em">
+                <button type="submit" value="registrar" class="btn-title col-12" style="margin-top:2em">Registrar Usuario</button>
             </div>
         </div>
 </form>
@@ -172,11 +172,16 @@ $(document).ready(function() {
             $("#password2Help").html("Las contraseñas no coinciden");
             $("#passwordHelp").css("color", "red");
             $("#password2Help").css("color", "red");
+            /*add red shadow to passWor2 container */
+            $("#password2").css("box-shadow", "0 0 10px red");
+
         } else {
             $("#passwordHelp").html("Las contraseñas coinciden");
             $("#password2Help").html("Las contraseñas coinciden");
             $("#passwordHelp").css("color", "green");
             $("#password2Help").css("color", "green");
+            /*ad green shadow to password2 cointainer */
+            $("#password2").css("box-shadow", "0 0 10px green");
         }
     });
 });
@@ -193,12 +198,15 @@ $(document).ready(function() {
             $("#emailHelp").html("El formato del email parece correcto");
             $("#email").css("border-color", "green");
             $("#emailHelp").css("color", "green");
-            /*checik if email is registered in the database */
+            /*ad green shadow to email container */
+            $("#email").css("box-shadow", "0 0 10px green");
 
         } else {
             $("#emailHelp").html("El email introducido no es correcto");
             $("#email").css("border-color", "red");
             $("#emailHelp").css("color", "red");
+            /*add red shadow to email container */
+            $("#email").css("box-shadow", "0 0 10px red");
         }
     });
 });
@@ -215,10 +223,14 @@ $(document).ready(function() {
             $("#phoneHelp").html("9 dígitos OK");
             $("#phone").css("border-color", "green");
             $("#phoneHelp").css("color", "green");
+            /*ad green shadow to phone container */
+            $("#phone").css("box-shadow", "0 0 10px green");
         } else {
             $("#phoneHelp").html("El telefono introducido no es correcto");
             $("#phone").css("border-color", "red");
             $("#phoneHelp").css("color", "red");
+            /*add red shadow to phone container */
+            $("#phone").css("box-shadow", "0 0 10px red");
         }
     });
 });
@@ -253,12 +265,16 @@ $(document).ready(function() {
                 $("#dni").css("border-color", "green");
                 $("#dniHelp").html("DNI o NIE correcto");
                 $("#dniHelp").css("color", "green");
+                /*ad green shadow to dni container */
+                $("#dni").css("box-shadow", "0 0 10px green");
                 return true;
             } else {
                 console.log('Wrong ID, the letter of the NIF does not correspond');
                 $("#dni").css("border-color", "red");
                 $("#dniHelp").html("El DNI introducido no es correcto");
                 $("#dniHelp").css("color", "red");
+                /*add red shadow to dni container */
+                $("#dni").css("box-shadow", "0 0 10px red");
                 return false;
             }
 
@@ -267,6 +283,8 @@ $(document).ready(function() {
             $("#dniHelp").html("El DNI o NIE introducido no cumple el formato");
             $("#dni").css("border-color", "red");
             $("#dniHelp").css("color", "red");
+            /*add red shadow to dni container */
+            $("#dni").css("box-shadow", "0 0 10px red");
             return false;
         }
         validateVat($("#dni").val());

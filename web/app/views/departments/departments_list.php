@@ -1,16 +1,14 @@
 <?php 
  $contenido = ob_get_clean();
- $titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";
+ /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
  $titulo2 = "Detalle de Departamentos";
+ $templateContent = '<a href="'.RUTA.'insert_department" class="btn-title">
+ <i class="fa-solid fa-file-circle-plus"></i> 
+ Insertar Departmanto</a>';
  require './app/views/template.php';
  MensajesFlash::imprimir_mensajes(); ?>
 
-<!-- NOTA IMPORTANT! script necesario para cargar fontawesome, pero con el la página devuelve errores en dataTable, si lo quitamos, no da errores pero no muestra iconos font-awesome 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
--->
 
-<button type="button" class="btn btn-primary btn-table" style="font-color:white" data-bs> <a class="dropdown-item"
-        href="<?=RUTA?>insert_department">Insertar Departamentos</a></button> 
 <input type="hidden" id="url_post" name="" value="<?= RUTA?>traer_campos_departament" >
 <div class="table-responsive" id="mydatatable-container">
         <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">

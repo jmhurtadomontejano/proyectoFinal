@@ -11,6 +11,16 @@
  *
  * @author DAW2
  */
+
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+
+
 class UsersController {
 
     public function registrar() {
@@ -77,7 +87,7 @@ class UsersController {
             //if photo is null or empty, set default photo
             if (empty($_FILES['photo']['name'])) {
                 $usuario->setPhoto("default.jpg");
-                MensajesFlash::add_message("No has añadido foto pero el usuario se ha creado igualmente", MessageType::INFO);
+                MensajesFlash::add_message("No has añadido foto pero el usuario se intentará crear", MessageType::INFO);
             } else {
             //Validación photo
             if ($_FILES['photo']['type'] != 'image/png' &&
@@ -101,6 +111,7 @@ class UsersController {
                 $error = true;
             }
 */
+debug_to_console("antes de if !error");
             if (!$error) {
                 //Copiar photo
                 //Generamos un nombre para la photo
@@ -138,14 +149,17 @@ class UsersController {
                 $usuario->setPhoto("$nombre_photo.$extension_photo");
                 $usuario->setRol("user");
                 $usuDAO = new UsuarioDAO(ConexionBD::conectar());
+                
+                debug_to_console("antes de insert(usuario)");
                 if($usuDAO->insert($usuario)){
-                MensajesFlash::add_message("Usuario creado:", MessageType::SUCCESS);
-                header('Location: inicio');
-                die();
-            }else{
-                MensajesFlash::add_message("Error al crear el usuario:", MessageType::ERROR);
-                header('Location: registro');
-                die();
+                    MensajesFlash::add_message("Usuario creado:", MessageType::SUCCESS);
+                    header('Location: inicio');
+                    die();
+                }else{
+                    MensajesFlash::add_message("Error al crear el usuario:", MessageType::ERROR);
+                    echo 'console.log("Error en la SQL UsersController->registrar: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error)';
+                    header('Location: registro');
+                    die();
             }
             }
         }

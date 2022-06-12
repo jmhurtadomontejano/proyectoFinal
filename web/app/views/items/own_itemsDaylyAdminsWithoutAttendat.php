@@ -2,6 +2,38 @@
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Detalle de Items";
+$templateContent = '<a href="'.RUTA.'insert_itemUsers" class="btn-title">
+                <i class="fa-solid fa-file-circle-plus"></i> 
+                Insertar Item</a>';
+$templateContentFilters='<div class="options_box" style="margin:5px; padding:5px; border:1px solid black;">
+<div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
+    <!-- filter by input date format -->
+    <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+        <i class="fa-solid fa-calendar-days"></i>
+        <div>
+            <label for="inputDate" class="form-label">Fecha para filtrar</label>
+            <input type="date" class="form-control" id="inputDate" value="<?php echo $dateFilter?>"
+                name="inputDate">
+        </div>
+    </div>
+
+    <!-- filter by input date format -->
+    <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
+        <i class="fa-solid fa-building-user"></i>
+        <div class="">
+            <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
+            <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
+                <option value="<?php $departmentUser ?>">Seleccione....</option>
+                <?php foreach ($departments as $department): ?>
+                <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
+                    value="<?php echo $department->idDepartment  ?>">
+                    <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+</div>
+</div>';        
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
@@ -9,11 +41,6 @@ MensajesFlash::imprimir_mensajes();
 
 <div class="options_box" style="margin:5px; padding:5px; border:1px solid black;">
         <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-            <a href="<?= RUTA?>insert_itemUsers">
-                <button type="button" class="btn btn-primary" onclick="printDiv('printableArea')">
-                    <i class="fa-solid fa-file-circle-plus"></i> Insertar Item
-                </button>
-            </a>
             <!-- filter by input date format -->
             <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
                 <i class="fa-solid fa-calendar-days"></i>

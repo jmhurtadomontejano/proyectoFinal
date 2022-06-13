@@ -592,7 +592,7 @@ $(function(){
     ],
     label: {
       normal: {
-        fontFamily: 'Roboto, sans-serif',
+        fontFamily: ' sans-serif',
         fontSize: 11
       }
     },
@@ -616,7 +616,7 @@ $(function(){
       formatter: '{a} <br/>{b}: {c} ({d}%)',
       textStyle: {
         fontSize: 11,
-        fontFamily: 'Roboto, sans-serif'
+        fontFamily: ' sans-serif'
       }
     },
     series: pieData
@@ -642,7 +642,7 @@ $(function(){
     ],
     label: {
       normal: {
-        fontFamily: 'Roboto, sans-serif',
+        fontFamily: ' sans-serif',
         fontSize: 11
       }
     },
@@ -666,7 +666,7 @@ $(function(){
       formatter: '{a} <br/>{b}: {c} ({d}%)',
       textStyle: {
         fontSize: 11,
-        fontFamily: 'Roboto, sans-serif'
+        fontFamily: ' sans-serif'
       }
     },
     series: donutData

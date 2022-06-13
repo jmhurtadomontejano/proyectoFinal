@@ -3,12 +3,12 @@
 /* -------------------------------------------------- */
 
 .irs-min, .irs-max {
-  font-family: $font-family-roboto;
+  font-family: $font-family-sans-serif;
   @include border-radius(1px);
 }
 
 .irs-from, .irs-to, .irs-single {
-  font-family: $font-family-roboto;
+  font-family: $font-family-sans-serif;
   background-color: $brand-info;
   @include border-radius(1px);
 }

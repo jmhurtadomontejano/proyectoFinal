@@ -4,10 +4,10 @@ $colour3:#000000;
 $colour4:#ffffff;
 
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
 
 .font-heading{
-font-family: roboto, sans-serif;
+font-family: sans-serif;
 font-weight: 700;
 font-size: 1.4em;
 color: $colour3;
@@ -18,10 +18,25 @@ color: $colour3;
 }
 
 .font-heading-subtitle{
-font-family: roboto, sans-serif;
+font-family: sans-serif;
 font-weight: 100;
 font-size: 18px;
 font-style: italic;
+}
+
+.nav-link{
+  font-weight: bold;
+}
+
+.nav-link:hover, .dropdown-item:hover, .close-session:hover{
+    background-color: $colour2 !important;
+    border-radius: 1em;
+    color: $colour3 !important;
+    box-shadow: 0px 0px 1em 0px $colour1;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 
 #usuario,
@@ -112,7 +127,7 @@ font-style: italic;
   box-shadow: 0px 0px 1em 0px $colour1;
 }
 
-.btn-title{
+.btn-title, .buttons-print{
   text-decoration: none;
   color: $colour4;
   font-weight: bold;
@@ -127,7 +142,27 @@ font-style: italic;
 }
 
 
-.btn-title:hover{
+.btn-title:hover, .buttons-print:hover{
+  background-color: $colour2 !important;
+  color: $colour3 !important;
+  box-shadow: 0px 0px 1em 0px $colour1;
+}
+
+/*formato a los botones de DataTables */
+.buttons-html5{
+  background-color: $colour1 !important;
+  border: 0.2em solid $colour1 !important;
+  font-style: $colour4 !important;
+  color:$colour4 !important;
+  color: $colour4 !important;
+  border-radius: 1em;
+  padding: 0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buttons-html5:hover{
   background-color: $colour2 !important;
   color: $colour3 !important;
   box-shadow: 0px 0px 1em 0px $colour1;

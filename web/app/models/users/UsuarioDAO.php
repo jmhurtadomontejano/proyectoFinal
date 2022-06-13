@@ -229,7 +229,7 @@ class UsuarioDAO {
 
     public function findByDNI($dni){
         $sql = "SELECT * FROM usuarios WHERE dni='$dni'";
-        if (!$result = $this->conn->query($sql)) {
+        if ($result = $this->conn->query($sql)) {
             die("Error en la SQL UsuarioDAO->findByDNI: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
         }
         return $result->fetch_object('Usuario');

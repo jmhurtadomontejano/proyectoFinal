@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
 
+    <!-- icon to all the web icons -->
+    <link rel="icon" href="images/icons/logo-AyuntamientoArgamasillaDeAlba.ico">
+
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
@@ -162,15 +165,15 @@
                             Administradores
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                            <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdmins">Mis Items Diarios
                                     Admins</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdminsWithoutAttendat">Items
                                     Pendientes</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_items">Todos Mis Items sin filtros</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsUsers">Mis Items como Cliente</a>
-                            </li>
-                        </ul>
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersList">Gestion Usuarios</a></li>
+                    </li>
+                    </ul>
                     </li>
                     <?php } ?>
 
@@ -182,8 +185,6 @@
                             SuperAdministradores
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Users SuperAdmin</a>
-                            </li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_list">Lista Departamentos</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>departments_listResponsive">Lista Departamentos
                                     Responsive</a></li>
@@ -191,6 +192,8 @@
                                     SuperAdmin</a></li>
                             <li><a class="dropdown-item" href="<?= RUTA?>own_itemsDaylyAdminsWithoutAttendat">Items
                                     Pendientes</a></li>
+                            <li><a class="dropdown-item" href="<?= RUTA?>usersListAdmins">Gestion Users SuperAdmin</a>
+                            </li>
                         </ul>
                     </li>
                     <?php } ?>
@@ -213,7 +216,7 @@
                                 <div id="userInfo"><?= Session::obtener()->getNombre() ?>
                                     <?= Session::obtener()->getSurname() ?>
                                     <br>
-                                    <a href="logout">cerrar sesión</a>
+                                    <a class="close-session" href="logout">cerrar sesión</a>
                                 </div>
                             </div>
                             <?php else: ?>

@@ -41,28 +41,28 @@ MensajesFlash::imprimir_mensajes();
                 <div class="col-md-6 col-12 m-10" style="padding-bottom: 20px">
                     <label class="form-label">Nombre</label>
                     <input type="text" name="name" value=<?= $user->getNombre() ?> class="form-control"
-                        aria-describedby="nameHelp">
+                        aria-describedby="nameHelp" readonly>
                 </div>
                 <div class="col-md-6 col-12" style="padding-bottom:20px">
                     <label class="form-label">Apellidos</label>
                   <!-- Input for surname what show $user->getSurname() completely, including spaces  -->
                     <input type="text" name="surname" value=<?= substr($user->getSurname(),0,100) ?> class="form-control"
-                        aria-describedby="surnameHelp">
+                        aria-describedby="surnameHelp" readonly>
                 </div>
                 <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">DNI o NIE completo</label>
                     <input type="dni" name="dni" value=<?= $user->getDni() ?> class="form-control"
-                        aria-describedby="dniHelp">
+                        aria-describedby="dniHelp" readonly>
                 </div>
                 <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">Genero</label>
                     <input type="text" name="gender" value=<?= $user->getGender() ?> class="form-control"
-                        aria-describedby="genderHelp">
+                        aria-describedby="genderHelp" readonly>
                 </div>
                 <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">BirthDate</label>
                     <input type="date" name="birth_date" value=<?= $user->getBirth_date() ?> class="form-control"
-                        aria-describedby="birth_dateHelp">
+                        aria-describedby="birth_dateHelp" readonly>
                 </div>
                 <div class="col-md-4 col-6" style="padding-bottom:20px">
                     <label class="form-label">Teléfono</label>
@@ -117,7 +117,7 @@ MensajesFlash::imprimir_mensajes();
                 <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') { ?>
                 <div class="mb-3">
                     <label class="form-label">Rol</label>
-                    <select name="rol" class="form-control" title="Rol">
+                    <select name="rol" class="form-control" title="Rol" readonly disabled>
                         <option value="user">Usuario</option>
                         <?php if ($user->getRol() =='superAdmin') { ?>
                         <option value="admin">Administrador</option>

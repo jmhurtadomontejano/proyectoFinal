@@ -108,7 +108,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <div class="margin-left-xs ayto">
-                    <a title="town_hall" class="nav-link town-hall-text" style="colour:black; margin:0px; padding:0px"
+                    <a title="town_hall" class="town-hall-text" style="colour:black; margin:0px; padding:0px"
                         href="<?= RUTA?>">
                         <p class="font-heading">Ayuntamiento de<br>Argamasilla de Alba</p>
                         <p class="font-heading-subtitle">El lugar de La Mancha</p>

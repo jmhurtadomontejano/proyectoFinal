@@ -228,12 +228,16 @@ class UsuarioDAO {
     }
 
     public function findByDNI($dni){
-        $sql = "SELECT * FROM usuarios WHERE dni='$dni'";
-        if ($result = $this->conn->query($sql)) {
-            die("Error en la SQL UsuarioDAO->findByDNI: " ."<br>"/n . $sql ."<br>"/n . $this->conn->error);
+        $sql = "SELECT * FROM usuarios WHERE dni=?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            die("Error en la SQL UsuarioDAO->findByDNI: " ."<br>\n" . $sql ."<br>\n" . $this->conn->error);
         }
+        $stmt->bind_param("s", $dni);
+        $stmt->execute();
+        $result = $stmt->get_result();
         return $result->fetch_object('Usuario');
-    }
+    }    
 
     public function findByCookie_id($cookie_id) {
         $sql = "SELECT * FROM usuarios WHERE cookie_id='$cookie_id'";

@@ -1,106 +1,86 @@
 <?php 
 $contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Insertar Items";
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
+
+if (Session::existe()) {
+    $conn = ConexionBD::conectar();
+    $usuDAO = new UsuarioDAO($conn);
+    $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+}
+
+function renderInput($id, $name, $value, $placeholder, $type = 'text', $readonly = false, $hidden = false) {
+    $readonlyAttr = $readonly ? 'readonly' : '';
+    $hiddenClass = $hidden ? 'd-none' : '';
+    echo "<div class='form-group $hiddenClass'>
+            <input type='$type' id='$id' name='$name' class='form-control' value='$value' $readonlyAttr placeholder='$placeholder'>
+            <label for='$id' class='form-label'>$placeholder</label>
+          </div>";
+}
+
+function renderSelect($id, $name, $options, $placeholder, $readonly = false) {
+    $readonlyAttr = $readonly ? 'readonly' : '';
+    echo "<div class='form-group'>
+            <select id='$id' name='$name' class='form-select' $readonlyAttr>
+                <option selected>$options</option>
+            </select>
+            <label for='$id' class='form-label'>$placeholder</label>
+          </div>";
+}
 ?>
 
-<?php if (Session::existe()) { ?>
-<?php
-                $conn = ConexionBD::conectar();
-                $usuDAO = new UsuarioDAO($conn);
-                $usuario = $usuDAO->findUserById(Session::obtener()->getId());
-            ?>
-<?php } ?>
+<div class="container mt-4">
+    <form class="form" action="" method="post" enctype="multipart/form-data" aria-labelledby="form-title">
+        <fieldset class="form" style="border-radius: 35px">
+            <legend id="form-title" class="text-center">Formulario de Registro de Items</legend>
+            <div class="row g-2">
+                <?php
+                renderInput('inputUser', 'inputUser', Session::obtener()->getId() . " " . Session::obtener()->getNombre(), 'Usuario Registro', 'text', true);
+                renderSelect('inputState', 'inputState', 'Registrada', 'Estado', true);
+                renderInput('inputDate', 'inputDate', date("Y-m-d"), 'Fecha', 'date', true);
+                renderInput('inputHour', 'inputHour', date("H:i"), 'Hora', 'time', true);
+                renderInput('inputDuration', 'inputDuration', '', 'Duracion', 'time', false, true);
+                if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') {
+                    renderInput('inputAttendUser', 'inputAttendUser', Session::obtener()->getId() . " " . Session::obtener()->getNombre(), 'Atendido por', 'text', true);
+                }
+                renderInput('inputClientUser', 'inputClientUser', Session::obtener()->getId() . " " . Session::obtener()->getNombre(), 'Cliente: (a partir de la 5ª cifra del DNI o NIE)', 'text', true, true);
+                renderInput('inputUserHidden', 'inputUser', Session::obtener()->getId() . " " . Session::obtener()->getNombre(), 'Usuario Registro', 'text', true, true);
+                renderInput('inputName', 'inputName', '', 'Titulo del Item', 'text');
+                ?>
+                <div class="form-group w-100">
+                    <textarea id="inputDescription" name="inputDescription" class="form-control" placeholder="Descripción..." required aria-required="true"></textarea>
+                    <label for="inputDescription" class="form-label">Descripción</label>
+                </div>
+                <div class="form-group w-100 d-none">
+                    <input type="text" id="inputLocation" name="inputLocation" class="form-control" placeholder="Ubicación">
+                    <label for="inputLocation" class="form-label">Ubicación</label>
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <select id="inputDepartment" name="inputDepartment" class="form-control" required aria-required="true">
+                        <option value="">Seleccione....</option>
+                        <?php foreach ($departments as $department): ?>
+                        <option value="<?php echo $department->idDepartment  ?>">
+                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <label for="inputDepartment" class="form-label">Departamento</label>
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <input type="text" id="inputService" name="inputService" class="form-control" placeholder="Selecciona el servicio" required aria-required="true">
+                    <label for="inputService" class="form-label">Servicio</label>
+                </div>
+                <div class="form-group w-100">
+                    <input type="file" id="inputPhotoItem" name="inputPhotoItem[]" class="form-control" multiple="multiple">
+                    <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
+                </div>
+                <div class="form-group w-100" style="/* margin-top:1em; */">
+                    <button type="submit" class="btn btn-primary btn-title">Agregar Item</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 
-<form class="form-floating" action="" method="post" enctype="multipart/form-data">
-    <fieldset class="form" style="border-radius: 35px">
-        <div class="row" style="paddin:10px; margin:10px">
-            <legend class="text-center">Formulario de Registro de Items</legend>
-            <div class="form-group col-md-3 col-6">
-                <label for="inputUser" class="form-label">Usuario Registro</label>
-                <input class="form-control" name="inputUser"
-                    value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                    readonly>
-            </div>
-            <div class="form-group col-md-3 col-6">
-                <label for="inputState" class="form-label">Estado</label>
-                <select id="inputState" name="inputState" class="form-select" readonly>
-                    <option selected>Registrada</option>
-                </select>
-            </div>
-            <div class="form-group col-md-3 col-4">
-                <label for="inputDate" class="form-label">Fecha</label>
-                <input type="date" class="form-control" name="inputDate" value="<?php echo date("Y-m-d");?>" readonly>
-            </div>
-            <div class="form-group col-md-3 col-4">
-                <label for="inputHour" class="form-label">Hora</label>
-                <input type="time" class="form-control" name="inputHour" value="<?php echo date("H:i");?>" readonly>
-            </div>
-            <div class="form-group col-md-2 col-4" hidden>
-                <label for="inputDuration" class="form-label">Duracion</label>
-                <input type="time" class="form-control" name="inputDuration">
-            </div>
-            <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-            <div class="form-group col-6">
-                <label for="inputAttendUser" class="form-label">Atendido por:</label>
-                <input class="form-control" name="inputAttendUser"
-                    value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                    readonly>
-            </div>
-            <?php } ?>
-            <div class="form-group col-6" hidden>
-                <label for="inputClientUser" class="form-label">Cliente: (por precaución no se muestra el dni entero,
-                    puedes
-                    buscar a partir de la 5ª cifra del DNI o NIE)</label>
-                <input class="form-control" name="inputClientUser" id="inputClientUser"
-                    value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                    readonly>
-            </div>
-            <div class="form-group col-6" hidden>
-                <label for="inputUser" class="form-label">Usuario Registro</label>
-                <input class="form-control" name="inputUser"
-                    value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                    readonly>
-            </div>
-            <div class="form-group col-md-6 w-100">
-                <label for="inputName" class="form-label">Titulo</label>
-                <input type="text" name="inputName" class="form-control" placeholder="Titulo del Item">
-            </div>
-
-            <div class="form-group col-md-6 w-100">
-                <label for="inputDescription" class="form-label">Descripcion</label>
-                <textarea type="textarea" class="form-control" name="inputDescription" id="description"
-                    placeholder="Descripción..."></textarea>
-            </div>
-            <div class="form-group col-12" hidden>
-                <label for="inputLocation" class="form-label">Localización</label>
-                <input type="text" class="form-control" name="inputLocation" placeholder="Ubicación">
-            </div>
-            <div class="form-group col-6">
-                <label for="inputDepartment" class="form-label">Departamento</label>
-                <select class="form-control" id="inputDepartment" name="inputDepartment" required>
-                    <option value="">Seleccione....</option>
-                    <?php foreach ($departments as $department): ?>
-                    <option value="<?php echo $department->idDepartment  ?>">
-                        <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group col-6">
-                <label for="inputService" class="form-label">Servicio</label>
-                <input type="text" class="form-control" name="inputService" placeholder="Selecciona el servicio">
-            </div>
-
-            <div class="form-group col-12">
-                <label for="inputPhotoItem" class="form-label">Sube una foto del Item</label>
-                <input type="file" class="form-control" name="inputPhotoItem[]" id="photoItem" multiple="multiple">
-            </div>
-
-
-            <div class="form-group col-12">
-                <button type="submit" class="btn-title">Agregar Item</button>
-            </div>
-        </div>
-</form>
+<script src="../js/form.js"></script>

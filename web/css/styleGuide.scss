@@ -1,118 +1,169 @@
-$colour1:#2d4fa4;
-$colour2:#bddef7;
-$colour3:#000000;
-$colour4:#ffffff;
-
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
 
-
-.font-heading{
-font-family: sans-serif;
-font-weight: 700;
-font-size: 1.4em;
-color: $colour3;
+/* Color Variables */
+:root {
+  --colour1: #2d4fa4;
+  --colour2: #bddef7;
+  --colour3: #000000;
+  --colour4: #ffffff;
 }
 
-.menu{
-  visibility: hidden;
+/* Typography */
+.font-heading {
+  font-family: 'Dongle', sans-serif;
+  font-weight: 700;
+  font-size: 1.4em;
+  color: var(--colour3);
 }
 
-.font-heading-subtitle{
-font-family: sans-serif;
-font-weight: 100;
-font-size: 18px;
-font-style: italic;
+.font-heading-subtitle {
+  font-family: 'Dongle', sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  font-style: italic;
 }
 
-.town-hall-text{
-  text-decoration: none;
-
-}
-
-.nav-link{
+/* Navigation */
+.nav-link {
   font-weight: bold;
 }
 
-.nav-link:hover, .dropdown-item:hover, .close-session:hover{
-    background-color: $colour2 !important;
-    border-radius: 1em;
-    color: $colour3 !important;
-    box-shadow: 0px 0px 1em 0px $colour1;
-    -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    -ms-border-radius: 1em;
-    -o-border-radius: 1em;
+.nav-link:hover, .dropdown-item:hover, .close-session:hover {
+  background-color: var(--colour2) !important;
+  border-radius: 1em;
+  color: var(--colour3) !important;
+  box-shadow: 0px 0px 1em 0px var(--colour1);
 }
 
-#usuario,
-#login {
-  width: 300px;
-  float: right;
+/* Form Styles */
+.form {
+  background-color: var(--colour4);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid var(--colour1);
+  color: var(--colour3);
+}
+
+.form-group {
+  margin-bottom: 1rem;
   position: relative;
 }
 
-#login input {
-  margin-top: 3px;
+.form-control {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--colour2);
+  border-radius: 4px;
+  background: var(--colour4);
+  color: var(--colour3);
 }
 
+.form-control:focus {
+  border-color: var(--colour1);
+  box-shadow: 0 0 8px rgba(45, 79, 164, 0.1);
+}
+
+.form-group label {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.75rem;
+  font-size: 1rem;
+  color: var(--colour1);
+  background-color: var(--colour4);
+  padding: 0 0.25rem;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.form-control:focus + label,
+.form-control:not(:placeholder-shown) + label {
+  top: -1.5rem;
+  font-size: 0.875rem;
+}
+
+/* Button Styles */
+.btn-title {
+  color: var(--colour4);
+  font-weight: bold;
+  background-color: var(--colour1);
+  border: 0.2em solid var(--colour1);
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: block;
+  text-align: center;
+}
+
+.btn-title:hover {
+  background-color: var(--colour2);
+  color: var(--colour1);
+  box-shadow: 0px 0px 1em 0px var(--colour1);
+}
+
+/* Text Centering */
+.text-center {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--colour1);
+}
+
+/* General Styles */
 .boton_form {
-  border: 1px solid $colour1;
+  border: 1px solid var(--colour1);
   box-sizing: border-box;
   display: inline-block;
   padding: 3px;
   background-color: #eee;
   text-decoration: none;
-  color: $colour3;
+  color: var(--colour3);
 }
 
-.index-options{
-  color: $colour4; 
-  font-size:2em;
+.index-options {
+  color: var(--colour4);
+  font-size: 2em;
   height: 6em;
-  margin:1em;
-}
-
-.index-options{
-  font-size: 2em !important;
-  font-weight: 600 !important;
+  margin: 1em;
+  font-weight: 600;
   display: grid;
 }
 
 .index-options:hover {
-  color: $colour3 !important;
+  color: var(--colour3) !important;
 }
 
 .btnIndex {
-  background-color: $colour1 !important;
-  border: 0.2em solid $colour1 !important;
-  font-style: $colour4 !important;
+  background-color: var(--colour1) !important;
+  border: 0.2em solid var(--colour1) !important;
+  font-style: var(--colour4) !important;
   border-radius: 1em;
   padding: 0.2em;
   flex-wrap: wrap;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
 
 .btnIndex:hover {
-  background-color: $colour2 !important;
-  color: $colour3 !important;
-  box-shadow: 0px 0px 1em 0px $colour1;
+  background-color: var(--colour2) !important;
+  color: var(--colour3) !important;
+  box-shadow: 0px 0px 1em 0px var(--colour1);
 }
 
-.btnIndexText{
+.btnIndexText {
   font-size: 0.7em;
 }
 
-.btnIndexText-Name{
+.btnIndexText-Name {
   font-size: 0.6em;
 }
 
 .btn-table {
-  background-color: $colour1 !important;
-  border: 0.2em solid $colour1 !important;
-  font-style: $colour4 !important;
-  color:$colour4 !important;
-  color: $colour4 !important;
+  background-color: var(--colour1) !important;
+  border: 0.2em solid var(--colour1) !important;
+  font-style: var(--colour4) !important;
+  color: var(--colour4) !important;
   border-radius: 1em;
   padding: 0.2em;
   display: flex;
@@ -120,46 +171,23 @@ font-style: italic;
   align-items: center;
 }
 
-.btn-table a{
+.btn-table a {
   text-decoration: none;
-  color: $colour4;
+  color: var(--colour4);
   padding: 0.2em;
 }
 
 .btn-table:hover {
-  background-color: $colour2 !important;
-  color: $colour3 !important;
-  box-shadow: 0px 0px 1em 0px $colour1;
+  background-color: var(--colour2) !important;
+  color: var(--colour3) !important;
+  box-shadow: 0px 0px 1em 0px var(--colour1);
 }
 
-.btn-title, .buttons-print{
-  text-decoration: none;
-  color: $colour4;
-  font-weight: bold;
-  background-color: $colour1 !important;
-  border: 0.2em solid $colour1 !important;
-  border-radius: 1em;
-  padding: 0.4em;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content:center;
-}
-
-
-.btn-title:hover, .buttons-print:hover{
-  background-color: $colour2 !important;
-  color: $colour3 !important;
-  box-shadow: 0px 0px 1em 0px $colour1;
-}
-
-/*formato a los botones de DataTables */
-.buttons-html5{
-  background-color: $colour1 !important;
-  border: 0.2em solid $colour1 !important;
-  font-style: $colour4 !important;
-  color:$colour4 !important;
-  color: $colour4 !important;
+.buttons-html5 {
+  background-color: var(--colour1) !important;
+  border: 0.2em solid var(--colour1) !important;
+  font-style: var(--colour4) !important;
+  color: var(--colour4) !important;
   border-radius: 1em;
   padding: 0.2em;
   display: flex;
@@ -167,16 +195,15 @@ font-style: italic;
   align-items: center;
 }
 
-.buttons-html5:hover{
-  background-color: $colour2 !important;
-  color: $colour3 !important;
-  box-shadow: 0px 0px 1em 0px $colour1;
+.buttons-html5:hover {
+  background-color: var(--colour2) !important;
+  color: var(--colour3) !important;
+  box-shadow: 0px 0px 1em 0px var(--colour1);
 }
 
-
-
-.options_box{
-  background-color:$colour2;
+/* Options and Articles */
+.options_box {
+  background-color: var(--colour2);
 }
 
 .photos_articulo {
@@ -220,9 +247,6 @@ font-style: italic;
   height: 20px;
 }
 
-main {
-}
-
 .precio_articulo {
   font-weight: bold;
   color: #f00;
@@ -253,6 +277,7 @@ main {
   width: 130px;
 }
 
+/* User Menu */
 menu {
   overflow: auto;
   border-bottom: 1px solid black;
@@ -286,9 +311,10 @@ ul#menu_usuario li a {
   cursor: pointer;
 }
 
-.userInfoIndex{
-display:flex;
-padding-right: 0.6em;
+/* User Information */
+.userInfoIndex {
+  display: flex;
+  padding-right: 0.6em;
 }
 
 .photo_user {
@@ -300,13 +326,13 @@ padding-right: 0.6em;
   box-shadow: 0px 0px 5px 0px #aaa;
   margin-right: 0.6em;
 }
-.photo_user_index{
+
+.photo_user_index {
   height: 2em;
   width: 2em;
   background-size: cover;
   background-position: center;
- 
-  float:right;
+  float: right;
   border-radius: 0.5em;
 }
 
@@ -320,6 +346,7 @@ padding-right: 0.6em;
   display: none;
 }
 
+/* DataTables */
 #mydatatable tfoot input {
   width: 100% !important;
 }
@@ -333,22 +360,13 @@ padding-right: 0.6em;
   font-weight: 900;
 }
 
-.fa-container{
+.fa-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form{ 
-  border: 0.5em solid $colour1;
-  color:$colour3;
-}
-
-.form-text{
-  color:$colour1;
-}
-
-
+/* Footer */
 .footer {
   position: inherit;
   flex-wrap: wrap;
@@ -362,18 +380,10 @@ padding-right: 0.6em;
   background-color: #031432;
 }
 
-.form-group{
-  padding: 0.5em;
-  /*align content at bottom*/
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
-
-/* to little screen less than 768px */
+/* Media Queries */
 @media screen and (max-width: 768px) {
   #usuario,
-#login {
+  #login {
     width: 100%;
     float: none;
     position: relative;
@@ -383,19 +393,19 @@ padding-right: 0.6em;
     width: 3em;
   }
 
-  .font-heading{
+  .font-heading {
     font-size: 1.2em !important;
   }
 
-  .font-heading-subtitle{
-    display:none;
+  .font-heading-subtitle {
+    display: none;
   }
 
   .index-options {
     font-size: 2em !important;
     font-weight: bold;
     height: 3em;
-    margin:0.4em;
+    margin: 0.4em;
   }
 
   .fa-solid {
@@ -405,18 +415,18 @@ padding-right: 0.6em;
   }
 
   .btnIndex {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: inherit;
   }
 
   .btnIndexBootstrap {
     margin: 4px 0px 4px 0px !important;
     padding: 2px 0px 2px 0px !important;
-    background-color: $colour1 !important;
+    background-color: var(--colour1) !important;
   }
 
-  .btnIndexText-Name{
+  .btnIndexText-Name {
     font-size: 0.5em;
     padding-right: 0.6em;
   }
@@ -433,11 +443,11 @@ padding-right: 0.6em;
     font-size: 0.7rem !important;
   }
 
-  .btn-title{
+  .btn-title {
     font-size: 0.7rem !important;
   }
 
-  .error{
+  .error {
     font-size: 0.7rem !important;
   }
 
@@ -445,7 +455,7 @@ padding-right: 0.6em;
     display: none !important;
   }
 
-  .userInfoIndex{
+  .userInfoIndex {
     display: flex !important;
   }
 
@@ -455,34 +465,28 @@ padding-right: 0.6em;
     background-position: center;
     border-radius: 0.5em;
     box-shadow: 0px 0px 5px 0px #aaa;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    -ms-border-radius: 0.5em;
-    -o-border-radius: 0.5em;
+  }
+
+  .form-group {
+    padding: 0.3em;
+    margin-bottom: 0.8em !important;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .form-control {
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  .form-label {
+    margin-bottom: 0 !important;
+  }
 }
 
-.form-group{
-  padding: 0.3em;
-  margin-bottom: 0.8em !important;
-  font-size: 0.7rem;
-  font-weight: bold;
-  /*align content at bottom*/
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
-
-.form-control{
-  font-size: 0.7rem;
-  font-weight: bold;
-}
-
-.form-label{
-  margin-bottom: 0 !important;
-}
-
-}
-/* to little screen less than 480px */
 @media screen and (max-width: 480px) {
   .fa-solid {
     font-size: 1.2em;
@@ -498,4 +502,4 @@ padding-right: 0.6em;
   .town-hall-text {
     font-size: 0.8rem !important;
   }
-}/*# sourceMappingURL=styleGuide.css.map */
+}

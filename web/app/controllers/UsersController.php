@@ -604,4 +604,17 @@ debug_to_console("antes de if !error");
         }
     die();
     }
+
+    public function send_recovery_code() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST['email'];
+            $usuario = new Usuario();
+            if ($usuario->generateRecoveryCode($email)) {
+                MensajesFlash::anadir_mensaje("El código de recuperación ha sido enviado a su correo electrónico.", MessageType::SUCCESS);
+            } else {
+                MensajesFlash::anadir_mensaje("No se encontró una cuenta con ese correo electrónico.", MessageType::ERROR);
+            }
+        }
+        header("Location: forgot_password");
+    }
 }

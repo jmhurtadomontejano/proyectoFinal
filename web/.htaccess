@@ -2,4 +2,6 @@ RewriteEngine On
 RewriteRule ^([a-z_]*)$ index.php?accion=$1 [NC,L]
 RewriteRule ^([a-z_]*)/([0-9]+)$ web/index.php?accion=$1&id=$2 [NC,L]
 RewriteRule ^([a-z_]*)/([0-9]+)/([a-z0-9]+)$ web/index.php?accion=$1&id=$2&t=$3 [NC,L]
-
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

@@ -1,6 +1,6 @@
 <?php
 $contenido = ob_get_clean();
-/*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
+
 if (!Session::existe()){
     $titulo2 = "Inicia Sesión";
 }
@@ -23,6 +23,12 @@ MensajesFlash::imprimir_mensajes();
         </form>
         <!-- END OWN LOGIN-->
         <br>
+
+        <!-- FORGOT PASSWORD -->
+        <div class="tx-center mg-t-20">
+            <a href="forgot_password" class="tx-info">He olvidado mi contraseña</a>
+        </div>
+        <!-- END FORGOT PASSWORD -->
 
         <!-- SOCIAL MEDIA BUTTONS-->
         <a href="#" class="btn btn-primary btn-block btn-with-icon" id="btnloginf">
@@ -56,47 +62,13 @@ MensajesFlash::imprimir_mensajes();
 </div>
 
 <script src="public/lib/jquery/jquery.js"></script>
-<!--   <script src="public/lib/popperjs/popper.js"></script> -->
-<!-- 
-    <script src="public/lib/bootstrap/bootstrap.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-<script src="app/scripts/index.js"></script>
--->
-
-<!-- END SOCIAL MEDIA SECTION -->
-
 <?php endif; ?>
 </div>
 <section class="d-flex justify-content-around flex-wrap">
 
     <!-- ADMIN MENU -->
     <?php if (Session::existe()) { ?>
-    <!--   <button type="button" class="btn btnIndex col-12 col-md-3 d-flex align-items-center justify-content-center"
-         hidden="hidden">
-        <div class="btnIndexText">
-            <a class="nav-link index-options" href="<?= RUTA?>my_user">Mis Datos
-            </a>
-        </div>
-        <div class="btnIndexText">
-            Mis DATOS Cliente
-        </div>
-        <div class="userInfoIndex">
-            <div class="photo_user"
-                style="background-image: url(<?= RUTA?>images/users/<?= Session::obtener()->getPhoto() ?>)">
-            </div>
-            <div class="d-flex-wrap"><?= Session::obtener()->getNombre() ?>
-                <?= Session::obtener()->getSurname() ?> </div>
-            <div class="d-flex-wrap">
-                <br>
-                <a href="logout">cerrar sesión</a>
-            </div>
-        </div>
-    </button>
-    -->
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>my_user">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>my_user">
         <div class="btnIndexText">
             Mis Datos
         </div>
@@ -110,22 +82,20 @@ MensajesFlash::imprimir_mensajes();
         </div>
     </a>
 
-
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>insert_item">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>insert_item">
         <div class="btnIndexText">
             Insertar item
         </div>
         <div class="fa-container">
-            <i class="fa-solid fa-file-circle-plus" aria-hidden="true" style="size:20px"></i>
+            <i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i>
         </div>
     </a>
-
 
     <?php
         $conn = ConexionBD::conectar();
         $usuDAO = new UsuarioDAO($conn);
         $usuario = $usuDAO->findUserById(Session::obtener()->getId());
-        ?>
+    ?>
     <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
     <a class="nav-link index-options btnIndex col-12 col-md-3" 
         href="<?= RUTA?>own_itemsDaylyAdmins">
@@ -137,8 +107,7 @@ MensajesFlash::imprimir_mensajes();
         </div>
     </a>
 
-
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>own_itemsUsers">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>own_itemsUsers">
         <div class="btnIndexText">
             Mis Items Cliente
         </div>
@@ -147,9 +116,8 @@ MensajesFlash::imprimir_mensajes();
         </div>
     </a>
 
-
     <?php if ($usuario->getRol() == 'admin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>usersList">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>usersList">
         <div class="btnIndexText">
             Usuarios
         </div>
@@ -160,7 +128,7 @@ MensajesFlash::imprimir_mensajes();
     <?php } ?>
 
     <?php if($usuario->getRol() =='superAdmin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>usersListAdmins">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>usersListAdmins">
         <div class="btnIndexText">
             Usuarios SUPER
         </div>
@@ -170,22 +138,21 @@ MensajesFlash::imprimir_mensajes();
     </a>
     <?php } ?>
 
-    <?php } else{?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>own_itemsUsers">
+    <?php } else { ?>
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>own_itemsUsers">
         <div class="btnIndexText">
             Mis Items
         </div>
         <div class="fa-container">
-            <i class="fa-solid fa-id-badge"></i></i>
+            <i class="fa-solid fa-id-badge"></i>
         </div>
     </a>
-    <?php }?>
-
+    <?php } ?>
     <!-- END ADMIN MENU -->
 
     <!-- SUPERADMIN MENU -->
     <?php if ($usuario->getRol() == 'superAdmin') { ?>
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>departments_list">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>departments_list">
         <div class="btnIndexText">
             Departamentos
         </div>
@@ -194,7 +161,7 @@ MensajesFlash::imprimir_mensajes();
         </div>
     </a>
 
-    <a class="nav-link index-options btnIndex col-12 col-md-3"  href="<?= RUTA?>items_list">
+    <a class="nav-link index-options btnIndex col-12 col-md-3" href="<?= RUTA?>items_list">
         <div class="btnIndexText">
             Todos los items
         </div>
@@ -205,21 +172,13 @@ MensajesFlash::imprimir_mensajes();
     <?php } ?>
     <?php } ?>
     <!-- END SUPERADMIN MENU -->
-
-
-    </div>
-    </div>
-    <!-- button on click call href="<?= RUTA?>my_user">Mis Datos -->
-
-
-
 </section>
 </div>
 </body>
 <!-- END MENU -->
 
 <!-- scripts to change Userphoto-->
-<!--  <script type="text/javascript">
+<!-- <script type="text/javascript">
     $('#photo_usuario').click(function() {
         $('#input_photo').click();
     });
@@ -227,4 +186,4 @@ MensajesFlash::imprimir_mensajes();
     $('#input_photo').change(function() {
         $('#formulario_actualizar_photo').submit();
     })
-    </script> -->
+</script> -->

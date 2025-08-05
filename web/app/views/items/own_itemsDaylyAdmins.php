@@ -2,66 +2,34 @@
 $contenido = ob_get_clean();
 /*$titulo = "Web Registro Trabajos Ayto. Argamasilla de Alba";*/
 $titulo2 = "Detalle de Items";
-$templateContent = '<a href="'.RUTA.'insert_itemUsers" class="btn-title">
+$templateContent = '<a href="' . RUTA . 'insert_itemUsers" class="btn-title">
                 <i class="fa-solid fa-file-circle-plus"></i> 
                 Insertar Item</a>';
-$templateContentFilters='<div class="options_box" style="margin:5px; padding:5px; border:1px solid black;">
-                <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-                    <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <div>
-                            <label for="inputDate" class="form-label">Fecha para filtrar</label>
-                            <input type="date" class="form-control" id="inputDate" value="<?php echo $dateFilter?>"
-name="inputDate">
-</div>
-</div>
-
-
-<div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-    <i class="fa-solid fa-building-user"></i>
-    <div class="">
-        <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
-        <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
-            <option value="<?php $departmentUser ?>">Seleccione....</option>
-            <?php foreach ($departments as $department): ?>
-            <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
-                value="<?php echo $department->idDepartment  ?>">
-                <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-</div>
-</div>
-</div>';
 require './app/views/template.php';
 MensajesFlash::imprimir_mensajes();
 ?>
 
-
 <div class="options_box" style="margin:5px; padding:5px;">
-    <form id="formFilter" method="post" action="<?php RUTA?>own_itemsDaylyAdmins">
-        <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-            <!-- filter by input date format -->
-            <div class="form-group d-flex ms-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-calendar-days"></i>
-                <div>
-                    <label for="inputDate" class="form-label">Fecha para filtrar</label>
-                    <input type="date" class="form-control" id="inputDate" value="<?php echo $dateFilter?>"
-                        name="inputDate">
+    <form id="formFilter" method="post" action="<?php echo RUTA; ?>own_itemsDaylyAdmins">
+        <div class="d-flex flex-row flex-wrap align-items-center gap-2" style="margin:0; justify-content:flex-end;">
+            <div class="d-flex align-items-center border rounded p-2 me-2" style="min-width:220px;">
+                <i class="fa-solid fa-calendar-days me-2"></i>
+                <div class="d-flex flex-column flex-grow-1">
+                    <label for="inputDate" class="form-label mb-1" style="font-size:0.9em;">Fecha para filtrar</label>
+                    <input type="date" class="form-control form-control-sm" id="inputDate" value="<?php echo htmlspecialchars((string)($dateFilter ?? '')); ?>"
+                        name="inputDate" style="min-width:120px;">
                 </div>
             </div>
-
-            <!-- filter by input date format -->
-            <div class="form-group d-flex col-11 col-sm-auto" style="margin:5px; padding:5px; border:1px solid #bcbcbc">
-                <i class="fa-solid fa-building-user"></i>
-                <div class="">
-                    <label for="inputDepartment" class="form-label">Filtro por Depart. </label>
-                    <select id="inputDepartment" name="inputDepartment" class="d-flex flex-wrap">
-                        <option value="<?php $departmentUser ?>">Seleccione....</option>
+            <div class="d-flex align-items-center border rounded p-2" style="min-width:260px;">
+                <i class="fa-solid fa-building-user me-2"></i>
+                <div class="d-flex flex-column flex-grow-1">
+                    <label for="inputDepartment" class="form-label mb-1" style="font-size:0.9em;">Filtro por Depart.</label>
+                    <select id="inputDepartment" name="inputDepartment" class="form-select form-select-sm">
+                        <option value=""><?php echo isset($departmentUser) ? htmlspecialchars($departmentUser) : ''; ?>Seleccione....</option>
                         <?php foreach ($departments as $department): ?>
-                        <option <?php if($idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
-                            value="<?php echo $department->idDepartment  ?>">
-                            <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                        <option <?php if(isset($idDepart) && $idDepart==$department->idDepartment) echo "selected=\"selected\""; ?>
+                            value="<?php echo htmlspecialchars($department->idDepartment); ?>">
+                            <?php echo htmlspecialchars($department->idDepartment . " - " . $department->name); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -108,55 +76,53 @@ MensajesFlash::imprimir_mensajes();
             <tbody>
                 <?php foreach ($mis_items as $i): ?>
                 <tr>
-                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getId(). " - ". $i->getName() ?></a>
-                    </td>
-                    <td id="descriptionInfo"><?= substr($i->getDescription(),0,20) ."..."?></td>
-                    <td id="departmentInfo">
-                        <?= $i->getItemDepartment()->getIdDepartment() ," - ", $i->getItemDepartment()->getName() ?>
-                    </td>
-                    <td id="id_serviceInfo"><?= $i->getId_service() ?></td>
-                    <?php if ($i->getId_attendUser()==0 || $i->getId_attendUser()==null): ?>
-                    <td id="attendUserInfo" style="color:red">0000 - No asignado</td>
-                    <?php else: ?>
-                    <td id="attendUserInfo">
-                        <?= $i->getId_attendUser() ," - ",$i->getUser_attendUser()->getNombre()," ", substr($i->getUser_attendUser()->getSurname(),0,8); ?>
-                    </td>
-                    <?php endif; ?>
-
+                    <td id="itemInfo"><a href="ver_item/<?= $i->getId() ?>"><?= $i->getId(). " - ". $i->getName() ?></a></td>
+                    <td id="descriptionInfo"><?= htmlspecialchars(substr($i->getDescription(),0,20)) . "..." ?></td>
+                    <td id="departmentInfo"><?= htmlspecialchars($i->getItemDepartment()->getIdDepartment() . " - " . $i->getItemDepartment()->getName()) ?></td>
+                    <td id="id_serviceInfo"><?= htmlspecialchars($i->getId_service()) ?></td>
+                    <td>
+                        <?php
+                            $userAttend = $i->getUser_attendUser();
+                            if ($userAttend !== null) {
+                                echo $i->getId_attendUser() . " - " . htmlspecialchars($userAttend->getNombre()) . " " . htmlspecialchars(substr($userAttend->getSurname(), 0, 8));
+                            } else {
+                                echo $i->getId_attendUser() . " - No asignado";
+                            }
+                        ?>
+                                <?php
+                                    $userClient = $i->getUser_clientUser();
+                                    if ($userClient !== null) {
+                                        echo $i->getId_clientUser() . " - " . htmlspecialchars($userClient->getNombre()) . " " . htmlspecialchars($userClient->getSurname());
+                                    } else {
+                                        echo $i->getId_clientUser() . " - No asignado";
+                                    }
+                                ?>
                     <?php if ($i->getId_clientUser()==0 || $i->getId_clientUser()==null): ?>
-                    <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
+                        <td id="clientUserInfo" style="color:red">0000 - No asignado</td>
                     <?php else: ?>
-                    <td id="clientUserInfo">
-                        <a class="" href="<?= RUTA?>itemsByUserToAdmin?clientId=<?= $i->getId_clientUser() ?>"
-                            data="<?= $i->getId_clientUser() ?>">
-                            <?= $i->getId_clientUser() ," - ",$i->getUser_clientUser()->getNombre()," ", $i->getUser_clientUser()->getSurname()?>
-                        </a>
-                    </td>
+                        <td id="clientUserInfo">
+                            <a class="" href="<?= RUTA?>itemsByUserToAdmin?clientId=<?= $i->getId_clientUser() ?>"
+                                data="<?= $i->getId_clientUser() ?>">
+                                <?= $i->getId_clientUser() ," - ", htmlspecialchars($i->getUser_clientUser()->getNombre())," ", htmlspecialchars($i->getUser_clientUser()->getSurname())?>
+                            </a>
+                        </td>
                     <?php endif; ?>
-
-                    <td id="stateInfo"><?= $i->getState() ?></td>
-                    <td id="dateInfo"><?= $i->getDate() ?></td>
-                    <td id="hourInfo"><?= substr($i->getHour(),0,5) ?></td>
-                    <td id="durationInfo"><?= substr($i->getDuration(),0,5) ?></td>
-                    <td id="resultInfo"><?= $i->getResult() ?></td>
-                    <th>
-                        <?php if($i->getState()!="Finalizada"){ ?>
-                        <!--buttons bootstrap to edit the user with call to modalEditUser windowsDialog Modal to edit user with id="id="modalEditUser" -->
-                        <button type="button" class="btn btn-primary btn-table m-0 p-1" data-bs-toggle="modal"
-                            data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
+                    <td id="stateInfo"><?= htmlspecialchars($i->getState()) ?></td>
+                    <td id="dateInfo"><?= htmlspecialchars($i->getDate()) ?></td>
+                    <td id="hourInfo"><?= htmlspecialchars(substr($i->getHour(),0,5)) ?></td>
+                    <td id="durationInfo"><?= htmlspecialchars(substr($i->getDuration(),0,5)) ?></td>
+                    <td id="resultInfo"><?= htmlspecialchars($i->getResult()) ?></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-table m-0 p-1" 
+                            data-bs-toggle="modal" data-bs-target="#editItemModal" data-id="<?= $i->getId()?>"
                             id="boton_editar">Editar</button>
                         <!-- button to open windows view_item, no modal -->
                         <a href="ver_item/<?= $i->getId() ?>">
                             <button hidden type="button" class="btn btn-primary btn-table m-0 p-1">Ver</button>
                         </a>
-
                         <button hidden type="button" class="btn btn-danger m-0 p-1" data-toggle="modal"
                             data-target="#deleteItemModal" data-id="<?= $i->getId()?>">Eliminar </button>
-                        <?php }else{ ?>
-                        <p>Finalizada</p>
-                        <?php } ?>
-                    </th>
-
+                    </td>
                 </tr>
                 <?php endforeach; ?>
                 <!-- include modal windows to edit or delete user -->
@@ -211,12 +177,11 @@ $(document).on('click', '#boton_editar', function() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex">
-                <form id="editItemForm" class="modal-body d-flex flex-wrap" action="<?= RUTA."edit_item"?>"
-                    enctype="multipart/form-data">
+                <form id="editItemForm" class="modal-body d-flex flex-wrap" action="<?= RUTA . "edit_item" ?>"
+                    enctype="multipart/form-data" method="post">
                     <div class="form-group col-3">
                         <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" placeholder="Id" value=""
-                            style="margin-bottom:1em" required readonly>
+                        <input type="text" class="form-control" id="id" name="id" readonly>
                     </div>
                     <div class="form-group col-9">
                         <label for="name">Nombre</label>
@@ -225,70 +190,54 @@ $(document).on('click', '#boton_editar', function() {
                     </div>
                     <div class="form-group col-12">
                         <label for="description">Descripción</label>
-                        <textarea type="textarea" class="form-control" id="description" name="description"
-                            placeholder="Descripción" value="" style="margin-bottom:1em" required>
-                        </textarea>
+                        <textarea class="form-control" id="description" name="description"
+                            placeholder="Descripción" style="margin-bottom:1em" required></textarea>
                     </div>
-                    <div class="form-group col-12" hidden>
-                        <label for="location">Ubicación</label>
-                        <input type="text" class="form-control" id="location" name="location" placeholder="Ubicación"
-                            value="" style="margin-bottom:1em" required>
-                    </div>
-                    <div class="form-group col-12 col-md-6">
+                    <div class="form-group col-12">
                         <label for="id_department">Departamento</label>
                         <select class="form-control" id="id_department" name="id_department" style="margin-bottom:1em"
                             required>
                             <option value="">Seleccione....</option>
                             <?php foreach ($departments as $department): ?>
-                            <option value="<?php echo $department->idDepartment ?>">
-                                <?php echo $department->idDepartment, " - " ; echo $department->name; ?></option>
+                            <option value="<?php echo htmlspecialchars($department->idDepartment); ?>">
+                                <?php echo htmlspecialchars($department->idDepartment . " - " . $department->name); ?>
+                            </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group col-12 col-md-6">
-                        <label for="id_service">Servicio</label>
-                        <input type="text" class="form-control" id="id_service" name="id_service"
-                            style="margin-bottom:1em" required>
-                    </div>
-                    <div class="form-group">
+                    <div class="form-group col-12">
                         <label for="id_attendUser">Atendió:</label>
                         <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
                         <select class="form-control" name="id_attendUser" id="id_attendUser" style="margin-bottom:1em">
                             <option value="">Seleccione....</option>
                             <?php foreach ($admins as $admin): ?>
-                            <option value="<?php echo $admin->id  ?>">
-                                <?php echo $admin->nombre , " " ;  echo $admin->surname; ?>
+                            <option value="<?php echo htmlspecialchars($admin->id); ?>">
+                                <?php echo htmlspecialchars($admin->nombre . " " . $admin->surname); ?>
                             </option>
                             <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
-                            <input class="form-control" name="inputUser"
-                                value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
-                                readonly>
-                            <?php } ?>
                         </select>
-                    </div>
-                    <label for="id_clientUser" class="form-label">Cliente: (por precaución no se muestra el dni
-                        entero, puedes buscar a partir de la 5ª cifra del DNI o NIE)</label>
-                    <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() =='superAdmin') { ?>
-                    <select class="form-control" name="id_clientUser" id="id_clientUser" style="margin-bottom:1em">
-                        <option value="">Seleccione....</option>
-                        <?php foreach ($clients as $client): ?>
-                        <option value="<?php echo $client->id  ?>">
-                            <?php echo substr($client->dni,4,9), " - " ; echo $client->nombre , " " ;  echo $client->surname; ?>
-                        </option>
-                        <?php endforeach; ?>
-                        <?php } ?>
-                        <?php if ($usuario->getRol() == '' || $usuario->getRol() =='user') { ?>
+                        <?php } elseif ($usuario->getRol() == '' || $usuario->getRol() == 'user') { ?>
                         <input class="form-control" name="inputUser"
-                            value="<?php echo Session::obtener()->getId() ?><?php echo " ", Session::obtener()->getNombre() ?>"
+                            value="<?php echo htmlspecialchars(Session::obtener()->getId() . " " . Session::obtener()->getNombre()); ?>"
                             readonly>
                         <?php } ?>
-                    </select>
-                    <div class="form-group col-6 col-md-4">
-                        <label for="date">Fecha</label>
-                        <input type="date" class="form-control" id="date" name="date" style="margin-bottom:1em"
-                            required>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="id_clientUser">Cliente</label>
+                        <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') { ?>
+                        <select class="form-control" name="id_clientUser" id="id_clientUser" style="margin-bottom:1em">
+                            <option value="">Seleccione....</option>
+                            <?php foreach ($clients as $client): ?>
+                            <option value="<?php echo htmlspecialchars($client->id); ?>">
+                                <?php echo htmlspecialchars(substr($client->dni, 4, 9) . " - " . $client->nombre . " " . $client->surname); ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?php } elseif ($usuario->getRol() == '' || $usuario->getRol() == 'user') { ?>
+                        <input class="form-control" name="inputUser"
+                            value="<?php echo htmlspecialchars(Session::obtener()->getId() . " " . Session::obtener()->getNombre()); ?>"
+                            readonly>
+                        <?php } ?>
                     </div>
                     <div class="form-group col-6 col-md-4">
                         <label for="hour">Hora</label>
@@ -319,10 +268,11 @@ $(document).on('click', '#boton_editar', function() {
                             <option value="No responde">No responde</option>
                         </select>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Editar Item</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdateSubmit">Editar Item</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

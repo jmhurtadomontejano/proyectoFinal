@@ -6,42 +6,44 @@ require './app/views/template.php';
 MensajesFlash::imprimir_mensajes(); 
 ?>
 
-<div class="options_box">
-        <div class="d-flex flex-wrap col-12" style="margin:10px; justify-content:space-around">
-            <div class="photo_user" id="photo_usuario"
-                style="background-image: url(<?= RUTA?>images/users/<?= $client->getPhoto() ?>)">
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control col-12 col-md-6" id="nombre" name="nombre"
-                    value="<?php echo $client->getNombre() ?>">
-            </div>
-            <div class="form-group">
-                <label for="apellidos">Apellidos</label>
-                <input type="text" class="form-control col-12 col-md-6" id="apellidos" name="apellidos"
-                    value="<?php echo $client->getSurname() ?>">
-            </div>
-            <div class="form-group">
-                <label for="dni">DNI</label>
-                <input type="text" class="form-control col-12 col-md-6" id="dni" name="dni" value="<?php echo $client->getDni() ?>">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control col-12 col-md-6" id="email" name="email"
-                    value="<?php echo $client->getEmail() ?>">
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control col-12 col-md-6" id="telefono" name="telefono"
-                    value="<?php echo $client->getPhone() ?>">
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-                <input type="text" class="form-control col-12 col-md-6" id="direccion" name="direccion"
-                    value="<?php echo $client->getAddress() ?>">
+<div class="container my-3">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center mb-3 mb-md-0">
+                    <img src="<?= RUTA ?>images/users/<?= $client->getPhoto() ?>" alt="Foto usuario" class="img-fluid rounded-circle border" style="width: 100px; height: 100px; object-fit: cover;">
+                </div>
+                <div class="col-md-10">
+                    <div class="row g-2">
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $client->getNombre() ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" value="<?= $client->getSurname() ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="dni">DNI</label>
+                            <input type="text" class="form-control" id="dni" name="dni" value="<?= $client->getDni() ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $client->getEmail() ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="<?= $client->getPhone() ?>" readonly>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <label class="form-label mb-0" for="direccion">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" value="<?= $client->getAddress() ?>" readonly>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-   
+    </div>
 </div>
 
 <div class="col-sm-12">

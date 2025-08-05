@@ -17,6 +17,9 @@ class Item {
     private $id_clientUser;
     //Propiedad para acceder a los datos del user al que pertenece el item
     private $user;
+    private $usuario;
+    private $id_user;
+    private $registrationDate;
     private $state;
     private $date;
     private $hour;
@@ -24,6 +27,7 @@ class Item {
     private $result;
     //Propiedad para acceder a las photosItem del item
     private $photoItemsItem;
+    private $department;
 
     public static function initValues($id, $name, $description, $location, $id_department, $id_service, $id_attendUser, $id_clientUser, $state, $date, $hour, $duration, $result) {  
         $item = new Item();

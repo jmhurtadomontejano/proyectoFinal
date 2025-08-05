@@ -1,5 +1,10 @@
 <?php
+declare(strict_types=1);
 
+// Habilitar reporte de errores en desarrollo
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 /*
  * controller Frontal
  */
@@ -7,26 +12,51 @@
 session_start();
 
 //Requires
-require './app/models/ConexionBD.php';
-require './app/models/articles/Article.php';
-require './app/models/articles/ArticleDAO.php';
-require './app/models/departments/Department.php';
-require './app/models/departments/DepartmentDAO.php';
-require './app/models/items/Item.php';
-require './app/models/items/ItemDAO.php';
-require './app/models/photo/Photo.php';
-require './app/models/photo/PhotoDAO.php';
-require './app/models/photo/PhotoItem.php';
-require './app/models/photo/PhotoItemDAO.php';
-require './app/models/MensajesFlash.php';
-require './app/models/Session.php';
-require './app/models/users/Usuario.php';
-require './app/models/users/UsuarioDAO.php';
-require './app/controllers/ArticlesController.php';
-require './app/controllers/DepartmentsController.php';
-require './app/controllers/ItemsController.php';
-require './app/controllers/UsersController.php';
-require './config.php';
+// Autoload de Composer
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    die('Autoload file not found. Please run "composer install" to install dependencies.');
+}
+// Cargar las clases necesarias
+// Asegúrate de que la ruta es correcta según tu estructura de directorios  
+require __DIR__ . '/../vendor/autoload.php';
+
+$requiredFiles = [
+    './app/models/ConexionBD.php',
+    './app/models/articles/Article.php',
+    './app/models/articles/ArticleDAO.php',
+    './app/models/departments/Department.php',
+    './app/models/departments/DepartmentDAO.php',
+    './app/models/items/Item.php',
+    './app/models/items/ItemDAO.php',
+    './app/models/photo/Photo.php',
+    './app/models/photo/PhotoDAO.php',
+    './app/models/photo/PhotoItem.php',
+    './app/models/photo/PhotoItemDAO.php',
+    './app/models/MensajesFlash.php',
+    './app/models/Session.php',
+    './app/models/users/Usuario.php',
+    './app/models/users/UsuarioDAO.php',
+    './app/models/MessageType.php',
+    './app/controllers/ArticlesController.php',
+    './app/controllers/DepartmentsController.php',
+    './app/controllers/ItemsController.php',
+    './app/controllers/UsersController.php',
+    './config.php'
+];
+
+foreach ($requiredFiles as $file) {
+    if (!file_exists($file)) {
+        // Log the error for developers
+        error_log("Required file not found: $file");
+        // Show a generic message to users if not in development
+        if (getenv('APP_ENV') === 'development') {
+            echo "<div style='color:red;'>Required file not found: $file</div>";
+        }
+        // Continue to next file instead of stopping execution
+        continue;
+    }
+    require $file;
+}
 
 
 //Enrutamiento
@@ -86,14 +116,15 @@ $mapa = array(
     
 );
 
+
 //Parseo de la ruta
 if (!empty($_GET['accion'])) {
     if (isset($mapa[$_GET['accion']])) {  //Si existe en el mapa
         $accion = $_GET['accion'];
     } else { //Si no existe en el mapa
         MensajesFlash::add_message("La página que buscas no existe.", MessageType::ERROR);
-        header("Location: inicio");
-        die();
+        header("Location: /proyectoFinal/web/index.php?accion=inicio");
+        exit();
     }
 } else {    //Si no me pasan parámetro acción, cargo la acción por defecto
     $accion = "inicio";
@@ -113,15 +144,30 @@ if (isset($_COOKIE['uid']) && Session::existe() == false) { //Si existe la cooki
 if ($mapa[$accion]['publica'] == false) { //Debe tener la sesión iniciada
     if (!Session::existe()) {
         MensajesFlash::add_message("Debes iniciar sesión para acceder a esta página", MessageType::ERROR);
-        header('Location: inicio');
-        die();
+        header('Location: /proyectoFinal/web/index.php?accion=inicio');
+        exit();
     }
 }
 
 
 //Ejecución del controller
-$controller = $mapa[$accion]['controller'];
+$controllerName = $mapa[$accion]['controller'];
 $method = $mapa[$accion]['method'];
 
-$controller = new $controller();
-$controller->$method();
+if (!class_exists($controllerName)) {
+    die("Controller class '$controllerName' not found.");
+}
+
+$controller = new $controllerName();
+
+if (!method_exists($controller, $method)) {
+    die("Method '$method' not found in controller '$controllerName'.");
+}
+
+try {
+    $controller->$method();
+} catch (Throwable $e) {
+    MensajesFlash::add_message("Ha ocurrido un error interno: " . $e->getMessage(), MessageType::ERROR);
+    header('Location: /proyectoFinal/web/index.php?accion=inicio');
+    exit();
+}

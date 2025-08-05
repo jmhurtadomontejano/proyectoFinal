@@ -222,10 +222,10 @@ $(document).on('click', '#boton_editar', function() {
                     <div class="form-group col-6 col-md-4">
                         <label for="state">Estado</label>
                         <select id="state" name="state" class="form-select">
-                            <option selected>Registrada</option>
-                            <option>Iniciada</option>
-                            <option>En Proceso</option>
-                            <option>Finalizada</option>
+                            <option value="Registrada" selected>Registrada</option>
+                            <option value="Iniciada">Iniciada</option>
+                            <option value="En Proceso">En Proceso</option>
+                            <option value="Finalizada">Finalizada</option>
                         </select>
                     </div>
                     <div class="form-group col-6 col-md-4">

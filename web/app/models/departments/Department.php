@@ -12,6 +12,7 @@ class Department {
     private $emailDepartment;
     private $iconDepartment; 
     private $disable;
+    private $disableDepartment;
     
     //Va a almacenar los datos de los usuarios relacionado con este Departamento
     private $users;
@@ -61,8 +62,8 @@ class Department {
         return $this->disable;
     }
 
-    function setIdDepartment($id): void {
-        $this->id = $idDepartment;
+    function setIdDepartment($idDepartment): void {
+        $this->idDepartment = $idDepartment;
     }
 
     function setName($name): void {
@@ -84,9 +85,16 @@ class Department {
     function setIconDepartment($iconDepartment): void {
         $this->iconDepartment = $iconDepartment;
     }
-
     function setDisable($disable): void {
         $this->disable = $disable;
+    }
+
+    function getDisableDepartment() {
+        return $this->disableDepartment;
+    }
+
+    function setDisableDepartment($disableDepartment): void {
+        $this->disableDepartment = $disableDepartment;
     }
     
 }

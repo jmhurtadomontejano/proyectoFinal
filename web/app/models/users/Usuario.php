@@ -23,10 +23,10 @@ class Usuario {
     private $restart_password;
     private $restart_code;
     private $disableUser;
+    public $department;
+    public $registrationDate;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public static function initValues($id, $nombre, $surname, $dni, $gender, $birth_date, $email, $phone, $postalCode, $address, $rol, $department) {
         $obj = new Usuario();
@@ -55,10 +55,8 @@ class Usuario {
         return $obj;
     }
 
-    //Array que va a contener los artículos de este usuario
     private $articulos;
-    
-    
+
     function getCookie_id() {
         return $this->cookie_id;
     }
@@ -67,11 +65,14 @@ class Usuario {
         $this->cookie_id = $cookie_id;
     }
 
-        function getId() {
+    function getId() {
         return $this->id;
     }
 
     function getNombre() {
+        if ($this === null) {
+            return null;
+        }
         return $this->nombre;
     }
 
@@ -189,7 +190,7 @@ class Usuario {
     }
 
     function setPassword($password): void {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     function setPhoto($photo): void {
@@ -219,11 +220,5 @@ class Usuario {
     function setDisableUser($disableUser): void {
         $this->disableUser = $disableUser;
     }
-
- /*function toString Usuario 
-    function toString(){
-        return "Usuario: ".$this->id." ".$this->nombre." ".$this->surname." ".$this->dni." ".$this->gender." ".$this->birth_date."
-        ".$this->$email." ".$this->$phone." ".$this->address." ".$this->rol." ".$this->department.";
-    }
-*/
 }
+?>

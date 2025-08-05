@@ -31,6 +31,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styleGuide.css">
 
+
     <!-- Social Media Metadata -->
     <meta name="twitter:site" content="@themepixels">
     <meta name="twitter:creator" content="@themepixels">
@@ -64,50 +65,65 @@
             </div>
         <?php endif; ?>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="<?= RUTA ?>">
-                    <img src="images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" alt="Logo" class="logo">
-                    <div class="d-inline-block align-middle ms-2">
-                        <p class="font-heading mb-0">Ayuntamiento de<br>Argamasilla de Alba</p>
-                        <p class="font-heading-subtitle mb-0">El lugar de La Mancha</p>
-                    </div>
+        <!-- NAV -->
+        <nav class="navbar navbar-light bg-light navbar-expand-lg shadow sticky-top">
+            <div class="container-fluid px-3">
+                <!-- LOGO -->
+                <a class="navbar-brand mt-1 ms-2" href="<?= RUTA ?>">
+                    <img src="images/icons/logo-AyuntamientoArgamasillaDeAlba.webp" class="me-2 logo" alt="Logo Ayuntamiento">
+                    <span class="d-inline-block align-middle" style="line-height:1.1;">
+                        <span class="fw-bold" style="font-size:1.1rem; color:#1a237e;">Ayuntamiento de</span><br>
+                        <span class="fw-bold" style="font-size:1.1rem; color:#1a237e;">Tomelloso</span>
+                    </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <!-- BOTON DESPLEGABLE -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- ENLACES -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="<?= RUTA ?>">Inicio</a>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5">
+                        <li class="nav-item ms-lg-4">
+                            <a class="nav-link fs-4 <?= (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active fs-3' : ''; ?>"
+                                href="<?= RUTA ?>">Inicio</a>
                         </li>
                         <li class="nav-item" hidden>
-                            <a class="nav-link" href="<?= RUTA ?>indexBootstrap">Index Bootstrap</a>
+                            <a class="nav-link fs-4" href="<?= RUTA ?>indexBootstrap">Index Bootstrap</a>
                         </li>
-                        <li class="nav-item dropdown" hidden>
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownArticles" role="button" data-bs-toggle="dropdown">
+                        <li class="nav-item dropdown fs-4" hidden>
+                            <a class="nav-link dropdown-toggle fs-4"
+                                href="#" id="navbarDropdownArticles" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Articulos
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu fs-4" aria-labelledby="navbarDropdownArticles">
                                 <li><a class="dropdown-item" href="<?= RUTA ?>insertar_articulo">Poner artículo a la venta</a></li>
                                 <li><a class="dropdown-item" href="<?= RUTA ?>listar_articulos">Listar Todos Los Articulos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= RUTA ?>insert_itemUsers">Insertar item</a>
+                            <a class="nav-link fs-4" href="<?= RUTA ?>insert_itemUsers">Insertar item</a>
                         </li>
                         <?php if (Session::existe()) : ?>
                             <?php
-                            $conn = ConexionBD::conectar();
-                            $usuDAO = new UsuarioDAO($conn);
-                            $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+                            static $usuario = null;
+                            if ($usuario === null) {
+                                $conn = ConexionBD::conectar();
+                                $usuDAO = new UsuarioDAO($conn);
+                                $usuario = $usuDAO->findUserById(Session::obtener()->getId());
+                                if (method_exists($conn, 'close')) {
+                                    $conn->close();
+                                }
+                            }
                             ?>
-                            <?php if ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin') : ?>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown">
+                            <?php if ($usuario && ($usuario->getRol() == 'admin' || $usuario->getRol() == 'superAdmin')) : ?>
+                                <li class="nav-item dropdown fs-4">
+                                    <a class="nav-link dropdown-toggle fs-4" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Administradores
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu fs-4" aria-labelledby="navbarDropdownAdmin">
                                         <li><a class="dropdown-item" href="<?= RUTA ?>own_itemsDaylyAdmins">Mis Items Diarios Admins</a></li>
                                         <li><a class="dropdown-item" href="<?= RUTA ?>own_itemsDaylyAdminsWithoutAttendat">Items Pendientes</a></li>
                                         <li><a class="dropdown-item" href="<?= RUTA ?>own_items">Todos Mis Items sin filtros</a></li>
@@ -116,12 +132,12 @@
                                     </ul>
                                 </li>
                             <?php endif; ?>
-                            <?php if ($usuario->getRol() == 'superAdmin') : ?>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSuperAdmin" role="button" data-bs-toggle="dropdown">
+                            <?php if ($usuario && $usuario->getRol() == 'superAdmin') : ?>
+                                <li class="nav-item dropdown fs-4">
+                                    <a class="nav-link dropdown-toggle fs-4" href="#" id="navbarDropdownSuperAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         SuperAdministradores
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu fs-4" aria-labelledby="navbarDropdownSuperAdmin">
                                         <li><a class="dropdown-item" href="<?= RUTA ?>departments_list">Lista Departamentos</a></li>
                                         <li><a class="dropdown-item" href="<?= RUTA ?>departments_listResponsive">Lista Departamentos Responsive</a></li>
                                         <li><a class="dropdown-item" href="<?= RUTA ?>items_list">Listar todos los items SuperAdmin</a></li>
@@ -160,6 +176,13 @@
             </div>
         </nav>
 
+
+        <div class="MensajesFlash"><?php mensajesFlash::imprimir_mensajes() ?></div>
+    </header>
+    <div id="main-wrapper">
+        <main>
+        <!-- Aquí va el contenido principal -->
+        </main>
         <?php if (!empty($titulo2)) : ?>
             <div id="titulo2" class="options_box p-3 my-3">
                 <div class="d-flex justify-content-between">
@@ -170,12 +193,37 @@
                 </div>
             </div>
         <?php endif; ?>
-
-        <div class="MensajesFlash"><?php mensajesFlash::imprimir_mensajes() ?></div>
-    </header>
-    <main>
-        <?= $contenido ?>
-    </main>
+    </div>
+    <script>
+        // Ajusta el margen superior dinámicamente según la altura visible de la navbar sticky-top (incluyendo el menú expandido)
+        function adjustMainMargin(animated = false) {
+            var navbar = document.querySelector('.navbar.sticky-top');
+            var wrapper = document.getElementById('main-wrapper');
+            if (navbar && wrapper) {
+                var navbarCollapse = document.getElementById('navbarSupportedContent');
+                var extraHeight = 0;
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    extraHeight = navbarCollapse.scrollHeight;
+                }
+                var newMargin = (navbar.offsetHeight + extraHeight) + 'px';
+                if (animated) {
+                    wrapper.style.transition = 'margin-top 0.4s cubic-bezier(.4,2,.6,1)';
+                } else {
+                    wrapper.style.transition = '';
+                }
+                wrapper.style.marginTop = newMargin;
+            }
+        }
+        window.addEventListener('load', function() { adjustMainMargin(false); });
+        window.addEventListener('resize', function() { adjustMainMargin(false); });
+        var navbarCollapse = document.getElementById('navbarSupportedContent');
+        if (navbarCollapse) {
+            navbarCollapse.addEventListener('show.bs.collapse', function() { adjustMainMargin(true); });
+            navbarCollapse.addEventListener('shown.bs.collapse', function() { adjustMainMargin(true); });
+            navbarCollapse.addEventListener('hide.bs.collapse', function() { adjustMainMargin(true); });
+            navbarCollapse.addEventListener('hidden.bs.collapse', function() { adjustMainMargin(true); });
+        }
+    </script>
 
     <script>
         $('#photo_usuario').click(function () {

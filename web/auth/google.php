@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../app/core/Session.php';
 $contenido = ob_get_clean();
 
 if (!Session::existe()){
@@ -183,15 +184,3 @@ MensajesFlash::imprimir_mensajes();
 </section>
 </div>
 </body>
-<!-- END MENU -->
-
-<!-- scripts to change Userphoto-->
-<!-- <script type="text/javascript">
-    $('#photo_usuario').click(function() {
-        $('#input_photo').click();
-    });
-
-    $('#input_photo').change(function() {
-        $('#formulario_actualizar_photo').submit();
-    })
-</script> -->

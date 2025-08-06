@@ -605,7 +605,11 @@ debug_to_console("antes de if !error");
     die();
     }
 
-    public function send_recovery_code() {
+    public function showForgotPasswordForm() {
+        require './app/views/index/forgot_password.php';
+    }
+
+    public function sendRecoveryCode() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = $_POST['email'];
             $usuario = new Usuario();

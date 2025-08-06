@@ -1,7 +1,4 @@
 // form.js
-
-console.log('form.js loaded');
-
 document.addEventListener('DOMContentLoaded', function () {
     var inputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
 
